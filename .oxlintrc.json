@@ -1,3 +1,7 @@
 {
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true
+  },
   "plugins": ["typescript", "unicorn", "oxc", "import", "jsdoc", "promise", "jsx-a11y"]
 }

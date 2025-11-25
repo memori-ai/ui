@@ -59,6 +59,10 @@
     "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,css,md,json,yml,toml,yaml}": [
       "bun lint",
       "bun format:check"
+    ],
+    "src/**/*.css": [
+      "bun lint:css",
+      "bun format:check"
     ]
   }
 }

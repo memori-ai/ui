@@ -1,0 +1,26 @@
+{
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "singleAttributePerLine": true,
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "tabWidth": 4,
+        "printWidth": 120
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ],
+  "plugins": ["@prettier/plugin-oxc"]
+}

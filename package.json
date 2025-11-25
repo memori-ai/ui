@@ -1,0 +1,37 @@
+{
+  "name": "@memori.ai/ui",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "bunx oxlint",
+    "lint:fix": "bunx oxlint --fix",
+    "format": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
+    "test:ci": "CI=true bun test --coverage --coverage-reporter=lcov",
+    "test:ai": "AGENT=1 bun test",
+    "release": "bunx release-it",
+    "prepare": "husky || true"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@prettier/plugin-oxc": "^0.0.5",
+    "@release-it/conventional-changelog": "^10.0.2",
+    "@types/bun": "latest",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "oxlint": "^1.30.0",
+    "oxlint-tsgolint": "^0.8.2",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,css,md,json,yml,toml,yaml}": [
+      "bun lint",
+      "bun format:check"
+    ]
+  }
+}

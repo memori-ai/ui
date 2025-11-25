@@ -1,3 +1,3 @@
 {
-  "plugins": ["typescript", "unicorn", "oxc", "import", "jsdoc", "promise"]
+  "plugins": ["typescript", "unicorn", "oxc", "import", "jsdoc", "promise", "jsx-a11y"]
 }

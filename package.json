@@ -77,7 +77,7 @@
     "react": ">=17"
   },
   "lint-staged": {
-    "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,css,md,json,yml,toml,yaml}": [
+    "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,md,json,yml,toml,yaml}": [
       "bun lint",
       "bun format:check"
     ],

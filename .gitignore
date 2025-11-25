@@ -4,6 +4,7 @@ node_modules
 # output
 out
 dist
+esm
 *.tgz
 
 # code coverage
@@ -27,8 +28,13 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .cache
 *.tsbuildinfo
 
-# IntelliJ based IDEs
+# IDEs and editor
 .idea
+*.swp
 
-# Finder (MacOS) folder config
+# finder (MacOS) folder config
 .DS_Store
+
+# storybook
+*storybook.log
+storybook-static

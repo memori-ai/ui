@@ -2,7 +2,10 @@
 export default {
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-prettier',
+    // 'stylelint-config-prettier',
     'stylelint-config-idiomatic-order',
   ],
+  rules: {
+    'selector-class-pattern': null,
+  },
 }

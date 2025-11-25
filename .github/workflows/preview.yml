@@ -1,0 +1,36 @@
+name: Storybook PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: actions/setup-bun@v2
+        with:
+          bun-version: 1.3.3
+
+      - name: ⚒ Install deps
+        if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
+        run: bun install
+
+      - name: ⚙️ Build storybook
+        if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
+        run: bun run build-storybook
+
+      - name: 🚀 Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./storybook-static/

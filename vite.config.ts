@@ -1,8 +1,10 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { name, peerDependencies } from './package.json'
 import react from '@vitejs/plugin-react'
 
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 const packageName = name.replaceAll('@', '').replaceAll(/[/.]/g, '-')
 
 // https://vite.dev/config/
@@ -16,13 +18,27 @@ export default defineConfig({
       fileName: format => `${packageName}.${format}.js`,
     },
     rollupOptions: {
-      external: Object.keys(peerDependencies),
+      external: Array.from(
+        new Set(['react', 'react-dom', ...Object.keys(peerDependencies)]),
+      ),
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
     },
   },
   plugins: [
     dts({
       insertTypesEntry: true,
       include: ['src/**/*.ts', 'src/**/*.tsx'],
+      exclude: [
+        '**/*.test.ts',
+        '**/*.test.tsx',
+        '**/*.stories.ts',
+        '**/*.stories.tsx',
+      ],
     }),
     react({
       babel: {

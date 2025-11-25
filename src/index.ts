@@ -1,3 +1,4 @@
+import { Button } from './Button.tsx'
 import './styles.css'
 
 export type Message = {
@@ -14,4 +15,4 @@ const printMessage = (message = defaultMessage) => {
   console.log(`${message.name}: ${message.message}`)
 }
 
-export default printMessage
+export { Button, printMessage }

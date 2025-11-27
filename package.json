@@ -27,6 +27,7 @@
     "lint": "bunx oxlint",
     "lint:css": "bunx stylelint \"src/**/*.css\"",
     "lint:fix": "bunx oxlint --fix",
+    "typecheck": "tsc --noEmit",
     "format": "bunx prettier --write .",
     "format:check": "bunx prettier --check .",
     "test:ci": "CI=true bun test --coverage --coverage-reporter=lcov",
@@ -78,12 +79,19 @@
   },
   "lint-staged": {
     "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,md,json,yml,toml,yaml}": [
-      "bun lint",
-      "bun format:check"
+      "bun run lint",
+      "bun run format:check"
     ],
     "src/**/*.css": [
-      "bun lint:css",
-      "bun format:check"
+      "bun run lint:css",
+      "bun run format:check"
     ]
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "classnames": "^2.5.1",
+    "lucide-react": "^0.555.0",
+    "react-aria-components": "^1.13.0",
+    "react-i18next": "^16.3.5"
   }
 }

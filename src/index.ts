@@ -1,18 +1,14 @@
-import { Button } from './Button.tsx'
 import './styles.css'
 
-export type Message = {
-  name: string
-  message: string
-}
-
-const defaultMessage: Message = {
-  name: 'John',
-  message: 'Hello, world!',
-}
-
-const printMessage = (message = defaultMessage) => {
-  console.log(`${message.name}: ${message.message}`)
-}
-
-export { Button, printMessage }
+export { default as Alert } from './components/Alert'
+export { default as Button } from './components/Button'
+export { default as Card } from './components/Card'
+export { default as Checkbox } from './components/Checkbox'
+export { default as ConfirmDialog } from './components/ConfirmDialog'
+export { default as Dropdown } from './components/Dropdown'
+export { default as Expandable } from './components/Expandable'
+export { default as Modal } from './components/Modal'
+export { default as Select } from './components/Select'
+export { default as Slider } from './components/Slider'
+export { default as Spin } from './components/Spin'
+export { default as Tooltip } from './components/Tooltip'

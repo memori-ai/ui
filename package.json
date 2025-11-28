@@ -37,6 +37,7 @@
     "release": "bunx release-it",
     "prepare": "husky || true",
     "storybook": "storybook dev -p 6006",
+    "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "devDependencies": {

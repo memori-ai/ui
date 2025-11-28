@@ -31,7 +31,7 @@
     "format": "bunx prettier --write .",
     "format:check": "bunx prettier --check .",
     "test": "vitest watch",
-    "test:ci": "CI=true vitest run --coverage --coverage-reporter=lcov",
+    "test:ci": "CI=true vitest run",
     "test:ai": "AGENT=1 vitest run",
     "release": "bunx release-it",
     "prepare": "husky || true",

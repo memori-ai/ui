@@ -1,5 +1,5 @@
 import React from 'react'
-import { expect, it, beforeEach, jest } from 'bun:test'
+import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Drawer from './Drawer'
 import Button from '../Button'
@@ -18,21 +18,11 @@ const content = (
   </>
 )
 
-beforeEach(() => {
-  // @ts-ignore
-  window.IntersectionObserver = jest.fn(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-    takeRecords: jest.fn(),
-  }))
-})
-
 it('renders Drawer unchanged', () => {
   const { container } = render(
     <Drawer
       open={false}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
     >
       {content}
     </Drawer>,
@@ -44,7 +34,7 @@ it('renders Drawer open unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
     >
       {content}
     </Drawer>,
@@ -56,7 +46,7 @@ it('renders Drawer with title unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       title="Lorem ipsum"
     >
       {content}
@@ -69,7 +59,7 @@ it('renders Drawer with description unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       description="Lorem ipsum dolor sit amet"
     >
       {content}
@@ -82,7 +72,7 @@ it('renders Drawer loading unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       loading
     >
       {content}
@@ -95,10 +85,10 @@ it('renders Drawer with footer unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       footer={{
         leftAction: <Button>Cancel</Button>,
-        onSubmit: jest.fn(),
+        onSubmit: vi.fn(),
         loading: false,
       }}
     >
@@ -112,7 +102,7 @@ it('renders Drawer non closable unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       closable={false}
     >
       {content}
@@ -125,7 +115,7 @@ it('renders Drawer side left unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       placement="left"
     >
       {content}
@@ -138,7 +128,7 @@ it('renders Drawer with custom widths unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       width="100%"
       widthMd="90%"
       widthLg="80%"
@@ -153,11 +143,11 @@ it('renders Drawer with footer unchanged', () => {
   const { container } = render(
     <Drawer
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       footer={{
         leftActionClassName: 'custom-left-action-class',
         leftAction: <Button>Cancel</Button>,
-        onSubmit: jest.fn(),
+        onSubmit: vi.fn(),
         loading: false,
       }}
     >

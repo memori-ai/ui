@@ -1,24 +1,15 @@
 import React from 'react'
-import { describe, beforeEach, afterEach, it, expect, jest } from 'bun:test'
+import { describe, beforeEach, afterEach, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import Alert from './Alert'
 
 beforeEach(() => {
-  // Mock IntersectionObserver
-  // @ts-ignore
-  window.IntersectionObserver = jest.fn(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-    takeRecords: jest.fn(),
-  }))
-
   // Mock setTimeout/clearTimeout
-  jest.useFakeTimers()
+  vi.useFakeTimers()
 })
 
 afterEach(() => {
-  jest.useRealTimers()
+  vi.useRealTimers()
 })
 
 describe('Alert Component', () => {
@@ -26,7 +17,7 @@ describe('Alert Component', () => {
     const { container } = render(
       <Alert
         open={false}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         title="Test Alert"
       />,
     )
@@ -37,7 +28,7 @@ describe('Alert Component', () => {
     const { container } = render(
       <Alert
         open={true}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         title="Test Alert"
       />,
     )
@@ -45,22 +36,25 @@ describe('Alert Component', () => {
   })
 
   it('calls onClose when close button is clicked', () => {
-    const onClose = jest.fn()
-    render(
+    const onClose = vi.fn()
+    const { container } = render(
       <Alert
         open={true}
+        closable={true}
         onClose={onClose}
         title="Test Alert"
       />,
     )
 
-    const closeButton = screen.getByTitle('close')
+    const closeButton = container.querySelector(
+      '[title="close"]',
+    ) as HTMLElement
     fireEvent.click(closeButton)
     expect(onClose).toHaveBeenCalled()
   })
 
   it('auto-dismisses after duration', () => {
-    const onClose = jest.fn()
+    const onClose = vi.fn()
     render(
       <Alert
         open={true}
@@ -71,9 +65,7 @@ describe('Alert Component', () => {
     )
 
     act(() => {
-      setTimeout(() => {
-        onClose(false)
-      }, 3000)
+      vi.advanceTimersByTime(3000)
     })
 
     expect(onClose).toHaveBeenCalled()
@@ -83,7 +75,7 @@ describe('Alert Component', () => {
     const { container } = render(
       <Alert
         open={true}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         title="Test Alert"
         width="500px"
       />,
@@ -94,11 +86,11 @@ describe('Alert Component', () => {
   })
 
   it('renders with action button', () => {
-    const actionClick = jest.fn()
+    const actionClick = vi.fn()
     render(
       <Alert
         open={true}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         title="Test Alert"
         action={<button onClick={actionClick}>Action</button>}
       />,
@@ -110,7 +102,7 @@ describe('Alert Component', () => {
   })
 
   it('cleans up timer on unmount', () => {
-    const onClose = jest.fn()
+    const onClose = vi.fn()
     const { unmount } = render(
       <Alert
         open={true}

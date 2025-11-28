@@ -1,5 +1,5 @@
 import React from 'react'
-import { expect, it, beforeEach, jest } from 'bun:test'
+import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Modal from './Modal'
 import Button from '../Button'
@@ -25,21 +25,11 @@ const footer = (
   </>
 )
 
-beforeEach(() => {
-  // @ts-ignore
-  window.IntersectionObserver = jest.fn(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-    takeRecords: jest.fn(),
-  }))
-})
-
 it('renders Modal unchanged', () => {
   const { container } = render(
     <Modal
       open={false}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
     >
       {content}
     </Modal>,
@@ -51,7 +41,7 @@ it('renders Modal open unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
     >
       {content}
     </Modal>,
@@ -63,7 +53,7 @@ it('renders Modal with title unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       title="Lorem ipsum"
     >
       {content}
@@ -76,7 +66,7 @@ it('renders Modal with description unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       description="Lorem ipsum dolor sit amet"
     >
       {content}
@@ -89,7 +79,7 @@ it('renders Modal loading unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       loading
     >
       {content}
@@ -102,7 +92,7 @@ it('renders Modal with footer unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       footer={footer}
     >
       {content}
@@ -115,7 +105,7 @@ it('renders Modal non closable unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       closable={false}
     >
       {content}
@@ -128,7 +118,7 @@ it('renders Modal with custom widths unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       width="100%"
       widthMd="90%"
     >

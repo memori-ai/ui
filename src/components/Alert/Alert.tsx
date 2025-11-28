@@ -108,7 +108,7 @@ const Alert: FC<Props> = ({
                   padded
                   shape="circle"
                   icon={<Close />}
-                  title={t('close') || 'Close'}
+                  title={t('close') || 'Close alert'}
                   onClick={() => onClose(false)}
                   className="memori-alert--close"
                 />

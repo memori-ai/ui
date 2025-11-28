@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { expect, it } from 'bun:test'
+import { expect, it } from 'vitest'
 import Expandable from './Expandable'
 
 it('renders Expandable unchanged', () => {

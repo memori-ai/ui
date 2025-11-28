@@ -1,5 +1,5 @@
 import React from 'react'
-import { expect, it } from 'bun:test'
+import { expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 import Dropdown from './Dropdown'
 import Button from '../Button'
@@ -34,7 +34,8 @@ it('renders Dropdown with className unchanged', () => {
       <div>Content</div>
     </Dropdown>,
   )
-  expect(container.classList.contains('custom-dropdown')).toBe(true)
+  const dropdown = container.querySelector('.memori-dropdown')
+  expect(dropdown?.classList.contains('custom-dropdown')).toBe(true)
   expect(container).toMatchSnapshot()
 })
 

@@ -4,7 +4,6 @@ import dts from 'vite-plugin-dts'
 import { name, peerDependencies } from './package.json'
 import react from '@vitejs/plugin-react'
 
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 const packageName = name.replaceAll('@', '').replaceAll(/[/.]/g, '-')
 
 // https://vite.dev/config/

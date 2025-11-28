@@ -1,5 +1,5 @@
 import React from 'react'
-import { expect, it } from 'bun:test'
+import { expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 import Button from './Button'
 import Loading from '../../icons/Loading'

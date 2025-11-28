@@ -1,5 +1,5 @@
 import React from 'react'
-import { expect, it, jest } from 'bun:test'
+import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Select from './Select'
 
@@ -12,7 +12,7 @@ it('renders Select unchanged', () => {
         { value: '2', label: '2' },
         { value: '3', label: '3' },
       ]}
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
   expect(container).toMatchSnapshot()
@@ -28,7 +28,7 @@ it('renders Select with placeholder unchanged', () => {
         { value: '2', label: '2' },
         { value: '3', label: '3' },
       ]}
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
   expect(container).toMatchSnapshot()
@@ -44,7 +44,7 @@ it('renders Select with value unchanged', () => {
         { value: '2', label: '2' },
         { value: '3', label: '3' },
       ]}
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
   expect(container).toMatchSnapshot()
@@ -61,7 +61,7 @@ it('renders Select with custom value display unchanged', () => {
         { value: '2', label: 'Two' },
         { value: '3', label: 'Three' },
       ]}
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
   expect(container).toMatchSnapshot()
@@ -78,7 +78,7 @@ it('renders Select disabled unchanged', () => {
         { value: '3', label: '3' },
       ]}
       disabled
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
   expect(container).toMatchSnapshot()

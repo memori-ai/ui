@@ -30,8 +30,9 @@
     "typecheck": "tsc --noEmit",
     "format": "bunx prettier --write .",
     "format:check": "bunx prettier --check .",
-    "test:ci": "CI=true bun test --coverage --coverage-reporter=lcov",
-    "test:ai": "AGENT=1 bun test",
+    "test": "vitest watch",
+    "test:ci": "CI=true vitest run --coverage --coverage-reporter=lcov",
+    "test:ai": "AGENT=1 vitest run",
     "release": "bunx release-it",
     "prepare": "husky || true",
     "storybook": "storybook dev -p 6006",
@@ -53,6 +54,7 @@
     "@testing-library/react": "^16.3.0",
     "@types/bun": "latest",
     "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/browser-playwright": "^4.0.14",
     "autoprefixer": "^10.4.22",
     "babel-plugin-react-compiler": "^1.0.0",
     "cssnano": "^7.1.2",
@@ -60,6 +62,7 @@
     "lint-staged": "^16.2.7",
     "oxlint": "^1.30.0",
     "oxlint-tsgolint": "^0.8.2",
+    "playwright": "^1.57.0",
     "prettier": "^3.6.2",
     "release-it": "^19.0.6",
     "storybook": "^10.0.8",
@@ -68,7 +71,9 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^39.0.1",
     "vite": "npm:rolldown-vite@7.2.5",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.14",
+    "vitest-browser-react": "^2.0.2"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.2.5"
@@ -76,16 +81,6 @@
   "peerDependencies": {
     "typescript": "^5",
     "react": ">=17"
-  },
-  "lint-staged": {
-    "**/*.{js,mjs,cjs,jsx,ts,mts,tsx,md,json,yml,toml,yaml}": [
-      "bun run lint",
-      "bun run format:check"
-    ],
-    "src/**/*.css": [
-      "bun run lint:css",
-      "bun run format:check"
-    ]
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

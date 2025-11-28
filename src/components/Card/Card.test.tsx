@@ -1,5 +1,5 @@
 import React from 'react'
-import { it, expect } from 'bun:test'
+import { it, expect } from 'vitest'
 import { render } from '@testing-library/react'
 import Card from './Card'
 

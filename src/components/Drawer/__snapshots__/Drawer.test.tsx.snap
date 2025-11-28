@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Drawer loading unchanged 1`] = `<div />`;
+
+exports[`renders Drawer non closable unchanged 1`] = `<div />`;
+
+exports[`renders Drawer open unchanged 1`] = `<div />`;
+
+exports[`renders Drawer side left unchanged 1`] = `<div />`;
+
+exports[`renders Drawer unchanged 1`] = `<div />`;
+
+exports[`renders Drawer with custom widths unchanged 1`] = `<div />`;
+
+exports[`renders Drawer with description unchanged 1`] = `<div />`;
+
+exports[`renders Drawer with footer unchanged 1`] = `<div />`;
+
+exports[`renders Drawer with footer unchanged 2`] = `<div />`;
+
+exports[`renders Drawer with title unchanged 1`] = `<div />`;

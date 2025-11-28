@@ -1,24 +1,14 @@
 import React from 'react'
-import { expect, it, beforeEach, jest } from 'bun:test'
+import { expect, it, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import ConfirmDialog from './ConfirmDialog'
-
-beforeEach(() => {
-  // @ts-ignore
-  window.IntersectionObserver = jest.fn(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-    takeRecords: jest.fn(),
-  }))
-})
 
 it('renders ConfirmDialog unchanged', () => {
   const { container } = render(
     <ConfirmDialog
       isOpen={false}
-      onClose={jest.fn()}
-      onConfirm={jest.fn()}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
       title="Test Title"
       message="Test Message"
       confirmText="Confirm"
@@ -32,8 +22,8 @@ it('renders ConfirmDialog open unchanged', () => {
   const { container } = render(
     <ConfirmDialog
       isOpen={true}
-      onClose={jest.fn()}
-      onConfirm={jest.fn()}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
       title="Test Title"
       message="Test Message"
       confirmText="Confirm"
@@ -47,8 +37,8 @@ it('renders ConfirmDialog with custom title unchanged', () => {
   const { container } = render(
     <ConfirmDialog
       isOpen={true}
-      onClose={jest.fn()}
-      onConfirm={jest.fn()}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
       title="Custom Title"
       message="Test Message"
       confirmText="Confirm"
@@ -62,8 +52,8 @@ it('renders ConfirmDialog with custom message unchanged', () => {
   const { container } = render(
     <ConfirmDialog
       isOpen={true}
-      onClose={jest.fn()}
-      onConfirm={jest.fn()}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
       title="Test Title"
       message="Custom confirmation message for testing purposes"
       confirmText="Confirm"
@@ -77,8 +67,8 @@ it('renders ConfirmDialog with custom button text unchanged', () => {
   const { container } = render(
     <ConfirmDialog
       isOpen={true}
-      onClose={jest.fn()}
-      onConfirm={jest.fn()}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
       title="Test Title"
       message="Test Message"
       confirmText="Yes, proceed"
@@ -89,12 +79,12 @@ it('renders ConfirmDialog with custom button text unchanged', () => {
 })
 
 it('calls onClose when cancel button is clicked', () => {
-  const onCloseMock = jest.fn()
+  const onCloseMock = vi.fn()
   render(
     <ConfirmDialog
       isOpen={true}
       onClose={onCloseMock}
-      onConfirm={jest.fn()}
+      onConfirm={vi.fn()}
       title="Test Title"
       message="Test Message"
       confirmText="Confirm"
@@ -102,16 +92,23 @@ it('calls onClose when cancel button is clicked', () => {
     />,
   )
 
-  fireEvent.click(screen.getByText('Cancel'))
-  expect(onCloseMock).toHaveBeenCalledTimes(1)
+  // Get all Cancel buttons and click the last one (most recently rendered)
+  const cancelButtons = screen.getAllByText('Cancel')
+  const lastCancelButton = cancelButtons[cancelButtons.length - 1]
+  if (lastCancelButton) {
+    fireEvent.click(lastCancelButton)
+    expect(onCloseMock).toHaveBeenCalledTimes(1)
+  } else {
+    throw new Error('Cancel button not found')
+  }
 })
 
 it('calls onConfirm when confirm button is clicked', () => {
-  const onConfirmMock = jest.fn()
+  const onConfirmMock = vi.fn()
   render(
     <ConfirmDialog
       isOpen={true}
-      onClose={jest.fn()}
+      onClose={vi.fn()}
       onConfirm={onConfirmMock}
       title="Test Title"
       message="Test Message"
@@ -120,6 +117,13 @@ it('calls onConfirm when confirm button is clicked', () => {
     />,
   )
 
-  fireEvent.click(screen.getByText('Confirm'))
-  expect(onConfirmMock).toHaveBeenCalledTimes(1)
+  // Get all Confirm buttons and click the last one (most recently rendered)
+  const confirmButtons = screen.getAllByText('Confirm')
+  const lastConfirmButton = confirmButtons[confirmButtons.length - 1]
+  if (lastConfirmButton) {
+    fireEvent.click(lastConfirmButton)
+    expect(onConfirmMock).toHaveBeenCalledTimes(1)
+  } else {
+    throw new Error('Confirm button not found')
+  }
 })

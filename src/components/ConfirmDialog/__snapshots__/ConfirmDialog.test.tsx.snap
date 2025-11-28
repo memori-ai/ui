@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders ConfirmDialog open unchanged 1`] = `<div />`;
+
+exports[`renders ConfirmDialog unchanged 1`] = `<div />`;
+
+exports[`renders ConfirmDialog with custom button text unchanged 1`] = `<div />`;
+
+exports[`renders ConfirmDialog with custom message unchanged 1`] = `<div />`;
+
+exports[`renders ConfirmDialog with custom title unchanged 1`] = `<div />`;

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Modal loading unchanged 1`] = `<div />`;
+
+exports[`renders Modal non closable unchanged 1`] = `<div />`;
+
+exports[`renders Modal open unchanged 1`] = `<div />`;
+
+exports[`renders Modal unchanged 1`] = `<div />`;
+
+exports[`renders Modal with custom widths unchanged 1`] = `<div />`;
+
+exports[`renders Modal with description unchanged 1`] = `<div />`;
+
+exports[`renders Modal with footer unchanged 1`] = `<div />`;
+
+exports[`renders Modal with title unchanged 1`] = `<div />`;

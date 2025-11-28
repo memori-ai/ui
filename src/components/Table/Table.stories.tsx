@@ -1,8 +1,8 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Button from '../Button'
-import Select from '../Select'
+import Button from '../Button/Button'
+import Select from '../Select/Select'
 import ChevronLeft from '../../icons/ChevronLeft'
 import ChevronRight from '../../icons/ChevronRight'
 

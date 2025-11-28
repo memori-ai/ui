@@ -2,7 +2,7 @@ import React from 'react'
 import { expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 import Dropdown from './Dropdown'
-import Button from '../Button'
+import Button from '../Button/Button'
 
 it('renders Dropdown unchanged', () => {
   const { container } = render(

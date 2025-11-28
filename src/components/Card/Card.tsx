@@ -1,7 +1,7 @@
 import type { FC, JSX } from 'react'
 import React from 'react'
 import cx from 'classnames'
-import Spin from '../Spin'
+import Spin from '../Spin/Spin'
 
 import './Card.css'
 

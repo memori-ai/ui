@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Modal, { type Props } from './Modal'
-import Button from '../Button'
+import Button from '../Button/Button'
 
 const meta = {
   title: 'UI/Modal',

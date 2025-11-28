@@ -3,7 +3,7 @@ import React from 'react'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
 import Close from '../../icons/Close'
-import Button from '../Button'
+import Button from '../Button/Button'
 import { useTranslation } from 'react-i18next'
 
 export type AlertType = 'success' | 'warning' | 'error' | 'info'

@@ -1,10 +1,10 @@
 import type { FC, JSX } from 'react'
 import React, { useEffect, useState, useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import Spin from '../Spin'
-import Button from '../Button'
+import Spin from '../Spin/Spin'
+import Button from '../Button/Button'
 import Close from '../../icons/Close'
-import ConfirmDialog from '../ConfirmDialog'
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 

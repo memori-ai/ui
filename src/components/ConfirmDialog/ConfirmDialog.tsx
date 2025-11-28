@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import Button from '../Button'
+import Button from '../Button/Button'
 
 import './ConfirmDialog.css'
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Button from '../Button'
+import Button from '../Button/Button'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { truncateMessage, MAX_MSG_CHARS, MAX_MSG_WORDS } from './helpers'

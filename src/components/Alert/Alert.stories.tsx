@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Alert from './Alert'
-import Button from '../Button'
+import Button from '../Button/Button'
 
 const meta = {
   title: 'UI/Alert',

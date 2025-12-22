@@ -2,6 +2,7 @@ import './styles.css'
 
 export { Alert } from './components/Alert'
 export { Button } from './components/Button'
+export { ButtonBase } from './components/ButtonBase'
 export { Card } from './components/Card'
 export { Checkbox } from './components/Checkbox'
 export { ConfirmDialog } from './components/ConfirmDialog'

@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react'
 const isCI = process.env.CI === 'true'
 
 export default defineConfig({
-  // @ts-expect-error - Type mismatch between vite and vitest plugin types
   plugins: [react()],
   test: isCI
     ? {

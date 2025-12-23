@@ -171,13 +171,22 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <ButtonBase variant="primary" size="sm">
+      <ButtonBase
+        variant="primary"
+        size="sm"
+      >
         Small
       </ButtonBase>
-      <ButtonBase variant="primary" size="md">
+      <ButtonBase
+        variant="primary"
+        size="md"
+      >
         Medium
       </ButtonBase>
-      <ButtonBase variant="primary" size="lg">
+      <ButtonBase
+        variant="primary"
+        size="lg"
+      >
         Large
       </ButtonBase>
     </div>

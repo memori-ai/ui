@@ -1,20 +1,20 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--typography-font-family-base);
-  font-weight: var(--typography-font-weight-medium);
-  line-height: var(--typography-line-height-normal);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius-md);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-family: var(--typography-font-family-base);
+    font-weight: var(--typography-font-weight-medium);
+    line-height: var(--typography-line-height-normal);
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--color-primary-500);
-  outline-offset: 2px;
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
 }
 
 /* ============================================
@@ -23,54 +23,62 @@
 
 /* Primary Variant */
 .button--primary {
-  background-color: var(--color-primary-500);
-  color: var(--color-neutral-white);
-  border-color: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-500);
+    color: var(--color-neutral-white);
 }
 
 .button--primary:hover:not(:disabled) {
-  background-color: var(--color-primary-600);
-  border-color: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
 }
 
 .button--primary:active:not(:disabled) {
-  background-color: var(--color-primary-700);
-  border-color: var(--color-primary-700);
+    border-color: var(--color-primary-700);
+    background-color: var(--color-primary-700);
 }
 
 /* Secondary Variant */
 .button--secondary {
-  background-color: var(--color-secondary-500);
-  color: var(--color-neutral-white);
-  border-color: var(--color-secondary-500);
+    border-color: var(--color-secondary-500);
+    background-color: var(--color-secondary-500);
+    color: var(--color-neutral-white);
 }
 
 .button--secondary:hover:not(:disabled) {
-  background-color: var(--color-secondary-600);
-  border-color: var(--color-secondary-600);
+    border-color: var(--color-secondary-600);
+    background-color: var(--color-secondary-600);
 }
 
 .button--secondary:active:not(:disabled) {
-  background-color: var(--color-secondary-700);
-  border-color: var(--color-secondary-700);
+    border-color: var(--color-secondary-700);
+    background-color: var(--color-secondary-700);
 }
 
 /* Outline Variant */
 .button--outline {
-  background-color: transparent;
-  color: var(--color-primary-500);
-  border-color: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+    background-color: transparent;
+    color: var(--color-primary-500);
+}
+
+/* Outline variant disabled state */
+.button--outline.button--disabled,
+.button--outline:disabled {
+    border-color: var(--color-neutral-400);
+    background-color: transparent;
+    color: var(--color-neutral-500);
 }
 
 .button--outline:hover:not(:disabled) {
-  background-color: var(--color-primary-500);
-  color: var(--color-neutral-white);
+    background-color: var(--color-primary-500);
+    color: var(--color-neutral-white);
 }
 
 .button--outline:active:not(:disabled) {
-  background-color: var(--color-primary-600);
-  border-color: var(--color-primary-600);
-  color: var(--color-neutral-white);
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+    color: var(--color-neutral-white);
 }
 
 /* ============================================
@@ -78,21 +86,21 @@
    ============================================ */
 
 .button--sm {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--typography-font-size-sm);
-  min-height: 32px;
+    min-height: 32px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--typography-font-size-sm);
 }
 
 .button--md {
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: var(--typography-font-size-base);
-  min-height: 40px;
+    min-height: 40px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--typography-font-size-base);
 }
 
 .button--lg {
-  padding: var(--spacing-md) var(--spacing-lg);
-  font-size: var(--typography-font-size-lg);
-  min-height: 48px;
+    min-height: 48px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--typography-font-size-lg);
 }
 
 /* ============================================
@@ -100,36 +108,28 @@
    ============================================ */
 
 .button--full-width {
-  width: 100%;
+    width: 100%;
 }
 
 .button--disabled,
 .button:disabled {
-  background-color: var(--color-neutral-300);
-  color: var(--color-neutral-500);
-  border-color: var(--color-neutral-400);
-  cursor: not-allowed;
-  opacity: 0.6;
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-300);
+    color: var(--color-neutral-500);
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .button--disabled:hover,
 .button:disabled:hover {
-  background-color: var(--color-neutral-300);
-  color: var(--color-neutral-500);
-  border-color: var(--color-neutral-400);
-}
-
-/* Outline variant disabled state */
-.button--outline.button--disabled,
-.button--outline:disabled {
-  background-color: transparent;
-  color: var(--color-neutral-500);
-  border-color: var(--color-neutral-400);
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-300);
+    color: var(--color-neutral-500);
 }
 
 .button--outline.button--disabled:hover,
 .button--outline:disabled:hover {
-  background-color: transparent;
-  color: var(--color-neutral-500);
-  border-color: var(--color-neutral-400);
+    border-color: var(--color-neutral-400);
+    background-color: transparent;
+    color: var(--color-neutral-500);
 }

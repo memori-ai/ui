@@ -172,10 +172,22 @@ export const Controlled: Story = {
 export const InputTypes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase type="text" placeholder="Text input" />
-      <InputBase type="email" placeholder="Email input" />
-      <InputBase type="password" placeholder="Password input" />
-      <InputBase type="number" placeholder="Number input" />
+      <InputBase
+        type="text"
+        placeholder="Text input"
+      />
+      <InputBase
+        type="email"
+        placeholder="Email input"
+      />
+      <InputBase
+        type="password"
+        placeholder="Password input"
+      />
+      <InputBase
+        type="number"
+        placeholder="Number input"
+      />
     </div>
   ),
 }
@@ -186,9 +198,18 @@ export const InputTypes: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase placeholder="Default variant" variant="default" />
-      <InputBase placeholder="Error variant" variant="error" />
-      <InputBase placeholder="Disabled variant" variant="disabled" />
+      <InputBase
+        placeholder="Default variant"
+        variant="default"
+      />
+      <InputBase
+        placeholder="Error variant"
+        variant="error"
+      />
+      <InputBase
+        placeholder="Disabled variant"
+        variant="disabled"
+      />
     </div>
   ),
 }
@@ -199,9 +220,18 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase placeholder="Small input" size="sm" />
-      <InputBase placeholder="Medium input" size="md" />
-      <InputBase placeholder="Large input" size="lg" />
+      <InputBase
+        placeholder="Small input"
+        size="sm"
+      />
+      <InputBase
+        placeholder="Medium input"
+        size="md"
+      />
+      <InputBase
+        placeholder="Large input"
+        size="lg"
+      />
     </div>
   ),
 }

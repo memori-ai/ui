@@ -7,104 +7,104 @@
  */
 
 :root {
-  /* ============================================
+    /* ============================================
      COLOR TOKENS
      ============================================ */
 
-  /* Primary Colors */
-  --color-primary-100: #F2EAFD;
-  --color-primary-200: #D9C3F3;
-  --color-primary-300: #BF9DE9;
-  --color-primary-400: #A677DF;
-  --color-primary-500: #8246AF; /* Base Brand Color */
-  --color-primary-600: #68388C;
-  --color-primary-700: #4E2A69;
-  --color-primary-800: #341C46;
-  --color-primary-900: #1A0E23;
+    /* Primary Colors */
+    --color-primary-100: #f2eafd;
+    --color-primary-200: #d9c3f3;
+    --color-primary-300: #bf9de9;
+    --color-primary-400: #a677df;
+    --color-primary-500: #8246af; /* Base Brand Color */
+    --color-primary-600: #68388c;
+    --color-primary-700: #4e2a69;
+    --color-primary-800: #341c46;
+    --color-primary-900: #1a0e23;
 
-  /* Secondary Colors */
-  --color-secondary-100: #E0F5F9;
-  --color-secondary-200: #C1EBF4;
-  --color-secondary-300: #A3E2EE;
-  --color-secondary-400: #84D8E9;
-  --color-secondary-500: #66CEE0; /* Base Secondary Color */
-  --color-secondary-600: #52A5B3;
-  --color-secondary-700: #3D7C86;
-  --color-secondary-800: #29525A;
-  --color-secondary-900: #14292D;
+    /* Secondary Colors */
+    --color-secondary-100: #e0f5f9;
+    --color-secondary-200: #c1ebf4;
+    --color-secondary-300: #a3e2ee;
+    --color-secondary-400: #84d8e9;
+    --color-secondary-500: #66cee0; /* Base Secondary Color */
+    --color-secondary-600: #52a5b3;
+    --color-secondary-700: #3d7c86;
+    --color-secondary-800: #29525a;
+    --color-secondary-900: #14292d;
 
-  /* Semantic Colors - Success */
-  --color-semantic-success-base: #52C41A;
-  --color-semantic-success-light: #D9F7BE; /* Backgrounds */
-  --color-semantic-success-dark: #389E0D; /* Text/Icons */
+    /* Semantic Colors - Success */
+    --color-semantic-success-base: #52c41a;
+    --color-semantic-success-light: #d9f7be; /* Backgrounds */
+    --color-semantic-success-dark: #389e0d; /* Text/Icons */
 
-  /* Semantic Colors - Error */
-  --color-semantic-error-base: #D9363E;
-  --color-semantic-error-light: #FFF1F0; /* Backgrounds */
-  --color-semantic-error-dark: #A8071A; /* Text/Icons */
+    /* Semantic Colors - Error */
+    --color-semantic-error-base: #d9363e;
+    --color-semantic-error-light: #fff1f0; /* Backgrounds */
+    --color-semantic-error-dark: #a8071a; /* Text/Icons */
 
-  /* Semantic Colors - Warning */
-  --color-semantic-warning-base: #FAAD14;
-  --color-semantic-warning-light: #FFFBE6; /* Backgrounds */
-  --color-semantic-warning-dark: #D48806; /* Text/Icons */
+    /* Semantic Colors - Warning */
+    --color-semantic-warning-base: #faad14;
+    --color-semantic-warning-light: #fffbe6; /* Backgrounds */
+    --color-semantic-warning-dark: #d48806; /* Text/Icons */
 
-  /* Neutral Colors */
-  --color-neutral-white: #FFFFFF;
-  --color-neutral-100: #FAFAFA; /* Page Background */
-  --color-neutral-200: #F5F5F5; /* Component Background */
-  --color-neutral-300: #F0F0F0; /* Hover States */
-  --color-neutral-400: #D9D9D9; /* Borders */
-  --color-neutral-500: #BFBFBF; /* Disabled Text */
-  --color-neutral-600: #8C8C8C; /* Secondary Text */
-  --color-neutral-700: #595959; /* Primary Text */
-  --color-neutral-800: #262626; /* Headings */
-  --color-neutral-900: #141414;
+    /* Neutral Colors */
+    --color-neutral-white: #fff;
+    --color-neutral-100: #fafafa; /* Page Background */
+    --color-neutral-200: #f5f5f5; /* Component Background */
+    --color-neutral-300: #f0f0f0; /* Hover States */
+    --color-neutral-400: #d9d9d9; /* Borders */
+    --color-neutral-500: #bfbfbf; /* Disabled Text */
+    --color-neutral-600: #8c8c8c; /* Secondary Text */
+    --color-neutral-700: #595959; /* Primary Text */
+    --color-neutral-800: #262626; /* Headings */
+    --color-neutral-900: #141414;
 
-  /* ============================================
+    /* ============================================
      TYPOGRAPHY TOKENS
      ============================================ */
 
-  /* Font Family */
-  --typography-font-family-base: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
+    /* Font Family */
+    --typography-font-family-base: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
 
-  /* Font Sizes */
-  --typography-font-size-xs: 12px;
-  --typography-font-size-sm: 14px;
-  --typography-font-size-base: 16px;
-  --typography-font-size-lg: 20px;
-  --typography-font-size-xl: 24px;
-  --typography-font-size-2xl: 32px;
-  --typography-font-size-3xl: 48px;
+    /* Font Sizes */
+    --typography-font-size-xs: 12px;
+    --typography-font-size-sm: 14px;
+    --typography-font-size-base: 16px;
+    --typography-font-size-lg: 20px;
+    --typography-font-size-xl: 24px;
+    --typography-font-size-2xl: 32px;
+    --typography-font-size-3xl: 48px;
 
-  /* Line Heights */
-  --typography-line-height-tight: 1.2;
-  --typography-line-height-normal: 1.5;
-  --typography-line-height-relaxed: 1.75;
+    /* Line Heights */
+    --typography-line-height-tight: 1.2;
+    --typography-line-height-normal: 1.5;
+    --typography-line-height-relaxed: 1.75;
 
-  /* Font Weights */
-  --typography-font-weight-regular: 400;
-  --typography-font-weight-medium: 500;
-  --typography-font-weight-semibold: 600;
-  --typography-font-weight-bold: 700;
+    /* Font Weights */
+    --typography-font-weight-regular: 400;
+    --typography-font-weight-medium: 500;
+    --typography-font-weight-semibold: 600;
+    --typography-font-weight-bold: 700;
 
-  /* ============================================
+    /* ============================================
      SPACING TOKENS
      ============================================ */
 
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
 
-  /* ============================================
+    /* ============================================
      BORDER RADIUS TOKENS
      ============================================ */
 
-  --border-radius-sm: 4px; /* Inputs, Checkboxes */
-  --border-radius-md: 8px; /* Cards, Buttons */
-  --border-radius-lg: 16px; /* Modals, Containers */
-  --border-radius-full: 999px; /* Pills, Avatars */
+    --border-radius-sm: 4px; /* Inputs, Checkboxes */
+    --border-radius-md: 8px; /* Cards, Buttons */
+    --border-radius-lg: 16px; /* Modals, Containers */
+    --border-radius-full: 999px; /* Pills, Avatars */
 }

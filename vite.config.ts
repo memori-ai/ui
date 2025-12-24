@@ -6,7 +6,6 @@ import react from '@vitejs/plugin-react'
 
 const packageName = name.replaceAll('@', '').replaceAll(/[/.]/g, '-')
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     cssCodeSplit: false,
@@ -17,13 +16,22 @@ export default defineConfig({
       fileName: format => `${packageName}.${format}.js`,
     },
     rollupOptions: {
-      external: Array.from(
-        new Set(['react', 'react-dom', ...Object.keys(peerDependencies)]),
-      ),
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        'use-sync-external-store',
+        'use-sync-external-store/shim',
+        'use-sync-external-store/with-selector',
+        ...Object.keys(peerDependencies),
+      ],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'ReactJsxRuntime',
+          'react/jsx-dev-runtime': 'ReactJsxDevRuntime',
         },
       },
     },

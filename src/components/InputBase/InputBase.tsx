@@ -4,8 +4,10 @@ import type { InputProps as BaseInputProps } from '@base-ui/react/input'
 import cx from 'classnames'
 import styles from './styles.module.css'
 
-export interface InputBaseProps
-  extends Omit<BaseInputProps, 'className' | 'size'> {
+export interface InputBaseProps extends Omit<
+  BaseInputProps,
+  'className' | 'size'
+> {
   /**
    * Input variant
    * @default 'default'

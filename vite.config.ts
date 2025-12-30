@@ -1,7 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { name, peerDependencies } from './package.json'
+import { name, peerDependencies, dependencies } from './package.json'
 import react from '@vitejs/plugin-react'
 
 const packageName = name.replaceAll('@', '').replaceAll(/[/.]/g, '-')
@@ -16,16 +16,40 @@ export default defineConfig({
       fileName: format => `${packageName}.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'react/jsx-dev-runtime',
-        'use-sync-external-store',
-        'use-sync-external-store/shim',
-        'use-sync-external-store/with-selector',
-        ...Object.keys(peerDependencies),
-      ],
+      external: id => {
+        // Externalize peer dependencies
+        if (Object.keys(peerDependencies).includes(id)) {
+          return true
+        }
+        // Externalize all dependencies
+        if (Object.keys(dependencies).includes(id)) {
+          return true
+        }
+        // Externalize React and related packages
+        if (
+          id === 'react' ||
+          id === 'react-dom' ||
+          id === 'react/jsx-runtime' ||
+          id === 'react/jsx-dev-runtime' ||
+          id.startsWith('use-sync-external-store')
+        ) {
+          return true
+        }
+        // Externalize sub-packages of dependencies (e.g., @base-ui/react/input, @base-ui/react/button)
+        // This handles deep imports from these packages
+        if (
+          id.startsWith('@base-ui/') ||
+          id.startsWith('@headlessui/') ||
+          id.startsWith('react-aria-components') ||
+          id.startsWith('react-i18next') ||
+          id.startsWith('lucide-react') ||
+          id === 'classnames' ||
+          id.startsWith('classnames/')
+        ) {
+          return true
+        }
+        return false
+      },
       output: {
         globals: {
           react: 'React',

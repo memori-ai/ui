@@ -4,7 +4,7 @@
   "main": "dist/memori-ai-ui.cjs.js",
   "module": "dist/memori-ai-ui.es.js",
   "types": "dist/index.d.ts",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "files": [
     "src",
     "dist",

@@ -152,30 +152,49 @@ function main() {
   const versionExists = checkVersionExistsOnNpm(packageName, version as string)
   const versionAlreadySet = currentVersion === version
 
-  if (versionExists) {
-    console.log(`ℹ️  Version ${version} already exists on npm`)
-    console.log('   Skipping npm publish, but will still create git tag\n')
-  } else {
-    console.log(`📦 Publishing to npm with tag: ${npmTag}\n`)
-  }
-
-  // Run release-it
-  // If version exists on npm, skip npm publish but still create git tag
-  // If version is already set in package.json, we need to force publish
+  // Run release-it for git tag and changelog
   try {
-    let releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag}`
+    let releaseItCmd: string
 
     if (versionExists) {
-      // Skip npm publish if version already exists
-      releaseItCmd = `bunx release-it ${version} --npm.skipChecks --npm.publish=false`
+      // Version exists on npm, skip npm publish but still create git tag
+      console.log(`ℹ️  Version ${version} already exists on npm`)
+      console.log('   Skipping npm publish, but will still create git tag\n')
+      releaseItCmd = `bunx release-it ${version} --npm.publish=false`
     } else if (versionAlreadySet) {
-      // Force publish if version is already set (to handle "Version not changed" error)
-      releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag} --npm.skipChecks`
+      // Version is already in package.json but not on npm
+      // Use release-it only for git/changelog, then publish directly with npm
+      console.log(
+        `📦 Version is already set, will publish directly to npm with tag: ${npmTag}\n`,
+      )
+      releaseItCmd = `bunx release-it ${version} --npm.publish=false`
+    } else {
+      // Normal flow: release-it handles everything
+      console.log(`📦 Publishing to npm with tag: ${npmTag}\n`)
+      releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag}`
     }
 
     execSync(releaseItCmd, {
       stdio: 'inherit',
     })
+
+    // If version was already set, publish directly with npm to avoid "Version not changed" error
+    if (versionAlreadySet && !versionExists) {
+      console.log('\n📦 Publishing directly to npm...\n')
+      try {
+        execSync(`npm publish --tag ${npmTag}`, {
+          stdio: 'inherit',
+        })
+        console.log('✅ Published to npm successfully!')
+      } catch (npmError) {
+        console.error('\n❌ npm publish failed. You may need to:')
+        console.error("  1. Ensure you're logged in to npm: npm login")
+        console.error("  2. Check that the version doesn't already exist")
+        console.error('  3. Ensure the build is up to date: bun run build')
+        process.exit(1)
+      }
+    }
+
     console.log(`\n✅ Successfully released version ${version}!`)
   } catch (error) {
     console.error('\n❌ Release failed. You may need to:')

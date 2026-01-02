@@ -40,7 +40,20 @@ function isWorkingDirClean(): boolean {
 
 function commitVersionBump(version: string): void {
   try {
+    // Stage package.json
     execSync('git add package.json', { stdio: 'inherit' })
+    
+    // Check if there are actually changes to commit
+    const stagedChanges = execSync('git diff --cached --name-only', {
+      encoding: 'utf-8',
+    }).trim()
+    
+    if (!stagedChanges || !stagedChanges.includes('package.json')) {
+      console.log('⚠️  No changes to commit (package.json may already be at this version)')
+      return
+    }
+    
+    // Commit the version bump
     execSync(`git commit -m "chore: bump version to ${version}"`, {
       stdio: 'inherit',
     })
@@ -80,10 +93,16 @@ function main() {
   console.log(`Current version: ${currentVersion}`)
   console.log(`New version: ${version}\n`)
 
-  // Update version in package.json
-  pkg.version = version as string
-  writePackageJson(pkg)
-  console.log('✅ Updated version in package.json')
+  // Check if version is already set
+  if (currentVersion === version) {
+    console.log('ℹ️  Version is already set to', version)
+    console.log('   Skipping package.json update\n')
+  } else {
+    // Update version in package.json
+    pkg.version = version as string
+    writePackageJson(pkg)
+    console.log('✅ Updated version in package.json')
+  }
 
   // Check if working directory is clean (excluding package.json changes we just made)
   if (!skipCommit) {

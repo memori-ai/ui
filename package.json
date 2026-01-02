@@ -4,7 +4,7 @@
   "main": "dist/memori-ai-ui.cjs.js",
   "module": "dist/memori-ai-ui.es.js",
   "types": "dist/index.d.ts",
-  "version": "1.0.2-alpha",
+  "version": "1.0.3-alpha",
   "files": [
     "src",
     "dist",
@@ -36,6 +36,7 @@
     "test:ai": "AGENT=1 vitest run --passWithNoTests",
     "test:husky": "CI=true vitest related --run --passWithNoTests",
     "release": "bunx release-it",
+    "release:version": "bun scripts/release.ts",
     "prepare": "husky || true",
     "storybook": "storybook dev -p 6006",
     "sb": "storybook dev -p 6006",

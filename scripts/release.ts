@@ -27,6 +27,21 @@ function getNpmTag(version: string): string {
   return 'latest'
 }
 
+function checkVersionExistsOnNpm(
+  packageName: string,
+  version: string,
+): boolean {
+  try {
+    const result = execSync(`npm view ${packageName}@${version} version`, {
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    }).trim()
+    return result === version
+  } catch {
+    return false
+  }
+}
+
 function isWorkingDirClean(): boolean {
   try {
     const status = execSync('git status --porcelain', {
@@ -42,17 +57,19 @@ function commitVersionBump(version: string): void {
   try {
     // Stage package.json
     execSync('git add package.json', { stdio: 'inherit' })
-    
+
     // Check if there are actually changes to commit
     const stagedChanges = execSync('git diff --cached --name-only', {
       encoding: 'utf-8',
     }).trim()
-    
+
     if (!stagedChanges || !stagedChanges.includes('package.json')) {
-      console.log('⚠️  No changes to commit (package.json may already be at this version)')
+      console.log(
+        '⚠️  No changes to commit (package.json may already be at this version)',
+      )
       return
     }
-    
+
     // Commit the version bump
     execSync(`git commit -m "chore: bump version to ${version}"`, {
       stdio: 'inherit',
@@ -129,11 +146,34 @@ function main() {
 
   // Determine npm tag
   const npmTag = getNpmTag(version as string)
-  console.log(`📦 Publishing to npm with tag: ${npmTag}\n`)
+  const packageName = pkg.name as string
+
+  // Check if version already exists on npm
+  const versionExists = checkVersionExistsOnNpm(packageName, version as string)
+  const versionAlreadySet = currentVersion === version
+
+  if (versionExists) {
+    console.log(`ℹ️  Version ${version} already exists on npm`)
+    console.log('   Skipping npm publish, but will still create git tag\n')
+  } else {
+    console.log(`📦 Publishing to npm with tag: ${npmTag}\n`)
+  }
 
   // Run release-it
+  // If version exists on npm, skip npm publish but still create git tag
+  // If version is already set in package.json, we need to force publish
   try {
-    execSync(`bunx release-it ${version} --npm.tag=${npmTag}`, {
+    let releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag}`
+
+    if (versionExists) {
+      // Skip npm publish if version already exists
+      releaseItCmd = `bunx release-it ${version} --npm.skipChecks --npm.publish=false`
+    } else if (versionAlreadySet) {
+      // Force publish if version is already set (to handle "Version not changed" error)
+      releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag} --npm.skipChecks`
+    }
+
+    execSync(releaseItCmd, {
       stdio: 'inherit',
     })
     console.log(`\n✅ Successfully released version ${version}!`)

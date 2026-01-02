@@ -110,38 +110,20 @@ function main() {
   console.log(`Current version: ${currentVersion}`)
   console.log(`New version: ${version}\n`)
 
-  // Check if version is already set
-  if (currentVersion === version) {
-    console.log('ℹ️  Version is already set to', version)
-    console.log('   Skipping package.json update\n')
-  } else {
-    // Update version in package.json
-    pkg.version = version as string
-    writePackageJson(pkg)
-    console.log('✅ Updated version in package.json')
-  }
+  const versionAlreadySet = currentVersion === version
 
-  // Check if working directory is clean (excluding package.json changes we just made)
+  // Check if working directory is clean
   if (!skipCommit) {
-    // Check if there are other uncommitted changes
     const status = execSync('git status --porcelain', { encoding: 'utf-8' })
       .split('\n')
-      .filter(line => line.trim() && !line.includes('package.json'))
+      .filter(line => line.trim())
 
     if (status.length > 0) {
       console.error('\n❌ Working directory has uncommitted changes:')
       status.forEach(line => console.error(`  ${line}`))
       console.error('\nPlease commit or stash your changes before releasing.')
-      // Revert package.json change
-      writePackageJson({ ...pkg, version: currentVersion })
       process.exit(1)
     }
-
-    // Commit the version bump
-    commitVersionBump(version as string)
-    console.log('✅ Committed version bump\n')
-  } else {
-    console.log('⏭️  Skipping commit (--skip-commit flag)\n')
   }
 
   // Determine npm tag
@@ -150,9 +132,9 @@ function main() {
 
   // Check if version already exists on npm
   const versionExists = checkVersionExistsOnNpm(packageName, version as string)
-  const versionAlreadySet = currentVersion === version
 
-  // Run release-it for git tag and changelog
+  // Run release-it
+  // When version is already set, we need to handle it differently to avoid "Version not changed" error
   try {
     let releaseItCmd: string
 
@@ -169,7 +151,7 @@ function main() {
       )
       releaseItCmd = `bunx release-it ${version} --npm.publish=false`
     } else {
-      // Normal flow: release-it handles everything
+      // Normal flow: let release-it handle version bump and publish
       console.log(`📦 Publishing to npm with tag: ${npmTag}\n`)
       releaseItCmd = `bunx release-it ${version} --npm.tag=${npmTag}`
     }
@@ -182,6 +164,10 @@ function main() {
     if (versionAlreadySet && !versionExists) {
       console.log('\n📦 Publishing directly to npm...\n')
       try {
+        // Ensure we have a build before publishing
+        console.log('🔨 Building package...\n')
+        execSync('bun run build', { stdio: 'inherit' })
+
         execSync(`npm publish --tag ${npmTag}`, {
           stdio: 'inherit',
         })
@@ -190,7 +176,7 @@ function main() {
         console.error('\n❌ npm publish failed. You may need to:')
         console.error("  1. Ensure you're logged in to npm: npm login")
         console.error("  2. Check that the version doesn't already exist")
-        console.error('  3. Ensure the build is up to date: bun run build')
+        console.error('  3. Ensure the build completed successfully')
         process.exit(1)
       }
     }

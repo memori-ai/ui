@@ -1,0 +1,69 @@
+
+
+## [1.0.4-alpha](https://github.com/memori-ai/ui/compare/1.0.1-alpha...v1.0.4-alpha) (2026-01-02)
+
+
+### Features
+
+* add release script for version management and npm publishing ([dfabb57](https://github.com/memori-ai/ui/commit/dfabb57b5a96d5426f74497031b1736f8d832d91))
+* enhance ButtonBase component with new variants, props, and styles ([9273e88](https://github.com/memori-ai/ui/commit/9273e8851aa33d097fe2137205389e67396b1c4d))
+
+
+### Maintenance
+
+* add @types/react and @types/react-dom as peer dependencies ([bc0a744](https://github.com/memori-ai/ui/commit/bc0a7440eb2583b0f615f28912027495b1f24809))
+* add CHANGELOG.md file to track project updates ([c05f7dd](https://github.com/memori-ai/ui/commit/c05f7dd6ce1fb2254fdfbb4037112bba45eae1eb))
+* add i18next dependency and enhance external dependency handling in Vite config ([2e6c5d3](https://github.com/memori-ai/ui/commit/2e6c5d339fb7abc8708b13ad4c911774a3249af3))
+* add version existence check in release script ([faf3a3c](https://github.com/memori-ai/ui/commit/faf3a3ca82aa5b48a81bf88fd25fdd8ae3dd5ee0))
+* bump version to 1.0.3-alpha and add release version script ([539604e](https://github.com/memori-ai/ui/commit/539604e9834b45ba928f0b08b12f7c98db090061))
+* downgrade @release-it/conventional-changelog to version 8.0.2 ([858f5ef](https://github.com/memori-ai/ui/commit/858f5ef5566a0d34dc28d91ce0a1fd6839618872))
+* improve version bump logic in release script ([c49a50c](https://github.com/memori-ai/ui/commit/c49a50cccf286ee92e834d230b7742477273c378))
+* refine release script to handle version checks and direct npm publishing ([f35461a](https://github.com/memori-ai/ui/commit/f35461a2ec39f8491e81d460ff071bf5205805c9))
+* simplify external dependency handling in Vite config ([ff79899](https://github.com/memori-ai/ui/commit/ff79899bf3ade31fc7ec483475ec9acbb6076e4a))
+* streamline release script by removing redundant version checks ([fb443e0](https://github.com/memori-ai/ui/commit/fb443e0bebec90ee7c6d2b9f59646f62bb586915))
+* update .gitignore to include .vscode settings directory ([350894c](https://github.com/memori-ai/ui/commit/350894c9d7976487e05c29b3dc2f360b5d24937c))
+* update package version to 1.0.1-alpha in package.json ([43e1ee0](https://github.com/memori-ai/ui/commit/43e1ee06dfdbee2f81e48734e1178ec87e2bb03e))
+* update pre-commit hook to run tests, format code, and lint staged files ([4e0c995](https://github.com/memori-ai/ui/commit/4e0c9959808def88a5eac11c3897aeb3fe937903))
+
+## [1.0.1-alpha](https://github.com/memori-ai/ui/compare/1.0.0-alpha...1.0.1-alpha) (2025-12-30)
+
+
+### Changes
+
+* remove TypeScript error suppression in vitest configuration ([d2d8f04](https://github.com/memori-ai/ui/commit/d2d8f04035f3f29cd79578f237260ea332756504))
+
+
+### Maintenance
+
+* enable npm publishing and enhance external dependency handling in Vite config ([22f136e](https://github.com/memori-ai/ui/commit/22f136e0cd0cd544e4412f8d89af72adb644a0fe))
+* remove @prettier/plugin-oxc dependency and clean up .prettierrc.json ([b1481ef](https://github.com/memori-ai/ui/commit/b1481ef75792a0a5cb82b23b761bb842c1c5457d))
+* update package version to 1.0.0-alpha in package.json ([a81a513](https://github.com/memori-ai/ui/commit/a81a513524a22202ca6522550bf34e5a550474e9))
+* update React and React DOM versions to 18.2.0 ([09ad0a6](https://github.com/memori-ai/ui/commit/09ad0a69b283f3257145e5b3ff0bdd35969e556e))
+
+## [1.0.0-alpha](https://github.com/memori-ai/ui/compare/b37d3bcf0ca7084068eea9ab6b0780d78203e5b0...1.0.0-alpha) (2025-12-23)
+
+
+### Features
+
+* add @base-ui/react and @base-ui/utils dependencies ([19b2697](https://github.com/memori-ai/ui/commit/19b269759fa44405ff41bcb344fb65c095529cd4))
+* add ButtonBase component with variants, sizes, and styles ([4ab1e3c](https://github.com/memori-ai/ui/commit/4ab1e3c70fb1593fa47e2b8143cacc1bfd8c91f8))
+* add design tokens in variables.css and import into styles.css ([cbdff7a](https://github.com/memori-ai/ui/commit/cbdff7a44fae79540f769616970e6241c02b9ef6))
+* export ButtonBase component from index.ts ([8653cd7](https://github.com/memori-ai/ui/commit/8653cd77cc47dfe48e3751fe84cfae663a72a452))
+* import memori-react components ([94a74e2](https://github.com/memori-ai/ui/commit/94a74e2329c55b78beb98c45f0e561269e5763d0))
+* introduce InputBase component with variants, sizes, and styles ([8e0fe4f](https://github.com/memori-ai/ui/commit/8e0fe4f77fb4c4da1669a661caba9d18e32a8054))
+
+
+### Changes
+
+* adjust all interal imports with direct access ([3a54d31](https://github.com/memori-ai/ui/commit/3a54d3100d8d19f5a59080b750c4ef53c86c2a47))
+* clean up styles in ButtonBase and InputBase CSS files ([472685d](https://github.com/memori-ai/ui/commit/472685dacea3cc2bb033c7a0bb5165a463d81431))
+
+
+### Maintenance
+
+* add css lint staged ([7226d39](https://github.com/memori-ai/ui/commit/7226d398e7c45068037bfe8b4840799c7c2eba3f))
+* add oxlint config ([b37d3bc](https://github.com/memori-ai/ui/commit/b37d3bcf0ca7084068eea9ab6b0780d78203e5b0))
+* add recommended exts ([c830bee](https://github.com/memori-ai/ui/commit/c830beed074b1dc09aa47199c655b95854af3dab))
+* add storybook, tests, and ci ([6b9763a](https://github.com/memori-ai/ui/commit/6b9763ad12d995cdf0b84070a359c56567ae2017))
+* add vite + css lint + build steps ([b435ce3](https://github.com/memori-ai/ui/commit/b435ce37c90f23e8eb996d62d3503b51311f9267))
+* lint staged css ([522b2ed](https://github.com/memori-ai/ui/commit/522b2edb5307b7ea09beaebc4852d3b296ca359f))

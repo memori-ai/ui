@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Drawer, { type Props } from './Drawer'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 import I18nWrapper from '../../i18n/I18nWrapper'
 

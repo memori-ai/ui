@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Card from './Card'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const meta = {
   title: 'UI/Card',
@@ -87,7 +87,7 @@ export const WithChildren: Story = {
     children: (
       <div>
         <p>Some text</p>
-        <Button primary>Show more</Button>
+        <Button variant="primary">Show more</Button>
       </div>
     ),
     loading: false,

@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import ConfirmDialog, { type Props } from './ConfirmDialog'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const meta = {
   title: 'UI/ConfirmDialog',

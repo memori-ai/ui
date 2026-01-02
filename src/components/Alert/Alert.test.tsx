@@ -47,7 +47,7 @@ describe('Alert Component', () => {
     )
 
     const closeButton = container.querySelector(
-      '[title="close"]',
+      '[aria-label="close"]',
     ) as HTMLElement
     fireEvent.click(closeButton)
     expect(onClose).toHaveBeenCalled()

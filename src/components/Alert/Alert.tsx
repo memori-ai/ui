@@ -3,7 +3,7 @@ import React from 'react'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
 import Close from '../../icons/Close'
-import Button from '../Button/Button'
+import Button from '../Button'
 import { useTranslation } from 'react-i18next'
 
 export type AlertType = 'success' | 'warning' | 'error' | 'info'
@@ -104,11 +104,11 @@ const Alert: FC<Props> = ({
               {action && <div className="memori-alert--action">{action}</div>}
               {closable && (
                 <Button
-                  ghost
-                  padded
+                  title={t('close') || 'Close alert'}
+                  variant="ghost"
                   shape="circle"
                   icon={<Close />}
-                  title={t('close') || 'Close alert'}
+                  aria-label={t('close') || 'Close alert'}
                   onClick={() => onClose(false)}
                   className="memori-alert--close"
                 />

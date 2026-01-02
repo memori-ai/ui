@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Button from '../Button/Button'
+import Button from '../Button'
 import Select from '../Select/Select'
 import ChevronLeft from '../../icons/ChevronLeft'
 import ChevronRight from '../../icons/ChevronRight'
@@ -221,14 +221,12 @@ export const WithPagination: Story = {
           <Button
             shape="circle"
             disabled
-            padded={false}
             title="Previous page"
             icon={<ChevronLeft />}
           />
           <div className="memori--table--pagination--pages">1/6</div>
           <Button
             shape="circle"
-            padded={false}
             title="Next page"
             icon={<ChevronRight />}
           />

@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Modal, { type Props } from './Modal'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const meta = {
   title: 'UI/Modal',
@@ -76,12 +76,12 @@ const content = (
 
 const footer = (
   <>
-    <Button primary>OK</Button>
+    <Button variant="primary">OK</Button>
     <Button>Cancel</Button>
   </>
 )
 
-const footerNonClosableModal = <Button primary>OK</Button>
+const footerNonClosableModal = <Button variant="primary">OK</Button>
 
 export const Default: Story = {
   args: {

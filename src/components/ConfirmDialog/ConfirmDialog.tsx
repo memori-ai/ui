@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 import './ConfirmDialog.css'
 
@@ -56,7 +56,7 @@ const ConfirmDialog: React.FC<Props> = ({
               <div className="memori-confirm-dialog--actions">
                 <Button onClick={onClose}>{cancelText}</Button>
                 <Button
-                  primary
+                  variant="primary"
                   onClick={onConfirm}
                 >
                   {confirmText}

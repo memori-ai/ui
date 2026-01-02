@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import Alert from './Alert'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const meta = {
   title: 'UI/Alert',
@@ -109,7 +109,7 @@ export const WithAction: Story = {
     type: 'info',
     title: 'Update Available',
     description: 'A new version is available.',
-    action: <Button primary>Update Now</Button>,
+    action: <Button variant="primary">Update Now</Button>,
   },
 }
 

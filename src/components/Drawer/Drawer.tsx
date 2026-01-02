@@ -2,7 +2,7 @@ import type { FC, JSX } from 'react'
 import React, { useEffect, useState, useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Spin from '../Spin/Spin'
-import Button from '../Button/Button'
+import Button from '../Button'
 import Close from '../../icons/Close'
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog'
 import cx from 'classnames'
@@ -169,7 +169,7 @@ const Drawer: FC<Props> = ({
                     <div className="memori-drawer--close">
                       <Button
                         shape="circle"
-                        outlined
+                        variant="outline"
                         icon={<Close />}
                         onClick={handleClose}
                       />
@@ -207,13 +207,14 @@ const Drawer: FC<Props> = ({
                       {footer.onSubmit && (
                         <div className="memori-drawer--footer-actions">
                           <Button
-                            outlined
+                            variant="outline"
                             onClick={handleClose}
                           >
                             {t('cancel')}
                           </Button>
                           <Button
-                            htmlType="submit"
+                            variant="primary"
+                            type="submit"
                             onClick={footer.onSubmit}
                             loading={footer.loading}
                             className="memori-drawer--footer-confirm"

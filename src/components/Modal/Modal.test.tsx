@@ -2,7 +2,7 @@ import React from 'react'
 import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Modal from './Modal'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const content = (
   <>
@@ -20,7 +20,7 @@ const content = (
 
 const footer = (
   <>
-    <Button primary>Ok</Button>
+    <Button variant="primary">Ok</Button>
     <Button>Cancel</Button>
   </>
 )

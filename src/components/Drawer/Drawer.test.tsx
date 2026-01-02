@@ -2,7 +2,7 @@ import React from 'react'
 import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Drawer from './Drawer'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const content = (
   <>

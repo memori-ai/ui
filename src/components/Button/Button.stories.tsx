@@ -2,15 +2,17 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from './Button'
 import { fn } from 'storybook/test'
-import Download from '../../icons/Download'
-import Send from '../../icons/Send'
-import Delete from '../../icons/Delete'
-import Plus from '../../icons/Plus'
-import Close from '../../icons/Close'
-import Setting from '../../icons/Setting'
+import {
+  Download,
+  Send,
+  Trash2 as Delete,
+  Plus,
+  X as Close,
+  Settings as Setting,
+} from 'lucide-react'
 
 const meta = {
-  title: 'UI/Button',
+  title: 'Atomic/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

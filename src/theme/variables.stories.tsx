@@ -150,7 +150,13 @@ const TypographyExample = ({
   )
 }
 
-const SpacingExample = ({ variable, label }: { variable: string; label: string }) => {
+const SpacingExample = ({
+  variable,
+  label,
+}: {
+  variable: string
+  label: string
+}) => {
   const value = getComputedStyle(document.documentElement)
     .getPropertyValue(variable)
     .trim()
@@ -422,7 +428,9 @@ const ThemeVariables = () => {
                   key={shade}
                   variable={`--color-secondary-${shade}`}
                   label={`Secondary ${shade}`}
-                  description={shade === 500 ? 'Base Secondary Color' : undefined}
+                  description={
+                    shade === 500 ? 'Base Secondary Color' : undefined
+                  }
                 />
               ))}
             </div>
@@ -708,13 +716,34 @@ const ThemeVariables = () => {
               gap: 'var(--spacing-md)',
             }}
           >
-            <SpacingExample variable="--spacing-xs" label="Extra Small (xs)" />
-            <SpacingExample variable="--spacing-sm" label="Small (sm)" />
-            <SpacingExample variable="--spacing-md" label="Medium (md)" />
-            <SpacingExample variable="--spacing-lg" label="Large (lg)" />
-            <SpacingExample variable="--spacing-xl" label="Extra Large (xl)" />
-            <SpacingExample variable="--spacing-2xl" label="2X Large (2xl)" />
-            <SpacingExample variable="--spacing-3xl" label="3X Large (3xl)" />
+            <SpacingExample
+              variable="--spacing-xs"
+              label="Extra Small (xs)"
+            />
+            <SpacingExample
+              variable="--spacing-sm"
+              label="Small (sm)"
+            />
+            <SpacingExample
+              variable="--spacing-md"
+              label="Medium (md)"
+            />
+            <SpacingExample
+              variable="--spacing-lg"
+              label="Large (lg)"
+            />
+            <SpacingExample
+              variable="--spacing-xl"
+              label="Extra Large (xl)"
+            />
+            <SpacingExample
+              variable="--spacing-2xl"
+              label="2X Large (2xl)"
+            />
+            <SpacingExample
+              variable="--spacing-3xl"
+              label="3X Large (3xl)"
+            />
           </div>
         </Section>
 
@@ -767,4 +796,3 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {},
 }
-

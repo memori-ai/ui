@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import cx from 'classnames'
 import { Listbox, Transition } from '@headlessui/react'
-import SelectIcon from '../../icons/SelectIcon'
+import { ChevronDown as SelectIcon } from 'lucide-react'
 
 import './Select.css'
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { InputBase } from './InputBase'
+import { Input } from './Input'
 import { fn } from 'storybook/test'
 
 const meta = {
-  title: 'UI/InputBase',
-  component: InputBase,
+  title: 'Atomic/Input',
+  component: Input,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -68,7 +68,7 @@ const meta = {
   args: {
     onValueChange: fn(),
   },
-} satisfies Meta<typeof InputBase>
+} satisfies Meta<typeof Input>
 
 export default meta
 
@@ -157,7 +157,7 @@ export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState('')
     return (
-      <InputBase
+      <Input
         value={value}
         onValueChange={setValue}
         placeholder="Type something..."
@@ -172,19 +172,19 @@ export const Controlled: Story = {
 export const InputTypes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase
+      <Input
         type="text"
         placeholder="Text input"
       />
-      <InputBase
+      <Input
         type="email"
         placeholder="Email input"
       />
-      <InputBase
+      <Input
         type="password"
         placeholder="Password input"
       />
-      <InputBase
+      <Input
         type="number"
         placeholder="Number input"
       />
@@ -198,15 +198,15 @@ export const InputTypes: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase
+      <Input
         placeholder="Default variant"
         variant="default"
       />
-      <InputBase
+      <Input
         placeholder="Error variant"
         variant="error"
       />
-      <InputBase
+      <Input
         placeholder="Disabled variant"
         variant="disabled"
       />
@@ -220,15 +220,15 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <InputBase
+      <Input
         placeholder="Small input"
         size="sm"
       />
-      <InputBase
+      <Input
         placeholder="Medium input"
         size="md"
       />
-      <InputBase
+      <Input
         placeholder="Large input"
         size="lg"
       />

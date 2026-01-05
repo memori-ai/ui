@@ -2,7 +2,7 @@ import type { FC, JSX } from 'react'
 import React from 'react'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
-import Close from '../../icons/Close'
+import { X as Close } from 'lucide-react'
 import Button from '../Button'
 import { useTranslation } from 'react-i18next'
 

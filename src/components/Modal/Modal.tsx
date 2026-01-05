@@ -3,7 +3,7 @@ import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Spin from '../Spin/Spin'
 import Button from '../Button/Button'
-import Close from '../../icons/Close'
+import { X as Close } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import cx from 'classnames'
 

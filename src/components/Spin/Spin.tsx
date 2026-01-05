@@ -1,7 +1,7 @@
 import type { FC, JSX } from 'react'
 import React from 'react'
 import cx from 'classnames'
-import Loading from '../../icons/Loading'
+import { Loader2 as Loading } from 'lucide-react'
 
 import './Spin.css'
 
@@ -26,7 +26,7 @@ const Spin: FC<Props> = ({
   >
     {children}
     <div className="memori-spin--spinner">
-      <Loading loading />
+      <Loading className="memori-loading-icon" />
     </div>
   </div>
 )

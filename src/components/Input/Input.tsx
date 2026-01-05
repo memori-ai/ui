@@ -4,10 +4,7 @@ import type { InputProps as BaseInputProps } from '@base-ui/react/input'
 import cx from 'classnames'
 import styles from './styles.module.css'
 
-export interface InputBaseProps extends Omit<
-  BaseInputProps,
-  'className' | 'size'
-> {
+export interface InputProps extends Omit<BaseInputProps, 'className' | 'size'> {
   /**
    * Input variant
    * @default 'default'
@@ -53,7 +50,7 @@ export interface InputBaseProps extends Omit<
   type?: string
 }
 
-export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       variant = 'default',
@@ -102,6 +99,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   },
 )
 
-InputBase.displayName = 'InputBase'
+Input.displayName = 'Input'
 
-export default InputBase
+export default Input

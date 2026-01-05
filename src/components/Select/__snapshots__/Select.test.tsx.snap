@@ -36,16 +36,19 @@ exports[`renders Select disabled unchanged 1`] = `
       >
         <svg
           aria-hidden="true"
-          fill="currentColor"
-          focusable="false"
-          role="img"
-          viewBox="0 0 20 20"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-            fill-rule="evenodd"
+            d="m6 9 6 6 6-6"
           />
         </svg>
       </span>
@@ -86,16 +89,19 @@ exports[`renders Select unchanged 1`] = `
       >
         <svg
           aria-hidden="true"
-          fill="currentColor"
-          focusable="false"
-          role="img"
-          viewBox="0 0 20 20"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-            fill-rule="evenodd"
+            d="m6 9 6 6 6-6"
           />
         </svg>
       </span>
@@ -138,16 +144,19 @@ exports[`renders Select with custom value display unchanged 1`] = `
       >
         <svg
           aria-hidden="true"
-          fill="currentColor"
-          focusable="false"
-          role="img"
-          viewBox="0 0 20 20"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-            fill-rule="evenodd"
+            d="m6 9 6 6 6-6"
           />
         </svg>
       </span>
@@ -190,16 +199,19 @@ exports[`renders Select with placeholder unchanged 1`] = `
       >
         <svg
           aria-hidden="true"
-          fill="currentColor"
-          focusable="false"
-          role="img"
-          viewBox="0 0 20 20"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-            fill-rule="evenodd"
+            d="m6 9 6 6 6-6"
           />
         </svg>
       </span>
@@ -242,16 +254,19 @@ exports[`renders Select with value unchanged 1`] = `
       >
         <svg
           aria-hidden="true"
-          fill="currentColor"
-          focusable="false"
-          role="img"
-          viewBox="0 0 20 20"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-            fill-rule="evenodd"
+            d="m6 9 6 6 6-6"
           />
         </svg>
       </span>

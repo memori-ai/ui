@@ -1,0 +1,1 @@
+.memori-spin{position:relative}.memori-spin--spinner{z-index:100;background:#fffc;justify-content:center;align-items:center;width:100%;height:100%;display:none;position:absolute;top:0;left:0}.memori-spin--spinning .memori-spin--spinner{display:flex}.memori-spin--spinner svg{width:30%;max-width:5rem;height:30%;max-height:5rem}.memori-spin--primary svg{fill:var(--memori-primary)}

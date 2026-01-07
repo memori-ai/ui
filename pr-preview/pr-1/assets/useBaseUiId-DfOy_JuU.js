@@ -1,0 +1,1 @@
+import{t as e}from"./useId-D00QeLAj.js";function t(t){return e(t,`base-ui`)}export{t};

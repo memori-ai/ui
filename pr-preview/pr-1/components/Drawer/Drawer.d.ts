@@ -1,32 +1,63 @@
-import { FC, JSX, default as React } from '../../../node_modules/react';
-export interface Props {
-    title?: string | React.ReactNode;
+import { DialogRootChangeEventDetails } from '@base-ui/react';
+import * as React from 'react';
+export interface DrawerProps {
+    /**
+     * If `true`, the drawer is open.
+     */
     open?: boolean;
-    data?: any;
-    onClose?: () => void;
-    width?: number | string;
+    /**
+     * Callback fired when the component requests to be closed.
+     * The `open` parameter represents the new open state (which will be `false` when closing).
+     */
+    onOpenChange?: (open: boolean, event?: DialogRootChangeEventDetails) => void;
+    /**
+     * Callback fired when the drawer is closed (convenience prop for `onOpenChange(false)`).
+     */
+    onClose?: (event?: DialogRootChangeEventDetails) => void;
+    /**
+     * Side from which the drawer will appear.
+     * @default 'right'
+     */
+    anchor?: 'left' | 'right' | 'top' | 'bottom';
+    /**
+     * The contents of the drawer.
+     */
     children?: React.ReactNode;
-    footer?: {
-        leftAction?: React.ReactNode;
-        leftActionClassName?: string;
-        onSubmit?: () => void;
-        loading?: boolean;
-    };
-    extra?: React.ReactNode;
-    className?: string;
-    placement?: 'left' | 'right';
-    description?: string | JSX.Element | React.ReactNode;
+    /**
+     * The title of the drawer.
+     */
+    title?: React.ReactNode;
+    /**
+     * The description/subtitle of the drawer (displayed below the title).
+     */
+    description?: React.ReactNode;
+    /**
+     * The footer of the drawer (usually buttons).
+     */
+    footer?: React.ReactNode;
+    /**
+     * If `true`, shows a loading state in the drawer.
+     */
     loading?: boolean;
-    animated?: boolean;
+    /**
+     * Additional CSS class name for the drawer element.
+     */
+    className?: string;
+    /**
+     * Inline styles for the drawer element.
+     */
+    style?: React.CSSProperties;
+    /**
+     * Whether to show the close button in the header.
+     * @default true
+     */
+    showCloseButton?: boolean;
+    /**
+     * Whether the drawer can be closed (shows/hides close button).
+     * Alias for `showCloseButton` for consistency with other UI libraries.
+     * @default true
+     */
     closable?: boolean;
-    widthMd?: string;
-    widthLg?: string;
-    confirmDialogTitle?: string;
-    confirmDialogMessage?: string;
-    showBackdrop?: boolean;
-    preventBackdropClose?: boolean;
-    enterDuration?: string;
-    leaveDuration?: string;
 }
-declare const Drawer: FC<Props>;
+export declare const Drawer: React.ForwardRefExoticComponent<DrawerProps & React.RefAttributes<HTMLDivElement>>;
 export default Drawer;

@@ -1,5 +1,32 @@
 
 
+## [1.0.5-alpha](https://github.com/memori-ai/ui/compare/v1.0.4-alpha...v1.0.5-alpha) (2026-01-07)
+
+
+### Features
+
+* add storybook for theme design ([0409aa9](https://github.com/memori-ai/ui/commit/0409aa92fc5791ea785eec775a15d3d4957c30c0))
+* configure Vitest with a new setup file for testing-library ([efd8c0a](https://github.com/memori-ai/ui/commit/efd8c0a90f830edeb0186551b23fd604dd107ab9))
+* implement Checkbox component with CSS Modules and updated Storybook ([50f02e4](https://github.com/memori-ai/ui/commit/50f02e40f9a93fa2263fe923d3378772c9f3d797))
+* implement Drawer component with CSS Modules and updated Storybook ([f5e9b16](https://github.com/memori-ai/ui/commit/f5e9b167f91fed987bad32302a76df26c1b19d17))
+* integrate loading styles and update icon imports ([0e458ff](https://github.com/memori-ai/ui/commit/0e458ff4d304312c38ef8feb3648243b3ed3450c))
+* update Card, Checkbox, and Alert snapshots ([5ce66be](https://github.com/memori-ai/ui/commit/5ce66be30e25eb410e589d46fd24fa719d6f08e9))
+* update Card, Checkbox, and Alert snapshots ([b1ae385](https://github.com/memori-ai/ui/commit/b1ae385425a2f303eda94d16ac93ea3a4570c6cb))
+
+
+### Bug Fixes
+
+* style linting ([cc66fa7](https://github.com/memori-ai/ui/commit/cc66fa79279ceeafd19c5447608b255294d833d7))
+
+
+### Changes
+
+* modal component using base-ui with new props and styles ([8f5a58e](https://github.com/memori-ai/ui/commit/8f5a58e0e48b0e7ad292fce5c6a199f73f0ea3e1))
+* remove conditional Vitest browser testing setup ([b5c88b4](https://github.com/memori-ai/ui/commit/b5c88b49eaa279e535254eb9592bafe8a2ce9e5a))
+* remove old story files for definitions and icons ([1301efd](https://github.com/memori-ai/ui/commit/1301efd0399d4e4b1017bc3c417a696511c604ac))
+* replace Card component styles with CSS modules and enhance props for better customization ([2d87933](https://github.com/memori-ai/ui/commit/2d879331bbb2d838b57c305435389cdb16f67ea3))
+* replace Select component with new SelectBox component ([a735df6](https://github.com/memori-ai/ui/commit/a735df6c7ae4830d645ce85b878a351fb380888c))
+
 ## [1.0.4-alpha](https://github.com/memori-ai/ui/compare/1.0.1-alpha...v1.0.4-alpha) (2026-01-02)
 
 

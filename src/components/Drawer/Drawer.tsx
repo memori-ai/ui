@@ -1,242 +1,167 @@
-import type { FC, JSX } from 'react'
-import React, { useEffect, useState, useCallback } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import Spin from '../Spin/Spin'
-import Button from '../Button'
-import { X as Close } from 'lucide-react'
-import ConfirmDialog from '../ConfirmDialog/ConfirmDialog'
+import * as React from 'react'
+import { Dialog, type DialogRootChangeEventDetails } from '@base-ui/react'
 import cx from 'classnames'
-import { useTranslation } from 'react-i18next'
+import { X } from 'lucide-react'
+import styles from './styles.module.css'
 
-import './Drawer.css'
-
-export interface Props {
-  title?: string | React.ReactNode
+export interface DrawerProps {
+  /**
+   * If `true`, the drawer is open.
+   */
   open?: boolean
-  data?: any
-  onClose?: () => void
-  width?: number | string
+
+  /**
+   * Callback fired when the component requests to be closed.
+   * The `open` parameter represents the new open state (which will be `false` when closing).
+   */
+  onOpenChange?: (open: boolean, event?: DialogRootChangeEventDetails) => void
+
+  /**
+   * Callback fired when the drawer is closed (convenience prop for `onOpenChange(false)`).
+   */
+  onClose?: (event?: DialogRootChangeEventDetails) => void
+
+  /**
+   * Side from which the drawer will appear.
+   * @default 'right'
+   */
+  anchor?: 'left' | 'right' | 'top' | 'bottom'
+
+  /**
+   * The contents of the drawer.
+   */
   children?: React.ReactNode
-  footer?: {
-    leftAction?: React.ReactNode
-    leftActionClassName?: string
-    onSubmit?: () => void
-    loading?: boolean
-  }
-  extra?: React.ReactNode
-  className?: string
-  placement?: 'left' | 'right'
-  description?: string | JSX.Element | React.ReactNode
+
+  /**
+   * The title of the drawer.
+   */
+  title?: React.ReactNode
+
+  /**
+   * The description/subtitle of the drawer (displayed below the title).
+   */
+  description?: React.ReactNode
+
+  /**
+   * The footer of the drawer (usually buttons).
+   */
+  footer?: React.ReactNode
+
+  /**
+   * If `true`, shows a loading state in the drawer.
+   */
   loading?: boolean
-  animated?: boolean
+
+  /**
+   * Additional CSS class name for the drawer element.
+   */
+  className?: string
+
+  /**
+   * Inline styles for the drawer element.
+   */
+  style?: React.CSSProperties
+
+  /**
+   * Whether to show the close button in the header.
+   * @default true
+   */
+  showCloseButton?: boolean
+
+  /**
+   * Whether the drawer can be closed (shows/hides close button).
+   * Alias for `showCloseButton` for consistency with other UI libraries.
+   * @default true
+   */
   closable?: boolean
-  widthMd?: string
-  widthLg?: string
-  confirmDialogTitle?: string
-  confirmDialogMessage?: string
-  showBackdrop?: boolean
-  preventBackdropClose?: boolean
-  enterDuration?: string
-  leaveDuration?: string
 }
 
-const Drawer: FC<Props> = ({
-  title,
-  open = false,
-  data,
-  onClose = () => {},
-  children,
-  width = '80%',
-  footer,
-  showBackdrop = true,
-  extra,
-  className,
-  placement = 'right',
-  description,
-  loading = false,
-  animated = true,
-  closable = true,
-  widthMd = '80%',
-  widthLg = '60%',
-  confirmDialogTitle,
-  confirmDialogMessage,
-  preventBackdropClose = false,
-  enterDuration = 'duration-300',
-  leaveDuration = 'duration-200',
-}: Props) => {
-  const [originalData, setOriginalData] = useState<any>(null)
-  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
-  const { t } = useTranslation()
-
-  // Set original data when drawer opens and data is available
-  useEffect(() => {
-    if (open && data && !originalData) {
-      setOriginalData(data)
+export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
+  (
+    {
+      open,
+      onOpenChange,
+      onClose,
+      anchor = 'right',
+      children,
+      title,
+      description,
+      footer,
+      loading,
+      className,
+      style,
+      showCloseButton = true,
+      closable = true,
+      ...rest
+    },
+    ref,
+  ) => {
+    const handleOpenChange = (
+      newOpen: boolean,
+      event?: DialogRootChangeEventDetails,
+    ) => {
+      onOpenChange?.(newOpen, event)
+      if (!newOpen) {
+        onClose?.(event)
+      }
     }
 
-    // Reset original data when drawer closes
-    if (!open) {
-      setOriginalData(null)
-    }
-  }, [open, data, originalData])
+    // closable takes precedence over showCloseButton for consistency
+    const shouldShowCloseButton =
+      closable !== undefined ? closable : showCloseButton
 
-  // Check if data has changed
-  const checkChanges = useCallback(() => {
-    if (!data || Object.keys(data).length === 0) {
-      return onClose()
-    }
-
-    // Compare current data with original data
-    if (originalData && JSON.stringify(originalData) !== JSON.stringify(data)) {
-      setConfirmDialogOpen(true)
-    } else {
-      onClose()
-    }
-  }, [data, originalData, onClose])
-
-  // Handle drawer close
-  const handleClose = useCallback(() => {
-    checkChanges()
-  }, [checkChanges])
-
-  // Confirm unsaved changes
-  const handleConfirmUnsavedChanges = useCallback(() => {
-    setConfirmDialogOpen(false)
-    onClose()
-  }, [onClose])
-
-  return (
-    <>
-      <ConfirmDialog
-        isOpen={confirmDialogOpen}
-        onClose={() => setConfirmDialogOpen(false)}
-        onConfirm={handleConfirmUnsavedChanges}
-        title={confirmDialogTitle || t('confirmDialog.title')}
-        message={confirmDialogMessage || t('confirmDialog.message')}
-        confirmText={t('confirm') || 'Confirm'}
-        cancelText={t('cancel') || 'Cancel'}
-      />
-
-      <Transition
-        appear
-        show={open}
-        as={React.Fragment}
+    return (
+      <Dialog.Root
+        open={open}
+        onOpenChange={handleOpenChange}
       >
-        <Dialog
-          open={open}
-          onClose={preventBackdropClose ? () => {} : handleClose}
-          className={cx('memori-drawer', className)}
-        >
-          {showBackdrop && (
-            <Transition.Child
-              as={React.Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="memori-drawer--backdrop" />
-            </Transition.Child>
-          )}
-          <div className="memori-drawer--container">
-            <div className="memori-drawer--container-scrollable">
-              <Transition.Child
-                static
-                as={React.Fragment}
-                enter={`ease-out ${enterDuration}`}
-                enterFrom={animated ? 'max-w-0 opacity-0' : 'opacity-0'}
-                enterTo="max-w-80 opacity-100"
-                leave={`ease-in ${leaveDuration}`}
-                leaveFrom="max-w-80 opacity-100"
-                leaveTo={animated ? 'max-w-0 opacity-0' : 'opacity-0'}
-              >
-                <Dialog.Panel
-                  className={cx('memori-drawer--panel', {
-                    'memori-drawer--panel-left': placement === 'left',
-                    'memori-drawer--with-footer': !!footer,
-                  })}
-                  style={
-                    {
-                      '--memori-drawer--width': width,
-                      '--memori-drawer--width--lg': widthLg,
-                      '--memori-drawer--width--md': widthMd,
-                    } as React.CSSProperties
-                  }
-                >
-                  {closable && (
-                    <div className="memori-drawer--close">
-                      <Button
-                        shape="circle"
-                        variant="outline"
-                        icon={<Close />}
-                        onClick={handleClose}
-                      />
-                    </div>
+        <Dialog.Portal>
+          <Dialog.Backdrop className={styles.backdrop} />
+          <Dialog.Popup
+            ref={ref}
+            className={cx(styles.drawer, styles[anchor], className)}
+            style={style}
+            {...rest}
+          >
+            {(title || description || shouldShowCloseButton) && (
+              <div className={styles.header}>
+                <div>
+                  {title && <div className={styles.title}>{title}</div>}
+                  {description && (
+                    <div className={styles.description}>{description}</div>
                   )}
-                  <Spin spinning={loading}>
-                    <div className="memori-drawer--content">
-                      {title && (
-                        <Dialog.Title className="memori-drawer--title">
-                          {title}
-                        </Dialog.Title>
-                      )}
-                      {description && (
-                        <Dialog.Description className="memori-drawer--description">
-                          {description}
-                        </Dialog.Description>
-                      )}
-                      <div className="memori-drawer--content--scrollable">
-                        {children}
-                      </div>
-                    </div>
-                  </Spin>
-                  {footer && (
-                    <div className="memori-drawer--footer">
-                      {footer.leftAction && (
-                        <div
-                          className={
-                            'memori-drawer--footer-left-action ' +
-                            (footer.leftActionClassName || '')
-                          }
-                        >
-                          {footer.leftAction}
-                        </div>
-                      )}
-                      {footer.onSubmit && (
-                        <div className="memori-drawer--footer-actions">
-                          <Button
-                            variant="outline"
-                            onClick={handleClose}
-                          >
-                            {t('cancel')}
-                          </Button>
-                          <Button
-                            variant="primary"
-                            type="submit"
-                            onClick={footer.onSubmit}
-                            loading={footer.loading}
-                            className="memori-drawer--footer-confirm"
-                          >
-                            {t('confirm')}
-                          </Button>
-                        </div>
-                      )}
-                      {extra && (
-                        <div className="memori-drawer--extra">{extra}</div>
-                      )}
-                    </div>
-                  )}
-                </Dialog.Panel>
-              </Transition.Child>
+                </div>
+                {shouldShowCloseButton && (
+                  <Dialog.Close
+                    className={styles.closeButton}
+                    aria-label="Close"
+                  >
+                    <X size={20} />
+                  </Dialog.Close>
+                )}
+              </div>
+            )}
+
+            <div className={styles.body}>
+              {loading ? (
+                <div className={styles.loading}>
+                  <div
+                    className={styles.spinner}
+                    aria-label="Loading"
+                  />
+                </div>
+              ) : (
+                children
+              )}
             </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
-  )
-}
+
+            {footer && <div className={styles.footer}>{footer}</div>}
+          </Dialog.Popup>
+        </Dialog.Portal>
+      </Dialog.Root>
+    )
+  },
+)
 
 Drawer.displayName = 'Drawer'
 

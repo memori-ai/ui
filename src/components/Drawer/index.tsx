@@ -1,2 +1,2 @@
-import Drawer from './Drawer'
-export { Drawer }
+export { default } from './Drawer'
+export * from './Drawer'

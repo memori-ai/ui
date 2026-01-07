@@ -1,0 +1,146 @@
+/**
+ * Checkbox Component Styles
+ * Uses CSS Modules with design tokens from variables.css
+ */
+
+/* Root checkbox container */
+.checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-neutral-700);
+    cursor: pointer;
+    font-family: var(--typography-font-family-base);
+    font-size: var(--typography-font-size-sm);
+    font-weight: var(--typography-font-weight-regular);
+    gap: var(--spacing-sm);
+    line-height: var(--typography-line-height-normal);
+    transition: color 0.2s ease;
+    user-select: none;
+}
+
+.checkbox:hover:not(.disabled) {
+    color: var(--color-neutral-800);
+}
+
+/* Checkbox indicator (the box) */
+.indicator {
+    position: relative;
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-neutral-400);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-neutral-white);
+    transition: all 0.2s ease;
+}
+
+/* Focus-visible state */
+.checkbox:focus-visible .indicator {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}
+
+.checkbox:hover:not(.disabled) .indicator {
+    border-color: var(--color-primary-500);
+}
+
+/* Checked state */
+.indicatorChecked {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-500);
+}
+
+/* Indeterminate state */
+.indicatorIndeterminate {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-500);
+}
+
+.checkbox:hover:not(.disabled) .indicatorChecked {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+}
+
+.checkbox:hover:not(.disabled) .indicatorIndeterminate {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+}
+
+/* Icon inside indicator */
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    display: block;
+    animation: checkmark-scale 0.2s ease;
+    color: var(--color-neutral-white);
+}
+
+@keyframes checkmark-scale {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Label text */
+.label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Disabled state */
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.disabled .indicator {
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-200);
+    cursor: not-allowed;
+}
+
+.disabled .indicatorChecked,
+.disabled .indicatorIndeterminate {
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-400);
+}
+
+.disabled .label {
+    color: var(--color-neutral-500);
+    cursor: not-allowed;
+}
+
+.disabled.checkbox:hover .indicator {
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-200);
+}
+
+.disabled .indicatorChecked,
+.disabled .indicatorIndeterminate {
+    border-color: var(--color-neutral-400);
+    background-color: var(--color-neutral-400);
+}
+
+.disabled .icon {
+    color: var(--color-neutral-white);
+}

@@ -38,16 +38,6 @@
     transition: all 0.2s ease;
 }
 
-/* Focus-visible state */
-.checkbox:focus-visible .indicator {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
-}
-
-.checkbox:hover:not(.disabled) .indicator {
-    border-color: var(--color-primary-500);
-}
-
 /* Checked state */
 .indicatorChecked {
     border-color: var(--color-primary-500);
@@ -60,23 +50,13 @@
     background-color: var(--color-primary-500);
 }
 
-.checkbox:hover:not(.disabled) .indicatorChecked {
-    border-color: var(--color-primary-600);
-    background-color: var(--color-primary-600);
-}
-
-.checkbox:hover:not(.disabled) .indicatorIndeterminate {
-    border-color: var(--color-primary-600);
-    background-color: var(--color-primary-600);
-}
-
 /* Icon inside indicator */
 .iconWrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon {
@@ -107,7 +87,7 @@
     user-select: none;
 }
 
-/* Disabled state */
+/* Disabled state - must come before hover states for specificity */
 .disabled {
     cursor: not-allowed;
     opacity: 0.5;
@@ -130,17 +110,32 @@
     cursor: not-allowed;
 }
 
+.disabled .icon {
+    color: var(--color-neutral-white);
+}
+
+/* Focus-visible state - must come before hover states */
+.checkbox:focus-visible .indicator {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}
+
+/* Hover states - must come after disabled and focus states */
+.checkbox:hover:not(.disabled) .indicator {
+    border-color: var(--color-primary-500);
+}
+
+.checkbox:hover:not(.disabled) .indicatorChecked {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+}
+
+.checkbox:hover:not(.disabled) .indicatorIndeterminate {
+    border-color: var(--color-primary-600);
+    background-color: var(--color-primary-600);
+}
+
 .disabled.checkbox:hover .indicator {
     border-color: var(--color-neutral-400);
     background-color: var(--color-neutral-200);
-}
-
-.disabled .indicatorChecked,
-.disabled .indicatorIndeterminate {
-    border-color: var(--color-neutral-400);
-    background-color: var(--color-neutral-400);
-}
-
-.disabled .icon {
-    color: var(--color-neutral-white);
 }

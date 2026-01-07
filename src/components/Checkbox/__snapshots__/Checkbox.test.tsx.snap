@@ -5,7 +5,7 @@ exports[`renders Checkbox checked and disabled unchanged 1`] = `
   <span
     aria-checked="true"
     aria-disabled="true"
-    class="_checkbox_3ceb9d _disabled_3ceb9d"
+    class="_checkbox_1bijp_7 _disabled_1bijp_22"
     data-checked=""
     data-disabled=""
     id="base-ui-_r_6_"
@@ -13,16 +13,16 @@ exports[`renders Checkbox checked and disabled unchanged 1`] = `
     tabindex="-1"
   >
     <span
-      class="_indicator_3ceb9d _indicatorChecked_3ceb9d"
+      class="_indicator_1bijp_27 _indicatorChecked_1bijp_52"
     >
       <span
-        class="_iconWrapper_3ceb9d"
+        class="_iconWrapper_1bijp_74"
         data-checked=""
         data-disabled=""
       >
         <svg
           aria-hidden="true"
-          class="lucide lucide-check _icon_3ceb9d"
+          class="lucide lucide-check _icon_1bijp_74"
           fill="none"
           height="14"
           stroke="currentColor"
@@ -40,7 +40,7 @@ exports[`renders Checkbox checked and disabled unchanged 1`] = `
       </span>
     </span>
     <span
-      class="_label_3ceb9d"
+      class="_label_1bijp_105"
     >
       Check me
     </span>
@@ -49,7 +49,7 @@ exports[`renders Checkbox checked and disabled unchanged 1`] = `
     aria-hidden="true"
     checked=""
     disabled=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -60,22 +60,22 @@ exports[`renders Checkbox checked unchanged 1`] = `
 <div>
   <span
     aria-checked="true"
-    class="_checkbox_3ceb9d"
+    class="_checkbox_1bijp_7"
     data-checked=""
     id="base-ui-_r_2_"
     role="checkbox"
     tabindex="0"
   >
     <span
-      class="_indicator_3ceb9d _indicatorChecked_3ceb9d"
+      class="_indicator_1bijp_27 _indicatorChecked_1bijp_52"
     >
       <span
-        class="_iconWrapper_3ceb9d"
+        class="_iconWrapper_1bijp_74"
         data-checked=""
       >
         <svg
           aria-hidden="true"
-          class="lucide lucide-check _icon_3ceb9d"
+          class="lucide lucide-check _icon_1bijp_74"
           fill="none"
           height="14"
           stroke="currentColor"
@@ -93,7 +93,7 @@ exports[`renders Checkbox checked unchanged 1`] = `
       </span>
     </span>
     <span
-      class="_label_3ceb9d"
+      class="_label_1bijp_105"
     >
       Check me
     </span>
@@ -101,7 +101,7 @@ exports[`renders Checkbox checked unchanged 1`] = `
   <input
     aria-hidden="true"
     checked=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -113,7 +113,7 @@ exports[`renders Checkbox disabled unchanged 1`] = `
   <span
     aria-checked="false"
     aria-disabled="true"
-    class="_checkbox_3ceb9d _disabled_3ceb9d"
+    class="_checkbox_1bijp_7 _disabled_1bijp_22"
     data-disabled=""
     data-unchecked=""
     id="base-ui-_r_4_"
@@ -121,10 +121,10 @@ exports[`renders Checkbox disabled unchanged 1`] = `
     tabindex="-1"
   >
     <span
-      class="_indicator_3ceb9d"
+      class="_indicator_1bijp_27"
     />
     <span
-      class="_label_3ceb9d"
+      class="_label_1bijp_105"
     >
       Check me
     </span>
@@ -132,7 +132,7 @@ exports[`renders Checkbox disabled unchanged 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -143,24 +143,24 @@ exports[`renders Checkbox indeterminate unchanged 1`] = `
 <div>
   <span
     aria-checked="false"
-    class="_checkbox_3ceb9d"
+    class="_checkbox_1bijp_7"
     data-unchecked=""
     id="base-ui-_r_8_"
     role="checkbox"
     tabindex="0"
   >
     <span
-      class="_indicator_3ceb9d _indicatorIndeterminate_3ceb9d"
+      class="_indicator_1bijp_27 _indicatorIndeterminate_1bijp_58"
     />
     <span
-      class="_label_3ceb9d"
+      class="_label_1bijp_105"
     >
       Check me
     </span>
   </span>
   <input
     aria-hidden="true"
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -171,24 +171,24 @@ exports[`renders Checkbox unchanged 1`] = `
 <div>
   <span
     aria-checked="false"
-    class="_checkbox_3ceb9d"
+    class="_checkbox_1bijp_7"
     data-unchecked=""
     id="base-ui-_r_0_"
     role="checkbox"
     tabindex="0"
   >
     <span
-      class="_indicator_3ceb9d"
+      class="_indicator_1bijp_27"
     />
     <span
-      class="_label_3ceb9d"
+      class="_label_1bijp_105"
     >
       Check me
     </span>
   </span>
   <input
     aria-hidden="true"
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />

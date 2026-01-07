@@ -37,13 +37,13 @@ exports[`Alert Component > renders Alert open unchanged 1`] = `
       >
         <button
           aria-label="close"
-          class="_button_47407a _button--ghost_47407a _button--md_47407a _button--circle_47407a _button--icon-only_47407a memori-alert--close"
+          class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223 _button--circle_x9fzh_243 _button--icon-only_x9fzh_265 memori-alert--close"
           tabindex="0"
           title="close"
           type="button"
         >
           <span
-            class="_button__icon_47407a"
+            class="_button__icon_x9fzh_31"
           >
             <svg
               aria-hidden="true"

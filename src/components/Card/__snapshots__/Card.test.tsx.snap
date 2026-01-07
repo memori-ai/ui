@@ -3,20 +3,18 @@
 exports[`renders Card hoverable unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87 _interactive_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63 _interactive_tzi3l_117"
     tabindex="0"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
       >
-        <div
-          class="_header_b6cf87"
-        >
+        <div>
           <div
-            class="_title_b6cf87"
+            class="_title_tzi3l_43"
           >
             lorem-ipsum
           </div>
@@ -51,19 +49,17 @@ exports[`renders Card hoverable unchanged 1`] = `
 exports[`renders Card loading unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin memori-spin--spinning"
       >
-        <div
-          class="_header_b6cf87"
-        >
+        <div>
           <div
-            class="_title_b6cf87"
+            class="_title_tzi3l_43"
           >
             Card title
           </div>
@@ -98,10 +94,10 @@ exports[`renders Card loading unchanged 1`] = `
 exports[`renders Card unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
@@ -136,10 +132,10 @@ exports[`renders Card unchanged 1`] = `
 exports[`renders Card with children unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
@@ -177,10 +173,10 @@ exports[`renders Card with children unchanged 1`] = `
 exports[`renders Card with cover unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_cover_b6cf87"
+      class="_cover_tzi3l_26"
     >
       <img
         alt=""
@@ -188,7 +184,7 @@ exports[`renders Card with cover unchanged 1`] = `
       />
     </div>
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
@@ -223,10 +219,10 @@ exports[`renders Card with cover unchanged 1`] = `
 exports[`renders Card with custom CSS class unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87 lorem-ipsum"
+    class="_card_tzi3l_5 _elevated_tzi3l_63 lorem-ipsum"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
@@ -261,19 +257,17 @@ exports[`renders Card with custom CSS class unchanged 1`] = `
 exports[`renders Card with description unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
       >
-        <div
-          class="_header_b6cf87"
-        >
+        <div>
           <div
-            class="_description_b6cf87"
+            class="_description_tzi3l_51"
           >
             Card description
           </div>
@@ -308,19 +302,17 @@ exports[`renders Card with description unchanged 1`] = `
 exports[`renders Card with title unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="_card_tzi3l_5 _elevated_tzi3l_63"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="_body_tzi3l_38 _padding-md_tzi3l_95"
     >
       <div
         class="memori-spin"
       >
-        <div
-          class="_header_b6cf87"
-        >
+        <div>
           <div
-            class="_title_b6cf87"
+            class="_title_tzi3l_43"
           >
             Card title
           </div>

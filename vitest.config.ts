@@ -6,19 +6,9 @@ const isCI = process.env.CI === 'true'
 
 export default defineConfig({
   plugins: [react()],
-  test: isCI
-    ? {
-        environment: 'happy-dom',
-        setupFiles: './vitest.setup.ts',
-        globals: true,
-      }
-    : {
-        browser: {
-          enabled: true,
-          provider: playwright(),
-          instances: [{ browser: 'chromium' }],
-        },
-        setupFiles: './vitest.setup.ts',
-        globals: true,
-      },
+  test: {
+    environment: 'happy-dom',
+    setupFiles: './vitest.setup.ts',
+    globals: true,
+  },
 })

@@ -107,4 +107,21 @@
     --border-radius-md: 12px; /* Cards, Buttons */
     --border-radius-lg: 16px; /* Modals, Containers */
     --border-radius-full: 999px; /* Pills, Avatars */
+
+    /* ============================================
+    MODAL TOKENS
+    ============================================ */
+
+    /* Modal size variants - max-width values */
+    --modal-size-sm: 400px;
+    --modal-size-md: 600px;
+    --modal-size-lg: 800px;
+    --modal-size-xl: 1000px;
+    --modal-size-full: 90vw;
+
+    /* Responsive width variables for custom widths */
+    --modal-width: 100%;
+    --modal-width-md: 80%;
+    --modal-width-lg: 1000px;
+    --modal-width-xl: 1200px;
 }

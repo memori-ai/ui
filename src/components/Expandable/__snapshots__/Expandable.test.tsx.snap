@@ -50,9 +50,15 @@ exports[`renders Expandable with JSX markup unchanged 1`] = `
       </p>
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>
@@ -70,9 +76,15 @@ exports[`renders Expandable with custom button CSS class unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded test"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223 test"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>
@@ -90,9 +102,15 @@ exports[`renders Expandable with custom collapse symbol unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      test collapse
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        test collapse
+      </span>
     </button>
   </div>
 </div>
@@ -110,9 +128,15 @@ exports[`renders Expandable with custom expand symbol unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      test
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        test
+      </span>
     </button>
   </div>
 </div>
@@ -130,9 +154,15 @@ exports[`renders Expandable with custom inner CSS class unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>
@@ -150,9 +180,15 @@ exports[`renders Expandable with custom wrapper CSS class unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>
@@ -170,9 +206,15 @@ exports[`renders Expandable with long text unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>
@@ -190,9 +232,15 @@ exports[`renders Expandable with multiple rows unchanged 1`] = `
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
     <button
-      class="memori-button memori-button--ghost memori-button--rounded"
+      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
+      tabindex="0"
+      type="button"
     >
-      ...
+      <span
+        class="_button__content_x9fzh_26"
+      >
+        ...
+      </span>
     </button>
   </div>
 </div>

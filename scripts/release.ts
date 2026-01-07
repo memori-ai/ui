@@ -173,6 +173,7 @@ function main() {
         })
         console.log('✅ Published to npm successfully!')
       } catch (npmError) {
+        console.error(npmError)
         console.error('\n❌ npm publish failed. You may need to:')
         console.error("  1. Ensure you're logged in to npm: npm login")
         console.error("  2. Check that the version doesn't already exist")
@@ -183,6 +184,7 @@ function main() {
 
     console.log(`\n✅ Successfully released version ${version}!`)
   } catch (error) {
+    console.error(error)
     console.error('\n❌ Release failed. You may need to:')
     console.error("  1. Ensure you're logged in to npm: npm login")
     console.error("  2. Check that the version doesn't already exist")

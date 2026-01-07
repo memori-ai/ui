@@ -1,0 +1,131 @@
+/* ============================================
+   CARD ROOT
+   ============================================ */
+
+.card {
+    position: relative;
+    display: block;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 0;
+    border-radius: var(--border-radius-md);
+    margin: 0;
+    background-color: var(--color-neutral-white);
+    color: var(--color-neutral-700);
+    font-family: var(--typography-font-family-base);
+    text-align: left;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.cover {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.cover > * {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.body {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.title {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--color-neutral-800);
+    font-size: var(--typography-font-size-lg);
+    font-weight: var(--typography-font-weight-semibold);
+    line-height: var(--typography-line-height-tight);
+}
+
+.description {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-neutral-600);
+    font-size: var(--typography-font-size-sm);
+    line-height: var(--typography-line-height-normal);
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Elevated: Shadow, no border (usually) */
+.elevated {
+    border: 1px solid transparent;
+
+    /* Keeps sizing consistent with outlined */
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+/* Outlined: Border, no shadow */
+.outlined {
+    border: 1px solid var(--color-neutral-400);
+    box-shadow: none;
+}
+
+/* Helper to force border even on elevated if needed? 
+   No, requirements say 'bordered' prop defaults to true if outlined. 
+   We will handle logic in JS but we can have utility here if needed.
+   For now, .outlined handles the border. 
+   If user wants elevated AND border, we can combine classes or use a separate modifier.
+*/
+
+/* ============================================
+   PADDING MODIFIERS (Applied to Body)
+   ============================================ */
+
+.padding-none {
+    padding: 0;
+}
+
+.padding-sm {
+    padding: var(--spacing-sm);
+}
+
+.padding-md {
+    padding: var(--spacing-md);
+}
+
+.padding-lg {
+    padding: var(--spacing-lg);
+}
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+
+/* Only applied if the card is interactive (e.g. standard button/anchor behavior) 
+   or if we explicitly add an interactive class. 
+   The requirements say "Manage focus states (focus-visible)". 
+   Since it can be a div, we might need tabindex.
+*/
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+
+.interactive {
+    cursor: pointer;
+}
+
+.interactive:hover {
+    border-color: var(--color-primary-200);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+    transform: translateY(-1px);
+}
+
+/* Focus visible styles for accessibility */
+.card:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}

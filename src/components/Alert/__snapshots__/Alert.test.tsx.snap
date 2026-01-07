@@ -7,7 +7,6 @@ exports[`Alert Component > renders Alert open unchanged 1`] = `
     data-closed=""
     data-enter=""
     data-transition=""
-    style=""
   >
     <style>
       
@@ -21,7 +20,6 @@ exports[`Alert Component > renders Alert open unchanged 1`] = `
       data-closed=""
       data-enter=""
       data-transition=""
-      style=""
     >
       <div
         class="memori-alert--content"

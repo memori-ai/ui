@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [react()],
   test: isCI
     ? {
-        environment: 'jsdom',
+        environment: 'happy-dom',
+        setupFiles: './vitest.setup.ts',
+        globals: true,
       }
     : {
         browser: {
@@ -16,5 +18,7 @@ export default defineConfig({
           provider: playwright(),
           instances: [{ browser: 'chromium' }],
         },
+        setupFiles: './vitest.setup.ts',
+        globals: true,
       },
 })

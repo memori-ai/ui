@@ -49,7 +49,7 @@ exports[`renders Checkbox checked and disabled unchanged 1`] = `
     aria-hidden="true"
     checked=""
     disabled=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -101,7 +101,7 @@ exports[`renders Checkbox checked unchanged 1`] = `
   <input
     aria-hidden="true"
     checked=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -132,7 +132,7 @@ exports[`renders Checkbox disabled unchanged 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -160,7 +160,7 @@ exports[`renders Checkbox indeterminate unchanged 1`] = `
   </span>
   <input
     aria-hidden="true"
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -188,7 +188,7 @@ exports[`renders Checkbox unchanged 1`] = `
   </span>
   <input
     aria-hidden="true"
-    style="clip: rect(0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
     tabindex="-1"
     type="checkbox"
   />

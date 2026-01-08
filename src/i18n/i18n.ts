@@ -1,4 +1,4 @@
-import { createInstance } from 'i18next'
+import { createInstance, type i18n as I18nInstance } from 'i18next'
 
 const resources = {
   en: {
@@ -18,7 +18,7 @@ const resources = {
   },
 }
 
-const i18n = createInstance({
+const i18n: I18nInstance = createInstance({
   resources,
   lng: 'en',
   fallbackLng: 'it',

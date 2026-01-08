@@ -1,36 +1,41 @@
 {
   "name": "@memori.ai/ui",
+  "version": "1.0.6",
   "type": "module",
-  "main": "dist/memori-ai-ui.cjs.js",
-  "module": "dist/memori-ai-ui.es.js",
-  "types": "dist/index.d.ts",
-  "version": "1.0.5-alpha",
+  "description": "Memori.ai UI Component Library",
+  "main": "./dist/memori-ai-ui.cjs.js",
+  "module": "./dist/memori-ai-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/memori-ai-ui.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/memori-ai-ui.es.js",
+      "require": "./dist/memori-ai-ui.cjs.js"
+    },
+    "./styles.css": {
+      "import": "./dist/memori-ai-ui.css",
+      "require": "./dist/memori-ai-ui.css"
+    },
+    "./dist/memori-ai-ui.css": "./dist/memori-ai-ui.css"
+  },
+  "sideEffects": [
+    "**/*.css",
+    "./src/index.ts"
+  ],
   "files": [
-    "src",
     "dist",
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/memori-ai-ui.es.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/memori-ai-ui.umd.js"
-      }
-    },
-    "./style.css": "./dist/memori-ai-ui.css"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "build": "vite build",
+    "dev": "vite build --watch",
     "lint": "bunx oxlint",
     "lint:css": "bunx stylelint \"src/**/*.css\"",
     "lint:fix": "bunx oxlint --fix",
@@ -46,7 +51,8 @@
     "prepare": "husky || true",
     "storybook": "storybook dev -p 6006",
     "sb": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "bun run build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
@@ -80,22 +86,28 @@
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^39.0.1",
-    "vite": "npm:rolldown-vite@7.2.5",
+    "vite": "^6.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.14",
     "vitest-browser-react": "^2.0.2"
   },
-  "overrides": {
-    "vite": "npm:rolldown-vite@7.2.5",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
-  },
   "peerDependencies": {
-    "typescript": "^5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "@types/react": "^18.2.0 || ^19.0.0",
+    "@types/react-dom": "^18.2.0 || ^19.0.0",
+    "typescript": "^5"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
@@ -104,5 +116,17 @@
     "lucide-react": "^0.555.0",
     "react-i18next": "^16.3.5",
     "i18next": "^25.5.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "memori",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/memori-ai/ui.git"
+  },
+  "license": "MIT"
 }

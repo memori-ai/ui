@@ -44,21 +44,21 @@ To customize the theme, simply set the following CSS variables in your applicati
 
 ```css
 :root {
-    /* Override Primary Color (Purple default) */
-    --memori-primary-rgb: oklch(0.55 0.22 290); /* or hex, rgb, etc. */
+  /* Override Primary Color (Purple default) */
+  --memori-primary-rgb: oklch(0.55 0.22 290); /* or hex, rgb, etc. */
 
-    /* Override Secondary Color (Cyan default) */
-    --memori-secondary-rgb: oklch(0.70 0.15 200);
+  /* Override Secondary Color (Cyan default) */
+  --memori-secondary-rgb: oklch(0.7 0.15 200);
 }
 ```
 
 ### Styling Architecture
 
--   **Plain CSS**: We use standard CSS files, not CSS Modules or CSS-in-JS.
--   **Namespace**: All CSS classes and variables are prefixed with `memori-` to avoid conflicts (e.g., `.memori-button`, `--memori-spacing-md`).
--   **BEM Convention**: Classes follow the Block Element Modifier convention (e.g., `.memori-card__header--active`).
--   **Theme**: Is defined inside the '/theme/variables.css' file.
--   **Icons**: We use [Lucide React](https://lucide.dev) for all icons.
+- **Plain CSS**: We use standard CSS files, not CSS Modules or CSS-in-JS.
+- **Namespace**: All CSS classes and variables are prefixed with `memori-` to avoid conflicts (e.g., `.memori-button`, `--memori-spacing-md`).
+- **BEM Convention**: Classes follow the Block Element Modifier convention (e.g., `.memori-card__header--active`).
+- **Theme**: Is defined inside the '/theme/variables.css' file.
+- **Icons**: We use [Lucide React](https://lucide.dev) for all icons.
 
 ## Development
 
@@ -126,13 +126,13 @@ bun run release
 
 ## Tech stack
 
--   [Bun](https://bun.com)
--   [React](https://react.dev)
--   [@base-ui/react](https://github.com/base-ui/react)
--   [Storybook](https://storybook.js.org)
--   [Vite](https://vitejs.dev)
--   [Vitest](https://vitest.dev)
--   [Playwright](https://playwright.dev)
--   [React Testing Library](https://testing-library.com/react)
--   [React I18next](https://react.i18next.com)
--   [Lucide React](https://lucide.dev)
+- [Bun](https://bun.com)
+- [React](https://react.dev)
+- [@base-ui/react](https://github.com/base-ui/react)
+- [Storybook](https://storybook.js.org)
+- [Vite](https://vitejs.dev)
+- [Vitest](https://vitest.dev)
+- [Playwright](https://playwright.dev)
+- [React Testing Library](https://testing-library.com/react)
+- [React I18next](https://react.i18next.com)
+- [Lucide React](https://lucide.dev)

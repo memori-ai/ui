@@ -1,79 +1,114 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
-import { name, peerDependencies, dependencies } from './package.json'
-import react from '@vitejs/plugin-react'
+/**
+ * @memori.ai/ui - Vite Configuration for Library Build
+ *
+ * This configuration properly bundles React components with CSS extraction.
+ * Copy this file to your @memori.ai/ui repository as vite.config.ts
+ */
 
-const packageName = name.replaceAll('@', '').replaceAll(/[/.]/g, '-')
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
+import { resolve } from 'path'
 
 export default defineConfig({
+  plugins: [
+    react({
+      // Enable React Compiler if you want (optional)
+      // babel: {
+      //   plugins: [['babel-plugin-react-compiler', {}]],
+      // },
+    }),
+    dts({
+      include: ['src'],
+      // Rollup declaration files into a single index.d.ts
+      rollupTypes: true,
+      // Insert type references for CSS files
+      insertTypesEntry: true,
+    }),
+  ],
+
   build: {
-    cssCodeSplit: false,
+    // Library mode configuration
     lib: {
-      entry: 'src/index.ts',
-      name,
-      cssFileName: packageName,
-      fileName: format => `${packageName}.${format}.js`,
-    },
-    rollupOptions: {
-      external: id => {
-        // Externalize peer dependencies
-        if (Object.keys(peerDependencies).includes(id)) {
-          return true
-        }
-        // Externalize all dependencies
-        if (Object.keys(dependencies).includes(id)) {
-          return true
-        }
-        // Externalize React and related packages (including sub-paths)
-        if (
-          id === 'react' ||
-          id === 'react-dom' ||
-          id === 'react/jsx-runtime' ||
-          id === 'react/jsx-dev-runtime' ||
-          id === 'react-compiler-runtime' ||
-          id.startsWith('react-compiler-runtime/')
-        ) {
-          return true
-        }
-        // Externalize sub-packages of dependencies
-        if (
-          id.startsWith('@base-ui/') ||
-          id.startsWith('@headlessui/') ||
-          id.startsWith('react-aria-components') ||
-          id.startsWith('react-i18next') ||
-          id.startsWith('i18next') ||
-          id.startsWith('lucide-react') ||
-          id === 'classnames' ||
-          id.startsWith('classnames/')
-        ) {
-          return true
-        }
-        return false
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'MemoriUI',
+      formats: ['es', 'cjs'],
+      fileName: format => {
+        if (format === 'es') return 'memori-ai-ui.es.js'
+        if (format === 'cjs') return 'memori-ai-ui.cjs.js'
+        return `memori-ai-ui.${format}.js`
       },
+    },
+
+    rollupOptions: {
+      // Don't bundle peer dependencies
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        // Add other peer dependencies here
+        '@base-ui/react',
+        '@headlessui/react',
+        'lucide-react',
+        'react-i18next',
+        'i18next',
+      ],
       output: {
+        // Provide global variables for UMD build (if needed)
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'ReactJsxRuntime',
+          'react/jsx-runtime': 'jsxRuntime',
         },
+        // Control CSS output filename
+        assetFileNames: assetInfo => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'memori-ai-ui.css'
+          }
+          return assetInfo.name ?? '[name][extname]'
+        },
+        // Preserve module structure for tree-shaking
+        preserveModules: false,
       },
     },
+
+    // CRITICAL: Bundle all CSS into a single file
+    cssCodeSplit: false,
+
+    // Generate sourcemaps for easier debugging
+    sourcemap: true,
+
+    // Minify for production
+    minify: 'esbuild',
+
+    // Target modern browsers
+    target: 'es2020',
+
+    // Output directory
+    outDir: 'dist',
+
+    // Clean output directory before build
+    emptyOutDir: true,
   },
-  plugins: [
-    dts({
-      insertTypesEntry: true,
-      include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: [
-        '**/*.test.ts',
-        '**/*.test.tsx',
-        '**/*.stories.ts',
-        '**/*.stories.tsx',
+
+  css: {
+    // CSS Modules configuration (if you use .module.css files)
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    },
+    // PostCSS configuration
+    postcss: {
+      plugins: [
+        // Add autoprefixer, cssnano, etc. if needed
       ],
-    }),
-    react({
-      // Rimuovi React Compiler per evitare problemi con il bundle della libreria
-      // Le app che consumano la libreria possono applicare le ottimizzazioni
-    }),
-  ],
+    },
+  },
+
+  // Resolve configuration
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
 })

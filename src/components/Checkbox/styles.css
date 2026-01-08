@@ -35,7 +35,11 @@
     border: 1px solid var(--memori-color-neutral-400);
     border-radius: var(--memori-border-radius-sm);
     background-color: var(--memori-color-neutral-white);
-    transition: all 0.2s ease;
+    transition:
+        background-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
 }
 
 /* Checked state */
@@ -61,18 +65,14 @@
 
 .memori-checkbox__icon {
     display: block;
-    animation: memori-checkmark-scale 0.2s ease;
+    animation: memori-checkmark-scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     color: var(--memori-color-neutral-white);
 }
 
 @keyframes memori-checkmark-scale {
     0% {
         opacity: 0;
-        transform: scale(0);
-    }
-
-    50% {
-        transform: scale(1.1);
+        transform: scale(0.5);
     }
 
     100% {
@@ -97,12 +97,24 @@
     border-color: var(--memori-color-neutral-400);
     background-color: var(--memori-color-neutral-200);
     cursor: not-allowed;
+    transform: none;
 }
 
 .memori-checkbox--disabled .memori-checkbox__indicator--checked,
 .memori-checkbox--disabled .memori-checkbox__indicator--indeterminate {
     border-color: var(--memori-color-neutral-400);
     background-color: var(--memori-color-neutral-400);
+}
+
+/* Focus-visible state - must come before hover states */
+.memori-checkbox:focus-visible .memori-checkbox__indicator {
+    outline: 2px solid var(--memori-color-primary-500);
+    outline-offset: 2px;
+}
+
+/* Active / Pressed State */
+.memori-checkbox:active:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
+    transform: scale(0.9);
 }
 
 .memori-checkbox--disabled .memori-checkbox__label {
@@ -114,15 +126,10 @@
     color: var(--memori-color-neutral-white);
 }
 
-/* Focus-visible state - must come before hover states */
-.memori-checkbox:focus-visible .memori-checkbox__indicator {
-    outline: 2px solid var(--memori-color-primary-500);
-    outline-offset: 2px;
-}
-
 /* Hover states - must come after disabled and focus states */
 .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
     border-color: var(--memori-color-primary-500);
+    box-shadow: 0 0 0 4px oklch(from var(--memori-color-primary-500) l c h / 10%);
 }
 
 .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--checked {
@@ -138,4 +145,5 @@
 .memori-checkbox--disabled.memori-checkbox:hover .memori-checkbox__indicator {
     border-color: var(--memori-color-neutral-400);
     background-color: var(--memori-color-neutral-200);
+    box-shadow: none;
 }

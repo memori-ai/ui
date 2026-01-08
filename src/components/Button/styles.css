@@ -185,15 +185,6 @@
     color: var(--memori-color-neutral-500);
 }
 
-.memori-button--ghost:hover:not(:disabled) {
-    background-color: var(--memori-color-neutral-200);
-}
-
-.memori-button--ghost:active:not(:disabled),
-.memori-button--ghost.memori-button--active {
-    background-color: var(--memori-color-neutral-300);
-}
-
 /* Danger Variant */
 .memori-button--danger {
     border-color: var(--memori-color-semantic-error-base);

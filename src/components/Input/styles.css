@@ -33,6 +33,7 @@
 
 .memori-input--default:hover:not(:disabled) {
     border-color: var(--memori-color-neutral-600);
+    background-color: var(--memori-color-neutral-100);
 }
 
 /* Error Variant */

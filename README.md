@@ -21,7 +21,7 @@ bun add @memori.ai/ui
 You **must** import the compiled CSS file in your application's entry point (e.g., `main.tsx` or `App.tsx`) to ensure components are styled correctly.
 
 ```tsx
-import '@memori.ai/ui/dist/memori-ai-ui.css'
+import '@memori.ai/ui/styles.css'
 ```
 
 ### 2. Import Components

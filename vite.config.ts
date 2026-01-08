@@ -9,6 +9,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
+import { peerDependencies, dependencies } from './package.json'
 
 export default defineConfig({
   plugins: [
@@ -41,17 +42,11 @@ export default defineConfig({
     },
 
     rollupOptions: {
-      // Don't bundle peer dependencies
+      // Don't bundle peer dependencies or dependencies
       external: [
-        'react',
-        'react-dom',
         'react/jsx-runtime',
-        // Add other peer dependencies here
-        '@base-ui/react',
-        '@headlessui/react',
-        'lucide-react',
-        'react-i18next',
-        'i18next',
+        ...Object.keys(peerDependencies || {}),
+        ...Object.keys(dependencies || {}),
       ],
       output: {
         // Provide global variables for UMD build (if needed)

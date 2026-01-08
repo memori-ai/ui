@@ -52,6 +52,49 @@ To customize the theme, simply set the following CSS variables in your applicati
 }
 ```
 
+### Dark Mode
+
+The library includes built-in dark mode support. All components automatically adapt when dark mode is enabled.
+
+#### Using the Theme Hook
+
+The easiest way to add theme switching is using the `useTheme` hook:
+
+```tsx
+import { useTheme } from '@memori.ai/ui'
+
+function App() {
+  const { theme, setTheme, toggleTheme } = useTheme()
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    </button>
+  )
+}
+```
+
+The hook automatically:
+
+- Detects system preference on first load
+- Persists theme choice in localStorage
+- Applies the theme to the document root
+
+#### Manual Theme Control
+
+You can also control the theme manually by setting a `data-theme` attribute or `dark` class on the document root:
+
+```tsx
+// Set dark mode
+document.documentElement.setAttribute('data-theme', 'dark')
+// or
+document.documentElement.classList.add('dark')
+
+// Set light mode
+document.documentElement.removeAttribute('data-theme')
+document.documentElement.classList.remove('dark')
+```
+
 ### Styling Architecture
 
 - **Plain CSS**: We use standard CSS files, not CSS Modules or CSS-in-JS.

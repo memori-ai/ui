@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
+import type { Decorator } from '@storybook/react'
+import React from 'react'
 
 import '../src/styles.css'
 
@@ -18,6 +20,43 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+
+  globalTypes: {
+    theme: {
+      description: 'Global theme for components',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: [
+          { value: 'light', title: 'Light', icon: 'circlehollow' },
+          { value: 'dark', title: 'Dark', icon: 'circle' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+
+  decorators: [
+    ((Story, context) => {
+      const { theme } = context.globals
+
+      React.useEffect(() => {
+        const root = document.documentElement
+
+        // Remove both theme attributes/classes
+        root.removeAttribute('data-theme')
+        root.classList.remove('dark')
+
+        if (theme === 'dark') {
+          root.setAttribute('data-theme', 'dark')
+          root.classList.add('dark')
+        }
+      }, [theme])
+
+      return Story()
+    }) as Decorator,
+  ],
 }
 
 export default preview

@@ -29,26 +29,26 @@
     /* oklch(0.70 0.15 200) */
 
     /* Primary Colors */
-    --memori-color-primary-100: oklch(from var(--memori-color-primary-base) 0.95 c h);
-    --memori-color-primary-200: oklch(from var(--memori-color-primary-base) 0.9 c h);
-    --memori-color-primary-300: oklch(from var(--memori-color-primary-base) 0.85 c h);
-    --memori-color-primary-400: oklch(from var(--memori-color-primary-base) 0.7 c h);
+    --memori-color-primary-100: oklch(from var(--memori-color-primary-base) 0.95deg c h);
+    --memori-color-primary-200: oklch(from var(--memori-color-primary-base) 0.9deg c h);
+    --memori-color-primary-300: oklch(from var(--memori-color-primary-base) 0.85deg c h);
+    --memori-color-primary-400: oklch(from var(--memori-color-primary-base) 0.7deg c h);
     --memori-color-primary-500: var(--memori-color-primary-base);
-    --memori-color-primary-600: oklch(from var(--memori-color-primary-base) 0.45 c h);
-    --memori-color-primary-700: oklch(from var(--memori-color-primary-base) 0.35 c h);
-    --memori-color-primary-800: oklch(from var(--memori-color-primary-base) 0.25 c h);
-    --memori-color-primary-900: oklch(from var(--memori-color-primary-base) 0.15 c h);
+    --memori-color-primary-600: oklch(from var(--memori-color-primary-base) 0.45deg c h);
+    --memori-color-primary-700: oklch(from var(--memori-color-primary-base) 0.35deg c h);
+    --memori-color-primary-800: oklch(from var(--memori-color-primary-base) 0.25deg c h);
+    --memori-color-primary-900: oklch(from var(--memori-color-primary-base) 0.15deg c h);
 
     /* Secondary Colors */
-    --memori-color-secondary-100: oklch(from var(--memori-color-secondary-base) 0.95 c h);
-    --memori-color-secondary-200: oklch(from var(--memori-color-secondary-base) 0.9 c h);
-    --memori-color-secondary-300: oklch(from var(--memori-color-secondary-base) 0.8 c h);
-    --memori-color-secondary-400: oklch(from var(--memori-color-secondary-base) 0.75 c h);
+    --memori-color-secondary-100: oklch(from var(--memori-color-secondary-base) 0.95deg c h);
+    --memori-color-secondary-200: oklch(from var(--memori-color-secondary-base) 0.9deg c h);
+    --memori-color-secondary-300: oklch(from var(--memori-color-secondary-base) 0.8deg c h);
+    --memori-color-secondary-400: oklch(from var(--memori-color-secondary-base) 0.75deg c h);
     --memori-color-secondary-500: var(--memori-color-secondary-base);
-    --memori-color-secondary-600: oklch(from var(--memori-color-secondary-base) 0.6 c h);
-    --memori-color-secondary-700: oklch(from var(--memori-color-secondary-base) 0.5 c h);
-    --memori-color-secondary-800: oklch(from var(--memori-color-secondary-base) 0.4 c h);
-    --memori-color-secondary-900: oklch(from var(--memori-color-secondary-base) 0.3 c h);
+    --memori-color-secondary-600: oklch(from var(--memori-color-secondary-base) 0.6deg c h);
+    --memori-color-secondary-700: oklch(from var(--memori-color-secondary-base) 0.5deg c h);
+    --memori-color-secondary-800: oklch(from var(--memori-color-secondary-base) 0.4deg c h);
+    --memori-color-secondary-900: oklch(from var(--memori-color-secondary-base) 0.3deg c h);
 
     /* Semantic Colors - Success */
     --memori-color-semantic-success-base: #52c41a;
@@ -195,4 +195,53 @@
     --memori-modal-width-md: 80%;
     --memori-modal-width-lg: 1000px;
     --memori-modal-width-xl: 1200px;
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+
+[data-theme='dark'],
+:root.dark {
+    /* Neutral Colors - Inverted for dark mode */
+    --memori-color-neutral-white: #141414;
+    --memori-color-neutral-100: #1a1a1a;
+
+    /* Page Background */
+    --memori-color-neutral-200: #262626;
+
+    /* Component Background */
+    --memori-color-neutral-300: #2d2d2d;
+
+    /* Hover States */
+    --memori-color-neutral-400: #404040;
+
+    /* Borders */
+    --memori-color-neutral-500: #595959;
+
+    /* Disabled Text */
+    --memori-color-neutral-600: #8c8c8c;
+
+    /* Secondary Text */
+    --memori-color-neutral-700: #bfbfbf;
+
+    /* Primary Text */
+    --memori-color-neutral-800: #e5e5e5;
+
+    /* Headings */
+    --memori-color-neutral-900: #fafafa;
+
+    /* Semantic Colors - Adjusted for dark mode */
+    --memori-color-semantic-success-light: #162312;
+
+    /* Darker background for dark mode */
+    --memori-color-semantic-error-light: #2a1215;
+
+    /* Darker background for dark mode */
+    --memori-color-semantic-warning-light: #2b2111;
+
+    /* Darker background for dark mode */
+    --memori-color-semantic-info-light: #111b2e;
+
+    /* Darker background for dark mode */
 }

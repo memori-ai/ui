@@ -72,7 +72,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
               <ChevronDown size={16} />
             </Select.Icon>
           </Select.Trigger>
-          <Select.Portal>
+          <Select.Portal container={document.body}>
             <Select.Positioner sideOffset={8}>
               <Select.Popup className="memori-select__popup">
                 {options.map(option => (

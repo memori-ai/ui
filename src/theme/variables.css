@@ -21,8 +21,12 @@
      * otherwise falls back to default oklch values.
      * Uses CSS Relative Color Syntax to generate palette.
      */
-    --memori-color-primary-base: var(--memori-primary-rgb, rgb(130 70 175)); /* oklch(0.48 0.19 297) */
-    --memori-color-secondary-base: var(--memori-secondary-rgb, rgb(0 174 199)); /* oklch(0.70 0.15 200) */
+    --memori-color-primary-base: var(--memori-primary-rgb, rgb(130 70 175));
+
+    /* oklch(0.48 0.19 297) */
+    --memori-color-secondary-base: var(--memori-secondary-rgb, rgb(0 174 199));
+
+    /* oklch(0.70 0.15 200) */
 
     /* Primary Colors */
     --memori-color-primary-100: oklch(from var(--memori-color-primary-base) 0.95deg c h);

@@ -11,12 +11,42 @@
     gap: var(--memori-spacing-sm);
     line-height: var(--memori-typography-line-height-normal);
     outline: none;
-    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.1s ease,
+        box-shadow 0.15s ease;
 }
 
+/* Focus visible - clear accessibility ring */
 .memori-button:focus-visible {
+    box-shadow: 0 0 0 4px oklch(from var(--memori-color-primary-500) l c h / 20%);
     outline: 2px solid var(--memori-color-primary-500);
     outline-offset: 2px;
+}
+
+/* Disabled state - must come before :hover:not(:disabled) for specificity */
+.memori-button:disabled {
+    border-color: var(--memori-color-neutral-400);
+    background-color: var(--memori-color-neutral-300);
+    color: var(--memori-color-neutral-500);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Hover effect - subtle lift with shadow */
+.memori-button:hover:not(:disabled) {
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 10%),
+        0 2px 4px -2px rgb(0 0 0 / 10%);
+    transform: translateY(-1px);
+}
+
+/* Active/pressed effect - subtle press, no shadow */
+.memori-button:active:not(:disabled) {
+    box-shadow: none;
+    transform: translateY(0) scale(0.98);
 }
 
 /* ============================================
@@ -287,8 +317,7 @@
     pointer-events: none;
 }
 
-.memori-button--disabled,
-.memori-button:disabled {
+.memori-button--disabled {
     border-color: var(--memori-color-neutral-400);
     background-color: var(--memori-color-neutral-300);
     color: var(--memori-color-neutral-500);
@@ -296,8 +325,7 @@
     opacity: 0.6;
 }
 
-.memori-button--disabled:hover,
-.memori-button:disabled:hover {
+.memori-button--disabled:hover {
     border-color: var(--memori-color-neutral-400);
     background-color: var(--memori-color-neutral-300);
     color: var(--memori-color-neutral-500);

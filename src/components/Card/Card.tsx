@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import Spin from '../Spin/Spin'
-import styles from './styles.module.css'
+import './styles.css'
 
 export interface CardProps extends Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -97,13 +97,18 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const tabIndex = isInteractive || focusable ? 0 : undefined
 
     const rootClassName = cx(
-      styles.card,
-      styles[variant],
-      isInteractive && styles.interactive,
+      'memori-card',
+      variant === 'elevated'
+        ? 'memori-card--elevated'
+        : 'memori-card--outlined',
+      isInteractive && 'memori-card--interactive',
       className,
     )
 
-    const bodyClassName = cx(styles.body, styles[`padding-${padding}`])
+    const bodyClassName = cx(
+      'memori-card__body',
+      `memori-card__body--padding-${padding}`,
+    )
 
     return (
       <Component
@@ -114,15 +119,15 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         onClick={onClick}
         {...rest}
       >
-        {cover && <div className={styles.cover}>{cover}</div>}
+        {cover && <div className="memori-card__cover">{cover}</div>}
 
         <div className={bodyClassName}>
           <Spin spinning={loading}>
             {(title || description) && (
-              <div className={styles.header}>
-                {title && <div className={styles.title}>{title}</div>}
+              <div className="memori-card__header">
+                {title && <div className="memori-card__title">{title}</div>}
                 {description && (
-                  <div className={styles.description}>{description}</div>
+                  <div className="memori-card__description">{description}</div>
                 )}
               </div>
             )}

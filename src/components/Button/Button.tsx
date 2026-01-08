@@ -2,7 +2,8 @@ import React from 'react'
 import { Button as BaseButton } from '@base-ui/react/button'
 import type { ButtonProps as BaseButtonProps } from '@base-ui/react/button'
 import cx from 'classnames'
-import styles from './styles.module.css'
+import { Loader2 } from 'lucide-react'
+import './styles.css'
 
 export interface ButtonProps extends Omit<BaseButtonProps, 'className'> {
   /**
@@ -91,35 +92,35 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const effectiveVariant = danger ? 'danger' : variant
 
     const variantClass = {
-      primary: styles['button--primary'],
-      secondary: styles['button--secondary'],
-      outline: styles['button--outline'],
-      ghost: styles['button--ghost'],
-      danger: styles['button--danger'],
+      primary: 'memori-button--primary',
+      secondary: 'memori-button--secondary',
+      outline: 'memori-button--outline',
+      ghost: 'memori-button--ghost',
+      danger: 'memori-button--danger',
     }[effectiveVariant]
 
     const sizeClass = {
-      sm: styles['button--sm'],
-      md: styles['button--md'],
-      lg: styles['button--lg'],
+      sm: 'memori-button--sm',
+      md: 'memori-button--md',
+      lg: 'memori-button--lg',
     }[size]
 
     const shapeClass = {
       default: undefined,
-      round: styles['button--round'],
-      circle: styles['button--circle'],
+      round: 'memori-button--round',
+      circle: 'memori-button--circle',
     }[shape]
 
     const isDisabled = disabled || loading
 
     // Determine the icon to show (loading spinner takes precedence)
     const displayIcon = loading ? (
-      <span
-        className={styles['button__spinner']}
+      <Loader2
+        className="memori-button__spinner"
         aria-hidden="true"
       />
     ) : icon ? (
-      <span className={styles['button__icon']}>{icon}</span>
+      <span className="memori-button__icon">{icon}</span>
     ) : null
 
     // Determine if we have content (children)
@@ -131,15 +132,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         focusableWhenDisabled={loading}
         className={cx(
-          styles.button,
+          'memori-button',
           variantClass,
           sizeClass,
           shapeClass,
-          fullWidth && styles['button--full-width'],
-          isDisabled && styles['button--disabled'],
-          loading && styles['button--loading'],
-          active && styles['button--active'],
-          !hasChildren && displayIcon && styles['button--icon-only'],
+          fullWidth && 'memori-button--full-width',
+          isDisabled && 'memori-button--disabled',
+          loading && 'memori-button--loading',
+          active && 'memori-button--active',
+          !hasChildren && displayIcon && 'memori-button--icon-only',
           className,
         )}
         type={type}
@@ -148,7 +149,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {displayIcon && iconPosition === 'left' && displayIcon}
         {hasChildren && (
-          <span className={styles['button__content']}>{children}</span>
+          <span className="memori-button__content">{children}</span>
         )}
         {displayIcon && iconPosition === 'right' && displayIcon}
       </BaseButton>

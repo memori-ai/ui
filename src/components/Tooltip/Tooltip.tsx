@@ -2,7 +2,7 @@ import type { FC, JSX } from 'react'
 import React from 'react'
 import cx from 'classnames'
 
-import './Tooltip.css'
+import './styles.css'
 
 export interface Props {
   content: string | JSX.Element | React.ReactNode
@@ -38,8 +38,8 @@ const Tooltip: FC<Props> = ({
       },
     )}
   >
-    <div className="memori-tooltip--content">{content}</div>
-    <div className="memori-tooltip--trigger">{children}</div>
+    <div className="memori-tooltip__content">{content}</div>
+    <div className="memori-tooltip__trigger">{children}</div>
   </div>
 )
 

@@ -1,0 +1,114 @@
+/* ============================================
+   CARD ROOT
+   ============================================ */
+
+.memori-card {
+    position: relative;
+    display: block;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 0;
+    border-radius: var(--memori-border-radius-md);
+    margin: 0;
+    background-color: var(--memori-color-neutral-white);
+    color: var(--memori-color-neutral-700);
+    font-family: var(--memori-typography-font-family-base);
+    text-align: left;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.memori-card__cover {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.memori-card__cover > * {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.memori-card__body {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.memori-card__title {
+    margin: 0 0 var(--memori-spacing-xs) 0;
+    color: var(--memori-color-neutral-800);
+    font-size: var(--memori-typography-font-size-lg);
+    font-weight: var(--memori-typography-font-weight-semibold);
+    line-height: var(--memori-typography-line-height-tight);
+}
+
+.memori-card__description {
+    margin: 0 0 var(--memori-spacing-md) 0;
+    color: var(--memori-color-neutral-600);
+    font-size: var(--memori-typography-font-size-sm);
+    line-height: var(--memori-typography-line-height-normal);
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Elevated: Shadow, no border (usually) */
+.memori-card--elevated {
+    border: 1px solid transparent;
+
+    /* Keeps sizing consistent with outlined */
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+/* Outlined: Border, no shadow */
+.memori-card--outlined {
+    border: 1px solid var(--memori-color-neutral-400);
+    box-shadow: none;
+}
+
+/* ============================================
+   PADDING MODIFIERS (Applied to Body)
+   ============================================ */
+
+.memori-card__body--padding-none {
+    padding: 0;
+}
+
+.memori-card__body--padding-sm {
+    padding: var(--memori-spacing-sm);
+}
+
+.memori-card__body--padding-md {
+    padding: var(--memori-spacing-md);
+}
+
+.memori-card__body--padding-lg {
+    padding: var(--memori-spacing-lg);
+}
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+
+.memori-card--interactive {
+    cursor: pointer;
+}
+
+.memori-card--interactive:hover {
+    border-color: var(--memori-color-primary-200);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+    transform: translateY(-1px);
+}
+
+/* Focus visible styles for accessibility */
+.memori-card:focus-visible {
+    outline: 2px solid var(--memori-color-primary-500);
+    outline-offset: 2px;
+}

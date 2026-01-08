@@ -1,0 +1,95 @@
+.memori-alert {
+    position: fixed;
+    z-index: 1000;
+    top: 20px;
+    right: 20px;
+    width: var(--memori-alert-width, 400px);
+}
+
+.memori-alert__container {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--memori-spacing-md);
+    border-radius: var(--memori-border-radius-sm);
+    margin-bottom: var(--memori-spacing-sm);
+    background-color: var(--memori-color-neutral-white);
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 10%),
+        0 2px 4px -2px rgb(0 0 0 / 10%);
+}
+
+.memori-alert__icon {
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.memori-alert__content {
+    min-width: 0;
+    flex: 1;
+}
+
+.memori-alert__title {
+    margin-bottom: 4px;
+    font-size: var(--memori-typography-font-size-base);
+    font-weight: var(--memori-typography-font-weight-semibold);
+}
+
+.memori-alert__description {
+    color: var(--memori-color-neutral-600);
+    font-size: var(--memori-typography-font-size-sm);
+}
+
+.memori-alert__actions {
+    display: flex;
+    align-items: center;
+    margin-left: var(--memori-spacing-md);
+}
+
+.memori-alert__action {
+    margin-right: var(--memori-spacing-sm);
+}
+
+.memori-alert__close {
+    flex-shrink: 0;
+}
+
+/* Alert types */
+.memori-alert--success {
+    --memori-alert-color: var(--memori-color-semantic-success-base);
+    --memori-alert-bg: var(--memori-color-semantic-success-light);
+}
+
+.memori-alert--warning {
+    --memori-alert-color: var(--memori-color-semantic-warning-base);
+    --memori-alert-bg: var(--memori-color-semantic-warning-light);
+}
+
+.memori-alert--error {
+    --memori-alert-color: var(--memori-color-semantic-error-base);
+    --memori-alert-bg: var(--memori-color-semantic-error-light);
+}
+
+.memori-alert--info {
+    --memori-alert-color: var(--memori-color-semantic-info-base);
+    --memori-alert-bg: var(--memori-color-semantic-info-light);
+}
+
+.memori-alert--success .memori-alert__container {
+    border: 1px solid var(--memori-alert-color);
+    background-color: var(--memori-alert-bg);
+}
+
+.memori-alert--warning .memori-alert__container {
+    border: 1px solid var(--memori-alert-color);
+    background-color: var(--memori-alert-bg);
+}
+
+.memori-alert--error .memori-alert__container {
+    border: 1px solid var(--memori-alert-color);
+    background-color: var(--memori-alert-bg);
+}
+
+.memori-alert--info .memori-alert__container {
+    border: 1px solid var(--memori-alert-color);
+    background-color: var(--memori-alert-bg);
+}

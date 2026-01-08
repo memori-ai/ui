@@ -1,67 +1,65 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-
-import './Details.css'
+import { Details } from './Details'
 
 const meta = {
   title: 'UI/Details',
+  component: Details,
   tags: ['autodocs'],
   argTypes: {},
-} satisfies Meta<HTMLDetailsElement>
+} satisfies Meta<typeof Details>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
-    <details className="memori--details">
-      <summary>Details</summary>
-      <p>Details content</p>
-    </details>
-  ),
+  args: {
+    summary: 'Details',
+    children: <p>Details content</p>,
+  },
 }
 
 export const Open: Story = {
-  render: () => (
-    <details
-      className="memori--details"
-      open
-    >
-      <summary>Details</summary>
-      <p>Details content</p>
-    </details>
-  ),
+  args: {
+    summary: 'Details',
+    children: <p>Details content</p>,
+    open: true,
+  },
 }
 
 export const WithChildren: Story = {
-  render: () => (
-    <details className="memori--details">
-      <summary>Details</summary>
-      <p>Details content 1</p>
-      <p>Details content 2</p>
-    </details>
-  ),
+  args: {
+    summary: 'Details',
+    children: (
+      <>
+        <p>Details content 1</p>
+        <p>Details content 2</p>
+      </>
+    ),
+  },
 }
 
 export const WithComplexHTMLContent: Story = {
-  render: () => (
-    <details className="memori--details">
-      <summary>Details</summary>
-      <p>Details content</p>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
-      <p>Details content</p>
-      <figure>
-        <img
-          src="https://www.aisuru.com/images/aisuru/og-image.png"
-          alt="Placeholder"
-        />
-        <figcaption>Placeholder image</figcaption>
-      </figure>
-    </details>
-  ),
+  args: {
+    summary: 'Details',
+    children: (
+      <>
+        <p>Details content</p>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+        <p>Details content</p>
+        <figure>
+          <img
+            src="https://www.aisuru.com/images/aisuru/og-image.png"
+            alt="Placeholder"
+          />
+          <figcaption>Placeholder image</figcaption>
+        </figure>
+      </>
+    ),
+  },
 }

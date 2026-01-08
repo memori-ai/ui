@@ -82,7 +82,7 @@ describe('Alert Component', () => {
     )
 
     const style = window.getComputedStyle(container.firstChild as Element)
-    expect(style.getPropertyValue('--memori-alert--width')).toBe('500px')
+    expect(style.getPropertyValue('--memori-alert-width')).toBe('500px')
   })
 
   it('renders with action button', () => {

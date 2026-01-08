@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Listbox } from '@headlessui/react'
 import cx from 'classnames'
 
-import './Slider.css'
+import './styles.css'
 
 export interface Props {
   min?: number
@@ -103,34 +103,34 @@ const CustomSlider = ({
 
   return (
     <div
-      className={cx('memori--slider-container', {
-        'memori--slider-disabled': disabled,
+      className={cx('memori-slider', {
+        'memori-slider--disabled': disabled,
       })}
       style={{ '--percentage': `${percentage}%` } as React.CSSProperties}
     >
-      <div className="memori--slider-header">
-        {label && <div className="memori--slider-label">{label}</div>}
-        <div className="memori--slider-value">{value}</div>
+      <div className="memori-slider__header">
+        {label && <div className="memori-slider__label">{label}</div>}
+        <div className="memori-slider__value">{value}</div>
       </div>
 
       <div
         ref={sliderRef}
-        className="memori--slider-track-container"
+        className="memori-slider__track-container"
         onMouseDown={e => handleInteractionStart(e.clientX)}
         onTouchStart={e => handleInteractionStart(e.touches[0]?.clientX ?? 0)}
       >
-        <div className="memori--slider-track">
-          <div className="memori--slider-track-fill" />
+        <div className="memori-slider__track">
+          <div className="memori-slider__track-fill" />
         </div>
 
-        <div className="memori--slider-marks">
+        <div className="memori-slider__marks">
           {marks.map(mark => (
             <div
               key={mark}
-              className="memori--slider-mark"
+              className="memori-slider__mark"
             >
-              <div className="memori--slider-mark-line" />
-              <span className="memori--slider-mark-value">{mark}</span>
+              <div className="memori-slider__mark-line" />
+              <span className="memori-slider__mark-value">{mark}</span>
             </div>
           ))}
         </div>
@@ -141,7 +141,7 @@ const CustomSlider = ({
           disabled={disabled}
         >
           <div
-            className="memori--slider-thumb"
+            className="memori-slider__thumb"
             role="slider"
             aria-valuemin={min}
             aria-valuemax={max}

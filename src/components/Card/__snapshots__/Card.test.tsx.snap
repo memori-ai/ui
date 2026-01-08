@@ -3,44 +3,23 @@
 exports[`renders Card hoverable unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87 _interactive_b6cf87"
+    class="memori-card memori-card--elevated memori-card--interactive"
     tabindex="0"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
       >
         <div
-          class="_header_b6cf87"
+          class="memori-card__header"
         >
           <div
-            class="_title_b6cf87"
+            class="memori-card__title"
           >
             lorem-ipsum
           </div>
-        </div>
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
         </div>
       </div>
     </div>
@@ -51,43 +30,22 @@ exports[`renders Card hoverable unchanged 1`] = `
 exports[`renders Card loading unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin memori-spin--spinning"
       >
         <div
-          class="_header_b6cf87"
+          class="memori-card__header"
         >
           <div
-            class="_title_b6cf87"
+            class="memori-card__title"
           >
             Card title
           </div>
-        </div>
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
         </div>
       </div>
     </div>
@@ -98,36 +56,14 @@ exports[`renders Card loading unchanged 1`] = `
 exports[`renders Card unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
-      >
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -136,10 +72,10 @@ exports[`renders Card unchanged 1`] = `
 exports[`renders Card with children unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
@@ -147,27 +83,6 @@ exports[`renders Card with children unchanged 1`] = `
         <p>
           Ciao
         </p>
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
-        </div>
       </div>
     </div>
   </div>
@@ -177,10 +92,10 @@ exports[`renders Card with children unchanged 1`] = `
 exports[`renders Card with cover unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_cover_b6cf87"
+      class="memori-card__cover"
     >
       <img
         alt=""
@@ -188,33 +103,11 @@ exports[`renders Card with cover unchanged 1`] = `
       />
     </div>
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
-      >
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -223,36 +116,14 @@ exports[`renders Card with cover unchanged 1`] = `
 exports[`renders Card with custom CSS class unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87 lorem-ipsum"
+    class="memori-card memori-card--elevated lorem-ipsum"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
-      >
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -261,43 +132,22 @@ exports[`renders Card with custom CSS class unchanged 1`] = `
 exports[`renders Card with description unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
       >
         <div
-          class="_header_b6cf87"
+          class="memori-card__header"
         >
           <div
-            class="_description_b6cf87"
+            class="memori-card__description"
           >
             Card description
           </div>
-        </div>
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
         </div>
       </div>
     </div>
@@ -308,43 +158,22 @@ exports[`renders Card with description unchanged 1`] = `
 exports[`renders Card with title unchanged 1`] = `
 <div>
   <div
-    class="_card_b6cf87 _elevated_b6cf87"
+    class="memori-card memori-card--elevated"
   >
     <div
-      class="_body_b6cf87 _padding-md_b6cf87"
+      class="memori-card__body memori-card__body--padding-md"
     >
       <div
         class="memori-spin"
       >
         <div
-          class="_header_b6cf87"
+          class="memori-card__header"
         >
           <div
-            class="_title_b6cf87"
+            class="memori-card__title"
           >
             Card title
           </div>
-        </div>
-        <div
-          class="memori-spin--spinner"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-loader-circle memori-loading-icon"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 12a9 9 0 1 1-6.219-8.56"
-            />
-          </svg>
         </div>
       </div>
     </div>

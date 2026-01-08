@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
 import { Select } from '@base-ui/react'
 import { ChevronDown, Check } from 'lucide-react'
-import styles from './styles.module.css'
+import cx from 'classnames'
+import './styles.css'
 
 export interface SelectBoxOption {
   value: string
@@ -44,7 +45,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
   ) => {
     return (
       <div
-        className={`${styles.root} ${className || ''}`}
+        className={cx('memori-select', className)}
         style={style}
       >
         <Select.Root
@@ -55,32 +56,35 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
           required={required}
           name={name}
         >
-          {label && <label className={styles.label}>{label}</label>}
+          {label && <label className="memori-select__label">{label}</label>}
           <Select.Trigger
             ref={ref}
-            className={`${styles.trigger} ${error ? styles.error : ''}`}
+            className={cx(
+              'memori-select__trigger',
+              error && 'memori-select__trigger--error',
+            )}
           >
             <Select.Value
-              className={styles.value}
+              className="memori-select__value"
               data-placeholder={placeholder}
             />
-            <Select.Icon className={styles.icon}>
+            <Select.Icon className="memori-select__icon">
               <ChevronDown size={16} />
             </Select.Icon>
           </Select.Trigger>
           <Select.Portal>
             <Select.Positioner sideOffset={8}>
-              <Select.Popup className={styles.popup}>
+              <Select.Popup className="memori-select__popup">
                 {options.map(option => (
                   <Select.Item
                     key={option.value}
                     value={option.value}
                     disabled={option.disabled}
-                    className={styles.item}
+                    className="memori-select__item"
                   >
                     <Select.ItemText>{option.label}</Select.ItemText>
                     <Select.ItemIndicator>
-                      <Check className={styles.checkIcon} />
+                      <Check className="memori-select__check-icon" />
                     </Select.ItemIndicator>
                   </Select.Item>
                 ))}

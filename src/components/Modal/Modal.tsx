@@ -5,7 +5,7 @@ import type { InteractionType } from '@base-ui/utils/useEnhancedClickHandler'
 import cx from 'classnames'
 import Spin from '../Spin/Spin'
 import { X as Close } from 'lucide-react'
-import styles from './styles.module.css'
+import './styles.css'
 
 export interface ModalProps extends Omit<
   DialogRootProps,
@@ -320,11 +320,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         maxWidth: typeof width === 'number' ? `${width}px` : width,
       }),
       ...(widthMd && {
-        '--modal-width-md':
+        '--memori-modal-width-md':
           typeof widthMd === 'number' ? `${widthMd}px` : widthMd,
       }),
       ...(widthLg && {
-        '--modal-width-lg':
+        '--memori-modal-width-lg':
           typeof widthLg === 'number' ? `${widthLg}px` : widthLg,
       }),
       ...contentStyle,
@@ -333,18 +333,22 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     // Build className for popup with size variant
     const sizeClass =
       size === 'sm'
-        ? styles['popup--sm']
+        ? 'memori-modal__popup--sm'
         : size === 'md'
-          ? styles['popup--md']
+          ? 'memori-modal__popup--md'
           : size === 'lg'
-            ? styles['popup--lg']
+            ? 'memori-modal__popup--lg'
             : size === 'xl'
-              ? styles['popup--xl']
+              ? 'memori-modal__popup--xl'
               : size === 'full'
-                ? styles['popup--full']
+                ? 'memori-modal__popup--full'
                 : undefined
 
-    const popupClassName = cx(styles.popup, sizeClass, contentClassName)
+    const popupClassName = cx(
+      'memori-modal__popup',
+      sizeClass,
+      contentClassName,
+    )
 
     return (
       <Dialog.Root
@@ -358,13 +362,13 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         <Dialog.Portal>
           {animated && (
             <Dialog.Backdrop
-              className={cx(styles.backdrop, backdropClassName)}
+              className={cx('memori-modal__backdrop', backdropClassName)}
             />
           )}
           <Dialog.Viewport
             className={cx(
-              styles.viewport,
-              centered && styles.centered,
+              'memori-modal__viewport',
+              centered && 'memori-modal__viewport--centered',
               className,
             )}
           >
@@ -383,10 +387,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             >
               {closable &&
                 (closeButton ? (
-                  <div className={styles.closeButton}>{closeButton}</div>
+                  <div className="memori-modal__close">{closeButton}</div>
                 ) : (
                   <Dialog.Close
-                    className={styles.closeButton}
+                    className="memori-modal__close"
                     aria-label="Close modal"
                   >
                     {closeIcon || <Close />}
@@ -394,20 +398,25 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 ))}
               <Spin spinning={loading}>
                 {title && (
-                  <Dialog.Title className={cx(styles.title, titleClassName)}>
+                  <Dialog.Title
+                    className={cx('memori-modal__title', titleClassName)}
+                  >
                     {title}
                   </Dialog.Title>
                 )}
                 {description && (
                   <Dialog.Description
-                    className={cx(styles.description, descriptionClassName)}
+                    className={cx(
+                      'memori-modal__description',
+                      descriptionClassName,
+                    )}
                   >
                     {description}
                   </Dialog.Description>
                 )}
-                <div className={styles.content}>{children}</div>
+                <div className="memori-modal__content">{children}</div>
                 {footer && (
-                  <div className={cx(styles.footer, footerClassName)}>
+                  <div className={cx('memori-modal__footer', footerClassName)}>
                     {footer}
                   </div>
                 )}

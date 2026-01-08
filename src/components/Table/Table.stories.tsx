@@ -2,10 +2,10 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from '../Button'
-import Select from '../SelectBox/SelectBox'
+import { SelectBox as Select } from '../SelectBox/SelectBox'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-import './Table.css'
+import './styles.css'
 
 const meta = {
   title: 'UI/Table',
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <table className="memori--table memori--table--compact">
+    <table className="memori-table memori-table--compact">
       <thead>
         <tr>
           <th>Header 1</th>
@@ -45,7 +45,7 @@ export const Default: Story = {
 
 export const Compact: Story = {
   render: () => (
-    <table className="memori--table memori--table--compact">
+    <table className="memori-table memori-table--compact">
       <thead>
         <tr>
           <th>Header 1</th>
@@ -71,8 +71,8 @@ export const Compact: Story = {
 
 export const Responsive: Story = {
   render: () => (
-    <div className="memori--responsive-table-wrapper">
-      <table className="memori--table memori--table--compact">
+    <div className="memori-responsive-table-wrapper">
+      <table className="memori-table memori-table--compact">
         <thead>
           <tr>
             <th>Header 1</th>
@@ -99,7 +99,7 @@ export const Responsive: Story = {
 
 export const WithFooter: Story = {
   render: () => (
-    <table className="memori--table memori--table--compact">
+    <table className="memori-table memori-table--compact">
       <thead>
         <tr>
           <th>Header 1</th>
@@ -132,14 +132,14 @@ export const WithFooter: Story = {
 
 export const WithColumnsAlignment: Story = {
   render: () => (
-    <table className="memori--table memori--table--compact">
+    <table className="memori-table memori-table--compact">
       <thead>
         <tr>
           <th>Column aligned left by default</th>
-          <th className="memori--table--column-centered">
+          <th className="memori-table--column-centered">
             Column aligned center
           </th>
-          <th className="memori--table--column-right">Column aligned right</th>
+          <th className="memori-table--column-right">Column aligned right</th>
         </tr>
       </thead>
       <tbody>
@@ -160,7 +160,7 @@ export const WithColumnsAlignment: Story = {
 
 export const WithDateColumn: Story = {
   render: () => (
-    <table className="memori--table memori--table--compact">
+    <table className="memori-table memori-table--compact">
       <thead>
         <tr>
           <th>Header 1</th>
@@ -175,9 +175,9 @@ export const WithDateColumn: Story = {
           <td>Cell 3</td>
         </tr>
         <tr>
-          <td className="memori--table--date">2025-01-01</td>
-          <td className="memori--table--date">2025-01-02</td>
-          <td className="memori--table--date">2025-01-03</td>
+          <td className="memori-table--date">2025-01-01</td>
+          <td className="memori-table--date">2025-01-02</td>
+          <td className="memori-table--date">2025-01-03</td>
         </tr>
       </tbody>
     </table>
@@ -186,8 +186,8 @@ export const WithDateColumn: Story = {
 
 export const WithColumnHiddenOnMobile: Story = {
   render: () => (
-    <div className="memori--responsive-table-wrapper">
-      <table className="memori--table memori--table--compact">
+    <div className="memori-responsive-table-wrapper">
+      <table className="memori-table memori-table--compact">
         <thead>
           <tr>
             <th>Header 1</th>
@@ -215,15 +215,15 @@ export const WithColumnHiddenOnMobile: Story = {
 export const WithPagination: Story = {
   render: () => (
     <div>
-      <nav className="memori--table--pagination">
-        <div className="memori--table--pagination--pages">
+      <nav className="memori-table__pagination">
+        <div className="memori-table__pagination-pages">
           <Button
             shape="circle"
             disabled
             title="Previous page"
             icon={<ChevronLeft />}
           />
-          <div className="memori--table--pagination--pages">1/6</div>
+          <div className="memori-table__pagination-pages">1/6</div>
           <Button
             shape="circle"
             title="Next page"
@@ -232,19 +232,18 @@ export const WithPagination: Story = {
         </div>
         <Select
           options={[
-            { label: `25 / page`, value: 25 },
-            { label: `50 / page`, value: 50 },
-            { label: `100 / page`, value: 100 },
+            { label: '25 / page', value: '25' },
+            { label: '50 / page', value: '50' },
+            { label: '100 / page', value: '100' },
           ]}
-          value={25}
-          displayValue={`25 / page`}
+          value="25"
           onChange={value => {
             console.log(value)
           }}
         />
       </nav>
-      <div className="memori--responsive-table-wrapper">
-        <table className="memori--table memori--table--compact">
+      <div className="memori-responsive-table-wrapper">
+        <table className="memori-table memori-table--compact">
           <thead>
             <tr>
               <th>Header 1</th>

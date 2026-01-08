@@ -2,14 +2,14 @@
     line-height: 1;
 }
 
-.memori-expandable--inner {
+.memori-expandable__inner {
     overflow: hidden;
     max-height: 9999px;
     transition: max-height 0.2s ease-in-out;
 }
 
 .memori-expandable > button {
-    color: var(--memori-primary, #333);
+    color: var(--memori-color-primary-600);
     font-size: 0.9em;
     text-decoration: underline;
 }

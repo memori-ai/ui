@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Dialog, type DialogRootChangeEventDetails } from '@base-ui/react'
 import cx from 'classnames'
-import { X } from 'lucide-react'
-import styles from './styles.module.css'
+import { X, Loader2 } from 'lucide-react'
+import './styles.css'
 
 export interface DrawerProps {
   /**
@@ -116,24 +116,30 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         onOpenChange={handleOpenChange}
       >
         <Dialog.Portal>
-          <Dialog.Backdrop className={styles.backdrop} />
+          <Dialog.Backdrop className="memori-drawer__backdrop" />
           <Dialog.Popup
             ref={ref}
-            className={cx(styles.drawer, styles[anchor], className)}
+            className={cx(
+              'memori-drawer',
+              `memori-drawer--${anchor}`,
+              className,
+            )}
             style={style}
             {...rest}
           >
             {(title || description || shouldShowCloseButton) && (
-              <div className={styles.header}>
+              <div className="memori-drawer__header">
                 <div>
-                  {title && <div className={styles.title}>{title}</div>}
+                  {title && <div className="memori-drawer__title">{title}</div>}
                   {description && (
-                    <div className={styles.description}>{description}</div>
+                    <div className="memori-drawer__description">
+                      {description}
+                    </div>
                   )}
                 </div>
                 {shouldShowCloseButton && (
                   <Dialog.Close
-                    className={styles.closeButton}
+                    className="memori-drawer__close"
                     aria-label="Close"
                   >
                     <X size={20} />
@@ -142,11 +148,11 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
               </div>
             )}
 
-            <div className={styles.body}>
+            <div className="memori-drawer__body">
               {loading ? (
-                <div className={styles.loading}>
-                  <div
-                    className={styles.spinner}
+                <div className="memori-drawer__loading">
+                  <Loader2
+                    className="memori-drawer__spinner"
                     aria-label="Loading"
                   />
                 </div>
@@ -155,7 +161,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
               )}
             </div>
 
-            {footer && <div className={styles.footer}>{footer}</div>}
+            {footer && <div className="memori-drawer__footer">{footer}</div>}
           </Dialog.Popup>
         </Dialog.Portal>
       </Dialog.Root>

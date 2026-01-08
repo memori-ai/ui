@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { truncateMessage, MAX_MSG_CHARS, MAX_MSG_WORDS } from './helpers'
 
-import './Expandable.css'
+import './styles.css'
 
 export interface Props {
   rows?: number
@@ -85,7 +85,7 @@ const Expandable = ({
     <div className={cx('memori-expandable', className)}>
       <div
         ref={ref}
-        className={cx('memori-expandable--inner', innerClassName)}
+        className={cx('memori-expandable__inner', innerClassName)}
         style={{
           maxHeight:
             expanded || !needsExpanding || mode === 'characters'

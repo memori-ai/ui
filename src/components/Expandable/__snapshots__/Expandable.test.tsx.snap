@@ -6,7 +6,7 @@ exports[`renders Expandable unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
+      class="memori-expandable__inner"
       style="max-height: 9999px;"
     >
       Test
@@ -21,8 +21,8 @@ exports[`renders Expandable with JSX markup unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       <h1>
         Lorem ipsum
@@ -49,17 +49,6 @@ exports[`renders Expandable with JSX markup unchanged 1`] = `
         Suspendisse a sodales nulla, sed semper nisi.
       </p>
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -70,22 +59,11 @@ exports[`renders Expandable with custom button CSS class unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223 test"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -96,22 +74,11 @@ exports[`renders Expandable with custom collapse symbol unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
+      class="memori-expandable__inner"
       style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        test collapse
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -122,22 +89,11 @@ exports[`renders Expandable with custom expand symbol unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        test
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -148,22 +104,11 @@ exports[`renders Expandable with custom inner CSS class unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner test"
-      style="max-height: 16px;"
+      class="memori-expandable__inner test"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -174,22 +119,11 @@ exports[`renders Expandable with custom wrapper CSS class unchanged 1`] = `
     class="memori-expandable test"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -200,22 +134,11 @@ exports[`renders Expandable with long text unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -226,22 +149,11 @@ exports[`renders Expandable with multiple rows unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 48px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="_button_x9fzh_1 _button--ghost_x9fzh_145 _button--md_x9fzh_223"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="_button__content_x9fzh_26"
-      >
-        ...
-      </span>
-    </button>
   </div>
 </div>
 `;

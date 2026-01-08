@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 export type AlertType = 'success' | 'warning' | 'error' | 'info'
 
-import './Alert.css'
+import './styles.css'
 
 export interface Props {
   open?: boolean
@@ -70,16 +70,10 @@ const Alert: FC<Props> = ({
       as={React.Fragment}
       appear
     >
-      <div className={cx('memori-alert', getTypeStyles(type), className)}>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              .memori-alert {
-                --memori-alert--width: ${width};
-              }
-            `,
-          }}
-        />
+      <div
+        className={cx('memori-alert', getTypeStyles(type), className)}
+        style={{ '--memori-alert-width': width } as React.CSSProperties}
+      >
         <Transition.Child
           as={React.Fragment}
           enter="ease-out duration-300"
@@ -89,19 +83,19 @@ const Alert: FC<Props> = ({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <div className="memori-alert--container">
-            {icon && <div className="memori-alert--icon">{icon}</div>}
+          <div className="memori-alert__container">
+            {icon && <div className="memori-alert__icon">{icon}</div>}
 
-            <div className="memori-alert--content">
-              {title && <div className="memori-alert--title">{title}</div>}
+            <div className="memori-alert__content">
+              {title && <div className="memori-alert__title">{title}</div>}
               {description && (
-                <div className="memori-alert--description">{description}</div>
+                <div className="memori-alert__description">{description}</div>
               )}
               {children}
             </div>
 
-            <div className="memori-alert--actions">
-              {action && <div className="memori-alert--action">{action}</div>}
+            <div className="memori-alert__actions">
+              {action && <div className="memori-alert__action">{action}</div>}
               {closable && (
                 <Button
                   title={t('close') || 'Close alert'}
@@ -110,7 +104,7 @@ const Alert: FC<Props> = ({
                   icon={<Close />}
                   aria-label={t('close') || 'Close alert'}
                   onClick={() => onClose(false)}
-                  className="memori-alert--close"
+                  className="memori-alert__close"
                 />
               )}
             </div>

@@ -3,7 +3,7 @@ import React from 'react'
 import cx from 'classnames'
 import { Loader2 as Loading } from 'lucide-react'
 
-import './Spin.css'
+import './styles.css'
 
 export interface Props {
   spinning?: boolean
@@ -25,9 +25,6 @@ const Spin: FC<Props> = ({
     })}
   >
     {children}
-    <div className="memori-spin--spinner">
-      <Loading className="memori-loading-icon" />
-    </div>
   </div>
 )
 

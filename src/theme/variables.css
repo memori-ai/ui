@@ -11,117 +11,184 @@
      COLOR TOKENS
      ============================================ */
 
+    /* ============================================
+     COLOR TOKENS
+     ============================================ */
+
+    /* 
+     * Base Brand Colors
+     * checks for external variables first (--memori-primary-rgb, --memori-secondary-rgb)
+     * otherwise falls back to default oklch values.
+     * Uses CSS Relative Color Syntax to generate palette.
+     */
+    --memori-color-primary-base: var(--memori-primary-rgb, rgb(130 70 175)); /* oklch(0.48 0.19 297) */
+    --memori-color-secondary-base: var(--memori-secondary-rgb, rgb(0 174 199)); /* oklch(0.70 0.15 200) */
+
     /* Primary Colors */
-    --color-primary-100: #f2eafd;
-    --color-primary-200: #d9c3f3;
-    --color-primary-300: #bf9de9;
-    --color-primary-400: #a677df;
-    --color-primary-500: #8246af; /* Base Brand Color */
-    --color-primary-600: #68388c;
-    --color-primary-700: #4e2a69;
-    --color-primary-800: #341c46;
-    --color-primary-900: #1a0e23;
+    --memori-color-primary-100: oklch(from var(--memori-color-primary-base) 0.95deg c h);
+    --memori-color-primary-200: oklch(from var(--memori-color-primary-base) 0.9deg c h);
+    --memori-color-primary-300: oklch(from var(--memori-color-primary-base) 0.8deg c h);
+    --memori-color-primary-400: oklch(from var(--memori-color-primary-base) 0.7deg c h);
+    --memori-color-primary-500: var(--memori-color-primary-base);
+    --memori-color-primary-600: oklch(from var(--memori-color-primary-base) 0.45deg c h);
+    --memori-color-primary-700: oklch(from var(--memori-color-primary-base) 0.35deg c h);
+    --memori-color-primary-800: oklch(from var(--memori-color-primary-base) 0.25deg c h);
+    --memori-color-primary-900: oklch(from var(--memori-color-primary-base) 0.15deg c h);
 
     /* Secondary Colors */
-    --color-secondary-100: #e0f5f9;
-    --color-secondary-200: #c1ebf4;
-    --color-secondary-300: #a3e2ee;
-    --color-secondary-400: #84d8e9;
-    --color-secondary-500: #66cee0; /* Base Secondary Color */
-    --color-secondary-600: #52a5b3;
-    --color-secondary-700: #3d7c86;
-    --color-secondary-800: #29525a;
-    --color-secondary-900: #14292d;
+    --memori-color-secondary-100: oklch(from var(--memori-color-secondary-base) 0.95deg c h);
+    --memori-color-secondary-200: oklch(from var(--memori-color-secondary-base) 0.9deg c h);
+    --memori-color-secondary-300: oklch(from var(--memori-color-secondary-base) 0.8deg c h);
+    --memori-color-secondary-400: oklch(from var(--memori-color-secondary-base) 0.75deg c h);
+    --memori-color-secondary-500: var(--memori-color-secondary-base);
+    --memori-color-secondary-600: oklch(from var(--memori-color-secondary-base) 0.6deg c h);
+    --memori-color-secondary-700: oklch(from var(--memori-color-secondary-base) 0.5deg c h);
+    --memori-color-secondary-800: oklch(from var(--memori-color-secondary-base) 0.4deg c h);
+    --memori-color-secondary-900: oklch(from var(--memori-color-secondary-base) 0.3deg c h);
 
     /* Semantic Colors - Success */
-    --color-semantic-success-base: #52c41a;
-    --color-semantic-success-light: #d9f7be; /* Backgrounds */
-    --color-semantic-success-dark: #389e0d; /* Text/Icons */
+    --memori-color-semantic-success-base: #52c41a;
+    --memori-color-semantic-success-light: #d9f7be;
+
+    /* Backgrounds */
+    --memori-color-semantic-success-dark: #389e0d;
+
+    /* Text/Icons */
 
     /* Semantic Colors - Error */
-    --color-semantic-error-base: #d9363e;
-    --color-semantic-error-light: #fff1f0; /* Backgrounds */
-    --color-semantic-error-dark: #a8071a; /* Text/Icons */
+    --memori-color-semantic-error-base: #d9363e;
+    --memori-color-semantic-error-light: #fff1f0;
+
+    /* Backgrounds */
+    --memori-color-semantic-error-dark: #a8071a;
+
+    /* Text/Icons */
 
     /* Semantic Colors - Warning */
-    --color-semantic-warning-base: #faad14;
-    --color-semantic-warning-light: #fffbe6; /* Backgrounds */
-    --color-semantic-warning-dark: #d48806; /* Text/Icons */
+    --memori-color-semantic-warning-base: #faad14;
+    --memori-color-semantic-warning-light: #fffbe6;
+
+    /* Backgrounds */
+    --memori-color-semantic-warning-dark: #d48806;
+
+    /* Text/Icons */
+
+    /* Semantic Colors - Info */
+    --memori-color-semantic-info-base: #3b82f6;
+    --memori-color-semantic-info-light: #eff6ff;
+
+    /* Backgrounds */
+    --memori-color-semantic-info-dark: #1d4ed8;
+
+    /* Text/Icons */
 
     /* Neutral Colors */
-    --color-neutral-white: #fff;
-    --color-neutral-100: #fafafa; /* Page Background */
-    --color-neutral-200: #f5f5f5; /* Component Background */
-    --color-neutral-300: #f0f0f0; /* Hover States */
-    --color-neutral-400: #d9d9d9; /* Borders */
-    --color-neutral-500: #bfbfbf; /* Disabled Text */
-    --color-neutral-600: #8c8c8c; /* Secondary Text */
-    --color-neutral-700: #595959; /* Primary Text */
-    --color-neutral-800: #262626; /* Headings */
-    --color-neutral-900: #141414;
+    --memori-color-neutral-white: #fff;
+    --memori-color-neutral-100: #fafafa;
+
+    /* Page Background */
+    --memori-color-neutral-200: #f5f5f5;
+
+    /* Component Background */
+    --memori-color-neutral-300: #f0f0f0;
+
+    /* Hover States */
+    --memori-color-neutral-400: #d9d9d9;
+
+    /* Borders */
+    --memori-color-neutral-500: #bfbfbf;
+
+    /* Disabled Text */
+    --memori-color-neutral-600: #8c8c8c;
+
+    /* Secondary Text */
+    --memori-color-neutral-700: #595959;
+
+    /* Primary Text */
+    --memori-color-neutral-800: #262626;
+
+    /* Headings */
+    --memori-color-neutral-900: #141414;
 
     /* ============================================
      TYPOGRAPHY TOKENS
      ============================================ */
 
     /* Font Family */
-    --typography-font-family-base: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
+    --memori-typography-font-family-base: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
 
     /* Font Sizes */
-    --typography-font-size-xs: 12px;
-    --typography-font-size-sm: 14px;
-    --typography-font-size-base: 16px;
-    --typography-font-size-lg: 20px;
-    --typography-font-size-xl: 24px;
-    --typography-font-size-2xl: 32px;
-    --typography-font-size-3xl: 48px;
+    --memori-typography-font-size-xs: 12px;
+    --memori-typography-font-size-sm: 14px;
+    --memori-typography-font-size-base: 16px;
+    --memori-typography-font-size-lg: 20px;
+    --memori-typography-font-size-xl: 24px;
+    --memori-typography-font-size-2xl: 32px;
+    --memori-typography-font-size-3xl: 48px;
 
-    /* Line Heights */
-    --typography-line-height-tight: 1.2;
-    --typography-line-height-normal: 1.5;
-    --typography-line-height-relaxed: 1.75;
+    /* Default font size alias (same as base) */
+    --memori-typography-font-size-default: var(--memori-typography-font-size-base);
+
+    /* Link Heights */
+    --memori-typography-line-height-tight: 1.2;
+    --memori-typography-line-height-normal: 1.5;
+    --memori-typography-line-height-relaxed: 1.75;
 
     /* Font Weights */
-    --typography-font-weight-regular: 400;
-    --typography-font-weight-medium: 500;
-    --typography-font-weight-semibold: 600;
-    --typography-font-weight-bold: 700;
+    --memori-typography-font-weight-regular: 400;
+    --memori-typography-font-weight-medium: 500;
+    --memori-typography-font-weight-semibold: 600;
+    --memori-typography-font-weight-bold: 700;
 
     /* ============================================
      SPACING TOKENS
      ============================================ */
 
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-    --spacing-2xl: 48px;
-    --spacing-3xl: 64px;
+    --memori-spacing-xs: 4px;
+    --memori-spacing-sm: 8px;
+    --memori-spacing-md: 16px;
+    --memori-spacing-lg: 24px;
+    --memori-spacing-xl: 32px;
+    --memori-spacing-2xl: 48px;
+    --memori-spacing-3xl: 64px;
 
     /* ============================================
      BORDER RADIUS TOKENS
      ============================================ */
 
-    --border-radius-sm: 8px; /* Inputs, Checkboxes */
-    --border-radius-md: 12px; /* Cards, Buttons */
-    --border-radius-lg: 16px; /* Modals, Containers */
-    --border-radius-full: 999px; /* Pills, Avatars */
+    --memori-border-radius-sm: 8px;
+
+    /* Inputs, Checkboxes */
+    --memori-border-radius-md: 12px;
+
+    /* Cards, Buttons */
+    --memori-border-radius-lg: 16px;
+
+    /* Modals, Containers */
+    --memori-border-radius-full: 999px;
+
+    /* Pills, Avatars */
+
+    /* Default border-radius alias (same as md) */
+    --memori-border-radius-default: var(--memori-border-radius-md);
 
     /* ============================================
     MODAL TOKENS
     ============================================ */
 
     /* Modal size variants - max-width values */
-    --modal-size-sm: 400px;
-    --modal-size-md: 600px;
-    --modal-size-lg: 800px;
-    --modal-size-xl: 1000px;
-    --modal-size-full: 90vw;
+    --memori-modal-size-sm: 400px;
+    --memori-modal-size-md: 600px;
+    --memori-modal-size-lg: 800px;
+    --memori-modal-size-xl: 1000px;
+    --memori-modal-size-full: 90vw;
+
+    /* Default modal size alias (same as md) */
+    --memori-modal-size-default: var(--memori-modal-size-md);
 
     /* Responsive width variables for custom widths */
-    --modal-width: 100%;
-    --modal-width-md: 80%;
-    --modal-width-lg: 1000px;
-    --modal-width-xl: 1200px;
+    --memori-modal-width: 100%;
+    --memori-modal-width-md: 80%;
+    --memori-modal-width-lg: 1000px;
+    --memori-modal-width-xl: 1200px;
 }

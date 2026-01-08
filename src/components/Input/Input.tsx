@@ -2,7 +2,7 @@ import React from 'react'
 import { Input as BaseInput } from '@base-ui/react/input'
 import type { InputProps as BaseInputProps } from '@base-ui/react/input'
 import cx from 'classnames'
-import styles from './styles.module.css'
+import './styles.css'
 
 export interface InputProps extends Omit<BaseInputProps, 'className' | 'size'> {
   /**
@@ -66,27 +66,27 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const variantClass =
       variant === 'error'
-        ? styles['input--error']
+        ? 'memori-input--error'
         : variant === 'disabled'
-          ? styles['input--disabled']
-          : styles['input--default']
+          ? 'memori-input--disabled'
+          : 'memori-input--default'
 
     const sizeClass =
       size === 'sm'
-        ? styles['input--sm']
+        ? 'memori-input--sm'
         : size === 'lg'
-          ? styles['input--lg']
-          : styles['input--md']
+          ? 'memori-input--lg'
+          : 'memori-input--md'
 
-    const fullWidthClass = fullWidth ? styles['input--full-width'] : undefined
-    const disabledClass = isDisabled ? styles['input--disabled'] : undefined
+    const fullWidthClass = fullWidth ? 'memori-input--full-width' : undefined
+    const disabledClass = isDisabled ? 'memori-input--disabled' : undefined
 
     return (
       <BaseInput
         ref={ref}
         disabled={isDisabled}
         className={cx(
-          styles.input,
+          'memori-input',
           variantClass,
           sizeClass,
           fullWidthClass,

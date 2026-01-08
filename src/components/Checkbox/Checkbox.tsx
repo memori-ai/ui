@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Checkbox as BaseCheckbox } from '@base-ui/react'
 import cx from 'classnames'
 import { Check, Minus } from 'lucide-react'
-import styles from './styles.module.css'
+import './styles.css'
 
 export interface CheckboxProps {
   /**
@@ -132,7 +132,11 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
         name={name}
         value={value}
         onCheckedChange={handleChange}
-        className={cx(styles.checkbox, disabled && styles.disabled, className)}
+        className={cx(
+          'memori-checkbox',
+          disabled && 'memori-checkbox--disabled',
+          className,
+        )}
         style={style}
         id={id}
         aria-label={ariaLabel}
@@ -142,21 +146,21 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       >
         <span
           className={cx(
-            styles.indicator,
-            checked && !indeterminate && styles.indicatorChecked,
-            indeterminate && styles.indicatorIndeterminate,
+            'memori-checkbox__indicator',
+            checked && !indeterminate && 'memori-checkbox__indicator--checked',
+            indeterminate && 'memori-checkbox__indicator--indeterminate',
           )}
         >
-          <BaseCheckbox.Indicator className={styles.iconWrapper}>
+          <BaseCheckbox.Indicator className="memori-checkbox__icon-wrapper">
             {indeterminate ? (
               <Minus
-                className={styles.icon}
+                className="memori-checkbox__icon"
                 size={14}
                 strokeWidth={3}
               />
             ) : (
               <Check
-                className={styles.icon}
+                className="memori-checkbox__icon"
                 size={14}
                 strokeWidth={3}
               />
@@ -164,7 +168,7 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
           </BaseCheckbox.Indicator>
         </span>
 
-        {label && <span className={styles.label}>{label}</span>}
+        {label && <span className="memori-checkbox__label">{label}</span>}
       </BaseCheckbox.Root>
     )
   },

@@ -7,41 +7,35 @@ exports[`Alert Component > renders Alert open unchanged 1`] = `
     data-closed=""
     data-enter=""
     data-transition=""
+    style="--memori-alert-width: 400px;"
   >
-    <style>
-      
-              .memori-alert {
-                --memori-alert--width: 400px;
-              }
-            
-    </style>
     <div
-      class="memori-alert--container ease-out duration-300 opacity-0 translate-y-4"
+      class="memori-alert__container ease-out duration-300 opacity-0 translate-y-4"
       data-closed=""
       data-enter=""
       data-transition=""
     >
       <div
-        class="memori-alert--content"
+        class="memori-alert__content"
       >
         <div
-          class="memori-alert--title"
+          class="memori-alert__title"
         >
           Test Alert
         </div>
       </div>
       <div
-        class="memori-alert--actions"
+        class="memori-alert__actions"
       >
         <button
           aria-label="close"
-          class="_button_47407a _button--ghost_47407a _button--md_47407a _button--circle_47407a _button--icon-only_47407a memori-alert--close"
+          class="memori-button memori-button--ghost memori-button--md memori-button--circle memori-button--icon-only memori-alert__close"
           tabindex="0"
           title="close"
           type="button"
         >
           <span
-            class="_button__icon_47407a"
+            class="memori-button__icon"
           >
             <svg
               aria-hidden="true"

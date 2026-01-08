@@ -14,8 +14,14 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/memori-ai-ui.es.js",
-      "require": "./dist/memori-ai-ui.cjs.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/memori-ai-ui.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/memori-ai-ui.umd.js"
+      }
     },
     "./style.css": "./dist/memori-ai-ui.css"
   },

@@ -1,0 +1,1 @@
+import{i as e,w as t}from"./iframe-DMsFkDbs.js";import{t as n}from"./createLucideIcon-BVDRrXjB.js";import{h as r,m as i}from"./useRenderElement-CuQd9qAl.js";var a=n(`check`,[[`path`,{d:`M20 6 9 17l-5-5`,key:`1gmf2c`}]]),o=t(e());function s(e,t){let n=o.useRef(e),a=r(t);i(()=>{n.current!==e&&a(n.current)},[e,a]),i(()=>{n.current=e},[e])}export{a as n,s as t};

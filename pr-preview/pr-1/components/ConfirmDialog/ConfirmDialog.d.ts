@@ -1,12 +1,13 @@
 import { default as React } from '../../../node_modules/react';
-export interface Props {
+export interface ConfirmDialogProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
     title: string;
-    message: string;
-    confirmText: string;
-    cancelText: string;
+    message: React.ReactNode;
+    confirmText?: string;
+    cancelText?: string;
+    loading?: boolean;
 }
-declare const ConfirmDialog: React.FC<Props>;
+declare const ConfirmDialog: React.FC<ConfirmDialogProps>;
 export default ConfirmDialog;

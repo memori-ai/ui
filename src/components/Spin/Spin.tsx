@@ -12,7 +12,7 @@ export interface Props {
   children?: JSX.Element | React.ReactNode
 }
 
-const Spin: FC<Props> = ({
+const Spin = ({
   spinning = false,
   primary = false,
   className,

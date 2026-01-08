@@ -1,6 +1,8 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import ConfirmDialog, { type Props } from './ConfirmDialog'
+import ConfirmDialog, {
+  type ConfirmDialogProps as Props,
+} from './ConfirmDialog'
 import Button from '../Button'
 
 const meta = {

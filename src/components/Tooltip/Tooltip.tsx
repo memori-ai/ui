@@ -19,14 +19,14 @@ export interface Props {
   visible?: boolean
 }
 
-const Tooltip: FC<Props> = ({
+const Tooltip = ({
   content,
   className,
   align = 'right',
   disabled = false,
   visible = false,
   children,
-}) => (
+}: Props) => (
   <div
     className={cx(
       'memori-tooltip',

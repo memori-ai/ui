@@ -13,7 +13,7 @@ export interface ConfirmDialogProps {
   loading?: boolean
 }
 
-const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
+const ConfirmDialog = ({
   isOpen,
   onClose,
   onConfirm,
@@ -22,7 +22,7 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   confirmText = 'Confirm',
   cancelText = 'Cancel',
   loading = false,
-}) => {
+}: ConfirmDialogProps) => {
   const handleOpenChange = (open: boolean) => {
     if (!open) onClose()
   }

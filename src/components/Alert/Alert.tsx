@@ -25,7 +25,7 @@ export interface Props {
   width?: string
 }
 
-const Alert: FC<Props> = ({
+const Alert = ({
   open = false,
   onClose,
   className,

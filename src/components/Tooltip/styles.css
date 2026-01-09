@@ -9,23 +9,23 @@
 
 .memori-tooltip__popup {
     z-index: 1000;
-    max-width: 300px;
     min-width: 200px;
+    max-width: 300px;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border-radius: var(--memori-radius-box);
+    animation: memori-tooltip-fade-in 0.2s ease-out;
     background-color: var(--memori-text-color);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
     color: var(--memori-main-background);
     font-family: var(--memori-font-family);
     font-size: var(--memori-text-size-small);
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    animation: memori-tooltip-fade-in 0.2s ease-out;
 }
 
 .memori-tooltip__content {
-    word-wrap: break-word;
     overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .memori-tooltip__content a {
@@ -38,17 +38,17 @@
 }
 
 .memori-tooltip__arrow {
-    fill: var(--memori-text-color);
     width: 8px;
     height: 8px;
+    fill: var(--memori-text-color);
 }
 
 /* Dark mode support */
 [data-theme='dark'] .memori-tooltip__popup,
 :root.dark .memori-tooltip__popup {
     background-color: var(--memori-main-background);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
     color: var(--memori-text-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme='dark'] .memori-tooltip__content a,
@@ -67,6 +67,7 @@
         opacity: 0;
         transform: scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: scale(1);

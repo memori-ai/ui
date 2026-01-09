@@ -78,11 +78,11 @@
     left: 0;
     display: flex;
     width: 100%;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 0 var(--memori-spacing-sm);
     padding-top: 0;
     pointer-events: none;
-    align-items: flex-start;
     transform: translateY(-50%);
 }
 
@@ -100,26 +100,26 @@
     height: 12px;
     min-height: 12px;
     max-height: 12px;
+    flex-shrink: 0;
+    border-radius: 1px;
     margin-top: -6px;
     margin-bottom: var(--memori-spacing-sm);
     background-color: var(--memori-neutral);
-    border-radius: 1px;
     opacity: 0.8;
-    flex-shrink: 0;
 }
 
 .memori-slider__mark-value {
     color: var(--memori-text-color);
     font-size: var(--memori-text-size-base);
     font-weight: var(--memori-text-weight-medium);
-    white-space: nowrap;
     opacity: 0.7;
+    white-space: nowrap;
 }
 
 .memori-slider__thumb {
     position: absolute;
-    top: 50%;
     z-index: 2;
+    top: 50%;
     left: var(--percentage);
     width: 40px;
     max-width: 40px;
@@ -129,8 +129,8 @@
     border-radius: 50%;
     background-color: var(--memori-main-background);
     box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
-    touch-action: none;
     cursor: grab;
+    touch-action: none;
     transform: translate(-50%, -50%);
     transition:
         transform 0.2s ease,
@@ -148,7 +148,7 @@
 }
 
 /* Portrait/Totem specific styles */
-@media screen and (max-aspect-ratio: 3/4) {
+@media screen and (aspect-ratio <= 3/4) {
     .memori-slider {
         padding: 16px;
     }
@@ -189,7 +189,7 @@
 }
 
 /* Very tall displays */
-@media screen and (min-height: 1200px) {
+@media screen and (1200px <= height) {
     .memori-slider {
         padding: 24px 20px;
     }

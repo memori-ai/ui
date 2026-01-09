@@ -30,8 +30,8 @@
 .memori-spin__icon {
     width: var(--memori-spacing-2xl);
     height: var(--memori-spacing-2xl);
-    color: var(--memori-neutral);
     animation: memori-spin-rotate 1s linear infinite;
+    color: var(--memori-neutral);
 }
 
 .memori-spin__icon--primary {
@@ -78,6 +78,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }

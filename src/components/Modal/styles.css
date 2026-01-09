@@ -100,7 +100,7 @@
 }
 
 /* Responsive Widths */
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .memori-modal__popup {
         padding: var(--memori-spacing-xl);
     }
@@ -111,7 +111,7 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (1024px <= width) {
     /* Apply custom width-lg at large breakpoint */
     .memori-modal__popup[data-width-lg] {
         max-width: var(--memori-modal-width-lg-value, var(--memori-modal-width-lg));

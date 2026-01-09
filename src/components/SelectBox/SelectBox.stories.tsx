@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SelectBox } from './SelectBox'
 
 const meta: Meta<typeof SelectBox> = {
-  title: 'Components/SelectBox',
+  title: 'Form/SelectBox',
   component: SelectBox,
   tags: ['autodocs'],
   argTypes: {

@@ -12,7 +12,7 @@ import {
 } from 'lucide-react'
 
 const meta = {
-  title: 'Atomic/Button',
+  title: 'Form/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
@@ -535,7 +535,7 @@ export const Showcase: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <div>
-        <h4 style={{ margin: '0 0 8px 0', color: '#595959' }}>Variants</h4>
+        <h4 style={{ margin: '0 0 8px 0', color: 'currentColor' }}>Variants</h4>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
@@ -546,7 +546,9 @@ export const Showcase: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', color: '#595959' }}>With Icons</h4>
+        <h4 style={{ margin: '0 0 8px 0', color: 'currentColor' }}>
+          With Icons
+        </h4>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button icon={<Download />}>Download</Button>
           <Button
@@ -565,7 +567,7 @@ export const Showcase: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', color: '#595959' }}>
+        <h4 style={{ margin: '0 0 8px 0', color: 'currentColor' }}>
           Loading States
         </h4>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -586,7 +588,7 @@ export const Showcase: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', color: '#595959' }}>Shapes</h4>
+        <h4 style={{ margin: '0 0 8px 0', color: 'currentColor' }}>Shapes</h4>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           <Button shape="default">Default</Button>
           <Button shape="round">Round Shape</Button>
@@ -605,7 +607,7 @@ export const Showcase: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', color: '#595959' }}>
+        <h4 style={{ margin: '0 0 8px 0', color: 'currentColor' }}>
           Icon-only Buttons
         </h4>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>

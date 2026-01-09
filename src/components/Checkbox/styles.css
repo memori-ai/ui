@@ -8,19 +8,19 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    color: var(--memori-color-neutral-700);
+    color: var(--memori-text-color);
     cursor: pointer;
-    font-family: var(--memori-typography-font-family-base);
-    font-size: var(--memori-typography-font-size-sm);
-    font-weight: var(--memori-typography-font-weight-regular);
+    font-family: var(--memori-font-family);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-normal);
     gap: var(--memori-spacing-sm);
-    line-height: var(--memori-typography-line-height-normal);
+    line-height: var(--memori-text-line-normal);
     transition: color 0.2s ease;
     user-select: none;
 }
 
 .memori-checkbox:hover:not(.memori-checkbox--disabled) {
-    color: var(--memori-color-neutral-800);
+    color: var(--memori-text-color);
 }
 
 /* Checkbox indicator (the box) */
@@ -32,9 +32,9 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--memori-color-neutral-400);
-    border-radius: var(--memori-border-radius-sm);
-    background-color: var(--memori-color-neutral-white);
+    border: 1px solid var(--memori-tertiary-background);
+    border-radius: var(--memori-radius-field);
+    background-color: var(--memori-main-background);
     transition:
         background-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
         border-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -44,14 +44,14 @@
 
 /* Checked state */
 .memori-checkbox__indicator--checked {
-    border-color: var(--memori-color-primary-500);
-    background-color: var(--memori-color-primary-500);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 /* Indeterminate state */
 .memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-color-primary-500);
-    background-color: var(--memori-color-primary-500);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 /* Icon inside indicator */
@@ -66,7 +66,7 @@
 .memori-checkbox__icon {
     display: block;
     animation: memori-checkmark-scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    color: var(--memori-color-neutral-white);
+    color: var(--memori-primary-content);
 }
 
 @keyframes memori-checkmark-scale {
@@ -94,21 +94,21 @@
 }
 
 .memori-checkbox--disabled .memori-checkbox__indicator {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-200);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-secondary-background);
     cursor: not-allowed;
     transform: none;
 }
 
 .memori-checkbox--disabled .memori-checkbox__indicator--checked,
 .memori-checkbox--disabled .memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-400);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
 }
 
 /* Focus-visible state - must come before hover states */
 .memori-checkbox:focus-visible .memori-checkbox__indicator {
-    outline: 2px solid var(--memori-color-primary-500);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }
 
@@ -118,32 +118,32 @@
 }
 
 .memori-checkbox--disabled .memori-checkbox__label {
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
     cursor: not-allowed;
 }
 
 .memori-checkbox--disabled .memori-checkbox__icon {
-    color: var(--memori-color-neutral-white);
+    color: var(--memori-primary-content);
 }
 
 /* Hover states - must come after disabled and focus states */
 .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
-    border-color: var(--memori-color-primary-500);
-    box-shadow: 0 0 0 4px oklch(from var(--memori-color-primary-500) l c h / 10%);
+    border-color: var(--memori-primary);
+    box-shadow: 0 0 0 4px oklch(from var(--memori-primary) l c h / 10%);
 }
 
 .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--checked {
-    border-color: var(--memori-color-primary-600);
-    background-color: var(--memori-color-primary-600);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-color-primary-600);
-    background-color: var(--memori-color-primary-600);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 .memori-checkbox--disabled.memori-checkbox:hover .memori-checkbox__indicator {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-200);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: none;
 }

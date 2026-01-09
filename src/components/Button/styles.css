@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: center;
     border: 1px solid transparent;
-    border-radius: var(--memori-border-radius-default);
+    border-radius: var(--memori-radius-selector);
     cursor: pointer;
-    font-family: var(--memori-typography-font-family-base);
-    font-weight: var(--memori-typography-font-weight-medium);
+    font-family: var(--memori-font-family);
+    font-weight: var(--memori-text-weight-medium);
     gap: var(--memori-spacing-sm);
-    line-height: var(--memori-typography-line-height-normal);
+    line-height: var(--memori-text-line-normal);
     outline: none;
     transition:
         background-color 0.15s ease,
@@ -21,16 +21,16 @@
 
 /* Focus visible - clear accessibility ring */
 .memori-button:focus-visible {
-    box-shadow: 0 0 0 4px oklch(from var(--memori-color-primary-500) l c h / 20%);
-    outline: 2px solid var(--memori-color-primary-500);
+    box-shadow: 0 0 0 4px oklch(from var(--memori-primary) l c h / 20%);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }
 
 /* Disabled state - must come before :hover:not(:disabled) for specificity */
 .memori-button:disabled {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-300);
-    color: var(--memori-color-neutral-500);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
+    color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -95,79 +95,79 @@
 
 /* Primary Variant */
 .memori-button--primary {
-    border-color: var(--memori-color-primary-500);
-    background-color: var(--memori-color-primary-500);
-    color: var(--memori-color-neutral-white);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
+    color: var(--memori-primary-content);
 }
 
 .memori-button--primary:hover:not(:disabled) {
-    border-color: var(--memori-color-primary-600);
-    background-color: var(--memori-color-primary-600);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 .memori-button--primary:active:not(:disabled),
 .memori-button--primary.memori-button--active {
-    border-color: var(--memori-color-primary-700);
-    background-color: var(--memori-color-primary-700);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
 }
 
 /* Secondary Variant */
 .memori-button--secondary {
-    border-color: var(--memori-color-secondary-500);
-    background-color: var(--memori-color-secondary-500);
-    color: var(--memori-color-neutral-white);
+    border-color: var(--memori-secondary);
+    background-color: var(--memori-secondary);
+    color: var(--memori-secondary-content);
 }
 
 .memori-button--secondary:hover:not(:disabled) {
-    border-color: var(--memori-color-secondary-600);
-    background-color: var(--memori-color-secondary-600);
+    border-color: var(--memori-secondary);
+    background-color: var(--memori-secondary);
 }
 
 .memori-button--secondary:active:not(:disabled),
 .memori-button--secondary.memori-button--active {
-    border-color: var(--memori-color-secondary-700);
-    background-color: var(--memori-color-secondary-700);
+    border-color: var(--memori-secondary);
+    background-color: var(--memori-secondary);
 }
 
 /* Outline Variant */
 .memori-button--outline {
-    border-color: var(--memori-color-primary-500);
+    border-color: var(--memori-primary);
     background-color: transparent;
-    color: var(--memori-color-primary-500);
+    color: var(--memori-primary);
 }
 
 /* Outline variant disabled state */
 .memori-button--outline.memori-button--disabled,
 .memori-button--outline:disabled {
-    border-color: var(--memori-color-neutral-400);
+    border-color: var(--memori-tertiary-background);
     background-color: transparent;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
 }
 
 .memori-button--outline.memori-button--disabled:hover,
 .memori-button--outline:disabled:hover {
-    border-color: var(--memori-color-neutral-400);
+    border-color: var(--memori-tertiary-background);
     background-color: transparent;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
 }
 
 .memori-button--outline:hover:not(:disabled) {
-    background-color: var(--memori-color-primary-500);
-    color: var(--memori-color-neutral-white);
+    background-color: var(--memori-primary);
+    color: var(--memori-primary-content);
 }
 
 .memori-button--outline:active:not(:disabled),
 .memori-button--outline.memori-button--active {
-    border-color: var(--memori-color-primary-600);
-    background-color: var(--memori-color-primary-600);
-    color: var(--memori-color-neutral-white);
+    border-color: var(--memori-primary);
+    background-color: var(--memori-primary);
+    color: var(--memori-primary-content);
 }
 
 /* Ghost Variant */
 .memori-button--ghost {
     border-color: transparent;
     background-color: transparent;
-    color: var(--memori-color-neutral-700);
+    color: var(--memori-text-color);
 }
 
 /* Ghost variant disabled state */
@@ -175,51 +175,51 @@
 .memori-button--ghost:disabled {
     border-color: transparent;
     background-color: transparent;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
 }
 
 .memori-button--ghost.memori-button--disabled:hover,
 .memori-button--ghost:disabled:hover {
     border-color: transparent;
     background-color: transparent;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
 }
 
 /* Danger Variant */
 .memori-button--danger {
-    border-color: var(--memori-color-semantic-error-base);
-    background-color: var(--memori-color-semantic-error-base);
-    color: var(--memori-color-neutral-white);
+    border-color: var(--memori-error);
+    background-color: var(--memori-error);
+    color: var(--memori-error-content);
 }
 
 .memori-button--danger:focus-visible {
-    outline-color: var(--memori-color-semantic-error-base);
+    outline-color: var(--memori-error);
 }
 
 /* Danger variant disabled state */
 .memori-button--danger.memori-button--disabled,
 .memori-button--danger:disabled {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-300);
-    color: var(--memori-color-neutral-500);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
+    color: var(--memori-neutral);
 }
 
 .memori-button--danger.memori-button--disabled:hover,
 .memori-button--danger:disabled:hover {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-300);
-    color: var(--memori-color-neutral-500);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
+    color: var(--memori-neutral);
 }
 
 .memori-button--danger:hover:not(:disabled) {
-    border-color: var(--memori-color-semantic-error-dark);
-    background-color: var(--memori-color-semantic-error-dark);
+    border-color: var(--memori-error);
+    background-color: var(--memori-error);
 }
 
 .memori-button--danger:active:not(:disabled),
 .memori-button--danger.memori-button--active {
-    border-color: var(--memori-color-semantic-error-dark);
-    background-color: var(--memori-color-semantic-error-dark);
+    border-color: var(--memori-error);
+    background-color: var(--memori-error);
     opacity: 0.9;
 }
 
@@ -230,19 +230,19 @@
 .memori-button--sm {
     min-height: 32px;
     padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
-    font-size: var(--memori-typography-font-size-sm);
+    font-size: var(--memori-text-size-small);
 }
 
 .memori-button--md {
     min-height: 40px;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    font-size: var(--memori-typography-font-size-base);
+    font-size: var(--memori-text-size-base);
 }
 
 .memori-button--lg {
     min-height: 48px;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    font-size: var(--memori-typography-font-size-lg);
+    font-size: var(--memori-text-size-large);
 }
 
 /* ============================================
@@ -250,7 +250,7 @@
    ============================================ */
 
 .memori-button--round {
-    border-radius: var(--memori-border-radius-full);
+    border-radius: 999px;
 }
 
 .memori-button--circle {
@@ -309,15 +309,15 @@
 }
 
 .memori-button--disabled {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-300);
-    color: var(--memori-color-neutral-500);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
+    color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
 }
 
 .memori-button--disabled:hover {
-    border-color: var(--memori-color-neutral-400);
-    background-color: var(--memori-color-neutral-300);
-    color: var(--memori-color-neutral-500);
+    border-color: var(--memori-tertiary-background);
+    background-color: var(--memori-tertiary-background);
+    color: var(--memori-neutral);
 }

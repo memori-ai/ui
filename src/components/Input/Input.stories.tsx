@@ -4,7 +4,7 @@ import { Input } from './Input'
 import { fn } from 'storybook/test'
 
 const meta = {
-  title: 'Atomic/Input',
+  title: 'Form/Input',
   component: Input,
   tags: ['autodocs'],
   argTypes: {

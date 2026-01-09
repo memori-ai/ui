@@ -11,11 +11,11 @@
     box-sizing: border-box;
     flex-direction: column;
     padding: 0;
-    border-radius: var(--memori-border-radius-md);
+    border-radius: var(--memori-radius-box);
     margin: 0;
-    background-color: var(--memori-color-neutral-white);
-    color: var(--memori-color-neutral-700);
-    font-family: var(--memori-typography-font-family-base);
+    background-color: var(--memori-main-background);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
     text-align: left;
 }
 
@@ -37,22 +37,23 @@
 
 .memori-card__body {
     width: 100%;
+    box-sizing: border-box;
     flex: 1 1 auto;
 }
 
 .memori-card__title {
     margin: 0 0 var(--memori-spacing-xs) 0;
-    color: var(--memori-color-neutral-800);
-    font-size: var(--memori-typography-font-size-lg);
-    font-weight: var(--memori-typography-font-weight-semibold);
-    line-height: var(--memori-typography-line-height-tight);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-large);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: var(--memori-text-line-tight);
 }
 
 .memori-card__description {
     margin: 0 0 var(--memori-spacing-md) 0;
-    color: var(--memori-color-neutral-600);
-    font-size: var(--memori-typography-font-size-sm);
-    line-height: var(--memori-typography-line-height-normal);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    line-height: var(--memori-text-line-normal);
 }
 
 /* ============================================
@@ -67,9 +68,15 @@
     box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
 }
 
+/* Dark mode: add subtle border for better visibility */
+:root.dark .memori-card--elevated,
+[data-theme='dark'] .memori-card--elevated {
+    border-color: var(--memori-tertiary-background);
+}
+
 /* Outlined: Border, no shadow */
 .memori-card--outlined {
-    border: 1px solid var(--memori-color-neutral-400);
+    border: 1px solid var(--memori-tertiary-background);
     box-shadow: none;
 }
 
@@ -102,13 +109,13 @@
 }
 
 .memori-card--interactive:hover {
-    border-color: var(--memori-color-primary-200);
+    border-color: var(--memori-primary);
     box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
     transform: translateY(-1px);
 }
 
 /* Focus visible styles for accessibility */
 .memori-card:focus-visible {
-    outline: 2px solid var(--memori-color-primary-500);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }

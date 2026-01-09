@@ -13,7 +13,7 @@ details.memori-details summary {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    font-size: 1.15rem;
+    font-size: var(--memori-text-size-large);
     line-height: 1;
     list-style-type: none;
     transition: color 0.2s ease-in-out;
@@ -34,7 +34,7 @@ details.memori-details summary::-moz-list-bullet {
 .memori-details__icon {
     width: 1rem;
     height: 1rem;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
     margin-inline-start: 1.5rem;
     transform: rotate(-90deg);
     transition: transform 0.2s ease-in-out;
@@ -45,8 +45,8 @@ details.memori-details summary:focus {
 }
 
 details.memori-details summary:focus-visible {
-    color: var(--memori-color-primary-500);
-    outline: 1px solid var(--memori-color-primary-500);
+    color: var(--memori-primary);
+    outline: 1px solid var(--memori-primary);
     outline-offset: 1.5rem;
 }
 
@@ -55,10 +55,10 @@ details.memori-details[open] > summary {
 }
 
 details.memori-details[open] > summary:not(:focus) {
-    color: var(--memori-color-primary-500);
+    color: var(--memori-primary);
 }
 
 details.memori-details[open] .memori-details__icon {
-    color: var(--memori-color-primary-500);
+    color: var(--memori-primary);
     transform: rotate(0deg);
 }

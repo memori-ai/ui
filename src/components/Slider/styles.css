@@ -125,7 +125,7 @@
 }
 
 /* Portrait/Totem specific styles */
-@media screen and (aspect-ratio <=3/4) {
+@media screen and (aspect-ratio <= 3/4) {
     .memori-slider {
         padding: 16px;
     }
@@ -166,7 +166,7 @@
 }
 
 /* Very tall displays */
-@media screen and (height >=1200px) {
+@media screen and (height >= 1200px) {
     .memori-slider {
         padding: 24px 20px;
     }

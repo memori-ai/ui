@@ -41,10 +41,10 @@
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    background-color: var(--memori-color-neutral-white);
+    background-color: var(--memori-main-background);
     box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
-    color: var(--memori-color-neutral-700);
-    font-family: var(--memori-typography-font-family-base);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
     outline: none;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -60,7 +60,7 @@
     bottom: 0;
     width: var(--memori-modal-size-sm);
     max-width: 100vw;
-    border-left: 1px solid var(--memori-color-neutral-200);
+    border-left: 1px solid var(--memori-secondary-background);
 }
 
 .memori-drawer--right[data-state='open'] {
@@ -78,7 +78,7 @@
     left: 0;
     width: var(--memori-modal-size-sm);
     max-width: 100vw;
-    border-right: 1px solid var(--memori-color-neutral-200);
+    border-right: 1px solid var(--memori-secondary-background);
 }
 
 .memori-drawer--left[data-state='open'] {
@@ -96,7 +96,7 @@
     left: 0;
     height: auto;
     max-height: 80vh;
-    border-bottom: 1px solid var(--memori-color-neutral-200);
+    border-bottom: 1px solid var(--memori-secondary-background);
 }
 
 .memori-drawer--top[data-state='open'] {
@@ -114,7 +114,7 @@
     left: 0;
     height: auto;
     max-height: 80vh;
-    border-top: 1px solid var(--memori-color-neutral-200);
+    border-top: 1px solid var(--memori-secondary-background);
 }
 
 .memori-drawer--bottom[data-state='open'] {
@@ -135,22 +135,22 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    border-bottom: 1px solid var(--memori-color-neutral-200);
+    border-bottom: 1px solid var(--memori-secondary-background);
 }
 
 .memori-drawer__title {
     margin: 0;
-    color: var(--memori-color-neutral-800);
-    font-size: var(--memori-typography-font-size-lg);
-    font-weight: var(--memori-typography-font-weight-semibold);
-    line-height: var(--memori-typography-line-height-tight);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-large);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: var(--memori-text-line-tight);
 }
 
 .memori-drawer__description {
     margin-top: var(--memori-spacing-xs);
-    color: var(--memori-color-neutral-600);
-    font-size: var(--memori-typography-font-size-sm);
-    line-height: var(--memori-typography-line-height-normal);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    line-height: var(--memori-text-line-normal);
 }
 
 .memori-drawer__close {
@@ -159,21 +159,21 @@
     justify-content: center;
     padding: var(--memori-spacing-xs);
     border: none;
-    border-radius: var(--memori-border-radius-sm);
+    border-radius: var(--memori-radius-field);
     margin-right: calc(var(--memori-spacing-xs) * -1);
     background: transparent;
-    color: var(--memori-color-neutral-500);
+    color: var(--memori-neutral);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .memori-drawer__close:hover {
-    background-color: var(--memori-color-neutral-200);
-    color: var(--memori-color-neutral-800);
+    background-color: var(--memori-secondary-background);
+    color: var(--memori-text-color);
 }
 
 .memori-drawer__close:focus-visible {
-    outline: 2px solid var(--memori-color-primary-500);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }
 
@@ -181,8 +181,8 @@
     overflow: auto;
     flex: 1 1 auto;
     padding: var(--memori-spacing-lg);
-    font-size: var(--memori-typography-font-size-base);
-    line-height: var(--memori-typography-line-height-normal);
+    font-size: var(--memori-text-size-base);
+    line-height: var(--memori-text-line-normal);
 }
 
 .memori-drawer__footer {
@@ -191,8 +191,8 @@
     align-items: center;
     justify-content: flex-end;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    border-top: 1px solid var(--memori-color-neutral-200);
-    background-color: var(--memori-color-neutral-100);
+    border-top: 1px solid var(--memori-secondary-background);
+    background-color: var(--memori-main-background);
     gap: var(--memori-spacing-sm);
 }
 
@@ -221,5 +221,5 @@
     width: 40px;
     height: 40px;
     animation: memori-drawer-spin 1s linear infinite;
-    color: var(--memori-color-primary-500);
+    color: var(--memori-primary);
 }

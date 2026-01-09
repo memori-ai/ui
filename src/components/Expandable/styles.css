@@ -9,7 +9,7 @@
 }
 
 .memori-expandable > button {
-    color: var(--memori-color-primary-600);
-    font-size: 0.9em;
+    color: var(--memori-primary);
+    font-size: var(--memori-text-size-small);
     text-decoration: underline;
 }

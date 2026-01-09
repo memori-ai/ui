@@ -1,27 +1,27 @@
 table.memori-table {
     --memori-table-spacing: 1rem;
-    --memori-table-border-color: var(--memori-color-neutral-300);
-    --memori-table-bg-color: var(--memori-color-neutral-100);
+    --memori-table-border-color: var(--memori-tertiary-background);
+    --memori-table-bg-color: var(--memori-main-background);
 
     margin: 1rem 0;
-    font-size: var(--memori-typography-font-size-base);
+    font-size: var(--memori-text-size-base);
 }
 
 table.memori-table.memori-table--compact {
     --memori-table-spacing: 0.5rem;
 
-    font-size: var(--memori-typography-font-size-sm);
+    font-size: var(--memori-text-size-small);
 }
 
 @media (width <=767px) {
     table.memori-table {
         --memori-table-spacing: 0.5rem;
 
-        font-size: var(--memori-typography-font-size-sm);
+        font-size: var(--memori-text-size-small);
     }
 
     table.memori-table.memori-table--compact {
-        font-size: var(--memori-typography-font-size-xs);
+        font-size: var(--memori-text-size-small);
     }
 }
 
@@ -106,7 +106,7 @@ table.memori-table[role='grid'] tbody tr:nth-child(odd) {
 
     .memori-table__pagination .memori-select button.memori-select__button {
         padding: 0.25rem 2rem 0.25rem 0.5rem;
-        font-size: 0.875rem;
+        font-size: var(--memori-text-size-small);
     }
 
     .memori-table__pagination .memori-select ul.memori-select__options {

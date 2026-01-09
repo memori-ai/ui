@@ -43,13 +43,13 @@
 .memori-modal__popup {
     position: relative;
     padding: var(--memori-spacing-lg);
-    border-radius: var(--memori-border-radius-lg);
+    border-radius: var(--memori-radius-box);
     margin-right: auto;
     margin-left: auto;
     animation: memori-modal-scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    background-color: var(--memori-color-neutral-white);
+    background-color: var(--memori-main-background);
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-    font-family: var(--memori-typography-font-family-base);
+    font-family: var(--memori-font-family);
     outline: none;
 
     /* Don't set max-width here - let size variants handle it */
@@ -60,7 +60,7 @@
 }
 
 .memori-modal__popup:focus-visible {
-    outline: 2px solid var(--memori-color-primary-500);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }
 
@@ -136,18 +136,18 @@
     border: none;
     border-radius: 50%;
     background-color: transparent;
-    color: var(--memori-color-neutral-700);
+    color: var(--memori-text-color);
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .memori-modal__close:hover {
-    background-color: var(--memori-color-neutral-200);
-    color: var(--memori-color-neutral-800);
+    background-color: var(--memori-secondary-background);
+    color: var(--memori-text-color);
 }
 
 .memori-modal__close:focus-visible {
-    outline: 2px solid var(--memori-color-primary-500);
+    outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
 }
 
@@ -162,10 +162,10 @@
 
 .memori-modal__title {
     margin: 0 0 var(--memori-spacing-md) 0;
-    color: var(--memori-color-neutral-800);
-    font-size: var(--memori-typography-font-size-xl);
-    font-weight: var(--memori-typography-font-weight-semibold);
-    line-height: var(--memori-typography-line-height-tight);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-heading);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: var(--memori-text-line-tight);
 }
 
 /* ============================================
@@ -174,10 +174,10 @@
 
 .memori-modal__description {
     margin: 0 0 var(--memori-spacing-md) 0;
-    color: var(--memori-color-neutral-600);
-    font-size: var(--memori-typography-font-size-base);
-    font-weight: var(--memori-typography-font-weight-regular);
-    line-height: var(--memori-typography-line-height-normal);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-base);
+    font-weight: var(--memori-text-weight-normal);
+    line-height: var(--memori-text-line-normal);
 }
 
 /* ============================================
@@ -186,8 +186,9 @@
 
 .memori-modal__content {
     max-height: 60vh;
-    color: var(--memori-color-neutral-700);
-    line-height: var(--memori-typography-line-height-normal);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-base);
+    line-height: var(--memori-text-line-normal);
     overflow-y: auto;
 }
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Checkbox } from './Checkbox'
 
 const meta = {
-  title: 'Atomic/Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   argTypes: {

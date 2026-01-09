@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './styles.css'
 
 const meta = {
-  title: 'UI/Table',
+  title: 'Components/Table',
   tags: ['autodocs'],
   argTypes: {},
 } satisfies Meta<HTMLTableElement>

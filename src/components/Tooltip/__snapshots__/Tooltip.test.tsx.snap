@@ -3,18 +3,16 @@
 exports[`renders Tooltip aligned left unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-left memori-tooltip--visible"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content by default as I am controlled
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      data-popup-open=""
+      id="base-ui-_r_9_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -22,18 +20,16 @@ exports[`renders Tooltip aligned left unchanged 1`] = `
 exports[`renders Tooltip aligned right unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-right memori-tooltip--visible"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content by default as I am controlled
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      data-popup-open=""
+      id="base-ui-_r_h_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -41,18 +37,16 @@ exports[`renders Tooltip aligned right unchanged 1`] = `
 exports[`renders Tooltip aligned top left unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-topLeft memori-tooltip--visible"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content by default as I am controlled
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      data-popup-open=""
+      id="base-ui-_r_d_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -60,56 +54,38 @@ exports[`renders Tooltip aligned top left unchanged 1`] = `
 exports[`renders Tooltip aligned top right unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-topRight memori-tooltip--visible"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content by default as I am controlled
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      data-popup-open=""
+      id="base-ui-_r_l_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
 
 exports[`renders Tooltip disabled unchanged 1`] = `
 <div>
-  <div
-    class="memori-tooltip memori-tooltip--align-right memori-tooltip--disabled"
-  >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content but I am disabled
-    </div>
-    <div
-      class="memori-tooltip__trigger"
-    >
-      Hover me
-    </div>
-  </div>
+  Hover me
 </div>
 `;
 
 exports[`renders Tooltip unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-right"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      id="base-ui-_r_1_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -117,18 +93,16 @@ exports[`renders Tooltip unchanged 1`] = `
 exports[`renders Tooltip visible unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-right memori-tooltip--visible"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      Here is some tooltip content by default as I am controlled
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      data-popup-open=""
+      id="base-ui-_r_5_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -136,28 +110,15 @@ exports[`renders Tooltip visible unchanged 1`] = `
 exports[`renders Tooltip with jsx content unchanged 1`] = `
 <div>
   <div
-    class="memori-tooltip memori-tooltip--align-right"
+    class="memori-tooltip"
   >
-    <div
-      class="memori-tooltip__content"
-    >
-      <p>
-        Here we have some JSX, useful for
-        <a
-          href="https://memori.ai"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          links
-        </a>
-        , for example.
-      </p>
-    </div>
-    <div
+    <button
       class="memori-tooltip__trigger"
+      id="base-ui-_r_3_"
+      type="button"
     >
       Hover me
-    </div>
+    </button>
   </div>
 </div>
 `;

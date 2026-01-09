@@ -30,7 +30,7 @@ const ConfirmDialog = ({
   const footer = (
     <>
       <Button
-        variant="secondary"
+        variant="outline"
         onClick={onClose}
         disabled={loading}
       >

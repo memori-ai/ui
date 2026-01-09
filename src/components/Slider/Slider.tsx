@@ -1,10 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Listbox } from '@headlessui/react'
 import cx from 'classnames'
-
 import './styles.css'
 
-export interface Props {
+export interface SliderProps {
   min?: number
   max?: number
   step?: number
@@ -12,6 +10,8 @@ export interface Props {
   label?: string | React.ReactNode
   onChange?: (value: number) => void
   disabled?: boolean
+  className?: string
+  style?: React.CSSProperties
 }
 
 const CustomSlider = ({
@@ -22,7 +22,7 @@ const CustomSlider = ({
   label,
   onChange,
   disabled = false,
-}: Props) => {
+}: SliderProps) => {
   const [value, setValue] = useState(defaultValue)
   const [isDragging, setIsDragging] = useState(false)
   const sliderRef = useRef<HTMLDivElement>(null)
@@ -135,20 +135,14 @@ const CustomSlider = ({
           ))}
         </div>
 
-        <Listbox
-          value={value}
-          onChange={setValue}
-          disabled={disabled}
-        >
-          <div
-            className="memori-slider__thumb"
-            role="slider"
-            aria-valuemin={min}
-            aria-valuemax={max}
-            aria-valuenow={value}
-            tabIndex={disabled ? -1 : 0}
-          />
-        </Listbox>
+        <div
+          className="memori-slider__thumb"
+          role="slider"
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={value}
+          tabIndex={disabled ? -1 : 0}
+        />
       </div>
     </div>
   )

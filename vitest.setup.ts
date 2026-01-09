@@ -1,4 +1,6 @@
-import '@testing-library/jest-dom'
+// Import jest-dom matchers for Vitest
+// Using the vitest-specific import ensures proper type integration
+import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterEach, beforeAll } from 'vitest'
 

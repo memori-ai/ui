@@ -19,8 +19,16 @@ export default defineConfig({
       //   plugins: [['babel-plugin-react-compiler', {}]],
       // },
     }),
+    // Include dts plugin for library builds
+    // Storybook will remove this via viteFinal override in .storybook/main.ts
     dts({
       include: ['src'],
+      exclude: [
+        '**/*.test.ts',
+        '**/*.test.tsx',
+        '**/__snapshots__/**',
+        '**/vitest.setup.ts',
+      ],
       // Rollup declaration files into a single index.d.ts
       rollupTypes: true,
       // Insert type references for CSS files

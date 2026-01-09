@@ -10,7 +10,7 @@
  */
 function extractLightness(oklchColor: string): number {
   const match = oklchColor.match(/oklch\(([\d.]+)%/)
-  if (match) {
+  if (match && match[1]) {
     return parseFloat(match[1]) / 100
   }
   return 0.5 // Default to middle lightness
@@ -25,8 +25,9 @@ function calculateContentColor(oklchColor: string): string {
 
   // Extract chroma and hue from the original color
   const chromaMatch = oklchColor.match(/oklch\([\d.]+%\s+([\d.]+)\s+([\d.]+)\)/)
-  const chroma = chromaMatch ? parseFloat(chromaMatch[1]) : 0.01
-  const hue = chromaMatch ? parseFloat(chromaMatch[2]) : 240
+  const chroma =
+    chromaMatch && chromaMatch[1] ? parseFloat(chromaMatch[1]) : 0.01
+  const hue = chromaMatch && chromaMatch[2] ? parseFloat(chromaMatch[2]) : 240
 
   // Use light text for dark backgrounds (lightness < 0.5), dark text for light backgrounds
   const contentLightness = lightness < 0.5 ? 98 : 20
@@ -48,7 +49,7 @@ function calculateBackgroundColors(primaryOklch: string): {
 
   // Extract hue from primary color
   const hueMatch = primaryOklch.match(/oklch\([\d.]+%\s+[\d.]+\s+([\d.]+)\)/)
-  const hue = hueMatch ? parseFloat(hueMatch[1]) : 240
+  const hue = hueMatch && hueMatch[1] ? parseFloat(hueMatch[1]) : 240
 
   // For light theme: if primary is dark, use light backgrounds; if primary is light, use darker backgrounds
   // This ensures maximum contrast between primary color and backgrounds
@@ -92,7 +93,7 @@ function colorToOklch(color: string): string {
 
   // Parse rgb(r, g, b) format
   const rgbMatch = computedColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
-  if (!rgbMatch) {
+  if (!rgbMatch || !rgbMatch[1] || !rgbMatch[2] || !rgbMatch[3]) {
     throw new Error(`Unable to parse color: ${color}`)
   }
 

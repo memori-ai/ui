@@ -15,6 +15,7 @@ export {
   type AddAlertOptions,
 } from './components/Alert'
 export { Button } from './components/Button'
+export { Collapsible } from './components/Collapsible'
 export { Card } from './components/Card'
 export { Checkbox } from './components/Checkbox'
 export { ConfirmDialog } from './components/ConfirmDialog'

@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-import { mergeConfig } from 'vite'
+import { withoutVitePlugins } from '@storybook/builder-vite'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -16,17 +16,11 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     // Remove dts plugin during Storybook builds to avoid api-extractor errors
-    return mergeConfig(config, {
-      plugins: config.plugins?.filter(
-        plugin =>
-          !(
-            plugin &&
-            typeof plugin === 'object' &&
-            'name' in plugin &&
-            plugin.name === 'vite-plugin-dts'
-          ),
-      ),
-    })
+    // Storybook doesn't need TypeScript declaration files
+    config.plugins = await withoutVitePlugins(config.plugins, [
+      'vite-plugin-dts',
+    ])
+    return config
   },
 }
 export default config

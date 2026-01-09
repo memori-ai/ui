@@ -272,7 +272,7 @@
    Responsive Adjustments
    ========================================================================== */
 
-@media (width <= 480px) {
+@media (max-width: 480px) {
     .memori-alert-viewport {
         max-width: 100%;
         padding: var(--memori-spacing-sm);

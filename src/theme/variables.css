@@ -1,153 +1,54 @@
 /**
  * Design Tokens - CSS Variables
  * 
- * This file contains all design tokens mapped to CSS custom properties.
- * These variables should be used throughout the component library instead
- * of hardcoded values.
+ * Simplified design tokens with key variables only.
  */
 
 :root {
-    /* ============================================
-     COLOR TOKENS
-     ============================================ */
+    /* Theme settings */
+    color-scheme: light; /* color of browser-provided UI */
 
-    /* ============================================
-     COLOR TOKENS
-     ============================================ */
+    --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
 
-    /* 
-     * Base Brand Colors
-     * checks for external variables first (--memori-primary-rgb, --memori-secondary-rgb)
-     * otherwise falls back to default oklch values.
-     * Uses CSS Relative Color Syntax to generate palette.
-     */
-    --memori-color-primary-base: var(--memori-primary-rgb, rgb(130 70 175));
+    /* Base colors - used for backgrounds and surfaces */
+    --memori-main-background: oklch(98% 0.02 240deg); /* Main background color (white) */
+    --memori-secondary-background: oklch(95% 0.03 240deg); /* Secondary background, hover states (light gray) */
+    --memori-tertiary-background: oklch(92% 0.04 240deg); /* Tertiary background, borders (dark gray) */
+    --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */
 
-    /* oklch(0.48 0.19 297) */
-    --memori-color-secondary-base: var(--memori-secondary-rgb, rgb(0 174 199));
+    /* Primary colors - main brand color */
+    --memori-primary: oklch(48% 0.19 297deg); /* Primary actions, links, highlights */
+    --memori-primary-content: oklch(98% 0.01 240deg); /* Text/icon color on primary background */
 
-    /* oklch(0.70 0.15 200) */
+    /* Secondary colors - secondary brand color */
+    --memori-secondary: oklch(70% 0.15 200deg); /* Secondary actions, accents */
+    --memori-secondary-content: oklch(98% 0.01 200deg); /* Text/icon color on secondary background */
 
-    /* Primary Colors */
-    --memori-color-primary-100: oklch(from var(--memori-color-primary-base) 0.95deg c h);
-    --memori-color-primary-200: oklch(from var(--memori-color-primary-base) 0.9deg c h);
-    --memori-color-primary-300: oklch(from var(--memori-color-primary-base) 0.85deg c h);
-    --memori-color-primary-400: oklch(from var(--memori-color-primary-base) 0.7deg c h);
-    --memori-color-primary-500: var(--memori-color-primary-base);
-    --memori-color-primary-600: oklch(from var(--memori-color-primary-base) 0.45deg c h);
-    --memori-color-primary-700: oklch(from var(--memori-color-primary-base) 0.35deg c h);
-    --memori-color-primary-800: oklch(from var(--memori-color-primary-base) 0.25deg c h);
-    --memori-color-primary-900: oklch(from var(--memori-color-primary-base) 0.15deg c h);
+    /* Accent colors - highlights and emphasis */
+    --memori-accent: oklch(65% 0.25 160deg); /* Accent elements, highlights */
+    --memori-accent-content: oklch(98% 0.01 160deg); /* Text/icon color on accent background */
 
-    /* Secondary Colors */
-    --memori-color-secondary-100: oklch(from var(--memori-color-secondary-base) 0.95deg c h);
-    --memori-color-secondary-200: oklch(from var(--memori-color-secondary-base) 0.9deg c h);
-    --memori-color-secondary-300: oklch(from var(--memori-color-secondary-base) 0.8deg c h);
-    --memori-color-secondary-400: oklch(from var(--memori-color-secondary-base) 0.75deg c h);
-    --memori-color-secondary-500: var(--memori-color-secondary-base);
-    --memori-color-secondary-600: oklch(from var(--memori-color-secondary-base) 0.6deg c h);
-    --memori-color-secondary-700: oklch(from var(--memori-color-secondary-base) 0.5deg c h);
-    --memori-color-secondary-800: oklch(from var(--memori-color-secondary-base) 0.4deg c h);
-    --memori-color-secondary-900: oklch(from var(--memori-color-secondary-base) 0.3deg c h);
+    /* Neutral colors - grays and muted tones */
+    --memori-neutral: oklch(50% 0.05 240deg); /* Neutral elements, dividers */
+    --memori-neutral-content: oklch(98% 0.01 240deg); /* Text/icon color on neutral background */
 
-    /* Semantic Colors - Success */
-    --memori-color-semantic-success-base: #52c41a;
-    --memori-color-semantic-success-light: #d9f7be;
+    /* Semantic colors - Info */
+    --memori-info: oklch(70% 0.2 220deg); /* Informational messages, badges */
+    --memori-info-content: oklch(98% 0.01 220deg); /* Text/icon color on info background */
 
-    /* Backgrounds */
-    --memori-color-semantic-success-dark: #389e0d;
+    /* Semantic colors - Success */
+    --memori-success: oklch(65% 0.25 140deg); /* Success messages, positive states */
+    --memori-success-content: oklch(98% 0.01 140deg); /* Text/icon color on success background */
 
-    /* Text/Icons */
+    /* Semantic colors - Warning */
+    --memori-warning: oklch(80% 0.25 80deg); /* Warning messages, caution states */
+    --memori-warning-content: oklch(20% 0.05 80deg); /* Text/icon color on warning background */
 
-    /* Semantic Colors - Error */
-    --memori-color-semantic-error-base: #d9363e;
-    --memori-color-semantic-error-light: #fff1f0;
+    /* Semantic colors - Error */
+    --memori-error: oklch(65% 0.3 30deg); /* Error messages, destructive actions */
+    --memori-error-content: oklch(98% 0.01 30deg); /* Text/icon color on error background */
 
-    /* Backgrounds */
-    --memori-color-semantic-error-dark: #a8071a;
-
-    /* Text/Icons */
-
-    /* Semantic Colors - Warning */
-    --memori-color-semantic-warning-base: #faad14;
-    --memori-color-semantic-warning-light: #fffbe6;
-
-    /* Backgrounds */
-    --memori-color-semantic-warning-dark: #d48806;
-
-    /* Text/Icons */
-
-    /* Semantic Colors - Info */
-    --memori-color-semantic-info-base: #3b82f6;
-    --memori-color-semantic-info-light: #eff6ff;
-
-    /* Backgrounds */
-    --memori-color-semantic-info-dark: #1d4ed8;
-
-    /* Text/Icons */
-
-    /* Neutral Colors */
-    --memori-color-neutral-white: #fff;
-    --memori-color-neutral-100: #fafafa;
-
-    /* Page Background */
-    --memori-color-neutral-200: #f5f5f5;
-
-    /* Component Background */
-    --memori-color-neutral-300: #f0f0f0;
-
-    /* Hover States */
-    --memori-color-neutral-400: #d9d9d9;
-
-    /* Borders */
-    --memori-color-neutral-500: #bfbfbf;
-
-    /* Disabled Text */
-    --memori-color-neutral-600: #8c8c8c;
-
-    /* Secondary Text */
-    --memori-color-neutral-700: #595959;
-
-    /* Primary Text */
-    --memori-color-neutral-800: #262626;
-
-    /* Headings */
-    --memori-color-neutral-900: #141414;
-
-    /* ============================================
-     TYPOGRAPHY TOKENS
-     ============================================ */
-
-    /* Font Family */
-    --memori-typography-font-family-base: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
-
-    /* Font Sizes */
-    --memori-typography-font-size-xs: 12px;
-    --memori-typography-font-size-sm: 14px;
-    --memori-typography-font-size-base: 16px;
-    --memori-typography-font-size-lg: 20px;
-    --memori-typography-font-size-xl: 24px;
-    --memori-typography-font-size-2xl: 32px;
-    --memori-typography-font-size-3xl: 48px;
-
-    /* Default font size alias (same as base) */
-    --memori-typography-font-size-default: var(--memori-typography-font-size-base);
-
-    /* Link Heights */
-    --memori-typography-line-height-tight: 1.2;
-    --memori-typography-line-height-normal: 1.5;
-    --memori-typography-line-height-relaxed: 1.75;
-
-    /* Font Weights */
-    --memori-typography-font-weight-regular: 400;
-    --memori-typography-font-weight-medium: 500;
-    --memori-typography-font-weight-semibold: 600;
-    --memori-typography-font-weight-bold: 700;
-
-    /* ============================================
-     SPACING TOKENS
-     ============================================ */
-
+    /* Spacing */
     --memori-spacing-xs: 4px;
     --memori-spacing-sm: 8px;
     --memori-spacing-md: 16px;
@@ -156,92 +57,54 @@
     --memori-spacing-2xl: 48px;
     --memori-spacing-3xl: 64px;
 
-    /* ============================================
-     BORDER RADIUS TOKENS
-     ============================================ */
+    /* Typography - Font Sizes */
+    --memori-text-size-small: 0.875rem; /* 14px - Small text, labels */
+    --memori-text-size-base: 1rem; /* 16px - Base body text (accessibility minimum) */
+    --memori-text-size-large: 1.125rem; /* 18px - Large body text, emphasized content */
+    --memori-text-size-heading: 1.25rem; /* 20px - Small headings, subheadings */
+    --memori-text-size-heading-large: 1.5rem; /* 24px - Medium headings */
+    --memori-text-size-heading-xlarge: 1.75rem; /* 28px - Large headings */
 
-    --memori-border-radius-sm: 8px;
+    /* Typography - Font Weights */
+    --memori-text-weight-normal: 400; /* Regular weight for body text */
+    --memori-text-weight-medium: 500; /* Medium weight for emphasis */
+    --memori-text-weight-semibold: 600; /* Semibold for headings and labels */
+    --memori-text-weight-bold: 700; /* Bold for strong emphasis */
 
-    /* Inputs, Checkboxes */
-    --memori-border-radius-md: 12px;
+    /* Typography - Line Heights */
+    --memori-text-line-tight: 1.2; /* Tight line height for headings */
+    --memori-text-line-normal: 1.5; /* Normal line height for body text */
+    --memori-text-line-relaxed: 1.75; /* Relaxed line height for long-form content */
 
-    /* Cards, Buttons */
-    --memori-border-radius-lg: 16px;
+    /* Border radius */
+    --memori-radius-selector: 1rem; /* Buttons, pills, selectors, interactive elements */
+    --memori-radius-field: 0.25rem; /* Input fields, form controls */
+    --memori-radius-box: 0.5rem; /* Cards, modals, containers */
 
-    /* Modals, Containers */
-    --memori-border-radius-full: 999px;
+    /* Base sizes */
+    --memori-size-selector: 0.25rem; /* Size for selector elements (checkboxes, radio buttons) */
+    --memori-size-field: 0.25rem; /* Size for form field elements */
 
-    /* Pills, Avatars */
+    /* Border size */
+    --memori-border: 1px; /* Default border width for borders */
 
-    /* Default border-radius alias (same as md) */
-    --memori-border-radius-default: var(--memori-border-radius-md);
-
-    /* ============================================
-    MODAL TOKENS
-    ============================================ */
-
-    /* Modal size variants - max-width values */
-    --memori-modal-size-sm: 400px;
-    --memori-modal-size-md: 600px;
-    --memori-modal-size-lg: 800px;
-    --memori-modal-size-xl: 1000px;
-    --memori-modal-size-full: 90vw;
-
-    /* Default modal size alias (same as md) */
-    --memori-modal-size-default: var(--memori-modal-size-md);
-
-    /* Responsive width variables for custom widths */
-    --memori-modal-width: 100%;
-    --memori-modal-width-md: 80%;
-    --memori-modal-width-lg: 1000px;
-    --memori-modal-width-xl: 1200px;
+    /* Effects */
+    --memori-depth: 1; /* Shadow depth/elevation level (for box-shadow calculations) */
+    --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
 }
 
-/* ============================================
-   DARK THEME
-   ============================================ */
-
+/* Dark theme */
 [data-theme='dark'],
 :root.dark {
-    /* Neutral Colors - Inverted for dark mode */
-    --memori-color-neutral-white: #141414;
-    --memori-color-neutral-100: #1a1a1a;
+    color-scheme: dark;
 
-    /* Page Background */
-    --memori-color-neutral-200: #262626;
+    /* Base colors - inverted for dark mode */
+    --memori-main-background: oklch(20% 0.02 240deg);
+    --memori-secondary-background: oklch(25% 0.03 240deg);
+    --memori-tertiary-background: oklch(30% 0.04 240deg);
+    --memori-text-color: #fff;
 
-    /* Component Background */
-    --memori-color-neutral-300: #2d2d2d;
-
-    /* Hover States */
-    --memori-color-neutral-400: #404040;
-
-    /* Borders */
-    --memori-color-neutral-500: #595959;
-
-    /* Disabled Text */
-    --memori-color-neutral-600: #8c8c8c;
-
-    /* Secondary Text */
-    --memori-color-neutral-700: #bfbfbf;
-
-    /* Primary Text */
-    --memori-color-neutral-800: #e5e5e5;
-
-    /* Headings */
-    --memori-color-neutral-900: #fafafa;
-
-    /* Semantic Colors - Adjusted for dark mode */
-    --memori-color-semantic-success-light: #162312;
-
-    /* Darker background for dark mode */
-    --memori-color-semantic-error-light: #2a1215;
-
-    /* Darker background for dark mode */
-    --memori-color-semantic-warning-light: #2b2111;
-
-    /* Darker background for dark mode */
-    --memori-color-semantic-info-light: #111b2e;
-
-    /* Darker background for dark mode */
+    /* Neutral colors - inverted for dark mode */
+    --memori-neutral: oklch(50% 0.05 240deg);
+    --memori-neutral-content: oklch(98% 0.01 240deg);
 }

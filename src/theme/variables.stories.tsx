@@ -22,9 +22,9 @@ const ColorSwatch = ({
         flexDirection: 'column',
         gap: '8px',
         padding: '16px',
-        border: '1px solid var(--color-neutral-400)',
-        borderRadius: 'var(--border-radius-md)',
-        backgroundColor: 'var(--color-neutral-white)',
+        border: '1px solid var(--memori-tertiary-background)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-main-background)',
       }}
     >
       <div
@@ -32,17 +32,17 @@ const ColorSwatch = ({
           width: '100%',
           height: '80px',
           backgroundColor: `var(${variable})`,
-          borderRadius: 'var(--border-radius-sm)',
-          border: '1px solid var(--color-neutral-400)',
+          borderRadius: 'var(--memori-radius-field)',
+          border: '1px solid var(--memori-tertiary-background)',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         }}
       />
       <div>
         <div
           style={{
-            fontSize: 'var(--typography-font-size-sm)',
-            fontWeight: 'var(--typography-font-weight-semibold)',
-            color: 'var(--color-neutral-800)',
+            fontSize: 'var(--memori-text-size-small)',
+            fontWeight: 'var(--memori-text-weight-semibold)',
+            color: 'var(--memori-text-color)',
             marginBottom: '4px',
           }}
         >
@@ -50,9 +50,9 @@ const ColorSwatch = ({
         </div>
         <div
           style={{
-            fontSize: 'var(--typography-font-size-xs)',
+            fontSize: 'var(--memori-text-size-small)',
             fontFamily: 'monospace',
-            color: 'var(--color-neutral-600)',
+            color: 'var(--memori-text-color)',
             marginBottom: '2px',
           }}
         >
@@ -60,8 +60,8 @@ const ColorSwatch = ({
         </div>
         <div
           style={{
-            fontSize: 'var(--typography-font-size-xs)',
-            color: 'var(--color-neutral-600)',
+            fontSize: 'var(--memori-text-size-small)',
+            color: 'var(--memori-text-color)',
           }}
         >
           {value}
@@ -69,8 +69,8 @@ const ColorSwatch = ({
         {description && (
           <div
             style={{
-              fontSize: 'var(--typography-font-size-xs)',
-              color: 'var(--color-neutral-500)',
+              fontSize: 'var(--memori-text-size-small)',
+              color: 'var(--memori-text-color)',
               marginTop: '4px',
               fontStyle: 'italic',
             }}
@@ -103,33 +103,33 @@ const TypographyExample = ({
   }
 
   if (property === 'font-size') {
-    style.fontFamily = 'var(--typography-font-family-base)'
-    style.lineHeight = 'var(--typography-line-height-normal)'
-    style.fontWeight = 'var(--typography-font-weight-regular)'
+    style.fontFamily = 'var(--memori-font-family)'
+    style.lineHeight = 'var(--memori-text-line-normal)'
+    style.fontWeight = 'var(--memori-text-weight-normal)'
   } else if (property === 'line-height') {
-    style.fontSize = 'var(--typography-font-size-base)'
-    style.fontFamily = 'var(--typography-font-family-base)'
-    style.fontWeight = 'var(--typography-font-weight-regular)'
+    style.fontSize = 'var(--memori-text-size-base)'
+    style.fontFamily = 'var(--memori-font-family)'
+    style.fontWeight = 'var(--memori-text-weight-normal)'
   } else if (property === 'font-weight') {
-    style.fontSize = 'var(--typography-font-size-base)'
-    style.fontFamily = 'var(--typography-font-family-base)'
-    style.lineHeight = 'var(--typography-line-height-normal)'
+    style.fontSize = 'var(--memori-text-size-base)'
+    style.fontFamily = 'var(--memori-font-family)'
+    style.lineHeight = 'var(--memori-text-line-normal)'
   }
 
   return (
     <div
       style={{
         padding: '16px',
-        border: '1px solid var(--color-neutral-400)',
-        borderRadius: 'var(--border-radius-md)',
-        backgroundColor: 'var(--color-neutral-white)',
+        border: '1px solid var(--memori-tertiary-background)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-main-background)',
       }}
     >
       <div
         style={{
-          fontSize: 'var(--typography-font-size-sm)',
-          fontWeight: 'var(--typography-font-weight-semibold)',
-          color: 'var(--color-neutral-800)',
+          fontSize: 'var(--memori-text-size-small)',
+          fontWeight: 'var(--memori-text-weight-semibold)',
+          color: 'var(--memori-text-color)',
           marginBottom: '8px',
         }}
       >
@@ -137,9 +137,9 @@ const TypographyExample = ({
       </div>
       <div
         style={{
-          fontSize: 'var(--typography-font-size-xs)',
+          fontSize: 'var(--memori-text-size-small)',
           fontFamily: 'monospace',
-          color: 'var(--color-neutral-600)',
+          color: 'var(--memori-text-color)',
           marginBottom: '12px',
         }}
       >
@@ -168,26 +168,26 @@ const SpacingExample = ({
         alignItems: 'center',
         gap: '16px',
         padding: '16px',
-        border: '1px solid var(--color-neutral-400)',
-        borderRadius: 'var(--border-radius-md)',
-        backgroundColor: 'var(--color-neutral-white)',
+        border: '1px solid var(--memori-tertiary-background)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-main-background)',
       }}
     >
       <div
         style={{
           minWidth: '120px',
-          fontSize: 'var(--typography-font-size-sm)',
-          fontWeight: 'var(--typography-font-weight-semibold)',
-          color: 'var(--color-neutral-800)',
+          fontSize: 'var(--memori-text-size-small)',
+          fontWeight: 'var(--memori-text-weight-semibold)',
+          color: 'var(--memori-text-color)',
         }}
       >
         {label}
       </div>
       <div
         style={{
-          fontSize: 'var(--typography-font-size-xs)',
+          fontSize: 'var(--memori-text-size-small)',
           fontFamily: 'monospace',
-          color: 'var(--color-neutral-600)',
+          color: 'var(--memori-text-color)',
           minWidth: '200px',
         }}
       >
@@ -205,20 +205,67 @@ const SpacingExample = ({
           style={{
             width: `var(${variable})`,
             height: '40px',
-            backgroundColor: 'var(--color-primary-500)',
-            borderRadius: 'var(--border-radius-sm)',
-            border: '1px solid var(--color-primary-700)',
+            backgroundColor: 'var(--memori-primary)',
+            borderRadius: 'var(--memori-radius-field)',
+            border: '1px solid var(--memori-primary)',
           }}
         />
         <div
           style={{
-            fontSize: 'var(--typography-font-size-xs)',
-            color: 'var(--color-neutral-600)',
+            fontSize: 'var(--memori-text-size-small)',
+            color: 'var(--memori-text-color)',
           }}
         >
           ← {value}
         </div>
       </div>
+    </div>
+  )
+}
+
+const VariableValueExample = ({
+  variable,
+  label,
+  children,
+}: {
+  variable: string
+  label: string
+  children?: React.ReactNode
+}) => {
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue(variable)
+    .trim()
+
+  return (
+    <div
+      style={{
+        padding: '16px',
+        border: '1px solid var(--memori-tertiary-background)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-main-background)',
+      }}
+    >
+      <div
+        style={{
+          fontSize: 'var(--memori-text-size-small)',
+          fontWeight: 'var(--memori-text-weight-semibold)',
+          color: 'var(--memori-text-color)',
+          marginBottom: '8px',
+        }}
+      >
+        {label}
+      </div>
+      <div
+        style={{
+          fontSize: 'var(--memori-text-size-small)',
+          fontFamily: 'monospace',
+          color: 'var(--memori-text-color)',
+          marginBottom: '12px',
+        }}
+      >
+        {variable}: {value}
+      </div>
+      {children}
     </div>
   )
 }
@@ -241,17 +288,17 @@ const BorderRadiusExample = ({
         flexDirection: 'column',
         gap: '12px',
         padding: '16px',
-        border: '1px solid var(--color-neutral-400)',
-        borderRadius: 'var(--border-radius-md)',
-        backgroundColor: 'var(--color-neutral-white)',
+        border: '1px solid var(--memori-tertiary-background)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-main-background)',
       }}
     >
       <div>
         <div
           style={{
-            fontSize: 'var(--typography-font-size-sm)',
-            fontWeight: 'var(--typography-font-weight-semibold)',
-            color: 'var(--color-neutral-800)',
+            fontSize: 'var(--memori-text-size-small)',
+            fontWeight: 'var(--memori-text-weight-semibold)',
+            color: 'var(--memori-text-color)',
             marginBottom: '4px',
           }}
         >
@@ -259,9 +306,9 @@ const BorderRadiusExample = ({
         </div>
         <div
           style={{
-            fontSize: 'var(--typography-font-size-xs)',
+            fontSize: 'var(--memori-text-size-small)',
             fontFamily: 'monospace',
-            color: 'var(--color-neutral-600)',
+            color: 'var(--memori-text-color)',
           }}
         >
           {variable}: {value}
@@ -278,15 +325,15 @@ const BorderRadiusExample = ({
           style={{
             width: '100px',
             height: '100px',
-            backgroundColor: 'var(--color-primary-500)',
+            backgroundColor: 'var(--memori-primary)',
             borderRadius: `var(${variable})`,
-            border: '2px solid var(--color-primary-700)',
+            border: '2px solid var(--memori-primary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--color-neutral-white)',
-            fontSize: 'var(--typography-font-size-xs)',
-            fontWeight: 'var(--typography-font-weight-semibold)',
+            color: 'var(--memori-primary-content)',
+            fontSize: 'var(--memori-text-size-small)',
+            fontWeight: 'var(--memori-text-weight-semibold)',
           }}
         >
           Box
@@ -295,15 +342,15 @@ const BorderRadiusExample = ({
           style={{
             width: '100px',
             height: '60px',
-            backgroundColor: 'var(--color-secondary-500)',
+            backgroundColor: 'var(--memori-secondary)',
             borderRadius: `var(${variable})`,
-            border: '2px solid var(--color-secondary-700)',
+            border: '2px solid var(--memori-secondary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--color-neutral-white)',
-            fontSize: 'var(--typography-font-size-xs)',
-            fontWeight: 'var(--typography-font-weight-semibold)',
+            color: 'var(--memori-secondary-content)',
+            fontSize: 'var(--memori-text-size-small)',
+            fontWeight: 'var(--memori-text-weight-semibold)',
           }}
         >
           Button
@@ -322,17 +369,17 @@ const Section = ({
 }) => (
   <div
     style={{
-      marginBottom: 'var(--spacing-3xl)',
+      marginBottom: 'var(--memori-spacing-3xl)',
     }}
   >
     <h2
       style={{
-        fontSize: 'var(--typography-font-size-2xl)',
-        fontWeight: 'var(--typography-font-weight-bold)',
-        color: 'var(--color-neutral-900)',
-        marginBottom: 'var(--spacing-lg)',
-        paddingBottom: 'var(--spacing-md)',
-        borderBottom: '2px solid var(--color-neutral-300)',
+        fontSize: 'var(--memori-text-size-heading-large)',
+        fontWeight: 'var(--memori-text-weight-bold)',
+        color: 'var(--memori-text-color)',
+        marginBottom: 'var(--memori-spacing-lg)',
+        paddingBottom: 'var(--memori-spacing-md)',
+        borderBottom: '2px solid var(--memori-tertiary-background)',
       }}
     >
       {title}
@@ -350,15 +397,15 @@ const Subsection = ({
 }) => (
   <div
     style={{
-      marginBottom: 'var(--spacing-xl)',
+      marginBottom: 'var(--memori-spacing-xl)',
     }}
   >
     <h3
       style={{
-        fontSize: 'var(--typography-font-size-xl)',
-        fontWeight: 'var(--typography-font-weight-semibold)',
-        color: 'var(--color-neutral-800)',
-        marginBottom: 'var(--spacing-md)',
+        fontSize: 'var(--memori-text-size-heading)',
+        fontWeight: 'var(--memori-text-weight-semibold)',
+        color: 'var(--memori-text-color)',
+        marginBottom: 'var(--memori-spacing-md)',
       }}
     >
       {title}
@@ -371,10 +418,10 @@ const ThemeVariables = () => {
   return (
     <div
       style={{
-        padding: 'var(--spacing-xl)',
-        backgroundColor: 'var(--color-neutral-100)',
+        padding: 'var(--memori-spacing-xl)',
+        backgroundColor: 'var(--memori-main-background)',
         minHeight: '100vh',
-        fontFamily: 'var(--typography-font-family-base)',
+        fontFamily: 'var(--memori-font-family)',
       }}
     >
       <div
@@ -385,10 +432,10 @@ const ThemeVariables = () => {
       >
         <h1
           style={{
-            fontSize: 'var(--typography-font-size-3xl)',
-            fontWeight: 'var(--typography-font-weight-bold)',
-            color: 'var(--color-neutral-900)',
-            marginBottom: 'var(--spacing-2xl)',
+            fontSize: 'var(--memori-text-size-heading-xlarge)',
+            fontWeight: 'var(--memori-text-weight-bold)',
+            color: 'var(--memori-text-color)',
+            marginBottom: 'var(--memori-spacing-2xl)',
           }}
         >
           Design Tokens - CSS Variables
@@ -396,22 +443,55 @@ const ThemeVariables = () => {
 
         {/* COLOR TOKENS */}
         <Section title="Color Tokens">
+          <Subsection title="Base Colors">
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: 'var(--memori-spacing-md)',
+              }}
+            >
+              <ColorSwatch
+                variable="--memori-main-background"
+                label="Main Background"
+                description="Main background color (white/light gray)"
+              />
+              <ColorSwatch
+                variable="--memori-secondary-background"
+                label="Secondary Background"
+                description="Secondary background, hover states"
+              />
+              <ColorSwatch
+                variable="--memori-tertiary-background"
+                label="Tertiary Background"
+                description="Tertiary background, borders"
+              />
+              <ColorSwatch
+                variable="--memori-text-color"
+                label="Text Color"
+                description="Text color on base backgrounds"
+              />
+            </div>
+          </Subsection>
+
           <Subsection title="Primary Colors">
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                gap: 'var(--spacing-md)',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: 'var(--memori-spacing-md)',
               }}
             >
-              {[100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
-                <ColorSwatch
-                  key={shade}
-                  variable={`--color-primary-${shade}`}
-                  label={`Primary ${shade}`}
-                  description={shade === 500 ? 'Base Brand Color' : undefined}
-                />
-              ))}
+              <ColorSwatch
+                variable="--memori-primary"
+                label="Primary"
+                description="Primary actions, links, highlights"
+              />
+              <ColorSwatch
+                variable="--memori-primary-content"
+                label="Primary Content"
+                description="Text/icon color on primary background"
+              />
             </div>
           </Subsection>
 
@@ -419,75 +499,40 @@ const ThemeVariables = () => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                gap: 'var(--spacing-md)',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: 'var(--memori-spacing-md)',
               }}
             >
-              {[100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
-                <ColorSwatch
-                  key={shade}
-                  variable={`--color-secondary-${shade}`}
-                  label={`Secondary ${shade}`}
-                  description={
-                    shade === 500 ? 'Base Secondary Color' : undefined
-                  }
-                />
-              ))}
+              <ColorSwatch
+                variable="--memori-secondary"
+                label="Secondary"
+                description="Secondary actions, accents"
+              />
+              <ColorSwatch
+                variable="--memori-secondary-content"
+                label="Secondary Content"
+                description="Text/icon color on secondary background"
+              />
             </div>
           </Subsection>
 
-          <Subsection title="Semantic Colors">
+          <Subsection title="Accent Colors">
             <div
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-                gap: 'var(--spacing-md)',
+                gap: 'var(--memori-spacing-md)',
               }}
             >
               <ColorSwatch
-                variable="--color-semantic-success-base"
-                label="Success Base"
-                description="Primary success color"
+                variable="--memori-accent"
+                label="Accent"
+                description="Accent elements, highlights"
               />
               <ColorSwatch
-                variable="--color-semantic-success-light"
-                label="Success Light"
-                description="Backgrounds"
-              />
-              <ColorSwatch
-                variable="--color-semantic-success-dark"
-                label="Success Dark"
-                description="Text/Icons"
-              />
-              <ColorSwatch
-                variable="--color-semantic-error-base"
-                label="Error Base"
-                description="Primary error color"
-              />
-              <ColorSwatch
-                variable="--color-semantic-error-light"
-                label="Error Light"
-                description="Backgrounds"
-              />
-              <ColorSwatch
-                variable="--color-semantic-error-dark"
-                label="Error Dark"
-                description="Text/Icons"
-              />
-              <ColorSwatch
-                variable="--color-semantic-warning-base"
-                label="Warning Base"
-                description="Primary warning color"
-              />
-              <ColorSwatch
-                variable="--color-semantic-warning-light"
-                label="Warning Light"
-                description="Backgrounds"
-              />
-              <ColorSwatch
-                variable="--color-semantic-warning-dark"
-                label="Warning Dark"
-                description="Text/Icons"
+                variable="--memori-accent-content"
+                label="Accent Content"
+                description="Text/icon color on accent background"
               />
             </div>
           </Subsection>
@@ -496,283 +541,73 @@ const ThemeVariables = () => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                gap: 'var(--spacing-md)',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: 'var(--memori-spacing-md)',
               }}
             >
               <ColorSwatch
-                variable="--color-neutral-white"
-                label="White"
-                description="Pure white"
+                variable="--memori-neutral"
+                label="Neutral"
+                description="Neutral elements, dividers"
               />
-              {[100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
-                <ColorSwatch
-                  key={shade}
-                  variable={`--color-neutral-${shade}`}
-                  label={`Neutral ${shade}`}
-                  description={
-                    shade === 100
-                      ? 'Page Background'
-                      : shade === 200
-                        ? 'Component Background'
-                        : shade === 300
-                          ? 'Hover States'
-                          : shade === 400
-                            ? 'Borders'
-                            : shade === 500
-                              ? 'Disabled Text'
-                              : shade === 600
-                                ? 'Secondary Text'
-                                : shade === 700
-                                  ? 'Primary Text'
-                                  : shade === 800
-                                    ? 'Headings'
-                                    : undefined
-                  }
-                />
-              ))}
-            </div>
-          </Subsection>
-        </Section>
-
-        {/* TYPOGRAPHY TOKENS */}
-        <Section title="Typography Tokens">
-          <Subsection title="Font Family">
-            <div
-              style={{
-                padding: '16px',
-                border: '1px solid var(--color-neutral-400)',
-                borderRadius: 'var(--border-radius-md)',
-                backgroundColor: 'var(--color-neutral-white)',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 'var(--typography-font-size-sm)',
-                  fontWeight: 'var(--typography-font-weight-semibold)',
-                  color: 'var(--color-neutral-800)',
-                  marginBottom: '8px',
-                }}
-              >
-                Font Family
-              </div>
-              <div
-                style={{
-                  fontSize: 'var(--typography-font-size-xs)',
-                  fontFamily: 'monospace',
-                  color: 'var(--color-neutral-600)',
-                  marginBottom: '12px',
-                }}
-              >
-                --typography-font-family-base
-              </div>
-              <div
-                style={{
-                  fontSize: 'var(--typography-font-size-lg)',
-                  fontFamily: 'var(--typography-font-family-base)',
-                  lineHeight: 'var(--typography-line-height-normal)',
-                }}
-              >
-                The quick brown fox jumps over the lazy dog
-              </div>
-              <div
-                style={{
-                  fontSize: 'var(--typography-font-size-lg)',
-                  fontFamily: 'var(--typography-font-family-base)',
-                  lineHeight: 'var(--typography-line-height-normal)',
-                  fontWeight: 'var(--typography-font-weight-bold)',
-                  marginTop: '8px',
-                }}
-              >
-                THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
-              </div>
-              <div
-                style={{
-                  fontSize: 'var(--typography-font-size-lg)',
-                  fontFamily: 'var(--typography-font-family-base)',
-                  lineHeight: 'var(--typography-line-height-normal)',
-                  fontStyle: 'italic',
-                  marginTop: '8px',
-                }}
-              >
-                The quick brown fox jumps over the lazy dog
-              </div>
+              <ColorSwatch
+                variable="--memori-neutral-content"
+                label="Neutral Content"
+                description="Text/icon color on neutral background"
+              />
             </div>
           </Subsection>
 
-          <Subsection title="Font Sizes">
+          <Subsection title="Semantic Colors">
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: 'var(--spacing-md)',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: 'var(--memori-spacing-md)',
               }}
             >
-              <TypographyExample
-                variable="--typography-font-size-xs"
-                label="Extra Small (xs)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-info"
+                label="Info"
+                description="Informational messages, badges"
               />
-              <TypographyExample
-                variable="--typography-font-size-sm"
-                label="Small (sm)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-info-content"
+                label="Info Content"
+                description="Text/icon color on info background"
               />
-              <TypographyExample
-                variable="--typography-font-size-base"
-                label="Base"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-success"
+                label="Success"
+                description="Success messages, positive states"
               />
-              <TypographyExample
-                variable="--typography-font-size-lg"
-                label="Large (lg)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-success-content"
+                label="Success Content"
+                description="Text/icon color on success background"
               />
-              <TypographyExample
-                variable="--typography-font-size-xl"
-                label="Extra Large (xl)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-warning"
+                label="Warning"
+                description="Warning messages, caution states"
               />
-              <TypographyExample
-                variable="--typography-font-size-2xl"
-                label="2X Large (2xl)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-warning-content"
+                label="Warning Content"
+                description="Text/icon color on warning background"
               />
-              <TypographyExample
-                variable="--typography-font-size-3xl"
-                label="3X Large (3xl)"
-                property="font-size"
+              <ColorSwatch
+                variable="--memori-error"
+                label="Error"
+                description="Error messages, destructive actions"
+              />
+              <ColorSwatch
+                variable="--memori-error-content"
+                label="Error Content"
+                description="Text/icon color on error background"
               />
             </div>
           </Subsection>
-
-          <Subsection title="Line Heights">
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: 'var(--spacing-md)',
-              }}
-            >
-              <TypographyExample
-                variable="--typography-line-height-tight"
-                label="Tight"
-                property="line-height"
-                exampleText="This is a paragraph with tight line height. It makes text more compact and is useful for headings or when space is limited."
-              />
-              <TypographyExample
-                variable="--typography-line-height-normal"
-                label="Normal"
-                property="line-height"
-                exampleText="This is a paragraph with normal line height. It provides comfortable reading for body text and is the default for most content."
-              />
-              <TypographyExample
-                variable="--typography-line-height-relaxed"
-                label="Relaxed"
-                property="line-height"
-                exampleText="This is a paragraph with relaxed line height. It provides more breathing room between lines, making text easier to read for longer content."
-              />
-            </div>
-          </Subsection>
-
-          <Subsection title="Font Weights">
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: 'var(--spacing-md)',
-              }}
-            >
-              <TypographyExample
-                variable="--typography-font-weight-regular"
-                label="Regular (400)"
-                property="font-weight"
-              />
-              <TypographyExample
-                variable="--typography-font-weight-medium"
-                label="Medium (500)"
-                property="font-weight"
-              />
-              <TypographyExample
-                variable="--typography-font-weight-semibold"
-                label="Semibold (600)"
-                property="font-weight"
-              />
-              <TypographyExample
-                variable="--typography-font-weight-bold"
-                label="Bold (700)"
-                property="font-weight"
-              />
-            </div>
-          </Subsection>
-        </Section>
-
-        {/* SPACING TOKENS */}
-        <Section title="Spacing Tokens">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--spacing-md)',
-            }}
-          >
-            <SpacingExample
-              variable="--spacing-xs"
-              label="Extra Small (xs)"
-            />
-            <SpacingExample
-              variable="--spacing-sm"
-              label="Small (sm)"
-            />
-            <SpacingExample
-              variable="--spacing-md"
-              label="Medium (md)"
-            />
-            <SpacingExample
-              variable="--spacing-lg"
-              label="Large (lg)"
-            />
-            <SpacingExample
-              variable="--spacing-xl"
-              label="Extra Large (xl)"
-            />
-            <SpacingExample
-              variable="--spacing-2xl"
-              label="2X Large (2xl)"
-            />
-            <SpacingExample
-              variable="--spacing-3xl"
-              label="3X Large (3xl)"
-            />
-          </div>
-        </Section>
-
-        {/* BORDER RADIUS TOKENS */}
-        <Section title="Border Radius Tokens">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-              gap: 'var(--spacing-md)',
-            }}
-          >
-            <BorderRadiusExample
-              variable="--border-radius-sm"
-              label="Small (sm) - Inputs, Checkboxes"
-            />
-            <BorderRadiusExample
-              variable="--border-radius-md"
-              label="Medium (md) - Cards, Buttons"
-            />
-            <BorderRadiusExample
-              variable="--border-radius-lg"
-              label="Large (lg) - Modals, Containers"
-            />
-            <BorderRadiusExample
-              variable="--border-radius-full"
-              label="Full - Pills, Avatars"
-            />
-          </div>
         </Section>
       </div>
     </div>

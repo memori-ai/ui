@@ -42,6 +42,10 @@ export function useTheme() {
     if (theme === 'dark') {
       root.setAttribute('data-theme', 'dark')
       root.classList.add('dark')
+    } else {
+      // Ensure light theme is explicitly set (remove any dark theme remnants)
+      root.removeAttribute('data-theme')
+      root.classList.remove('dark')
     }
 
     // Save to localStorage

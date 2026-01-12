@@ -20,6 +20,18 @@ const config: StorybookConfig = {
     config.plugins = await withoutVitePlugins(config.plugins, [
       'vite-plugin-dts',
     ])
+
+    // Also filter out the plugin manually as a fallback
+    if (config.plugins) {
+      config.plugins = config.plugins.filter(
+        (plugin: any) =>
+          !plugin ||
+          (typeof plugin === 'object' &&
+            plugin.name !== 'vite-plugin-dts' &&
+            plugin.name !== 'dts'),
+      )
+    }
+
     return config
   },
 }

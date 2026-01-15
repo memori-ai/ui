@@ -63,6 +63,10 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
       <div
         style={{
           padding: 'var(--memori-spacing-xl)',
+          paddingLeft:
+            'clamp(var(--memori-spacing-sm), 4vw, var(--memori-spacing-xl))',
+          paddingRight:
+            'clamp(var(--memori-spacing-sm), 4vw, var(--memori-spacing-xl))',
           backgroundColor: 'var(--memori-main-background)',
           minHeight: '100vh',
           fontFamily: 'var(--memori-font-family)',
@@ -201,7 +205,8 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns:
+                  'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
                 gap: 'var(--memori-spacing-lg)',
               }}
             >
@@ -210,9 +215,11 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'var(--memori-spacing-md)',
+                  width: '100%',
+                  minWidth: 0,
                 }}
               >
-                <div>
+                <div style={{ width: '100%', minWidth: 0 }}>
                   <label
                     style={{
                       display: 'block',
@@ -230,7 +237,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     fullWidth
                   />
                 </div>
-                <div>
+                <div style={{ width: '100%', minWidth: 0 }}>
                   <label
                     style={{
                       display: 'block',
@@ -247,7 +254,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     fullWidth
                   />
                 </div>
-                <div>
+                <div style={{ width: '100%', minWidth: 0 }}>
                   <label
                     style={{
                       display: 'block',
@@ -271,27 +278,35 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'var(--memori-spacing-md)',
+                  width: '100%',
+                  minWidth: 0,
                 }}
               >
-                <SelectBox
-                  label="Select Box"
-                  options={selectOptions}
-                  value={selectValue}
-                  onChange={setSelectValue}
-                  placeholder="Choose an option"
-                />
-                <SelectBox
-                  label="Disabled Select"
-                  options={selectOptions}
-                  disabled
-                  placeholder="Disabled select"
-                />
-                <SelectBox
-                  label="Error Select"
-                  options={selectOptions}
-                  error
-                  placeholder="Select with error"
-                />
+                <div style={{ width: '100%', minWidth: 0 }}>
+                  <SelectBox
+                    label="Select Box"
+                    options={selectOptions}
+                    value={selectValue}
+                    onChange={setSelectValue}
+                    placeholder="Choose an option"
+                  />
+                </div>
+                <div style={{ width: '100%', minWidth: 0 }}>
+                  <SelectBox
+                    label="Disabled Select"
+                    options={selectOptions}
+                    disabled
+                    placeholder="Disabled select"
+                  />
+                </div>
+                <div style={{ width: '100%', minWidth: 0 }}>
+                  <SelectBox
+                    label="Error Select"
+                    options={selectOptions}
+                    error
+                    placeholder="Select with error"
+                  />
+                </div>
               </div>
 
               <div
@@ -413,7 +428,8 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gridTemplateColumns:
+                'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: 'var(--memori-spacing-lg)',
             }}
           >
@@ -607,7 +623,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 This modal contains form elements and demonstrates how
                 components work together.
               </p>
-              <div>
+              <div style={{ width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <label
                   style={{
                     display: 'block',
@@ -671,7 +687,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 Drawers are great for secondary navigation, filters, or forms
                 that don't need to interrupt the user's workflow.
               </p>
-              <div>
+              <div style={{ width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <label
                   style={{
                     display: 'block',
@@ -690,7 +706,8 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               <div style={{ marginTop: 'var(--memori-spacing-md)' }}>
                 <Checkbox
                   label="Remember my preferences"
-                  defaultChecked
+                  checked={checkboxChecked}
+                  onChange={newChecked => setCheckboxChecked(newChecked)}
                 />
               </div>
             </div>

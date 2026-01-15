@@ -1,6 +1,7 @@
 .memori-input {
     display: inline-flex;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     border: 1px solid var(--memori-tertiary-background);
     border-radius: var(--memori-radius-field);

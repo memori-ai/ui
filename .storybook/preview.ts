@@ -1,9 +1,61 @@
 import type { Preview } from '@storybook/react-vite'
+import type { Decorator } from '@storybook/react'
+import React from 'react'
 
 import '../src/styles.css'
 
+// Decorator to sync Storybook background control with component theme
+const withTheme: Decorator = (Story, context) => {
+  // Apply theme based on Storybook background control
+  const background =
+    context.globals.backgrounds?.value ||
+    context.parameters.backgrounds?.default ||
+    'light'
+  const root = document.documentElement
+
+  // Remove both theme attributes/classes
+  root.removeAttribute('data-theme')
+  root.classList.remove('dark')
+
+  // Apply dark theme if background is dark
+  if (background === 'dark') {
+    root.setAttribute('data-theme', 'dark')
+    root.classList.add('dark')
+  }
+
+  return React.createElement(Story)
+}
+
+const style = document.createElement('style')
+style.textContent = `
+  :root {
+    --memori-label-color: #141414;
+  }
+  :root.dark {
+    --memori-label-color: #fff;
+  }
+
+  body {
+    color: var(--memori-label-color);
+  }
+`
+document.head.appendChild(style)
+
 const preview: Preview = {
+  initialGlobals: {
+    backgrounds: {
+      value: 'light',
+    },
+  },
   parameters: {
+    backgrounds: {
+      options: {
+        // 👇 Default options
+        dark: { name: 'Dark', value: '#333' },
+        light: { name: 'Light', value: '#F7F9F2' },
+      },
+      default: 'light',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -18,6 +70,7 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+  decorators: [withTheme],
 }
 
 export default preview

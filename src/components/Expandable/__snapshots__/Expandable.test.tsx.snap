@@ -6,7 +6,7 @@ exports[`renders Expandable unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
+      class="memori-expandable__inner"
       style="max-height: 9999px;"
     >
       Test
@@ -21,8 +21,8 @@ exports[`renders Expandable with JSX markup unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       <h1>
         Lorem ipsum
@@ -49,11 +49,6 @@ exports[`renders Expandable with JSX markup unchanged 1`] = `
         Suspendisse a sodales nulla, sed semper nisi.
       </p>
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;
@@ -64,16 +59,11 @@ exports[`renders Expandable with custom button CSS class unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded test"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;
@@ -84,16 +74,11 @@ exports[`renders Expandable with custom collapse symbol unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
+      class="memori-expandable__inner"
       style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      test collapse
-    </button>
   </div>
 </div>
 `;
@@ -104,16 +89,11 @@ exports[`renders Expandable with custom expand symbol unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      test
-    </button>
   </div>
 </div>
 `;
@@ -124,16 +104,11 @@ exports[`renders Expandable with custom inner CSS class unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner test"
-      style="max-height: 16px;"
+      class="memori-expandable__inner test"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;
@@ -144,16 +119,11 @@ exports[`renders Expandable with custom wrapper CSS class unchanged 1`] = `
     class="memori-expandable test"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;
@@ -164,16 +134,11 @@ exports[`renders Expandable with long text unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 16px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;
@@ -184,16 +149,11 @@ exports[`renders Expandable with multiple rows unchanged 1`] = `
     class="memori-expandable"
   >
     <div
-      class="memori-expandable--inner"
-      style="max-height: 48px;"
+      class="memori-expandable__inner"
+      style="max-height: 9999px;"
     >
       Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi. Suspendisse a sodales nulla, sed semper nisi.
     </div>
-    <button
-      class="memori-button memori-button--ghost memori-button--rounded"
-    >
-      ...
-    </button>
   </div>
 </div>
 `;

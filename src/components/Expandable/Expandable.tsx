@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Button from '../Button/Button'
+import Button from '../Button'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { truncateMessage, MAX_MSG_CHARS, MAX_MSG_WORDS } from './helpers'
 
-import './Expandable.css'
+import './styles.css'
 
 export interface Props {
   rows?: number
@@ -85,7 +85,7 @@ const Expandable = ({
     <div className={cx('memori-expandable', className)}>
       <div
         ref={ref}
-        className={cx('memori-expandable--inner', innerClassName)}
+        className={cx('memori-expandable__inner', innerClassName)}
         style={{
           maxHeight:
             expanded || !needsExpanding || mode === 'characters'
@@ -97,8 +97,7 @@ const Expandable = ({
       </div>
       {needsExpanding && !expanded && (
         <Button
-          ghost
-          padded={false}
+          variant="ghost"
           className={btnClassName}
           onClick={() => setExpanded(true)}
         >
@@ -107,8 +106,7 @@ const Expandable = ({
       )}
       {needsExpanding && expanded && (
         <Button
-          ghost
-          padded={false}
+          variant="ghost"
           className={btnClassName}
           onClick={() => setExpanded(false)}
         >

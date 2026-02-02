@@ -1,0 +1,110 @@
+/**
+ * Design Tokens - CSS Variables
+ * 
+ * Simplified design tokens with key variables only.
+ */
+
+:root {
+    /* Theme settings */
+    color-scheme: light; /* color of browser-provided UI */
+
+    --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
+
+    /* Base colors - used for backgrounds and surfaces */
+    --memori-main-background: oklch(98% 0.02 240deg); /* Main background color (white) */
+    --memori-secondary-background: oklch(95% 0.03 240deg); /* Secondary background, hover states (light gray) */
+    --memori-tertiary-background: oklch(92% 0.04 240deg); /* Tertiary background, borders (dark gray) */
+    --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */
+
+    /* Primary colors - main brand color */
+    --memori-primary: oklch(48% 0.19 297deg); /* Primary actions, links, highlights */
+    --memori-primary-content: oklch(98% 0.01 240deg); /* Text/icon color on primary background */
+
+    /* Secondary colors - secondary brand color */
+    --memori-secondary: oklch(70% 0.15 200deg); /* Secondary actions, accents */
+    --memori-secondary-content: oklch(98% 0.01 200deg); /* Text/icon color on secondary background */
+
+    /* Accent colors - highlights and emphasis */
+    --memori-accent: oklch(65% 0.25 160deg); /* Accent elements, highlights */
+    --memori-accent-content: oklch(98% 0.01 160deg); /* Text/icon color on accent background */
+
+    /* Neutral colors - grays and muted tones */
+    --memori-neutral: oklch(50% 0.05 240deg); /* Neutral elements, dividers */
+    --memori-neutral-content: oklch(98% 0.01 240deg); /* Text/icon color on neutral background */
+
+    /* Semantic colors - Info */
+    --memori-info: oklch(70% 0.2 220deg); /* Informational messages, badges */
+    --memori-info-content: oklch(98% 0.01 220deg); /* Text/icon color on info background */
+
+    /* Semantic colors - Success */
+    --memori-success: oklch(65% 0.25 140deg); /* Success messages, positive states */
+    --memori-success-content: oklch(98% 0.01 140deg); /* Text/icon color on success background */
+
+    /* Semantic colors - Warning */
+    --memori-warning: oklch(80% 0.25 80deg); /* Warning messages, caution states */
+    --memori-warning-content: oklch(20% 0.05 80deg); /* Text/icon color on warning background */
+
+    /* Semantic colors - Error */
+    --memori-error: oklch(65% 0.3 30deg); /* Error messages, destructive actions */
+    --memori-error-content: oklch(98% 0.01 30deg); /* Text/icon color on error background */
+
+    /* Spacing */
+    --memori-spacing-xs: 4px;
+    --memori-spacing-sm: 8px;
+    --memori-spacing-md: 16px;
+    --memori-spacing-lg: 24px;
+    --memori-spacing-xl: 32px;
+    --memori-spacing-2xl: 48px;
+    --memori-spacing-3xl: 64px;
+
+    /* Typography - Font Sizes */
+    --memori-text-size-small: 0.875rem; /* 14px - Small text, labels */
+    --memori-text-size-base: 1rem; /* 16px - Base body text (accessibility minimum) */
+    --memori-text-size-large: 1.125rem; /* 18px - Large body text, emphasized content */
+    --memori-text-size-heading: 1.25rem; /* 20px - Small headings, subheadings */
+    --memori-text-size-heading-large: 1.5rem; /* 24px - Medium headings */
+    --memori-text-size-heading-xlarge: 1.75rem; /* 28px - Large headings */
+
+    /* Typography - Font Weights */
+    --memori-text-weight-normal: 400; /* Regular weight for body text */
+    --memori-text-weight-medium: 500; /* Medium weight for emphasis */
+    --memori-text-weight-semibold: 600; /* Semibold for headings and labels */
+    --memori-text-weight-bold: 700; /* Bold for strong emphasis */
+
+    /* Typography - Line Heights */
+    --memori-text-line-tight: 1.2; /* Tight line height for headings */
+    --memori-text-line-normal: 1.5; /* Normal line height for body text */
+    --memori-text-line-relaxed: 1.75; /* Relaxed line height for long-form content */
+
+    /* Border radius */
+    --memori-radius-selector: 1rem; /* Buttons, pills, selectors, interactive elements */
+    --memori-radius-field: 0.25rem; /* Input fields, form controls */
+    --memori-radius-box: 0.5rem; /* Cards, modals, containers */
+
+    /* Base sizes */
+    --memori-size-selector: 0.25rem; /* Size for selector elements (checkboxes, radio buttons) */
+    --memori-size-field: 0.25rem; /* Size for form field elements */
+
+    /* Border size */
+    --memori-border: 1px; /* Default border width for borders */
+
+    /* Effects */
+    --memori-depth: 1; /* Shadow depth/elevation level (for box-shadow calculations) */
+    --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
+}
+
+/* Dark theme */
+[data-theme='dark'],
+:root.dark {
+    color-scheme: dark;
+
+    /* Base colors - inverted for dark mode */
+    --memori-main-background: oklch(20% 0.02 240deg);
+    --memori-secondary-background: oklch(25% 0.03 240deg);
+    --memori-tertiary-background: oklch(30% 0.04 240deg);
+    --memori-text-color: #fff;
+
+    /* Neutral colors - inverted for dark mode */
+    --memori-neutral: oklch(50% 0.05 240deg);
+    --memori-neutral-content: oklch(98% 0.01 240deg);
+}

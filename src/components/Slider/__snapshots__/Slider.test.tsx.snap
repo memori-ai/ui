@@ -3,87 +3,87 @@
 exports[`Slider > renders Slider unchanged 1`] = `
 <div>
   <div
-    class="memori--slider-container"
+    class="memori-slider"
     style="--percentage: 50%;"
   >
     <div
-      class="memori--slider-header"
+      class="memori-slider__header"
     >
       <div
-        class="memori--slider-value"
+        class="memori-slider__value"
       >
         50
       </div>
     </div>
     <div
-      class="memori--slider-track-container"
+      class="memori-slider__track-container"
     >
       <div
-        class="memori--slider-track"
+        class="memori-slider__track"
       >
         <div
-          class="memori--slider-track-fill"
+          class="memori-slider__track-fill"
         />
       </div>
       <div
-        class="memori--slider-marks"
+        class="memori-slider__marks"
       >
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             0
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             25
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             50
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             75
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             100
           </span>
@@ -93,8 +93,7 @@ exports[`Slider > renders Slider unchanged 1`] = `
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="50"
-        class="memori--slider-thumb"
-        data-headlessui-state=""
+        class="memori-slider__thumb"
         role="slider"
         tabindex="0"
       />
@@ -106,87 +105,87 @@ exports[`Slider > renders Slider unchanged 1`] = `
 exports[`Slider > renders Slider with different step unchanged 1`] = `
 <div>
   <div
-    class="memori--slider-container"
+    class="memori-slider"
     style="--percentage: 50%;"
   >
     <div
-      class="memori--slider-header"
+      class="memori-slider__header"
     >
       <div
-        class="memori--slider-value"
+        class="memori-slider__value"
       >
         50
       </div>
     </div>
     <div
-      class="memori--slider-track-container"
+      class="memori-slider__track-container"
     >
       <div
-        class="memori--slider-track"
+        class="memori-slider__track"
       >
         <div
-          class="memori--slider-track-fill"
+          class="memori-slider__track-fill"
         />
       </div>
       <div
-        class="memori--slider-marks"
+        class="memori-slider__marks"
       >
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             0
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             25
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             50
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             75
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             100
           </span>
@@ -196,8 +195,7 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="50"
-        class="memori--slider-thumb"
-        data-headlessui-state=""
+        class="memori-slider__thumb"
         role="slider"
         tabindex="0"
       />
@@ -209,87 +207,87 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
 exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
 <div>
   <div
-    class="memori--slider-container memori--slider-disabled"
+    class="memori-slider memori-slider--disabled"
     style="--percentage: 50%;"
   >
     <div
-      class="memori--slider-header"
+      class="memori-slider__header"
     >
       <div
-        class="memori--slider-value"
+        class="memori-slider__value"
       >
         50
       </div>
     </div>
     <div
-      class="memori--slider-track-container"
+      class="memori-slider__track-container"
     >
       <div
-        class="memori--slider-track"
+        class="memori-slider__track"
       >
         <div
-          class="memori--slider-track-fill"
+          class="memori-slider__track-fill"
         />
       </div>
       <div
-        class="memori--slider-marks"
+        class="memori-slider__marks"
       >
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             0
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             25
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             50
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             75
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             100
           </span>
@@ -299,9 +297,7 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="50"
-        class="memori--slider-thumb"
-        data-disabled=""
-        data-headlessui-state="disabled"
+        class="memori-slider__thumb"
         role="slider"
         tabindex="-1"
       />
@@ -313,92 +309,92 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
 exports[`Slider > renders Slider with label prop unchanged 1`] = `
 <div>
   <div
-    class="memori--slider-container"
+    class="memori-slider"
     style="--percentage: 50%;"
   >
     <div
-      class="memori--slider-header"
+      class="memori-slider__header"
     >
       <div
-        class="memori--slider-label"
+        class="memori-slider__label"
       >
         Test
       </div>
       <div
-        class="memori--slider-value"
+        class="memori-slider__value"
       >
         50
       </div>
     </div>
     <div
-      class="memori--slider-track-container"
+      class="memori-slider__track-container"
     >
       <div
-        class="memori--slider-track"
+        class="memori-slider__track"
       >
         <div
-          class="memori--slider-track-fill"
+          class="memori-slider__track-fill"
         />
       </div>
       <div
-        class="memori--slider-marks"
+        class="memori-slider__marks"
       >
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             0
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             25
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             50
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             75
           </span>
         </div>
         <div
-          class="memori--slider-mark"
+          class="memori-slider__mark"
         >
           <div
-            class="memori--slider-mark-line"
+            class="memori-slider__mark-line"
           />
           <span
-            class="memori--slider-mark-value"
+            class="memori-slider__mark-value"
           >
             100
           </span>
@@ -408,8 +404,7 @@ exports[`Slider > renders Slider with label prop unchanged 1`] = `
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="50"
-        class="memori--slider-thumb"
-        data-headlessui-state=""
+        class="memori-slider__thumb"
         role="slider"
         tabindex="0"
       />

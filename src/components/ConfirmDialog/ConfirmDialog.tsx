@@ -1,72 +1,64 @@
 import React from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import Button from '../Button/Button'
+import { Modal } from '../Modal/Modal'
+import Button from '../Button'
 
-import './ConfirmDialog.css'
-
-export interface Props {
+export interface ConfirmDialogProps {
   isOpen: boolean
   onClose: () => void
   onConfirm: () => void
   title: string
-  message: string
-  confirmText: string
-  cancelText: string
+  message: React.ReactNode
+  confirmText?: string
+  cancelText?: string
+  loading?: boolean
 }
 
-// Custom confirm dialog component
-const ConfirmDialog: React.FC<Props> = ({
+const ConfirmDialog = ({
   isOpen,
   onClose,
   onConfirm,
   title,
   message,
-  confirmText,
-  cancelText,
-}) => {
-  return (
-    <Transition
-      appear
-      show={isOpen}
-      as={React.Fragment}
-    >
-      <Dialog
-        as="div"
-        className="memori-confirm-dialog"
-        onClose={onClose}
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  loading = false,
+}: ConfirmDialogProps) => {
+  const handleOpenChange = (open: boolean) => {
+    if (!open) onClose()
+  }
+
+  const footer = (
+    <>
+      <Button
+        variant="outline"
+        onClick={onClose}
+        disabled={loading}
       >
-        <div className="memori-confirm-dialog--backdrop" />
-        <div className="memori-confirm-dialog--container">
-          <Transition.Child
-            as={React.Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <Dialog.Panel className="memori-confirm-dialog--panel">
-              <Dialog.Title className="memori-confirm-dialog--title">
-                {title}
-              </Dialog.Title>
-              <Dialog.Description className="memori-confirm-dialog--message">
-                {message}
-              </Dialog.Description>
-              <div className="memori-confirm-dialog--actions">
-                <Button onClick={onClose}>{cancelText}</Button>
-                <Button
-                  primary
-                  onClick={onConfirm}
-                >
-                  {confirmText}
-                </Button>
-              </div>
-            </Dialog.Panel>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition>
+        {cancelText}
+      </Button>
+      <Button
+        variant="primary"
+        onClick={onConfirm}
+        loading={loading}
+      >
+        {confirmText}
+      </Button>
+    </>
+  )
+
+  return (
+    <Modal
+      open={isOpen}
+      onOpenChange={handleOpenChange}
+      title={title}
+      size="sm"
+      footer={footer}
+      closable={!loading}
+      closeOnEsc={!loading}
+      closeOnOverlayClick={!loading}
+    >
+      <div>{message}</div>
+    </Modal>
   )
 }
 

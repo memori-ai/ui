@@ -1,124 +1,434 @@
-import type { FC, JSX } from 'react'
 import React from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import Spin from '../Spin/Spin'
-import Button from '../Button/Button'
-import Close from '../../icons/Close'
-import { useTranslation } from 'react-i18next'
+import { Dialog } from '@base-ui/react/dialog'
+import type { DialogRootProps } from '@base-ui/react/dialog'
+import type { InteractionType } from '@base-ui/utils/useEnhancedClickHandler'
 import cx from 'classnames'
+import Spin from '../Spin/Spin'
+import { X as Close } from 'lucide-react'
+import './styles.css'
 
-import './Modal.css'
-
-export interface Props {
+export interface ModalProps extends Omit<
+  DialogRootProps,
+  'className' | 'style'
+> {
+  /**
+   * Whether the modal is open
+   * @default false
+   */
   open?: boolean
-  onClose: (value: boolean) => void
-  className?: string
-  title?: string | JSX.Element | React.ReactNode
-  description?: string | JSX.Element | React.ReactNode
-  children?: JSX.Element | React.ReactNode
-  footer?: JSX.Element | React.ReactNode
+
+  /**
+   * Callback fired when the modal requests to close
+   * @param open - The new open state
+   */
+  onOpenChange?: (open: boolean) => void
+
+  /**
+   * Modal title displayed at the top
+   */
+  title?: React.ReactNode
+
+  /**
+   * Modal description/subtitle displayed below the title
+   */
+  description?: React.ReactNode
+
+  /**
+   * Main content of the modal
+   */
+  children?: React.ReactNode
+
+  /**
+   * Footer content (typically action buttons)
+   */
+  footer?: React.ReactNode
+
+  /**
+   * Shows a loading spinner and disables interaction
+   * @default false
+   */
   loading?: boolean
+
+  /**
+   * Whether to show the close button
+   * @default true
+   */
   closable?: boolean
-  width?: string
-  widthMd?: string
+
+  /**
+   * Whether clicking the backdrop should close the modal
+   * @default true
+   */
+  closeOnOverlayClick?: boolean
+
+  /**
+   * Whether pressing Escape should close the modal
+   * @default true
+   */
+  closeOnEsc?: boolean
+
+  /**
+   * Modal size variant
+   * @default 'md'
+   */
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
+
+  /**
+   * Custom width (overrides size)
+   * Applied on mobile and up
+   */
+  width?: string | number
+
+  /**
+   * Custom width for medium screens and up (≥768px)
+   */
+  widthMd?: string | number
+
+  /**
+   * Custom width for large screens and up (≥1024px)
+   */
+  widthLg?: string | number
+
+  /**
+   * Whether the modal is centered vertically and horizontally
+   * @default true
+   */
+  centered?: boolean
+
+  /**
+   * Determines if the dialog enters a modal state when open
+   * - `true`: user interaction is limited to just the dialog
+   * - `false`: user interaction with the rest of the document is allowed
+   * - `'trap-focus'`: focus is trapped but scroll and pointer interactions remain enabled
+   * @default true
+   */
+  modal?: boolean | 'trap-focus'
+
+  /**
+   * Determines whether the dialog should close on outside clicks
+   * Alias for `!closeOnOverlayClick`
+   * @default false
+   */
+  disablePointerDismissal?: boolean
+
+  /**
+   * Element to focus when the dialog opens
+   * - `false`: Do not move focus
+   * - `true`: Move focus based on default behavior
+   * - `RefObject`: Move focus to the ref element
+   * - `function`: Called with interaction type, return element to focus
+   */
+  initialFocus?:
+    | boolean
+    | React.RefObject<HTMLElement | null>
+    | ((openType: InteractionType) => boolean | HTMLElement | null | void)
+
+  /**
+   * Element to focus when the dialog closes
+   * - `false`: Do not move focus
+   * - `true`: Move focus based on default behavior (trigger or previously focused element)
+   * - `RefObject`: Move focus to the ref element
+   * - `function`: Called with interaction type, return element to focus
+   */
+  finalFocus?:
+    | boolean
+    | React.RefObject<HTMLElement | null>
+    | ((closeType: InteractionType) => boolean | HTMLElement | null | void)
+
+  /**
+   * Callback fired after the modal has opened (after animations)
+   */
+  onAfterOpen?: () => void
+
+  /**
+   * Callback fired after the modal has closed (after animations)
+   */
+  onAfterClose?: () => void
+
+  /**
+   * Additional CSS class name for the root container
+   */
+  className?: string
+
+  /**
+   * Additional CSS class name for the backdrop
+   */
+  backdropClassName?: string
+
+  /**
+   * Additional CSS class name for the popup/content container
+   */
+  contentClassName?: string
+
+  /**
+   * Additional CSS class name for the title
+   */
+  titleClassName?: string
+
+  /**
+   * Additional CSS class name for the description
+   */
+  descriptionClassName?: string
+
+  /**
+   * Additional CSS class name for the footer
+   */
+  footerClassName?: string
+
+  /**
+   * Inline styles for the root container
+   */
+  style?: React.CSSProperties
+
+  /**
+   * Inline styles for the popup/content container
+   */
+  contentStyle?: React.CSSProperties
+
+  /**
+   * Unique identifier for the modal
+   */
+  id?: string
+
+  /**
+   * Test ID for testing frameworks
+   */
+  'data-testid'?: string
+
+  /**
+   * ARIA label for the modal (if title is not provided)
+   */
+  'aria-label'?: string
+
+  /**
+   * ID of the element that labels the modal
+   * Automatically set by DialogTitle, but can be overridden
+   */
+  'aria-labelledby'?: string
+
+  /**
+   * ID of the element that describes the modal
+   * Automatically set by DialogDescription, but can be overridden
+   */
+  'aria-describedby'?: string
+
+  /**
+   * Whether the modal should be animated
+   * @default true
+   */
+  animated?: boolean
+
+  /**
+   * Custom close button component
+   * If provided, replaces the default close button
+   */
+  closeButton?: React.ReactNode
+
+  /**
+   * Custom close icon
+   * If provided, replaces the default X icon
+   */
+  closeIcon?: React.ReactNode
 }
 
-const Modal: FC<Props> = ({
-  open = false,
-  onClose,
-  className,
-  title,
-  description,
-  children,
-  footer,
-  loading = false,
-  closable = true,
-  width = '100%',
-  widthMd = '100%',
-}: Props) => {
-  const { t } = useTranslation()
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  (
+    {
+      open = false,
+      onOpenChange,
+      title,
+      description,
+      children,
+      footer,
+      loading = false,
+      closable = true,
+      closeOnOverlayClick = true,
+      closeOnEsc = true,
+      size = 'md',
+      width,
+      widthMd,
+      widthLg,
+      centered = true,
+      modal = true,
+      disablePointerDismissal,
+      initialFocus,
+      finalFocus,
+      onAfterOpen,
+      onAfterClose,
+      className,
+      backdropClassName,
+      contentClassName,
+      titleClassName,
+      descriptionClassName,
+      footerClassName,
+      style: _style,
+      contentStyle,
+      id: _id,
+      'data-testid': dataTestId,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
+      'aria-describedby': ariaDescribedBy,
+      animated = true,
+      closeButton,
+      closeIcon,
+      ...restProps
+    },
+    ref,
+  ) => {
+    // Handle open change with escape key support
+    const handleOpenChange = React.useCallback(
+      (newOpen: boolean, eventDetails?: any) => {
+        // If closeOnEsc is false and we're closing via escape, prevent it
+        // Base UI uses REASONS.escapeKey as the reason
+        if (
+          !newOpen &&
+          !closeOnEsc &&
+          eventDetails?.reason &&
+          (eventDetails.reason === 'escapeKey' ||
+            String(eventDetails.reason).includes('escape'))
+        ) {
+          return
+        }
+        onOpenChange?.(newOpen)
+      },
+      [onOpenChange, closeOnEsc],
+    )
 
-  return (
-    <Transition
-      appear
-      show={open}
-      as={React.Fragment}
-    >
-      <Dialog
+    // Handle open change complete (after animations)
+    const handleOpenChangeComplete = React.useCallback(
+      (newOpen: boolean) => {
+        if (newOpen) {
+          onAfterOpen?.()
+        } else {
+          onAfterClose?.()
+        }
+      },
+      [onAfterOpen, onAfterClose],
+    )
+
+    // Determine disablePointerDismissal
+    const shouldDisablePointerDismissal =
+      disablePointerDismissal !== undefined
+        ? disablePointerDismissal
+        : !closeOnOverlayClick
+
+    // Build content style with custom widths
+    // When custom widths are provided, set max-width directly to override size variants
+    // Otherwise, size variants will apply via CSS classes
+    const popupStyle: React.CSSProperties = {
+      ...(width && {
+        maxWidth: typeof width === 'number' ? `${width}px` : width,
+      }),
+      ...(widthMd && {
+        '--memori-modal-width-md':
+          typeof widthMd === 'number' ? `${widthMd}px` : widthMd,
+      }),
+      ...(widthLg && {
+        '--memori-modal-width-lg':
+          typeof widthLg === 'number' ? `${widthLg}px` : widthLg,
+      }),
+      ...contentStyle,
+    }
+
+    // Build className for popup with size variant
+    const sizeClass =
+      size === 'sm'
+        ? 'memori-modal__popup--sm'
+        : size === 'md'
+          ? 'memori-modal__popup--md'
+          : size === 'lg'
+            ? 'memori-modal__popup--lg'
+            : size === 'xl'
+              ? 'memori-modal__popup--xl'
+              : size === 'full'
+                ? 'memori-modal__popup--full'
+                : undefined
+
+    const popupClassName = cx(
+      'memori-modal__popup',
+      sizeClass,
+      contentClassName,
+    )
+
+    return (
+      <Dialog.Root
         open={open}
-        onClose={onClose}
-        className={cx('memori-modal', className)}
+        onOpenChange={handleOpenChange}
+        onOpenChangeComplete={handleOpenChangeComplete}
+        modal={modal}
+        disablePointerDismissal={shouldDisablePointerDismissal}
+        {...restProps}
       >
-        <Transition.Child
-          as={React.Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="memori-modal--backdrop" />
-        </Transition.Child>
-        <div className="memori-modal--container">
-          <div className="memori-modal--container-scrollable">
-            <Transition.Child
-              as={React.Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+        <Dialog.Portal>
+          {animated && (
+            <Dialog.Backdrop
+              className={cx('memori-modal__backdrop', backdropClassName)}
+            />
+          )}
+          <Dialog.Viewport
+            className={cx(
+              'memori-modal__viewport',
+              centered && 'memori-modal__viewport--centered',
+              className,
+            )}
+          >
+            <Dialog.Popup
+              ref={ref}
+              initialFocus={initialFocus}
+              finalFocus={finalFocus}
+              className={popupClassName}
+              style={popupStyle}
+              data-testid={dataTestId}
+              aria-label={!title ? ariaLabel : undefined}
+              aria-labelledby={title ? undefined : ariaLabelledBy}
+              aria-describedby={description ? undefined : ariaDescribedBy}
+              {...(widthMd && { 'data-width-md': '' })}
+              {...(widthLg && { 'data-width-lg': '' })}
             >
-              <Dialog.Panel className="memori-modal--panel">
-                <style
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                    .memori-modal--panel {
-                      --memori-modal--width: ${width};
-                      --memori-modal--width-md: ${widthMd};
-                    }
-                  `,
-                  }}
-                />
-                {closable && (
-                  <div className="memori-modal--close">
-                    <Button
-                      ghost
-                      padded
-                      shape="circle"
-                      icon={<Close />}
-                      title={t('close') || 'Close'}
-                      onClick={() => onClose(false)}
-                    />
+              {closable &&
+                (closeButton ? (
+                  <div className="memori-modal__close">{closeButton}</div>
+                ) : (
+                  <Dialog.Close
+                    className="memori-modal__close"
+                    aria-label="Close modal"
+                  >
+                    {closeIcon || <Close />}
+                  </Dialog.Close>
+                ))}
+              <Spin spinning={loading}>
+                {title && (
+                  <Dialog.Title
+                    className={cx('memori-modal__title', titleClassName)}
+                  >
+                    {title}
+                  </Dialog.Title>
+                )}
+                {description && (
+                  <Dialog.Description
+                    className={cx(
+                      'memori-modal__description',
+                      descriptionClassName,
+                    )}
+                  >
+                    {description}
+                  </Dialog.Description>
+                )}
+                <div className="memori-modal__content">{children}</div>
+                {footer && (
+                  <div className={cx('memori-modal__footer', footerClassName)}>
+                    {footer}
                   </div>
                 )}
-                <Spin spinning={loading}>
-                  {title && (
-                    <Dialog.Title className="memori-modal--title">
-                      {title}
-                    </Dialog.Title>
-                  )}
-                  {description && (
-                    <Dialog.Description className="memori-modal--description">
-                      {description}
-                    </Dialog.Description>
-                  )}
+              </Spin>
+            </Dialog.Popup>
+          </Dialog.Viewport>
+        </Dialog.Portal>
+      </Dialog.Root>
+    )
+  },
+)
 
-                  {children}
-
-                  {footer && (
-                    <div className="memori-modal--footer">{footer}</div>
-                  )}
-                </Spin>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </div>
-      </Dialog>
-    </Transition>
-  )
-}
+Modal.displayName = 'Modal'
 
 export default Modal

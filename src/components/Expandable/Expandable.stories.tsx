@@ -121,7 +121,7 @@ const TemplateWithHTML = (args: Props) => (
 )
 
 const meta = {
-  title: 'UI/Expandable',
+  title: 'Components/Expandable',
   component: Expandable,
   tags: ['autodocs'],
   argTypes: {

@@ -2,7 +2,7 @@ import React from 'react'
 import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Modal from './Modal'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const content = (
   <>
@@ -20,7 +20,7 @@ const content = (
 
 const footer = (
   <>
-    <Button primary>Ok</Button>
+    <Button variant="primary">Ok</Button>
     <Button>Cancel</Button>
   </>
 )
@@ -29,7 +29,7 @@ it('renders Modal unchanged', () => {
   const { container } = render(
     <Modal
       open={false}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
     >
       {content}
     </Modal>,
@@ -41,7 +41,7 @@ it('renders Modal open unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
     >
       {content}
     </Modal>,
@@ -53,7 +53,7 @@ it('renders Modal with title unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       title="Lorem ipsum"
     >
       {content}
@@ -66,7 +66,7 @@ it('renders Modal with description unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       description="Lorem ipsum dolor sit amet"
     >
       {content}
@@ -79,7 +79,7 @@ it('renders Modal loading unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       loading
     >
       {content}
@@ -92,7 +92,7 @@ it('renders Modal with footer unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       footer={footer}
     >
       {content}
@@ -105,7 +105,7 @@ it('renders Modal non closable unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       closable={false}
     >
       {content}
@@ -118,7 +118,7 @@ it('renders Modal with custom widths unchanged', () => {
   const { container } = render(
     <Modal
       open={true}
-      onClose={vi.fn()}
+      onOpenChange={vi.fn()}
       width="100%"
       widthMd="90%"
     >

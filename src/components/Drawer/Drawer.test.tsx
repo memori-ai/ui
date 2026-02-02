@@ -2,7 +2,7 @@ import React from 'react'
 import { expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Drawer from './Drawer'
-import Button from '../Button/Button'
+import Button from '../Button'
 
 const content = (
   <>
@@ -86,11 +86,7 @@ it('renders Drawer with footer unchanged', () => {
     <Drawer
       open={true}
       onClose={vi.fn()}
-      footer={{
-        leftAction: <Button>Cancel</Button>,
-        onSubmit: vi.fn(),
-        loading: false,
-      }}
+      footer={<Button>OK</Button>}
     >
       {content}
     </Drawer>,
@@ -116,7 +112,7 @@ it('renders Drawer side left unchanged', () => {
     <Drawer
       open={true}
       onClose={vi.fn()}
-      placement="left"
+      anchor="left"
     >
       {content}
     </Drawer>,
@@ -129,9 +125,6 @@ it('renders Drawer with custom widths unchanged', () => {
     <Drawer
       open={true}
       onClose={vi.fn()}
-      width="100%"
-      widthMd="90%"
-      widthLg="80%"
     >
       {content}
     </Drawer>,
@@ -144,12 +137,7 @@ it('renders Drawer with footer unchanged', () => {
     <Drawer
       open={true}
       onClose={vi.fn()}
-      footer={{
-        leftActionClassName: 'custom-left-action-class',
-        leftAction: <Button>Cancel</Button>,
-        onSubmit: vi.fn(),
-        loading: false,
-      }}
+      footer={<Button>OK</Button>}
     >
       {content}
     </Drawer>,

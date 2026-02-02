@@ -1,124 +1,342 @@
-import type { FC, JSX } from 'react'
-import React from 'react'
-import { Transition } from '@headlessui/react'
+import * as React from 'react'
+import { Toast } from '@base-ui/react/toast'
 import cx from 'classnames'
-import Close from '../../icons/Close'
-import Button from '../Button/Button'
-import { useTranslation } from 'react-i18next'
+import {
+  X as CloseIcon,
+  CheckCircle,
+  AlertTriangle,
+  XCircle,
+  Info,
+} from 'lucide-react'
 
-export type AlertType = 'success' | 'warning' | 'error' | 'info'
+import './styles.css'
 
-import './Alert.css'
+/**
+ * Alert severity types for semantic meaning and styling
+ */
+export type AlertSeverity = 'success' | 'warning' | 'error' | 'info'
 
-export interface Props {
-  open?: boolean
-  onClose: (value: boolean) => void
-  className?: string
-  title?: string | JSX.Element | React.ReactNode
-  description?: string | JSX.Element | React.ReactNode
-  children?: JSX.Element | React.ReactNode
-  type?: AlertType
-  icon?: JSX.Element | React.ReactNode
+/**
+ * Alert placement positions in the viewport
+ */
+export type AlertPlacement =
+  | 'top-start'
+  | 'top-center'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-center'
+  | 'bottom-end'
+
+/**
+ * Custom data for alert toasts
+ */
+export interface AlertData {
+  /** The severity level of the alert */
+  severity?: AlertSeverity
+  /** Custom icon to display (overrides default severity icon) */
+  icon?: React.ReactNode
+  /** Whether to show the default severity icon */
+  showIcon?: boolean
+  /** Whether the alert can be closed by the user */
   closable?: boolean
-  duration?: number | null
-  action?: JSX.Element | React.ReactNode
-  width?: string
+  /** Custom action element to display */
+  action?: React.ReactNode
+  /** Callback fired when the alert is closed */
+  onClose?: () => void
 }
 
-const Alert: FC<Props> = ({
-  open = false,
-  onClose,
-  className,
-  title,
-  description,
-  children,
-  type = 'info',
-  icon,
-  closable = true,
-  duration = null,
-  action,
-  width = '400px',
-}: Props) => {
-  const { t } = useTranslation()
+/**
+ * Toast object type with alert data
+ */
+export interface AlertToast {
+  id: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+  data?: AlertData
+}
 
-  // Auto-close functionality
-  React.useEffect(() => {
-    if (duration && open) {
-      const timer = setTimeout(() => {
-        onClose(false)
-      }, duration)
-      return () => clearTimeout(timer)
-    }
-  }, [duration, open, onClose])
+/**
+ * Props for the AlertProvider component
+ */
+export interface AlertProviderProps {
+  /** Children elements */
+  children: React.ReactNode
+  /** Default duration for alerts in milliseconds (0 for persistent) */
+  defaultDuration?: number
+  /** Maximum number of visible alerts */
+  limit?: number
+}
 
-  const getTypeStyles = (type: AlertType) => {
-    switch (type) {
-      case 'success':
-        return 'memori-alert--success'
-      case 'warning':
-        return 'memori-alert--warning'
-      case 'error':
-        return 'memori-alert--error'
-      default:
-        return 'memori-alert--info'
-    }
+/**
+ * Props for the AlertViewport component
+ */
+export interface AlertViewportProps {
+  /** Placement position of the viewport */
+  placement?: AlertPlacement
+  /** Additional CSS class name */
+  className?: string
+  /** Additional inline styles */
+  style?: React.CSSProperties
+}
+
+/**
+ * Props for the internal Alert component
+ */
+interface AlertProps {
+  /** The toast object from the manager */
+  toast: AlertToast
+  /** Additional CSS class name */
+  className?: string
+  /** Additional inline styles */
+  style?: React.CSSProperties
+}
+
+/**
+ * Get default icon based on severity
+ */
+const getDefaultIcon = (severity: AlertSeverity): React.ReactNode => {
+  const iconProps = {
+    size: 20,
+    'aria-hidden': true as const,
   }
 
-  return (
-    <Transition
-      show={open}
-      as={React.Fragment}
-      appear
-    >
-      <div className={cx('memori-alert', getTypeStyles(type), className)}>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              .memori-alert {
-                --memori-alert--width: ${width};
-              }
-            `,
-          }}
-        />
-        <Transition.Child
-          as={React.Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0 translate-y-4"
-          enterTo="opacity-100 translate-y-0"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 translate-y-4"
-        >
-          <div className="memori-alert--container">
-            {icon && <div className="memori-alert--icon">{icon}</div>}
+  switch (severity) {
+    case 'success':
+      return <CheckCircle {...iconProps} />
+    case 'warning':
+      return <AlertTriangle {...iconProps} />
+    case 'error':
+      return <XCircle {...iconProps} />
+    case 'info':
+    default:
+      return <Info {...iconProps} />
+  }
+}
 
-            <div className="memori-alert--content">
-              {title && <div className="memori-alert--title">{title}</div>}
-              {description && (
-                <div className="memori-alert--description">{description}</div>
-              )}
-              {children}
-            </div>
+/**
+ * Alert component - Individual toast notification
+ *
+ * Renders a single alert notification from the toast manager.
+ */
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  function Alert(props, forwardedRef) {
+    const { toast, className, style } = props
 
-            <div className="memori-alert--actions">
-              {action && <div className="memori-alert--action">{action}</div>}
-              {closable && (
-                <Button
-                  ghost
-                  padded
-                  shape="circle"
-                  icon={<Close />}
-                  title={t('close') || 'Close alert'}
-                  onClick={() => onClose(false)}
-                  className="memori-alert--close"
-                />
-              )}
+    const data = toast.data ?? {}
+    const severity = data.severity ?? 'info'
+    const showIcon = data.showIcon ?? true
+    const closable = data.closable ?? true
+    const displayIcon =
+      data.icon ?? (showIcon ? getDefaultIcon(severity) : null)
+    const action = data.action
+    const onClose = data.onClose
+
+    const toastManager = Toast.useToastManager()
+
+    const handleClose = React.useCallback(() => {
+      onClose?.()
+      toastManager.close(toast.id)
+    }, [onClose, toastManager, toast.id])
+
+    return (
+      <Toast.Root
+        ref={forwardedRef}
+        toast={toast as unknown as Toast.Root.ToastObject}
+        className={cx('memori-alert', `memori-alert--${severity}`, className)}
+        style={style}
+      >
+        <div className="memori-alert__container">
+          {displayIcon && (
+            <div
+              className="memori-alert__icon"
+              aria-hidden="true"
+            >
+              {displayIcon}
             </div>
+          )}
+
+          <div className="memori-alert__content">
+            {toast.title && (
+              <Toast.Title className="memori-alert__title">
+                {toast.title}
+              </Toast.Title>
+            )}
+            {toast.description && (
+              <Toast.Description className="memori-alert__description">
+                {toast.description}
+              </Toast.Description>
+            )}
           </div>
-        </Transition.Child>
-      </div>
-    </Transition>
+
+          <div className="memori-alert__actions">
+            {action && <div className="memori-alert__action">{action}</div>}
+            {closable && (
+              <Toast.Close
+                className="memori-alert__close"
+                aria-label="Close alert"
+                onClick={handleClose}
+              >
+                <CloseIcon
+                  size={16}
+                  aria-hidden="true"
+                />
+              </Toast.Close>
+            )}
+          </div>
+        </div>
+      </Toast.Root>
+    )
+  },
+)
+
+/**
+ * AlertViewport - Container where alerts are rendered
+ *
+ * This component renders all active alerts from the toast manager.
+ * Place this component inside AlertProvider.
+ *
+ * @example
+ * ```tsx
+ * <AlertProvider>
+ *   <App />
+ *   <AlertViewport placement="top-end" />
+ * </AlertProvider>
+ * ```
+ */
+const AlertViewport = React.forwardRef<HTMLDivElement, AlertViewportProps>(
+  function AlertViewport(props, forwardedRef) {
+    const { placement = 'top-end', className, style } = props
+    const toastManager = Toast.useToastManager()
+
+    return (
+      <Toast.Viewport
+        ref={forwardedRef}
+        className={cx(
+          'memori-alert-viewport',
+          `memori-alert-viewport--${placement}`,
+          className,
+        )}
+        style={style}
+      >
+        {toastManager.toasts.map((toast: AlertToast) => (
+          <Alert
+            key={toast.id}
+            toast={toast}
+          />
+        ))}
+      </Toast.Viewport>
+    )
+  },
+)
+
+/**
+ * AlertProvider - Context provider for managing alerts
+ *
+ * Wrap your application with AlertProvider to enable alert notifications.
+ * Use the useAlertManager hook to add/remove alerts programmatically.
+ *
+ * @example
+ * ```tsx
+ * <AlertProvider defaultDuration={5000}>
+ *   <App />
+ *   <AlertViewport placement="top-end" />
+ * </AlertProvider>
+ * ```
+ */
+const AlertProvider: React.FC<AlertProviderProps> = ({
+  children,
+  defaultDuration = 5000,
+  limit = 5,
+}) => {
+  return (
+    <Toast.Provider
+      timeout={defaultDuration}
+      limit={limit}
+    >
+      {children}
+    </Toast.Provider>
   )
+}
+
+/**
+ * Type-safe hook to access the alert/toast manager
+ *
+ * Must be used within an AlertProvider.
+ *
+ * @example
+ * ```tsx
+ * const alertManager = useAlertManager();
+ *
+ * // Add an alert
+ * alertManager.add({
+ *   title: 'Success!',
+ *   description: 'Your changes have been saved.',
+ *   data: {
+ *     severity: 'success',
+ *     closable: true,
+ *   },
+ * });
+ *
+ * // Close an alert by id
+ * alertManager.close(alertId);
+ *
+ * // Get all active alerts
+ * const alerts = alertManager.toasts;
+ * ```
+ */
+const useAlertManager = () => Toast.useToastManager()
+
+/**
+ * Helper function to create alert options with proper typing
+ */
+export interface AddAlertOptions {
+  /** The title of the alert */
+  title?: React.ReactNode
+  /** The description/message of the alert */
+  description?: React.ReactNode
+  /** Duration in milliseconds (overrides provider default) */
+  duration?: number
+  /** The severity level */
+  severity?: AlertSeverity
+  /** Custom icon */
+  icon?: React.ReactNode
+  /** Whether to show the default severity icon */
+  showIcon?: boolean
+  /** Whether the alert can be closed */
+  closable?: boolean
+  /** Custom action element */
+  action?: React.ReactNode
+  /** Callback when closed */
+  onClose?: () => void
+}
+
+/**
+ * Creates a toast options object from simplified alert options
+ */
+const createAlertOptions = (options: AddAlertOptions) => ({
+  title: options.title,
+  description: options.description,
+  timeout: options.duration,
+  data: {
+    severity: options.severity,
+    icon: options.icon,
+    showIcon: options.showIcon,
+    closable: options.closable,
+    action: options.action,
+    onClose: options.onClose,
+  } satisfies AlertData,
+})
+
+/**
+ * Compound component exports
+ */
+export {
+  Alert,
+  AlertProvider,
+  AlertViewport,
+  useAlertManager,
+  getDefaultIcon,
+  createAlertOptions,
 }
 
 export default Alert

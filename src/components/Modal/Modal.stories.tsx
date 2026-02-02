@@ -1,12 +1,12 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import Modal, { type Props } from './Modal'
-import Button from '../Button/Button'
+import Modal, { type ModalProps } from './Modal'
+import Button from '../Button'
 
 const meta = {
-  title: 'UI/Modal',
+  title: 'Components/Modal',
   component: Modal,
-  tags: ['autodocs'],
+  tags: [],
   argTypes: {
     title: {
       control: {
@@ -23,7 +23,33 @@ const meta = {
         type: 'boolean',
       },
     },
-    open: {
+    closable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    closeOnOverlayClick: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    closeOnEsc: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
+    },
+    centered: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    animated: {
       control: {
         type: 'boolean',
       },
@@ -37,20 +63,20 @@ const meta = {
   parameters: {
     controls: { expanded: true },
   },
-  render: (args: Props) => {
+  render: (args: ModalProps) => {
     const [isOpen, setIsOpen] = React.useState(!!args.open || false)
 
     return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Click me</Button>
+        <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
         <Modal
           {...args}
           open={isOpen}
-          onClose={args.closable ? () => setIsOpen(false) : () => {}}
-          footer={args.footer}
-        >
-          {content}
-        </Modal>
+          onOpenChange={open => {
+            setIsOpen(open)
+            args.onOpenChange?.(open)
+          }}
+        />
       </>
     )
   },
@@ -76,18 +102,18 @@ const content = (
 
 const footer = (
   <>
-    <Button primary>OK</Button>
+    <Button variant="primary">OK</Button>
     <Button>Cancel</Button>
   </>
 )
 
-const footerNonClosableModal = <Button primary>OK</Button>
+const footerNonClosableModal = <Button variant="primary">OK</Button>
 
 export const Default: Story = {
   args: {
     open: false,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
   },
 }
 
@@ -95,7 +121,7 @@ export const Open: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
   },
 }
 
@@ -103,7 +129,7 @@ export const WithTitle: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
   },
 }
@@ -112,7 +138,7 @@ export const WithTitleAndDescription: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
     description: 'Modal Description',
   },
@@ -122,7 +148,7 @@ export const Loading: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
     description: 'Modal Description',
     loading: true,
@@ -133,7 +159,7 @@ export const WithFooter: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
     description: 'Modal Description',
     footer,
@@ -144,7 +170,7 @@ export const NonClosable: Story = {
   args: {
     open: true,
     closable: false,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
     description: 'Modal Description',
     footer: footerNonClosableModal,
@@ -155,22 +181,24 @@ export const WithALotOfContent: Story = {
   args: {
     open: true,
     closable: true,
-    onClose: () => {},
+    onOpenChange: () => {},
     title: 'Modal Title',
     description: 'Modal Description',
     footer,
   },
-  render: (args: Props) => {
+  render: (args: ModalProps) => {
     const [isOpen, setIsOpen] = React.useState(!!args.open || false)
 
     return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Click me</Button>
+        <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
         <Modal
           {...args}
           open={isOpen}
-          onClose={args.closable ? () => setIsOpen(false) : () => {}}
-          footer={args.footer}
+          onOpenChange={open => {
+            setIsOpen(open)
+            args.onOpenChange?.(open)
+          }}
         >
           {content}
           {content}
@@ -180,5 +208,62 @@ export const WithALotOfContent: Story = {
         </Modal>
       </>
     )
+  },
+}
+
+export const SizeVariants: Story = {
+  render: () => {
+    const [openSize, setOpenSize] = React.useState<
+      'sm' | 'md' | 'lg' | 'xl' | 'full' | null
+    >(null)
+
+    return (
+      <>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <Button onClick={() => setOpenSize('sm')}>Small</Button>
+          <Button onClick={() => setOpenSize('md')}>Medium</Button>
+          <Button onClick={() => setOpenSize('lg')}>Large</Button>
+          <Button onClick={() => setOpenSize('xl')}>Extra Large</Button>
+          <Button onClick={() => setOpenSize('full')}>Full Width</Button>
+        </div>
+        {openSize && (
+          <Modal
+            open={true}
+            onOpenChange={() => setOpenSize(null)}
+            title={`${openSize.toUpperCase()} Modal`}
+            size={openSize}
+          >
+            <p>This is a {openSize} sized modal.</p>
+          </Modal>
+        )}
+      </>
+    )
+  },
+}
+
+export const CustomWidths: Story = {
+  args: {
+    open: true,
+    closable: true,
+    onOpenChange: () => {},
+    title: 'Custom Width Modal',
+    width: '90%',
+    widthMd: '600px',
+    widthLg: '800px',
+  },
+}
+
+export const LifecycleCallbacks: Story = {
+  args: {
+    open: true,
+    closable: true,
+    onOpenChange: () => {},
+    title: 'Lifecycle Callbacks',
+    onAfterOpen: () => {
+      console.log('Modal opened!')
+    },
+    onAfterClose: () => {
+      console.log('Modal closed!')
+    },
   },
 }

@@ -16,10 +16,9 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     // Remove dts plugin during Storybook builds to avoid api-extractor errors
+    // (vite-plugin-dts registers as "vite:dts", not "vite-plugin-dts")
     // Storybook doesn't need TypeScript declaration files
-    config.plugins = await withoutVitePlugins(config.plugins, [
-      'vite-plugin-dts',
-    ])
+    config.plugins = await withoutVitePlugins(config.plugins, ['vite:dts'])
 
     // Also filter out the plugin manually as a fallback
     if (config.plugins) {
@@ -27,6 +26,7 @@ const config: StorybookConfig = {
         (plugin: any) =>
           !plugin ||
           (typeof plugin === 'object' &&
+            plugin.name !== 'vite:dts' &&
             plugin.name !== 'vite-plugin-dts' &&
             plugin.name !== 'dts'),
       )

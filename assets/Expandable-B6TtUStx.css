@@ -1,0 +1,1 @@
+.memori-expandable{line-height:1}.memori-expandable__inner{overflow:hidden;max-height:9999px;transition:max-height .2s ease-in-out}.memori-expandable>button{color:var(--memori-primary);font-size:var(--memori-text-size-small);text-decoration:underline}

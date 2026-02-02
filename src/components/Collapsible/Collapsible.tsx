@@ -5,10 +5,8 @@ import cx from 'classnames'
 import { ChevronDown } from 'lucide-react'
 import './styles.css'
 
-export interface CollapsibleProps extends Omit<
-  CollapsibleRootProps,
-  'className' | 'style'
-> {
+export interface CollapsibleProps
+  extends Omit<CollapsibleRootProps, 'className' | 'style'> {
   /**
    * The content that appears in the trigger button
    */

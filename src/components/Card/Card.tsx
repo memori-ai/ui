@@ -3,10 +3,8 @@ import cx from 'classnames'
 import Spin from '../Spin/Spin'
 import './styles.css'
 
-export interface CardProps extends Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'title'
-> {
+export interface CardProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * The content of the card
    */

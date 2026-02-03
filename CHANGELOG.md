@@ -1,5 +1,13 @@
 
 
+## [1.2.0](https://github.com/memori-ai/ui/compare/v1.1.0...v1.2.0) (2026-02-03)
+
+
+### Features
+
+* add Dropdown component with stories and styles ([bd96aac](https://github.com/memori-ai/ui/commit/bd96aaccfc35e0928c4de931ee91cabcc2e839d3))
+* enhance Button, Modal, and Slider components with new props ([f0f9f46](https://github.com/memori-ai/ui/commit/f0f9f46d443b87ecf8fd4c76a7a80fed0104b8f2))
+
 ## [1.1.0](https://github.com/memori-ai/ui/compare/v1.0.5-alpha...v1.1.0) (2026-02-03)
 
 

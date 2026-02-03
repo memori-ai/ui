@@ -17,11 +17,11 @@
     --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */
 
     /* Primary colors - main brand color */
-    --memori-primary: var(--memori-primary, oklch(48% 0.19 297deg)); /* Primary actions, links, highlights */
+    --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg)); /* Primary actions, links, highlights */
     --memori-primary-content: oklch(98% 0.01 240deg); /* Text/icon color on primary background */
 
     /* Secondary colors - secondary brand color */
-    --memori-secondary: var(--memori-secondary, oklch(70% 0.15 200deg)); /* Secondary actions, accents */
+    --memori-secondary: var(--memori-secondary-color, oklch(70% 0.15 200deg)); /* Secondary actions, accents */
     --memori-secondary-content: oklch(98% 0.01 200deg); /* Text/icon color on secondary background */
 
     /* Accent colors - highlights and emphasis */

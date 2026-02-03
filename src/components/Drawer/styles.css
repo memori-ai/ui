@@ -25,14 +25,14 @@
 .memori-drawer__backdrop {
     position: fixed;
     z-index: 1200;
-    animation: memori-drawer-fade-in 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: memori-drawer-fade-in var(--memori-motion-duration-slow) var(--memori-motion-ease-in);
     backdrop-filter: blur(2px);
     background-color: rgb(0 0 0 / 45%);
     inset: 0;
 }
 
 .memori-drawer__backdrop[data-state='closed'] {
-    animation: memori-drawer-fade-out 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: memori-drawer-fade-out var(--memori-motion-duration-normal) var(--memori-motion-ease-in) forwards;
 }
 
 .memori-drawer {
@@ -46,7 +46,7 @@
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     outline: none;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
 }
 
 /* ============================================
@@ -164,7 +164,10 @@
     background: transparent;
     color: var(--memori-neutral);
     cursor: pointer;
-    transition: all 0.2s;
+    transition:
+        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
 }
 
 .memori-drawer__close:hover {
@@ -222,4 +225,19 @@
     height: 40px;
     animation: memori-drawer-spin 1s linear infinite;
     color: var(--memori-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-drawer__backdrop,
+    .memori-drawer__backdrop[data-state='closed'],
+    .memori-drawer,
+    .memori-drawer__close {
+        animation: none;
+        transition: none;
+    }
+
+    .memori-drawer__spinner {
+        animation: none;
+        transition: none;
+    }
 }

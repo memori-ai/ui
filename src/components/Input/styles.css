@@ -11,7 +11,12 @@
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
     outline: none;
-    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition:
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-input::placeholder {
@@ -99,4 +104,10 @@
 
 .memori-input--full-width {
     width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-input {
+        transition: none;
+    }
 }

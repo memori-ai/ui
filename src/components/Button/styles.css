@@ -12,11 +12,12 @@
     line-height: var(--memori-text-line-normal);
     outline: none;
     transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease,
-        color 0.15s ease,
-        transform 0.1s ease,
-        box-shadow 0.15s ease;
+        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
 }
 
 /* Focus visible - clear accessibility ring */
@@ -77,6 +78,16 @@
     width: 1em;
     height: 1em;
     animation: memori-button-spin 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-button {
+        transition: none;
+    }
+
+    .memori-button__spinner {
+        animation: none;
+    }
 }
 
 @keyframes memori-button-spin {

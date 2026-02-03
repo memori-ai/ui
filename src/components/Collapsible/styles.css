@@ -26,9 +26,9 @@
     list-style-type: none;
     text-align: left;
     transition:
-        color 0.2s ease-in-out,
-        background-color 0.2s ease-in-out,
-        border-color 0.2s ease-in-out;
+        color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-collapsible__trigger:focus {
@@ -64,8 +64,8 @@
     color: var(--memori-neutral);
     transform: rotate(-90deg);
     transition:
-        transform 0.2s ease-in-out,
-        color 0.2s ease-in-out;
+        transform var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-collapsible__icon--open,
@@ -82,8 +82,8 @@
     font-size: var(--memori-text-size-base);
     line-height: var(--memori-text-line-normal);
     transition:
-        height 0.2s ease-in-out,
-        opacity 0.2s ease-in-out;
+        height var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+        opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-collapsible__panel[data-open='true'] {
@@ -108,4 +108,12 @@
 [data-theme='dark'] .memori-collapsible__trigger:hover:not(:disabled),
 :root.dark .memori-collapsible__trigger:hover:not(:disabled) {
     background-color: var(--memori-secondary-background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-collapsible__trigger,
+    .memori-collapsible__icon,
+    .memori-collapsible__panel {
+        transition: none;
+    }
 }

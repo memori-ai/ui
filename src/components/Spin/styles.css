@@ -16,7 +16,7 @@
     justify-content: center;
     background-color: var(--memori-main-background);
     opacity: 0.8;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-spin__container {
@@ -81,5 +81,15 @@
 
     to {
         transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-spin__overlay {
+        transition: none;
+    }
+
+    .memori-spin__icon {
+        animation: none;
     }
 }

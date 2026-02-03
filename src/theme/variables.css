@@ -17,11 +17,11 @@
     --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */
 
     /* Primary colors - main brand color */
-    --memori-primary: oklch(48% 0.19 297deg); /* Primary actions, links, highlights */
+    --memori-primary: var(--memori-primary, oklch(48% 0.19 297deg)); /* Primary actions, links, highlights */
     --memori-primary-content: oklch(98% 0.01 240deg); /* Text/icon color on primary background */
 
     /* Secondary colors - secondary brand color */
-    --memori-secondary: oklch(70% 0.15 200deg); /* Secondary actions, accents */
+    --memori-secondary: var(--memori-secondary, oklch(70% 0.15 200deg)); /* Secondary actions, accents */
     --memori-secondary-content: oklch(98% 0.01 200deg); /* Text/icon color on secondary background */
 
     /* Accent colors - highlights and emphasis */
@@ -91,6 +91,15 @@
     /* Effects */
     --memori-depth: 1; /* Shadow depth/elevation level (for box-shadow calculations) */
     --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
+
+    /* Motion - for hover/focus and micro-interactions (under 300ms) */
+    --memori-motion-duration-fast: 150ms;
+    --memori-motion-duration-normal: 200ms;
+    --memori-motion-duration-slow: 280ms;
+    --memori-motion-ease: ease;
+    --memori-motion-ease-in-out: ease-in-out;
+    --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+    --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 /* Dark theme */

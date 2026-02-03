@@ -69,7 +69,7 @@
     height: 100%;
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-primary);
-    transition: width 0.15s ease;
+    transition: width var(--memori-motion-duration-normal) var(--memori-motion-ease);
 }
 
 .memori-slider__marks {
@@ -133,8 +133,8 @@
     touch-action: none;
     transform: translate(-50%, -50%);
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
 }
 
 .memori-slider__thumb:active {
@@ -231,4 +231,11 @@
 :root.dark .memori-slider__thumb:hover,
 :root.dark .memori-slider__thumb:active {
     box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-slider__track-fill,
+    .memori-slider__thumb {
+        transition: none;
+    }
 }

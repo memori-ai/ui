@@ -17,6 +17,11 @@
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     text-align: left;
+    transition:
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        transform var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
 }
 
 /* ============================================
@@ -118,4 +123,10 @@
 .memori-card:focus-visible {
     outline: 2px solid var(--memori-primary);
     outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-card {
+        transition: none;
+    }
 }

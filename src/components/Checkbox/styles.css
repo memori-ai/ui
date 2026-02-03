@@ -15,7 +15,7 @@
     font-weight: var(--memori-text-weight-normal);
     gap: var(--memori-spacing-sm);
     line-height: var(--memori-text-line-normal);
-    transition: color 0.2s ease;
+    transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
     user-select: none;
 }
 
@@ -36,10 +36,10 @@
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-main-background);
     transition:
-        background-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-        border-color 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-        box-shadow 0.2s ease,
-        transform 0.1s ease;
+        background-color var(--memori-motion-duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color var(--memori-motion-duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease);
 }
 
 /* Checked state */
@@ -65,7 +65,7 @@
 
 .memori-checkbox__icon {
     display: block;
-    animation: memori-checkmark-scale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: memori-checkmark-scale var(--memori-motion-duration-slow) cubic-bezier(0.34, 1.56, 0.64, 1);
     color: var(--memori-primary-content);
 }
 
@@ -146,4 +146,15 @@
     border-color: var(--memori-tertiary-background);
     background-color: var(--memori-secondary-background);
     box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-checkbox,
+    .memori-checkbox__indicator {
+        transition: none;
+    }
+
+    .memori-checkbox__icon {
+        animation: none;
+    }
 }

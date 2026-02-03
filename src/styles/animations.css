@@ -1,0 +1,84 @@
+/**
+ * Shared animations and motion utilities.
+ * All durations kept under 300ms. Respects prefers-reduced-motion.
+ */
+
+/* ==========================================================================
+   Fade-in for mounting elements
+   ========================================================================== */
+
+@keyframes memori-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes memori-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes memori-fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes memori-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==========================================================================
+   Utility classes for view/page transitions
+   ========================================================================== */
+
+.memori-view-enter {
+    animation: memori-fade-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out) forwards;
+}
+
+.memori-view-enter-up {
+    animation: memori-fade-in-up var(--memori-motion-duration-normal) var(--memori-motion-ease-out) forwards;
+}
+
+.memori-view-enter-scale {
+    animation: memori-scale-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out) forwards;
+}
+
+/* ==========================================================================
+   Reduced motion - only for these view utilities
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .memori-view-enter,
+    .memori-view-enter-up,
+    .memori-view-enter-scale {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}

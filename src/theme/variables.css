@@ -11,7 +11,7 @@
     --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
 
     /* Base colors - used for backgrounds and surfaces */
-    --memori-main-background: oklch(98% 0.02 240deg); /* Main background color (white) */
+    --memori-main-background: white; /* Main background color (white) */
     --memori-secondary-background: oklch(95% 0.03 240deg); /* Secondary background, hover states (light gray) */
     --memori-tertiary-background: oklch(92% 0.04 240deg); /* Tertiary background, borders (dark gray) */
     --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */

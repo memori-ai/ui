@@ -7,8 +7,10 @@ import Spin from '../Spin/Spin'
 import { X as Close } from 'lucide-react'
 import './styles.css'
 
-export interface ModalProps
-  extends Omit<DialogRootProps, 'className' | 'style'> {
+export interface ModalProps extends Omit<
+  DialogRootProps,
+  'className' | 'style'
+> {
   /**
    * Whether the modal is open
    * @default false

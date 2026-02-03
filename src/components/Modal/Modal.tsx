@@ -24,6 +24,11 @@ export interface ModalProps extends Omit<
   onOpenChange?: (open: boolean) => void
 
   /**
+   * Callback fired when the modal is closed (convenience prop, matches Drawer).
+   */
+  onClose?: () => void
+
+  /**
    * Modal title displayed at the top
    */
   title?: React.ReactNode
@@ -236,6 +241,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     {
       open = false,
       onOpenChange,
+      onClose,
       title,
       description,
       children,
@@ -290,8 +296,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           return
         }
         onOpenChange?.(newOpen)
+        if (!newOpen) onClose?.()
       },
-      [onOpenChange, closeOnEsc],
+      [onOpenChange, onClose, closeOnEsc],
     )
 
     // Handle open change complete (after animations)

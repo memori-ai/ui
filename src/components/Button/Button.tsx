@@ -5,7 +5,21 @@ import cx from 'classnames'
 import { Loader2 } from 'lucide-react'
 import './styles.css'
 
-export interface ButtonProps extends Omit<BaseButtonProps, 'className'> {
+export interface ButtonProps
+  extends
+    Omit<BaseButtonProps, 'className'>,
+    Pick<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      | 'title'
+      | 'name'
+      | 'form'
+      | 'formAction'
+      | 'formEncType'
+      | 'formMethod'
+      | 'formNoValidate'
+      | 'formTarget'
+      | 'autoFocus'
+    > {
   /**
    * Button variant
    * @default 'primary'

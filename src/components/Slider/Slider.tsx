@@ -6,6 +6,11 @@ export interface SliderProps {
   min?: number
   max?: number
   step?: number
+  /**
+   * Controlled value. When provided, the thumb position is driven by this prop
+   * (e.g. for presets). Omit to use uncontrolled mode with defaultValue.
+   */
+  value?: number
   defaultValue?: number
   label?: string | React.ReactNode
   onChange?: (value: number) => void
@@ -18,12 +23,19 @@ const CustomSlider = ({
   min = 0,
   max = 100,
   step = 1,
+  value: valueProp,
   defaultValue = 50,
   label,
   onChange,
   disabled = false,
 }: SliderProps) => {
-  const [value, setValue] = useState(defaultValue)
+  const [internalValue, setInternalValue] = useState(defaultValue)
+  const isControlled = valueProp !== undefined
+  const value = isControlled ? valueProp : internalValue
+  const setValue = (v: number) => {
+    if (!isControlled) setInternalValue(v)
+    onChange?.(v)
+  }
   const [isDragging, setIsDragging] = useState(false)
   const sliderRef = useRef<HTMLDivElement>(null)
   const percentage = ((value - min) / (max - min)) * 100
@@ -53,14 +65,12 @@ const CustomSlider = ({
     setIsDragging(true)
     const newValue = calculateNewValue(clientX)
     setValue(newValue)
-    onChange?.(newValue)
   }
 
   const handleInteractionMove = (clientX: number) => {
     if (!isDragging || disabled) return
     const newValue = calculateNewValue(clientX)
     setValue(newValue)
-    onChange?.(newValue)
   }
 
   const handleInteractionEnd = () => {
@@ -98,8 +108,8 @@ const CustomSlider = ({
   }, [isDragging])
 
   useEffect(() => {
-    setValue(defaultValue)
-  }, [defaultValue])
+    if (!isControlled) setInternalValue(defaultValue)
+  }, [defaultValue, isControlled])
 
   return (
     <div

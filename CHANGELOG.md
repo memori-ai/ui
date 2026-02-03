@@ -1,5 +1,31 @@
 
 
+## [1.1.0](https://github.com/memori-ai/ui/compare/v1.0.5-alpha...v1.1.0) (2026-02-03)
+
+
+### Features
+
+* add Collapsible component ([58a82f2](https://github.com/memori-ai/ui/commit/58a82f241f2c5c317eb2cbb9a4ac5eea2cbdf509))
+* add ComponentShowcase stories ([2dac871](https://github.com/memori-ai/ui/commit/2dac8715bf14068b047da87c2c0f8da58a1e66be))
+* add dark mode support with theme management hook and update README ([173b387](https://github.com/memori-ai/ui/commit/173b3876311c2957f1cd89db46b27dd3a12ce2bc))
+* added Drawer component to index.ts export ([d8f0f7a](https://github.com/memori-ai/ui/commit/d8f0f7a61c102ccaca6b9db029175ef2409b69f8))
+* enhance theme management with dynamic tenant color settings and update Storybook integration ([e24d2c6](https://github.com/memori-ai/ui/commit/e24d2c6128984f908173bcfe7166ab07bdea3292))
+* implement Alert component with customizable options, improved accessibility, and enhanced styling ([2e0da23](https://github.com/memori-ai/ui/commit/2e0da231797e9326ae9fd1005f93d2c13d47ee81))
+* improved Button component UX and fixed variables.css oklch calculated values ([3e3644a](https://github.com/memori-ai/ui/commit/3e3644a70af893d8264deda9b6ea35700654ee79))
+* improved interaction effects and animations across different components ([4066914](https://github.com/memori-ai/ui/commit/40669144733cb1d0eafce017550bd5d51e439dd7))
+* update component implementations ([de6449e](https://github.com/memori-ai/ui/commit/de6449ed7316e356f774a0a6c1ca6004b03cbf52))
+
+
+### Bug Fixes
+
+* correct oklch color calculation values in variables.css ([ad1013b](https://github.com/memori-ai/ui/commit/ad1013b47dfe8a493aaf6895524d791e7af5f5ed))
+* enhance plugin filtering in Storybook configuration ([d21e63a](https://github.com/memori-ai/ui/commit/d21e63a88407404bf1743e45827e88797bc77054))
+* linting ([2f01329](https://github.com/memori-ai/ui/commit/2f0132972337ab8293a7d5153d86b827bd65033d))
+* **types:** resolve portability error in generated declarations ([9c73d5e](https://github.com/memori-ai/ui/commit/9c73d5ea76268cb8ea08d6e6fa9805678dd19c26))
+* update plugin filtering in Storybook configuration to correctly exclude vite:dts ([f4622bb](https://github.com/memori-ai/ui/commit/f4622bbab397ab17f3b1b04c4b3c8e67c24a7d7a))
+* update Tooltip story to use new styles file ([9db0a3e](https://github.com/memori-ai/ui/commit/9db0a3eb82118122ac17a2e4a987d90ad75762fe))
+* wrong import ([87cd301](https://github.com/memori-ai/ui/commit/87cd30184511195c52a822873715e179b59dd1f4))
+
 ## [1.0.5-alpha](https://github.com/memori-ai/ui/compare/v1.0.4-alpha...v1.0.5-alpha) (2026-01-07)
 
 

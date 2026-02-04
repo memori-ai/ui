@@ -88,7 +88,7 @@
 
 .memori-dropdown__popup {
     min-width: var(--anchor-width, 0);
-    padding: var(--memori-spacing-xs);
+    padding: var(--memori-spacing-sm);
     border: var(--memori-border) solid var(--memori-tertiary-background);
     border-radius: var(--memori-radius-box);
     background-color: var(--memori-main-background);
@@ -155,7 +155,7 @@
 .memori-dropdown__separator {
     height: var(--memori-border);
     border: 0;
-    margin: var(--memori-spacing-xs) 0;
+    margin: var(--memori-spacing-sm) 0;
     background-color: var(--memori-tertiary-background);
 }
 
@@ -168,7 +168,7 @@
 }
 
 .memori-dropdown__group-label {
-    padding: var(--memori-spacing-xs) var(--memori-spacing-md) var(--memori-spacing-xs);
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md) var(--memori-spacing-sm);
     color: var(--memori-neutral);
     font-size: var(--memori-text-size-small);
     font-weight: var(--memori-text-weight-semibold);

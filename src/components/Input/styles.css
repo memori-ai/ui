@@ -82,7 +82,7 @@
 
 .memori-input--sm {
     min-height: 32px;
-    padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
+    padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
     font-size: var(--memori-text-size-small);
 }
 

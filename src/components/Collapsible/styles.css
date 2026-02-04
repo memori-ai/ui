@@ -38,7 +38,7 @@
 .memori-collapsible__trigger:focus-visible {
     border-color: var(--memori-primary);
     outline: var(--memori-border) solid var(--memori-primary);
-    outline-offset: var(--memori-spacing-xs);
+    outline-offset: var(--memori-spacing-sm);
 }
 
 .memori-collapsible__trigger:disabled {

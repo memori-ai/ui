@@ -58,9 +58,20 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: var(--memori-modal-size-sm);
     max-width: 100vw;
     border-left: 1px solid var(--memori-secondary-background);
+}
+
+.memori-drawer--right.memori-drawer--size-sm {
+    width: var(--memori-modal-size-sm);
+}
+
+.memori-drawer--right.memori-drawer--size-md {
+    width: var(--memori-modal-size-md);
+}
+
+.memori-drawer--right.memori-drawer--size-lg {
+    width: var(--memori-modal-size-lg);
 }
 
 .memori-drawer--right[data-state='open'] {
@@ -76,9 +87,20 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: var(--memori-modal-size-sm);
     max-width: 100vw;
     border-right: 1px solid var(--memori-secondary-background);
+}
+
+.memori-drawer--left.memori-drawer--size-sm {
+    width: var(--memori-modal-size-sm);
+}
+
+.memori-drawer--left.memori-drawer--size-md {
+    width: var(--memori-modal-size-md);
+}
+
+.memori-drawer--left.memori-drawer--size-lg {
+    width: var(--memori-modal-size-lg);
 }
 
 .memori-drawer--left[data-state='open'] {
@@ -95,8 +117,19 @@
     right: 0;
     left: 0;
     height: auto;
-    max-height: 80vh;
     border-bottom: 1px solid var(--memori-secondary-background);
+}
+
+.memori-drawer--top.memori-drawer--size-sm {
+    max-height: 50vh;
+}
+
+.memori-drawer--top.memori-drawer--size-md {
+    max-height: 65vh;
+}
+
+.memori-drawer--top.memori-drawer--size-lg {
+    max-height: 80vh;
 }
 
 .memori-drawer--top[data-state='open'] {
@@ -113,8 +146,19 @@
     bottom: 0;
     left: 0;
     height: auto;
-    max-height: 80vh;
     border-top: 1px solid var(--memori-secondary-background);
+}
+
+.memori-drawer--bottom.memori-drawer--size-sm {
+    max-height: 50vh;
+}
+
+.memori-drawer--bottom.memori-drawer--size-md {
+    max-height: 65vh;
+}
+
+.memori-drawer--bottom.memori-drawer--size-lg {
+    max-height: 80vh;
 }
 
 .memori-drawer--bottom[data-state='open'] {
@@ -147,7 +191,7 @@
 }
 
 .memori-drawer__description {
-    margin-top: var(--memori-spacing-xs);
+    margin-top: var(--memori-spacing-sm);
     color: var(--memori-text-color);
     font-size: var(--memori-text-size-small);
     line-height: var(--memori-text-line-normal);
@@ -157,10 +201,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--memori-spacing-xs);
+    padding: var(--memori-spacing-sm);
     border: none;
     border-radius: var(--memori-radius-field);
-    margin-right: calc(var(--memori-spacing-xs) * -1);
+    margin-right: calc(var(--memori-spacing-sm) * -1);
     background: transparent;
     color: var(--memori-neutral);
     cursor: pointer;

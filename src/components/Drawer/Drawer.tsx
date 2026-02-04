@@ -28,6 +28,12 @@ export interface DrawerProps {
   anchor?: 'left' | 'right' | 'top' | 'bottom'
 
   /**
+   * Size of the drawer (width for left/right, height for top/bottom).
+   * @default 'sm'
+   */
+  size?: 'sm' | 'md' | 'lg'
+
+  /**
    * The contents of the drawer.
    */
   children?: React.ReactNode
@@ -83,6 +89,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       onOpenChange,
       onClose,
       anchor = 'right',
+      size = 'sm',
       children,
       title,
       description,
@@ -122,6 +129,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
             className={cx(
               'memori-drawer',
               `memori-drawer--${anchor}`,
+              `memori-drawer--size-${size}`,
               className,
             )}
             style={style}

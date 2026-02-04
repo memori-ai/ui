@@ -76,9 +76,10 @@
     --memori-text-line-normal: 1.5; /* Normal line height for body text */
     --memori-text-line-relaxed: 1.75; /* Relaxed line height for long-form content */
 
-    /* Border radius */
-    --memori-radius-selector: 1rem; /* Buttons, pills, selectors, interactive elements */
-    --memori-radius-field: 0.25rem; /* Input fields, form controls */
+    /* Border radius - use one value for form controls (inputs + buttons) for visual harmony */
+    --memori-radius-form: 0.5rem; /* Inputs, buttons, and all form controls (8px) */
+    --memori-radius-selector: var(--memori-radius-form); /* Pills, selectors; matches form */
+    --memori-radius-field: var(--memori-radius-form); /* Input fields; matches buttons */
     --memori-radius-box: 0.5rem; /* Cards, modals, containers */
 
     /* Base sizes */
@@ -87,6 +88,11 @@
 
     /* Border size */
     --memori-border: 1px; /* Default border width for borders */
+
+    /* Modal sizes */
+    --memori-modal-size-sm: 400px;
+    --memori-modal-size-md: 600px;
+    --memori-modal-size-lg: 800px;
 
     /* Effects */
     --memori-depth: 1; /* Shadow depth/elevation level (for box-shadow calculations) */

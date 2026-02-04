@@ -20,6 +20,12 @@ const meta: Meta<typeof Drawer> = {
       options: ['left', 'right', 'top', 'bottom'],
       description: 'Side from which the drawer will appear',
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description:
+        'Size of the drawer (width for left/right, height for top/bottom)',
+    },
   },
 }
 

@@ -1,5 +1,12 @@
 
 
+## [1.4.0](https://github.com/memori-ai/ui/compare/v1.3.0...v1.4.0) (2026-02-04)
+
+
+### Features
+
+* add displayValue prop to SelectBox component for custom rendering ([120c2ed](https://github.com/memori-ai/ui/commit/120c2ed58d0cef2e0cdb2a06f9bc48db0473c7b9))
+
 ## [1.3.0](https://github.com/memori-ai/ui/compare/v1.2.0...v1.3.0) (2026-02-04)
 
 

@@ -162,7 +162,7 @@
 }
 
 .memori-select__item[data-selected] {
-    background-color: var(--memori-neutral);
+    background-color: var(--memori-border-color);
     color: var(--memori-primary);
     font-weight: var(--memori-text-weight-medium);
 }

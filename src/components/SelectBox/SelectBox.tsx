@@ -72,8 +72,13 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
               <ChevronDown size={16} />
             </Select.Icon>
           </Select.Trigger>
-          <Select.Portal container={document.body}>
-            <Select.Positioner sideOffset={8}>
+          <Select.Portal className="memori-select__portal">
+            <Select.Positioner
+              className="memori-select__positioner"
+              sideOffset={8}
+              side="bottom"
+              align="start"
+            >
               <Select.Popup className="memori-select__popup">
                 {options.map(option => (
                   <Select.Item

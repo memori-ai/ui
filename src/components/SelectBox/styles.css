@@ -5,7 +5,7 @@
     box-sizing: border-box;
     flex-direction: column;
     font-family: var(--memori-font-family);
-    gap: var(--memori-spacing-xs);
+    gap: var(--memori-spacing-sm);
 }
 
 .memori-select__label {
@@ -48,6 +48,15 @@
     background-color: var(--memori-secondary-background);
     color: var(--memori-neutral);
     cursor: not-allowed;
+}
+
+.memori-select__portal {
+    z-index: 999;
+}
+
+/* The positioner is the element with position:fixed and coordinates – it must have z-index */
+.memori-select__positioner {
+    z-index: 9999;
 }
 
 .memori-select__trigger:active:not(:disabled) {

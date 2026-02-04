@@ -59,7 +59,7 @@
     height: 16px;
     max-height: 16px;
     border-radius: var(--memori-radius-field);
-    background-color: var(--memori-tertiary-background);
+    background-color: var(--memori-primary-subtle);
     transform: translateY(-50%);
 }
 

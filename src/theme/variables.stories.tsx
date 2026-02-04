@@ -22,7 +22,7 @@ const ColorSwatch = ({
         flexDirection: 'column',
         gap: '8px',
         padding: '16px',
-        border: '1px solid var(--memori-tertiary-background)',
+        border: '1px solid var(--memori-primary-subtle)',
         borderRadius: 'var(--memori-radius-box)',
         backgroundColor: 'var(--memori-main-background)',
       }}
@@ -33,7 +33,7 @@ const ColorSwatch = ({
           height: '80px',
           backgroundColor: `var(${variable})`,
           borderRadius: 'var(--memori-radius-field)',
-          border: '1px solid var(--memori-tertiary-background)',
+          border: '1px solid var(--memori-primary-subtle)',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         }}
       />
@@ -120,7 +120,7 @@ const TypographyExample = ({
     <div
       style={{
         padding: '16px',
-        border: '1px solid var(--memori-tertiary-background)',
+        border: '1px solid var(--memori-primary-subtle)',
         borderRadius: 'var(--memori-radius-box)',
         backgroundColor: 'var(--memori-main-background)',
       }}
@@ -168,7 +168,7 @@ const SpacingExample = ({
         alignItems: 'center',
         gap: '16px',
         padding: '16px',
-        border: '1px solid var(--memori-tertiary-background)',
+        border: '1px solid var(--memori-primary-subtle)',
         borderRadius: 'var(--memori-radius-box)',
         backgroundColor: 'var(--memori-main-background)',
       }}
@@ -240,7 +240,7 @@ const VariableValueExample = ({
     <div
       style={{
         padding: '16px',
-        border: '1px solid var(--memori-tertiary-background)',
+        border: '1px solid var(--memori-primary-subtle)',
         borderRadius: 'var(--memori-radius-box)',
         backgroundColor: 'var(--memori-main-background)',
       }}
@@ -288,7 +288,7 @@ const BorderRadiusExample = ({
         flexDirection: 'column',
         gap: '12px',
         padding: '16px',
-        border: '1px solid var(--memori-tertiary-background)',
+        border: '1px solid var(--memori-primary-subtle)',
         borderRadius: 'var(--memori-radius-box)',
         backgroundColor: 'var(--memori-main-background)',
       }}
@@ -379,7 +379,7 @@ const Section = ({
         color: 'var(--memori-text-color)',
         marginBottom: 'var(--memori-spacing-lg)',
         paddingBottom: 'var(--memori-spacing-md)',
-        borderBottom: '2px solid var(--memori-tertiary-background)',
+        borderBottom: '2px solid var(--memori-primary-subtle)',
       }}
     >
       {title}
@@ -457,14 +457,9 @@ const ThemeVariables = () => {
                 description="Main background color (white/light gray)"
               />
               <ColorSwatch
-                variable="--memori-secondary-background"
-                label="Secondary Background"
-                description="Secondary background, hover states"
-              />
-              <ColorSwatch
-                variable="--memori-tertiary-background"
-                label="Tertiary Background"
-                description="Tertiary background, borders"
+                variable="--memori-primary-subtle"
+                label="Primary Subtle"
+                description="Primary subtle – secondary/tertiary backgrounds, borders, hover"
               />
               <ColorSwatch
                 variable="--memori-text-color"

@@ -76,12 +76,12 @@
 /* Dark mode: add subtle border for better visibility */
 [data-theme='dark'] .memori-card--elevated,
 :root.dark .memori-card--elevated {
-    border-color: var(--memori-tertiary-background);
+    border-color: var(--memori-primary-subtle);
 }
 
 /* Outlined: Border, no shadow */
 .memori-card--outlined {
-    border: 1px solid var(--memori-tertiary-background);
+    border: 1px solid var(--memori-primary-subtle);
     box-shadow: none;
 }
 

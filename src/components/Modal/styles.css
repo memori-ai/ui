@@ -146,7 +146,7 @@
 }
 
 .memori-modal__close:hover {
-    background-color: var(--memori-secondary-background);
+    background-color: var(--memori-primary-subtle);
     color: var(--memori-text-color);
 }
 

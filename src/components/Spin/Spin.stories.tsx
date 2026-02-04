@@ -49,7 +49,7 @@ const meta = {
         <div
           style={{
             padding: '2rem',
-            border: '1px solid var(--memori-tertiary-background)',
+            border: '1px solid var(--memori-primary-subtle)',
             borderRadius: 'var(--memori-radius-box)',
           }}
         >
@@ -171,7 +171,7 @@ export const Controlled: Story = {
           <div
             style={{
               padding: '2rem',
-              border: '1px solid var(--memori-tertiary-background)',
+              border: '1px solid var(--memori-primary-subtle)',
               borderRadius: 'var(--memori-radius-box)',
             }}
           >

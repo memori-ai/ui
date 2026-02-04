@@ -59,7 +59,7 @@
     right: 0;
     bottom: 0;
     max-width: 100vw;
-    border-left: 1px solid var(--memori-secondary-background);
+    border-left: 1px solid var(--memori-primary-subtle);
 }
 
 .memori-drawer--right.memori-drawer--size-sm {
@@ -88,7 +88,7 @@
     bottom: 0;
     left: 0;
     max-width: 100vw;
-    border-right: 1px solid var(--memori-secondary-background);
+    border-right: 1px solid var(--memori-primary-subtle);
 }
 
 .memori-drawer--left.memori-drawer--size-sm {
@@ -117,7 +117,7 @@
     right: 0;
     left: 0;
     height: auto;
-    border-bottom: 1px solid var(--memori-secondary-background);
+    border-bottom: 1px solid var(--memori-primary-subtle);
 }
 
 .memori-drawer--top.memori-drawer--size-sm {
@@ -146,7 +146,7 @@
     bottom: 0;
     left: 0;
     height: auto;
-    border-top: 1px solid var(--memori-secondary-background);
+    border-top: 1px solid var(--memori-primary-subtle);
 }
 
 .memori-drawer--bottom.memori-drawer--size-sm {
@@ -179,7 +179,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    border-bottom: 1px solid var(--memori-secondary-background);
+    border-bottom: 1px solid var(--memori-primary-subtle);
 }
 
 .memori-drawer__title {
@@ -215,7 +215,7 @@
 }
 
 .memori-drawer__close:hover {
-    background-color: var(--memori-secondary-background);
+    background-color: var(--memori-primary-subtle);
     color: var(--memori-text-color);
 }
 
@@ -238,7 +238,7 @@
     align-items: center;
     justify-content: flex-end;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    border-top: 1px solid var(--memori-secondary-background);
+    border-top: 1px solid var(--memori-primary-subtle);
     background-color: var(--memori-main-background);
     gap: var(--memori-spacing-sm);
 }

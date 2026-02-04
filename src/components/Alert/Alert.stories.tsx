@@ -519,7 +519,7 @@ export const DeleteWithUndo: Story = {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '8px 12px',
-                  backgroundColor: 'var(--memori-secondary-background)',
+                  backgroundColor: 'var(--memori-primary-subtle)',
                   borderRadius: 'var(--memori-radius-box)',
                 }}
               >

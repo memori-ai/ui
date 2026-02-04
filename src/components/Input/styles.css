@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    border: 1px solid var(--memori-tertiary-background);
+    border: 1px solid var(--memori-primary-subtle);
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-main-background);
     color: var(--memori-text-color);
@@ -38,7 +38,7 @@
 
 /* Default Variant */
 .memori-input--default {
-    border-color: var(--memori-tertiary-background);
+    border-color: var(--memori-primary-subtle);
 }
 
 .memori-input--default:hover:not(:disabled) {
@@ -64,8 +64,8 @@
 /* Disabled Variant */
 .memori-input--disabled,
 .memori-input:disabled {
-    border-color: var(--memori-tertiary-background);
-    background-color: var(--memori-secondary-background);
+    border-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;

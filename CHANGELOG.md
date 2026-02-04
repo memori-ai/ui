@@ -1,5 +1,13 @@
 
 
+## [1.3.0](https://github.com/memori-ai/ui/compare/v1.2.0...v1.3.0) (2026-02-04)
+
+
+### Features
+
+* add size prop to Drawer component ([21c7e2f](https://github.com/memori-ai/ui/commit/21c7e2f95eacac6142577c3a5a4bb6c91b411153))
+* enhance SelectBox component with improved positioning and styling ([2246a34](https://github.com/memori-ai/ui/commit/2246a348b9d9dda19aa1834252f89b0ea0a640a5))
+
 ## [1.2.0](https://github.com/memori-ai/ui/compare/v1.1.0...v1.2.0) (2026-02-03)
 
 

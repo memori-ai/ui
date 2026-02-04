@@ -16,6 +16,7 @@ export interface SelectBoxProps {
   defaultValue?: string | null
   onChange?: (value: string | null) => void
   placeholder?: string
+  displayValue?: React.ReactNode
   label?: string
   disabled?: boolean
   required?: boolean
@@ -33,6 +34,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
       defaultValue,
       onChange,
       placeholder = 'Select an option',
+      displayValue,
       label,
       disabled,
       required,
@@ -67,7 +69,9 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
             <Select.Value
               className="memori-select__value"
               data-placeholder={placeholder}
-            />
+            >
+              {displayValue}
+            </Select.Value>
             <Select.Icon className="memori-select__icon">
               <ChevronDown size={16} />
             </Select.Icon>

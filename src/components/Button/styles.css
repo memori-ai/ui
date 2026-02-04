@@ -29,7 +29,7 @@
 
 /* Disabled state - must come before :hover:not(:disabled) for specificity */
 .memori-button:disabled {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
     cursor: not-allowed;
@@ -150,14 +150,14 @@
 /* Outline variant disabled state */
 .memori-button--outline.memori-button--disabled,
 .memori-button--outline:disabled {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: transparent;
     color: var(--memori-neutral);
 }
 
 .memori-button--outline.memori-button--disabled:hover,
 .memori-button--outline:disabled:hover {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: transparent;
     color: var(--memori-neutral);
 }
@@ -210,14 +210,14 @@
 /* Danger variant disabled state */
 .memori-button--danger.memori-button--disabled,
 .memori-button--danger:disabled {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
 }
 
 .memori-button--danger.memori-button--disabled:hover,
 .memori-button--danger:disabled:hover {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
 }
@@ -320,7 +320,7 @@
 }
 
 .memori-button--disabled {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
     cursor: not-allowed;
@@ -328,7 +328,7 @@
 }
 
 .memori-button--disabled:hover {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
 }

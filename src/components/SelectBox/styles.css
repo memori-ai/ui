@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    border: 1px solid var(--memori-primary-subtle);
+    border: 1px solid var(--memori-border-color);
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-main-background);
     color: var(--memori-text-color);
@@ -44,7 +44,7 @@
 }
 
 .memori-select__trigger:disabled {
-    border-color: var(--memori-primary-subtle);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-primary-subtle);
     color: var(--memori-neutral);
     cursor: not-allowed;
@@ -162,7 +162,7 @@
 }
 
 .memori-select__item[data-selected] {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-neutral);
     color: var(--memori-primary);
     font-weight: var(--memori-text-weight-medium);
 }

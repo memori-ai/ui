@@ -139,7 +139,7 @@ h2.memori-drawer--title {
     justify-content: flex-end;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-top: 1px solid rgb(0 0 0 / 25%);
+    border-top: 1px solid var(--memori-border-color);
     margin-top: auto;
     background-color: #fff;
 }

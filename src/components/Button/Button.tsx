@@ -53,6 +53,11 @@ export interface ButtonProps
    */
   shape?: 'default' | 'round' | 'circle'
   /**
+   * Whether to apply a box shadow to the button
+   * @default false
+   */
+  shadow?: boolean
+  /**
    * Whether the button is in an active/pressed state (for toggle buttons)
    */
   active?: boolean
@@ -91,6 +96,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       iconPosition = 'left',
       shape = 'default',
+      shadow = false,
       active = false,
       danger = false,
       className,
@@ -151,6 +157,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           sizeClass,
           shapeClass,
           fullWidth && 'memori-button--full-width',
+          shadow && 'memori-button--shadow',
           isDisabled && 'memori-button--disabled',
           loading && 'memori-button--loading',
           active && 'memori-button--active',

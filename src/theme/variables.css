@@ -12,8 +12,12 @@
 
     /* Base colors - used for backgrounds and surfaces */
     --memori-main-background: oklch(100% 0 0deg); /* Main background color (white) */
-    --memori-primary-subtle: oklch(
-        68.7% 0.213 297deg / 25%
+
+    /* Primary subtle is computed as a translucent/lightened version of the primary color */
+    --memori-primary-subtle: color-mix(
+        in oklch,
+        var(--memori-primary) 40%,
+        white 60%
     ); /* Primary subtle – secondary/tertiary backgrounds, hover */
 
     --memori-text-color: oklch(20% 0.05 240deg); /* Text color on base backgrounds (dark gray) */
@@ -21,6 +25,11 @@
     /* Primary colors - main brand color */
     --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg)); /* Primary actions, links, highlights */
     --memori-primary-content: oklch(98% 0.01 240deg); /* Text/icon color on primary background */
+
+    /* Primary interactive states */
+    --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
+    --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 25%);
+    --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
 
     /* Secondary colors - secondary brand color */
     --memori-secondary: var(--memori-secondary-color, oklch(70% 0.15 200deg)); /* Secondary actions, accents */
@@ -34,6 +43,10 @@
     --memori-neutral: oklch(50% 0.05 240deg); /* Neutral elements */
     --memori-neutral-content: oklch(98% 0.01 240deg); /* Text/icon color on neutral background */
     --memori-border-color: rgb(73 103 125 / 16%); /* Component borders and dividers */
+
+    /* Focus states */
+    --memori-focus-ring: 0 0 0 3px color-mix(in oklch, var(--memori-primary), transparent 80%);
+    --memori-focus-ring-offset: 2px;
 
     /* Semantic colors - Info */
     --memori-info: oklch(70% 0.2 220deg); /* Informational messages, badges */
@@ -57,8 +70,10 @@
     --memori-spacing-md: 16px;
     --memori-spacing-lg: 24px;
     --memori-spacing-xl: 32px;
-    --memori-spacing-2xl: 48px;
-    --memori-spacing-3xl: 64px;
+    --memori-spacing-2xl: 40px;
+    --memori-spacing-3xl: 48px;
+    --memori-spacing-4xl: 64px;
+    --memori-spacing-5xl: 80px;
 
     /* Typography - Font Sizes */
     --memori-text-size-small: 0.875rem; /* 14px - Small text, labels */
@@ -97,8 +112,16 @@
     --memori-modal-size-md: 600px;
     --memori-modal-size-lg: 800px;
 
-    /* Effects */
-    --memori-depth: 1; /* Shadow depth/elevation level (for box-shadow calculations) */
+    /* Effects - Shadows */
+    --memori-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    --memori-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+    --memori-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    --memori-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+    --memori-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+    --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+    /* Brand-colored shadow - adapts to primary color overrides */
+    --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
     --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
 
     /* Motion - for hover/focus and micro-interactions (under 300ms) */
@@ -125,4 +148,12 @@
     --memori-neutral: oklch(50% 0.05 240deg);
     --memori-neutral-content: oklch(98% 0.01 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);
+
+    /* Dark theme shadows */
+    --memori-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 30%);
+    --memori-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 40%), 0 1px 2px -1px rgb(0 0 0 / 30%);
+    --memori-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 50%), 0 2px 4px -2px rgb(0 0 0 / 40%);
+    --memori-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 60%), 0 4px 6px -4px rgb(0 0 0 / 50%);
+    --memori-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 70%), 0 8px 10px -6px rgb(0 0 0 / 60%);
+    --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 80%);
 }

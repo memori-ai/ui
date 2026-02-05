@@ -11,25 +11,36 @@
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
     outline: none;
-    transition:
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
+    transition: all var(--memori-motion-duration-normal) var(--memori-motion-ease);
+}
+
+.memori-input:focus,
+.memori-input:focus-within {
+    border-color: var(--memori-primary);
+    box-shadow: var(--memori-focus-ring);
+    isolation: isolate;
 }
 
 .memori-input::placeholder {
     color: var(--memori-neutral);
 }
 
-.memori-input:focus,
-.memori-input:focus-within {
-    border-color: var(--memori-primary);
-    box-shadow: 0 0 0 2px oklch(from var(--memori-primary) l c h / 20%);
-    isolation: isolate;
-    outline: 2px solid var(--memori-primary);
-    outline-offset: 2px;
+.memori-input--disabled,
+.memori-input:disabled {
+    border-color: var(--memori-border-color);
+    background-color: var(--memori-primary-subtle);
+    color: var(--memori-neutral);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.memori-input--disabled::placeholder,
+.memori-input:disabled::placeholder {
+    color: var(--memori-neutral);
+}
+
+.memori-input:hover:not(:disabled) {
+    border-color: var(--memori-primary-hover);
 }
 
 /* ============================================
@@ -59,21 +70,6 @@
 
 .memori-input--error::placeholder {
     color: var(--memori-error);
-}
-
-/* Disabled Variant */
-.memori-input--disabled,
-.memori-input:disabled {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
-    color: var(--memori-neutral);
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.memori-input--disabled::placeholder,
-.memori-input:disabled::placeholder {
-    color: var(--memori-neutral);
 }
 
 /* ============================================

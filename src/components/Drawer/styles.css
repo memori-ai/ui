@@ -24,7 +24,6 @@
 
 .memori-drawer__backdrop {
     position: fixed;
-    z-index: 1200;
     animation: memori-drawer-fade-in var(--memori-motion-duration-slow) var(--memori-motion-ease-in);
     backdrop-filter: blur(2px);
     background-color: rgb(0 0 0 / 45%);
@@ -37,7 +36,7 @@
 
 .memori-drawer {
     position: fixed;
-    z-index: 1300;
+    z-index: 1001;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;

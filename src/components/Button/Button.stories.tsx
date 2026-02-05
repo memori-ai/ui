@@ -43,6 +43,12 @@ const meta = {
       },
       description: 'Whether the button should take full width',
     },
+    shadow: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Whether to apply a box shadow to the button',
+    },
     loading: {
       control: {
         type: 'boolean',
@@ -167,6 +173,17 @@ export const FullWidth: Story = {
     children: 'Full Width Button',
     variant: 'primary',
     fullWidth: true,
+  },
+}
+
+/**
+ * Button with shadow applied.
+ */
+export const WithShadow: Story = {
+  args: {
+    children: 'Button with Shadow',
+    variant: 'primary',
+    shadow: true,
   },
 }
 

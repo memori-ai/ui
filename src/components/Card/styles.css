@@ -10,10 +10,11 @@
     width: 100%;
     box-sizing: border-box;
     flex-direction: column;
-    padding: 0;
+    padding: var(--memori-spacing-lg);
     border-radius: var(--memori-radius-box);
     margin: 0;
     background-color: var(--memori-main-background);
+    box-shadow: var(--memori-shadow-md);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     text-align: left;
@@ -65,18 +66,22 @@
    VARIANTS
    ============================================ */
 
-/* Elevated: Shadow, no border (usually) */
+/* Elevated: stronger shadow */
 .memori-card--elevated {
     border: 1px solid transparent;
-
-    /* Keeps sizing consistent with outlined */
-    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+    box-shadow: var(--memori-shadow-xl);
 }
 
 /* Dark mode: add subtle border for better visibility */
 [data-theme='dark'] .memori-card--elevated,
 :root.dark .memori-card--elevated {
     border-color: var(--memori-border-color);
+}
+
+/* Flat: no shadow, border only */
+.memori-card--flat {
+    border: var(--memori-border) solid var(--memori-border-color);
+    box-shadow: none;
 }
 
 /* Outlined: Border, no shadow */

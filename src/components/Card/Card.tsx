@@ -26,7 +26,7 @@ export interface CardProps extends Omit<
    * Visual variant of the card
    * @default 'elevated'
    */
-  variant?: 'elevated' | 'outlined'
+  variant?: 'elevated' | 'outlined' | 'flat'
 
   /**
    * Controls the padding inside the card body
@@ -96,11 +96,15 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const isInteractive = !!onClick || focusable === true || hoverable === true
     const tabIndex = isInteractive || focusable ? 0 : undefined
 
-    const rootClassName = cx(
-      'memori-card',
+    const variantClass =
       variant === 'elevated'
         ? 'memori-card--elevated'
-        : 'memori-card--outlined',
+        : variant === 'flat'
+          ? 'memori-card--flat'
+          : 'memori-card--outlined'
+    const rootClassName = cx(
+      'memori-card',
+      variantClass,
       isInteractive && 'memori-card--interactive',
       className,
     )

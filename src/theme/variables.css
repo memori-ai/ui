@@ -12,6 +12,11 @@
  *   }
  * Ensure accessible contrast (e.g. WCAG AA) when overriding; verify
  * --memori-primary-content / --memori-secondary-content on your custom colors.
+ *
+ * When overriding --memori-primary dynamically (e.g. via JS or a scoped stylesheet),
+ * re-define the derived variables in the SAME rule so they use your primary.
+ * Copy the block below into your override selector (see README or this file's
+ * "Dynamic primary override" section at the end).
  */
 
 :root {
@@ -81,7 +86,7 @@
 
     /* Neutral colors - grays and muted tones */
     --memori-neutral: oklch(50% 0.05 240deg);
-    --memori-neutral-content: oklch(98% 0.01 240deg);
+    --memori-neutral-content: #f7f7f7; /* Light gray */
 
     /* Semantic colors - fixed meaning */
     --memori-success: oklch(65% 0.25 140deg);
@@ -174,8 +179,8 @@
 
     /* Neutral colors - inverted for dark mode */
     --memori-neutral: oklch(50% 0.05 240deg);
-    --memori-neutral-content: oklch(98% 0.01 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);
+    --memori-neutral-content: oklch(20% 0.05 240deg);
 
     /* Dark theme shadows */
     --memori-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 30%);
@@ -185,3 +190,25 @@
     --memori-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 70%), 0 8px 10px -6px rgb(0 0 0 / 60%);
     --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 80%);
 }
+
+/*
+ * Dynamic primary override (copy into your selector when setting --memori-primary in JS)
+ * Re-defining these in the same rule ensures hover/subtle/focus/skeleton use your primary.
+ *
+ * your-selector {
+ *   --memori-primary-color: <your-color>;
+ *   --memori-primary: <your-color>;
+ *   --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
+ *   --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 25%);
+ *   --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
+ *   --memori-primary-subtle: color-mix(in oklch, var(--memori-primary), white 60%);
+ *   --memori-primary-subtle-hover: color-mix(in oklch, var(--memori-primary), white 50%);
+ *   --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 70%);
+ *   --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 50%);
+ *   --memori-focus-ring-color: color-mix(in oklch, var(--memori-primary), transparent 80%);
+ *   --memori-focus-ring: 0 0 0 3px var(--memori-focus-ring-color);
+ *   --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
+ *   --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
+ *   --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
+ * }
+ */

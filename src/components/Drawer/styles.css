@@ -214,13 +214,13 @@
 }
 
 .memori-drawer__close:hover {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-subtle-hover);
     color: var(--memori-text-color);
 }
 
 .memori-drawer__close:focus-visible {
     outline: 2px solid var(--memori-primary);
-    outline-offset: 2px;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-drawer__body {

@@ -38,19 +38,49 @@ function App() {
 
 This library uses a **dynamic OKLCH color system**. The entire color palette (shades 100-900) is automatically generated from base primary and secondary colors using CSS Relative Color Syntax.
 
-### Overriding Brand Colors
+### Design Tokens
 
-To customize the theme, simply set the following CSS variables in your application (e.g., in `:root` or a specific container). You do **not** need to define every shade; the library calculates them for you.
+The library exposes CSS variables for shadows, interactive states, and focus. Use these tokens in your app or when extending components.
+
+#### Shadows
+
+| Token                     | Use case                             |
+| ------------------------- | ------------------------------------ |
+| `--memori-shadow-xs`      | Subtle depth for small elements      |
+| `--memori-shadow-sm`      | Default for buttons, cards           |
+| `--memori-shadow-md`      | Hover states                         |
+| `--memori-shadow-lg`      | Modals, dropdowns                    |
+| `--memori-shadow-xl`      | Hero cards, major sections           |
+| `--memori-shadow-2xl`     | Maximum elevation                    |
+| `--memori-shadow-primary` | Brand-colored shadow for CTA buttons |
+
+Shadows are overridden in dark theme for better contrast.
+
+#### Interactive state tokens
+
+Primary interactive states are derived from your brand color and can be overridden:
+
+- `--memori-primary-hover` – hover background/border
+- `--memori-primary-active` – pressed/active state
+- `--memori-primary-disabled` – disabled state
+- `--memori-focus-ring` – focus outline (box-shadow)
+- `--memori-focus-ring-offset` – gap between element and ring
+
+#### Overriding brand colors
+
+Set `--memori-primary-color` (and optionally `--memori-secondary-color`) in your app. Interactive states and `--memori-shadow-primary` are computed from these.
 
 ```css
 :root {
-  /* Override Primary Color (Purple default) */
-  --memori-primary-rgb: oklch(0.55 0.22 290); /* or hex, rgb, etc. */
+  /* Override Primary (purple default) */
+  --memori-primary-color: oklch(0.55 0.22 290);
 
-  /* Override Secondary Color (Cyan default) */
-  --memori-secondary-rgb: oklch(0.7 0.15 200);
+  /* Override Secondary (cyan default) */
+  --memori-secondary-color: oklch(0.7 0.15 200);
 }
 ```
+
+**Note:** The legacy token `--memori-depth` has been removed. Use the shadow scale (`--memori-shadow-xs` through `--memori-shadow-2xl`) instead.
 
 ### Dark Mode
 

@@ -22,15 +22,15 @@
 
 /* Focus visible - clear accessibility ring */
 .memori-button:focus-visible {
-    box-shadow: 0 0 0 4px oklch(from var(--memori-primary) l c h / 20%);
+    box-shadow: var(--memori-focus-ring);
     outline: 2px solid var(--memori-primary);
-    outline-offset: 2px;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 /* Disabled state - must come before :hover:not(:disabled) for specificity */
 .memori-button:disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
@@ -112,14 +112,14 @@
 }
 
 .memori-button--primary:hover:not(:disabled) {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
+    border-color: var(--memori-primary-hover);
+    background-color: var(--memori-primary-hover);
 }
 
 .memori-button--primary:active:not(:disabled),
 .memori-button--primary.memori-button--active {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
+    border-color: var(--memori-primary-active);
+    background-color: var(--memori-primary-active);
 }
 
 /* Secondary Variant */
@@ -129,15 +129,21 @@
     color: var(--memori-secondary-content);
 }
 
+.memori-button--secondary:disabled {
+    border-color: var(--memori-border-color);
+    background-color: var(--memori-secondary-disabled);
+    color: var(--memori-neutral);
+}
+
 .memori-button--secondary:hover:not(:disabled) {
-    border-color: var(--memori-secondary);
-    background-color: var(--memori-secondary);
+    border-color: var(--memori-secondary-hover);
+    background-color: var(--memori-secondary-hover);
 }
 
 .memori-button--secondary:active:not(:disabled),
 .memori-button--secondary.memori-button--active {
-    border-color: var(--memori-secondary);
-    background-color: var(--memori-secondary);
+    border-color: var(--memori-secondary-active);
+    background-color: var(--memori-secondary-active);
 }
 
 /* Outline Variant */
@@ -163,14 +169,15 @@
 }
 
 .memori-button--outline:hover:not(:disabled) {
-    background-color: var(--memori-primary);
+    border-color: var(--memori-primary-hover);
+    background-color: var(--memori-primary-hover);
     color: var(--memori-primary-content);
 }
 
 .memori-button--outline:active:not(:disabled),
 .memori-button--outline.memori-button--active {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
+    border-color: var(--memori-primary-active);
+    background-color: var(--memori-primary-active);
     color: var(--memori-primary-content);
 }
 
@@ -211,14 +218,14 @@
 .memori-button--danger.memori-button--disabled,
 .memori-button--danger:disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
 }
 
 .memori-button--danger.memori-button--disabled:hover,
 .memori-button--danger:disabled:hover {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
 }
 
@@ -339,7 +346,7 @@
 
 .memori-button--disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
@@ -347,6 +354,6 @@
 
 .memori-button--disabled:hover {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
 }

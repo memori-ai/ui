@@ -232,7 +232,7 @@
 .memori-alert__close:focus-visible {
     opacity: 1;
     outline: 2px solid var(--alert-color);
-    outline-offset: 2px;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-alert__close:active {

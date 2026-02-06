@@ -36,28 +36,32 @@
 
 .memori-select__trigger:focus,
 .memori-select__trigger:focus-visible {
-    border-color: var(--memori-primary);
+    border-color: var(--memori-border-primary);
     box-shadow: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-select__trigger:disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-neutral-content);
     color: var(--memori-neutral);
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .memori-select__trigger:hover:not(:disabled) {
-    border-color: var(--memori-primary-hover);
+    border-color: var(--memori-border-primary-hover);
+    background-color: var(--memori-neutral-content);
 }
 
+/* Above Drawer/Modal/Dropdown (z-index 1001) so dropdown appears on top when inside overlays */
 .memori-select__portal {
-    z-index: 999;
+    z-index: 1100;
 }
 
 /* The positioner is the element with position:fixed and coordinates – it must have z-index */
 .memori-select__positioner {
-    z-index: 9999;
+    z-index: 1100;
 }
 
 .memori-select__trigger:active:not(:disabled) {
@@ -65,7 +69,7 @@
 }
 
 .memori-select__trigger[data-popup-open] {
-    border-color: var(--memori-primary);
+    border-color: var(--memori-border-primary);
 }
 
 .memori-select__trigger--error {
@@ -159,7 +163,8 @@
 }
 
 .memori-select__item[data-selected] {
-    background-color: var(--memori-border-color);
+    background-color: var(--memori-neutral-content);
+    box-shadow: inset 3px 0 0 0 var(--memori-border-primary);
     color: var(--memori-primary);
     font-weight: var(--memori-text-weight-medium);
 }

@@ -48,7 +48,7 @@
     margin-left: auto;
     animation: memori-modal-scale-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     background-color: var(--memori-main-background);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    box-shadow: var(--memori-shadow-md);
     font-family: var(--memori-font-family);
     outline: none;
     transition: outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
@@ -62,7 +62,7 @@
 
 .memori-modal__popup:focus-visible {
     outline: 2px solid var(--memori-primary);
-    outline-offset: 2px;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 /* Size Variants - These apply when no custom width is set via inline style */
@@ -146,13 +146,13 @@
 }
 
 .memori-modal__close:hover {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-subtle-hover);
     color: var(--memori-text-color);
 }
 
 .memori-modal__close:focus-visible {
     outline: 2px solid var(--memori-primary);
-    outline-offset: 2px;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-modal__close svg {

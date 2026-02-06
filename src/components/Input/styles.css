@@ -16,9 +16,10 @@
 
 .memori-input:focus,
 .memori-input:focus-within {
-    border-color: var(--memori-primary);
+    border-color: var(--memori-border-primary);
     box-shadow: var(--memori-focus-ring);
     isolation: isolate;
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-input::placeholder {
@@ -28,7 +29,7 @@
 .memori-input--disabled,
 .memori-input:disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-primary-disabled);
     color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
@@ -40,7 +41,7 @@
 }
 
 .memori-input:hover:not(:disabled) {
-    border-color: var(--memori-primary-hover);
+    border-color: var(--memori-border-primary-hover);
 }
 
 /* ============================================

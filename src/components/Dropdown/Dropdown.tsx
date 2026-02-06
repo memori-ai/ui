@@ -3,6 +3,8 @@ import { Menu } from '@base-ui/react/menu'
 import type { MenuRootProps } from '@base-ui/react/menu'
 import cx from 'classnames'
 import { ChevronDown } from 'lucide-react'
+import { Button } from '../Button/Button'
+import type { ButtonProps } from '../Button/Button'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -92,10 +94,19 @@ DropdownRoot.displayName = 'Dropdown'
  * Dropdown Trigger
  * -------------------------------------------------------------------------- */
 
-export interface DropdownTriggerProps extends Omit<
-  React.ComponentPropsWithoutRef<typeof Menu.Trigger>,
-  'className' | 'style'
-> {
+/** Button-related props: when set, the trigger renders as your Button component (single button in DOM). */
+type DropdownTriggerButtonProps = Pick<
+  ButtonProps,
+  'variant' | 'size' | 'fullWidth' | 'shape' | 'shadow' | 'danger' | 'active'
+>
+
+export interface DropdownTriggerProps
+  extends
+    Omit<
+      React.ComponentPropsWithoutRef<typeof Menu.Trigger>,
+      'className' | 'style' | 'render'
+    >,
+    DropdownTriggerButtonProps {
   /**
    * Content of the trigger (e.g. button text or icon).
    */
@@ -116,6 +127,13 @@ export interface DropdownTriggerProps extends Omit<
    * Inline styles for the trigger button.
    */
   style?: React.CSSProperties
+
+  /**
+   * Custom element for the trigger. Use this to render your own component (e.g. Button)
+   * as the trigger so there is a single button in the DOM. Receives trigger props and
+   * state (e.g. open). Prefer using variant/size etc. for the built-in Button.
+   */
+  render?: React.ComponentPropsWithoutRef<typeof Menu.Trigger>['render']
 }
 
 const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(
@@ -127,28 +145,94 @@ const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(
       style,
       disabled,
       'aria-label': ariaLabel,
+      render: renderProp,
+      variant,
+      size,
+      fullWidth,
+      shape,
+      shadow,
+      danger,
+      active,
       ...rest
     },
     ref,
   ) => {
+    const hasButtonProps =
+      variant != null ||
+      size != null ||
+      fullWidth != null ||
+      shape != null ||
+      shadow != null ||
+      danger != null ||
+      active != null
+
+    const triggerClassName = cx('memori-dropdown__trigger', className)
+    const chevron = showChevron ? (
+      <span
+        className="memori-dropdown__trigger-icon"
+        aria-hidden
+      >
+        <ChevronDown size={16} />
+      </span>
+    ) : null
+
+    type TriggerRenderProps = React.HTMLAttributes<HTMLButtonElement> & {
+      className?: string
+    }
+    type TriggerRenderState = { open: boolean }
+
+    const effectiveRender = (() => {
+      if (renderProp) return renderProp
+      if (hasButtonProps) {
+        return (props: TriggerRenderProps, state: TriggerRenderState) => (
+          <Button
+            {...props}
+            ref={ref as React.Ref<HTMLButtonElement>}
+            variant={variant}
+            size={size}
+            fullWidth={fullWidth}
+            shape={shape}
+            shadow={shadow}
+            danger={danger}
+            active={active ?? state.open}
+            className={cx(triggerClassName, props.className)}
+            aria-expanded={state.open}
+          >
+            {children}
+            {chevron}
+          </Button>
+        )
+      }
+      return undefined
+    })()
+
+    if (effectiveRender) {
+      return (
+        <Menu.Trigger
+          ref={ref}
+          disabled={disabled}
+          render={
+            effectiveRender as React.ComponentPropsWithoutRef<
+              typeof Menu.Trigger
+            >['render']
+          }
+          aria-label={ariaLabel}
+          {...rest}
+        />
+      )
+    }
+
     return (
       <Menu.Trigger
         ref={ref}
         disabled={disabled}
-        className={cx('memori-dropdown__trigger', className)}
+        className={triggerClassName}
         style={style}
         aria-label={ariaLabel}
         {...rest}
       >
         {children}
-        {showChevron && (
-          <span
-            className="memori-dropdown__trigger-icon"
-            aria-hidden
-          >
-            <ChevronDown size={16} />
-          </span>
-        )}
+        {chevron}
       </Menu.Trigger>
     )
   },
@@ -245,6 +329,11 @@ export interface DropdownItemProps extends Omit<
   children?: React.ReactNode
 
   /**
+   * Icon to show on the left side of the item.
+   */
+  icon?: React.ReactNode
+
+  /**
    * If true, the item is disabled.
    * @default false
    */
@@ -276,6 +365,7 @@ const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
   (
     {
       children,
+      icon,
       disabled = false,
       closeOnClick = true,
       label,
@@ -292,12 +382,24 @@ const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         disabled={disabled}
         closeOnClick={closeOnClick}
         label={label}
-        className={cx('memori-dropdown__item', className)}
+        className={cx(
+          'memori-dropdown__item',
+          icon ? 'memori-dropdown__item--with-icon' : undefined,
+          className,
+        )}
         style={style}
         onClick={onClick}
         role="menuitem"
         {...rest}
       >
+        {icon && (
+          <span
+            className="memori-dropdown__item-icon"
+            aria-hidden
+          >
+            {icon}
+          </span>
+        )}
         {children}
       </Menu.Item>
     )

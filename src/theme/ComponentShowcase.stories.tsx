@@ -19,6 +19,7 @@ import { Spin } from '../components/Spin'
 import { Modal } from '../components/Modal'
 import Drawer from '../components/Drawer'
 import './variables.css'
+import { Dropdown } from '../components/Dropdown'
 
 // Theme wrapper component
 const ThemeWrapper = ({
@@ -57,6 +58,8 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
     { value: 'option3', label: 'Option 3', disabled: true },
     { value: 'option4', label: 'Option 4' },
   ]
+
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
     <ThemeWrapper theme={theme}>
@@ -687,6 +690,27 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 Drawers are great for secondary navigation, filters, or forms
                 that don't need to interrupt the user's workflow.
               </p>
+              <hr style={{ margin: 'var(--memori-spacing-md) 0' }} />
+              <Dropdown
+                open={dropdownOpen}
+                onOpenChange={setDropdownOpen}
+              >
+                <Dropdown.Trigger>Actions</Dropdown.Trigger>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => {}}>Edit</Dropdown.Item>
+                  <Dropdown.Item onClick={() => {}}>Duplicate</Dropdown.Item>
+                  <Dropdown.Item onClick={() => {}}>Share</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+              <hr style={{ margin: 'var(--memori-spacing-md) 0' }} />
+              <SelectBox
+                label="Select Box"
+                options={selectOptions}
+                value={selectValue}
+                onChange={setSelectValue}
+                placeholder="Choose an option"
+              />
               <div style={{ width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <label
                   style={{

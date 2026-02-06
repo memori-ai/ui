@@ -134,18 +134,6 @@
     transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
 }
 
-.memori-dropdown__item--with-icon {
-    gap: var(--memori-spacing-sm);
-}
-
-.memori-dropdown__item-icon {
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-}
-
 .memori-dropdown__item:focus-visible {
     outline: 2px solid var(--memori-primary);
     outline-offset: var(--memori-focus-ring-offset);

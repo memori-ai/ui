@@ -1,5 +1,12 @@
 
 
+## [1.5.0](https://github.com/memori-ai/ui/compare/v1.4.0...v1.5.0) (2026-02-06)
+
+
+### Features
+
+* add shadow prop to Button component ([4c083ae](https://github.com/memori-ai/ui/commit/4c083ae2b1aa764d13ed1a562521e7434a628eab))
+
 ## [1.4.0](https://github.com/memori-ai/ui/compare/v1.3.0...v1.4.0) (2026-02-04)
 
 

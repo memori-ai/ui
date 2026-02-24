@@ -80,21 +80,8 @@ export const WithFooter: Story = {
     anchor: 'right',
     footer: (
       <>
-        <Button style={{ padding: '8px 16px', cursor: 'pointer' }}>
-          Cancel
-        </Button>
-        <Button
-          style={{
-            padding: '8px 16px',
-            cursor: 'pointer',
-            backgroundColor: '#8246af',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-          }}
-        >
-          Submit
-        </Button>
+        <Button variant="outline">Cancel</Button>
+        <Button variant="primary">Submit</Button>
       </>
     ),
     children: <p>This drawer has a footer action area.</p>,

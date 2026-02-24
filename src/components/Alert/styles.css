@@ -131,6 +131,7 @@
    ========================================================================== */
 
 .memori-alert__container {
+    z-index: 10001;
     display: flex;
     align-items: flex-start;
     padding: var(--memori-spacing-md);

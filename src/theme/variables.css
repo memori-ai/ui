@@ -110,6 +110,8 @@
     --memori-spacing-5xl: 80px;
 
     /* Typography - Font Sizes */
+    --memori-text-size-xs: 0.625rem; /* 10px - Extra small text, tiny labels */
+    --memori-text-size-sm: 0.75rem; /* 12px - Small text, labels */
     --memori-text-size-small: 0.875rem; /* 14px - Small text, labels */
     --memori-text-size-base: 1rem; /* 16px - Base body text (accessibility minimum) */
     --memori-text-size-large: 1.125rem; /* 18px - Large body text, emphasized content */

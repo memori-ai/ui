@@ -73,6 +73,7 @@
        STATIC COLORS (Don't change with theme)
        ============================================ */
     --memori-main-background: oklch(100% 0 0deg);
+    --memori-secondary-background: oklch(95% 0.03 240deg);
     --memori-text-color: oklch(20% 0.05 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);
 
@@ -175,7 +176,8 @@
     color-scheme: dark;
 
     /* Base colors - inverted for dark mode */
-    --memori-main-background: oklch(20% 0.02 240deg);
+    --memori-main-background: oklch(27.4% 0.022 109.7deg);
+    --memori-secondary-background: oklch(21.6% 0.015 109.7deg);
     --memori-primary-subtle: oklch(27% 0.035 240deg);
     --memori-text-color: #fff;
 

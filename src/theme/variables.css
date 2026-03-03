@@ -72,7 +72,7 @@
     /* ============================================
        STATIC COLORS (Don't change with theme)
        ============================================ */
-    --memori-main-background: oklch(100% 0 0deg);
+    --memori-main-background: oklch(97.8% 0.017 110deg);
     --memori-secondary-background: oklch(95% 0.03 240deg);
     --memori-text-color: oklch(20% 0.05 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);

@@ -1,5 +1,12 @@
 
 
+## [1.6.0](https://github.com/memori-ai/ui/compare/v1.5.6...v1.6.0) (2026-03-05)
+
+
+### Features
+
+* add optional icon support to DropdownItem ([e6fabf8](https://github.com/memori-ai/ui/commit/e6fabf85aff67b2b15a8b637959e6de6c849c9a3))
+
 ## [1.5.6](https://github.com/memori-ai/ui/compare/v1.5.5...v1.5.6) (2026-03-03)
 
 ## [1.5.5](https://github.com/memori-ai/ui/compare/v1.5.4...v1.5.5) (2026-03-03)

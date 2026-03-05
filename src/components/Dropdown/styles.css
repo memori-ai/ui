@@ -127,6 +127,7 @@
     cursor: pointer;
     font-size: var(--memori-text-size-base);
     font-weight: var(--memori-text-weight-normal);
+    gap: var(--memori-spacing-sm);
     line-height: var(--memori-text-line-normal);
     outline: none;
     text-align: left;
@@ -147,6 +148,16 @@
 .memori-dropdown__item[data-disabled] {
     color: var(--memori-neutral);
     cursor: not-allowed;
+}
+
+.memori-dropdown__item-icon {
+    display: inline-flex;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
 }
 
 /* ============================================

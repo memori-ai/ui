@@ -293,6 +293,11 @@ export interface DropdownItemProps extends Omit<
    * Inline styles.
    */
   style?: React.CSSProperties
+
+  /**
+   * Optional icon shown to the left of the item label.
+   */
+  icon?: React.ReactNode
 }
 
 const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
@@ -305,10 +310,26 @@ const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
       className,
       style,
       onClick,
+      icon,
       ...rest
     },
     ref,
   ) => {
+    const content =
+      icon != null ? (
+        <>
+          <span
+            className="memori-dropdown__item-icon"
+            aria-hidden
+          >
+            {icon}
+          </span>
+          {children}
+        </>
+      ) : (
+        children
+      )
+
     return (
       <Menu.Item
         ref={ref}
@@ -321,7 +342,7 @@ const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         role="menuitem"
         {...rest}
       >
-        {children}
+        {content}
       </Menu.Item>
     )
   },

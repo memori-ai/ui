@@ -31,7 +31,6 @@
 .memori-button:disabled {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
-    color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -132,7 +131,6 @@
 .memori-button--secondary:disabled {
     border-color: var(--memori-border-color);
     background-color: var(--memori-secondary-disabled);
-    color: var(--memori-neutral);
 }
 
 .memori-button--secondary:hover:not(:disabled) {
@@ -158,14 +156,12 @@
 .memori-button--outline:disabled {
     border-color: var(--memori-border-color);
     background-color: transparent;
-    color: var(--memori-neutral);
 }
 
 .memori-button--outline.memori-button--disabled:hover,
 .memori-button--outline:disabled:hover {
     border-color: var(--memori-border-color);
     background-color: transparent;
-    color: var(--memori-neutral);
 }
 
 .memori-button--outline:hover:not(:disabled) {
@@ -193,14 +189,12 @@
 .memori-button--ghost:disabled {
     border-color: transparent;
     background-color: transparent;
-    color: var(--memori-neutral);
 }
 
 .memori-button--ghost.memori-button--disabled:hover,
 .memori-button--ghost:disabled:hover {
     border-color: transparent;
     background-color: transparent;
-    color: var(--memori-neutral);
 }
 
 /* Danger Variant */
@@ -219,14 +213,12 @@
 .memori-button--danger:disabled {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
-    color: var(--memori-neutral);
 }
 
 .memori-button--danger.memori-button--disabled:hover,
 .memori-button--danger:disabled:hover {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
-    color: var(--memori-neutral);
 }
 
 .memori-button--danger:hover:not(:disabled) {
@@ -347,7 +339,6 @@
 .memori-button--disabled {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
-    color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -355,5 +346,4 @@
 .memori-button--disabled:hover {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
-    color: var(--memori-neutral);
 }

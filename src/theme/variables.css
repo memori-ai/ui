@@ -31,6 +31,9 @@
     --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg));
     --memori-secondary: var(--memori-secondary-color, oklch(70% 0.15 200deg));
 
+    /* RGB triple for use in rgb(var(--memori-primary-rgb)) — PDF export, share, etc. */
+    --memori-primary-rgb: 130, 70, 175;
+
     /* ============================================
        DERIVED PRIMARY COLORS (Auto-calculated)
        ============================================ */
@@ -68,6 +71,18 @@
     /* Loading/skeleton - adapt to primary */
     --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
     --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
+
+    /* ============================================
+       INTEGRATION / LAYOUT
+       ============================================ */
+
+    /* Optional override for integration text; set on .memori-widget or parent. */
+    --memori-integration-text-color: var(--memori-text-color);
+
+    /* Surface contrast for primary-subtle, skeleton, share button (light = white, dark = black). */
+    --memori-surface-contrast: white;
+    --memori-surface-contrast-inverse: black;
+    --memori-layout-max-width: 1280px;
 
     /* ============================================
        STATIC COLORS (Don't change with theme)
@@ -144,6 +159,10 @@
     /* Border size */
     --memori-border: 1px; /* Default border width for borders */
 
+    /* Button (padding and shadow for ExportHistoryButton, PoweredBy, etc.) */
+    --memori-button-padding: 0.5rem 1.5rem;
+    --memori-button-box-shadow: var(--memori-shadow-sm);
+
     /* Modal sizes */
     --memori-modal-size-sm: 400px;
     --memori-modal-size-md: 600px;
@@ -160,6 +179,9 @@
     --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
     --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
 
+    /* Backdrop blur (e.g. MediaItemWidget) */
+    --memori-blur-background: 10px;
+
     /* Motion - for hover/focus and micro-interactions (under 300ms) */
     --memori-motion-duration-fast: 150ms;
     --memori-motion-duration-normal: 200ms;
@@ -168,12 +190,27 @@
     --memori-motion-ease-in-out: ease-in-out;
     --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
     --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
+
+    /* Content preview modal (optional; components can override) */
+    --memori-content-preview-bg: var(--memori-secondary-background);
+    --memori-content-preview-border: var(--memori-border-color);
+    --memori-content-preview-title: var(--memori-text-color);
+    --memori-content-preview-close-bg: transparent;
+    --memori-content-preview-close-hover: oklch(0% 0 0deg / 8%);
+    --memori-content-preview-image-bg: oklch(0% 0 0deg / 4%);
+    --memori-content-preview-snippet-border: var(--memori-border-color);
+    --memori-content-preview-snippet-bg: var(--memori-main-background);
+    --memori-content-preview-snippet-text: var(--memori-text-color);
 }
 
 /* Dark theme */
 [data-theme='dark'],
 :root.dark {
     color-scheme: dark;
+
+    /* Integration / layout - inverted for dark mode */
+    --memori-surface-contrast: black;
+    --memori-surface-contrast-inverse: white;
 
     /* Base colors - inverted for dark mode */
     --memori-main-background: oklch(27.4% 0.022 109.7deg);
@@ -198,6 +235,8 @@
 /*
  * Dynamic primary override (copy into your selector when setting --memori-primary in JS)
  * Re-defining these in the same rule ensures hover/subtle/focus/skeleton use your primary.
+ * When using RGB (e.g. for PDF/share), set --memori-primary-rgb to "R, G, B" and use
+ * --memori-primary-color: rgb(var(--memori-primary-rgb)); (no second argument).
  *
  * your-selector {
  *   --memori-primary-color: <your-color>;

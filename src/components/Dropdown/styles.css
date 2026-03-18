@@ -141,8 +141,7 @@
 
 .memori-dropdown__item:hover:not([data-disabled]),
 .memori-dropdown__item[data-highlighted]:not([data-disabled]) {
-    background-color: var(--memori-neutral-content);
-    color: var(--memori-primary);
+    background-color: var(--memori-secondary-background);
 }
 
 .memori-dropdown__item[data-disabled] {

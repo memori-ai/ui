@@ -157,11 +157,10 @@
 
 .memori-select__item:hover,
 .memori-select__item[data-highlighted] {
-    background-color: var(--memori-neutral-content);
+    background-color: var(--memori-secondary-background);
 }
 
 .memori-select__item[data-selected] {
-    background-color: var(--memori-neutral-content);
     color: var(--memori-primary);
     font-weight: var(--memori-text-weight-medium);
 }

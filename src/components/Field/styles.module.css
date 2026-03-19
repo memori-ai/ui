@@ -1,0 +1,77 @@
+/**
+ * Field component styles.
+ * Uses design tokens from theme/variables.css only.
+ * Built on @base-ui/react Field. WCAG 2.1 AA+.
+ */
+
+.root {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--memori-font-family);
+    gap: var(--memori-spacing-xs);
+}
+
+.label {
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-medium);
+    line-height: var(--memori-text-line-normal);
+    transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+}
+
+.label:focus-visible {
+    border-radius: var(--memori-radius-field);
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.root:focus-within .label {
+    color: var(--memori-text-color);
+}
+
+.root[data-disabled] .label {
+    color: var(--memori-neutral);
+    cursor: not-allowed;
+}
+
+.requiredIndicator {
+    margin-left: var(--memori-spacing-xs);
+    color: var(--memori-error);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.description {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+    line-height: var(--memori-text-line-normal);
+}
+
+.root[data-disabled] .description {
+    color: var(--memori-neutral);
+}
+
+.error {
+    color: var(--memori-error);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+    line-height: var(--memori-text-line-normal);
+}
+
+.error:focus-visible {
+    border-radius: var(--memori-radius-field);
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.controlWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .label {
+        transition: none;
+    }
+}

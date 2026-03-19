@@ -87,7 +87,7 @@
     /* ============================================
        STATIC COLORS (Don't change with theme)
        ============================================ */
-    --memori-main-background: oklch(96.4% 0.008 250deg);
+    --memori-main-background: oklch(99.2% 0 0deg);
     --memori-secondary-background: #fff;
     --memori-text-color: oklch(20% 0.05 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);
@@ -213,7 +213,7 @@
     --memori-surface-contrast-inverse: white;
 
     /* Base colors - inverted for dark mode */
-    --memori-main-background: oklch(14.7% 0.004 264deg);
+    --memori-main-background: oklch(21.2% 0 0deg);
     --memori-secondary-background: oklch(21.6% 0.015 109.7deg);
     --memori-primary-subtle: oklch(27% 0.035 240deg);
     --memori-text-color: #fff;

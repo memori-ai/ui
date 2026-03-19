@@ -109,7 +109,7 @@
     box-sizing: border-box;
     border-radius: 0.375rem;
     background-clip: padding-box;
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: var(--memori-shadow-lg);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);

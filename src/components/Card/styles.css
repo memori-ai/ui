@@ -13,7 +13,7 @@
     padding: var(--memori-spacing-lg);
     border-radius: var(--memori-radius-box);
     margin: 0;
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: var(--memori-shadow-md);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);

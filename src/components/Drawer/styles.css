@@ -41,7 +41,7 @@
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: 0 8px 32px rgb(0 0 0 / 12%);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
@@ -215,7 +215,7 @@
 }
 
 .memori-drawer__close:hover {
-    background-color: var(--memori-primary-subtle-hover);
+    background-color: var(--memori-main-background);
     color: #fff;
 }
 
@@ -239,7 +239,7 @@
     justify-content: flex-end;
     padding: var(--memori-spacing-md) var(--memori-spacing-lg);
     border-top: 1px solid var(--memori-border-color);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     gap: var(--memori-spacing-sm);
 }
 

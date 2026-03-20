@@ -252,7 +252,7 @@
 
 .memori-combobox__item:hover:not([data-disabled]),
 .memori-combobox__item[data-highlighted]:not([data-disabled]) {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-main-background);
 }
 
 .memori-combobox__item[data-selected] {

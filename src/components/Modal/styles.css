@@ -47,7 +47,7 @@
     margin-right: auto;
     margin-left: auto;
     animation: memori-modal-scale-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: var(--memori-shadow-md);
     font-family: var(--memori-font-family);
     outline: none;
@@ -146,7 +146,7 @@
 }
 
 .memori-modal__close:hover {
-    background-color: var(--memori-primary-subtle-hover);
+    background-color: var(--memori-main-background);
     color: var(--memori-text-color);
 }
 

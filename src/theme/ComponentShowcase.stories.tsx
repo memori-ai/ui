@@ -87,7 +87,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
         >
           {/* Header */}
           <Card
-            variant="elevated"
+            variant="flat"
             padding="lg"
           >
             <h1
@@ -784,7 +784,7 @@ export const DarkTheme: Story = {
   parameters: {
     backgrounds: {
       default: 'dark',
-      values: [{ name: 'dark', value: '#333' }],
+      values: [{ name: 'dark', value: '#191919' }],
     },
   },
 }

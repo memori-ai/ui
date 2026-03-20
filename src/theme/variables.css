@@ -43,10 +43,6 @@
     --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 25%);
     --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
 
-    /* Primary surfaces */
-    --memori-primary-subtle: color-mix(in oklch, var(--memori-primary), white 60%);
-    --memori-primary-subtle-hover: color-mix(in oklch, var(--memori-primary), white 50%);
-
     /* Primary borders */
     --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 70%);
     --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 50%);
@@ -78,16 +74,12 @@
 
     /* Optional override for integration text; set on .memori-widget or parent. */
     --memori-integration-text-color: var(--memori-text-color);
-
-    /* Surface contrast for primary-subtle, skeleton, share button (light = white, dark = black). */
-    --memori-surface-contrast: white;
-    --memori-surface-contrast-inverse: black;
     --memori-layout-max-width: 1280px;
 
     /* ============================================
        STATIC COLORS (Don't change with theme)
        ============================================ */
-    --memori-main-background: oklch(99.2% 0 0deg);
+    --memori-main-background: oklch(97.9% 0.01 120deg);
     --memori-secondary-background: #fff;
     --memori-text-color: oklch(20% 0.05 240deg);
     --memori-border-color: rgb(73 103 125 / 16%);
@@ -152,10 +144,6 @@
     --memori-radius-field: var(--memori-radius-form); /* Input fields; matches buttons */
     --memori-radius-box: 0.75rem; /* Cards, modals, containers */
 
-    /* Base sizes */
-    --memori-size-selector: 0.25rem; /* Size for selector elements (checkboxes, radio buttons) */
-    --memori-size-field: 0.25rem; /* Size for form field elements */
-
     /* Border size */
     --memori-border: 1px; /* Default border width for borders */
 
@@ -190,17 +178,6 @@
     --memori-motion-ease-in-out: ease-in-out;
     --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
     --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
-
-    /* Content preview modal (optional; components can override) */
-    --memori-content-preview-bg: var(--memori-secondary-background);
-    --memori-content-preview-border: var(--memori-border-color);
-    --memori-content-preview-title: var(--memori-text-color);
-    --memori-content-preview-close-bg: transparent;
-    --memori-content-preview-close-hover: oklch(0% 0 0deg / 8%);
-    --memori-content-preview-image-bg: oklch(0% 0 0deg / 4%);
-    --memori-content-preview-snippet-border: var(--memori-border-color);
-    --memori-content-preview-snippet-bg: var(--memori-main-background);
-    --memori-content-preview-snippet-text: var(--memori-text-color);
 }
 
 /* Dark theme */
@@ -213,8 +190,8 @@
     --memori-surface-contrast-inverse: white;
 
     /* Base colors - inverted for dark mode */
-    --memori-main-background: oklch(21.2% 0 0deg);
-    --memori-secondary-background: oklch(21.6% 0.015 109.7deg);
+    --memori-main-background: oklch(32.1% 0 0deg);
+    --memori-secondary-background: oklch(21.2% 0 0deg);
     --memori-primary-subtle: oklch(27% 0.035 240deg);
     --memori-text-color: #fff;
 

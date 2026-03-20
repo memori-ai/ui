@@ -54,7 +54,7 @@
 }
 
 .memori-input--default:hover:not(:disabled) {
-    border-color: var(--memori-text-color);
+    border-color: var(--memori-border-color);
     background-color: var(--memori-main-background);
 }
 

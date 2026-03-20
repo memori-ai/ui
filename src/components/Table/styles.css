@@ -70,7 +70,7 @@ table.memori-table[role='grid'] tbody tr:nth-child(odd) {
 }
 
 table.memori-table[role='grid'] tbody tr:hover {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-main-background);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -101,13 +101,13 @@
 }
 
 .memori-collapsible__trigger:hover:not(:disabled) {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-main-background);
     color: var(--memori-primary);
 }
 
 [data-theme='dark'] .memori-collapsible__trigger:hover:not(:disabled),
 :root.dark .memori-collapsible__trigger:hover:not(:disabled) {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-main-background);
 }
 
 @media (prefers-reduced-motion: reduce) {

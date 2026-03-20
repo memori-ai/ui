@@ -15,6 +15,12 @@ export {
   type AddAlertOptions,
 } from './components/Alert'
 export { Button } from './components/Button'
+export { Autocomplete } from './components/Autocomplete'
+export type {
+  AutocompleteProps,
+  AutocompleteOption,
+  AutocompleteGroupOption,
+} from './components/Autocomplete'
 export { Combobox } from './components/Combobox'
 export { Collapsible } from './components/Collapsible'
 export { Card } from './components/Card'

@@ -1,0 +1,279 @@
+/**
+ * Autocomplete styles.
+ * Uses design tokens from theme/variables.css only.
+ * Built on @base-ui/react Autocomplete. WCAG 2.1 AA+.
+ */
+
+.root {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    font-family: var(--memori-font-family);
+    gap: var(--memori-spacing-sm);
+}
+
+.label {
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-medium);
+    line-height: var(--memori-text-line-normal);
+}
+
+.inputRow {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    padding-right: var(--memori-spacing-2xl);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-field);
+    background-color: var(--memori-main-background);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
+    font-size: var(--memori-text-size-base);
+    line-height: var(--memori-text-line-normal);
+    outline: none;
+    transition:
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+}
+
+.input::placeholder {
+    color: var(--memori-neutral);
+}
+
+.input:disabled {
+    border-color: var(--memori-border-color);
+    background-color: var(--memori-neutral-content);
+    color: var(--memori-neutral);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.input:focus-visible {
+    border-color: var(--memori-border-primary);
+    box-shadow: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.input:not(:disabled):hover {
+    border-color: var(--memori-border-primary-hover);
+    background-color: var(--memori-neutral-content);
+}
+
+.input[data-popup-open] {
+    border-color: var(--memori-border-primary);
+}
+
+.root:has(.clear) .input {
+    padding-right: calc(var(--memori-spacing-2xl) + var(--memori-spacing-xl));
+}
+
+.clear {
+    position: absolute;
+    top: 50%;
+    right: var(--memori-spacing-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--memori-spacing-xs);
+    border: 0;
+    border-radius: var(--memori-radius-field);
+    background: transparent;
+    color: var(--memori-neutral);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+        color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+        background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+}
+
+.clear:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.clear:not(:disabled):hover {
+    background-color: var(--memori-main-background);
+    color: var(--memori-text-color);
+}
+
+.inputChevron {
+    position: absolute;
+    top: 50%;
+    right: var(--memori-spacing-md);
+    display: flex;
+    align-items: center;
+    color: var(--memori-text-color);
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
+}
+
+.input[data-popup-open] ~ .inputChevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.portal {
+    z-index: 1100;
+}
+
+.positioner {
+    z-index: 1100;
+}
+
+.popup {
+    min-width: var(--anchor-width, 0);
+    box-sizing: border-box;
+    padding: var(--memori-spacing-sm);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-box);
+    background-color: var(--memori-secondary-background);
+    box-shadow: var(--memori-shadow-lg);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
+    transform-origin: var(--transform-origin);
+    transition:
+        opacity var(--memori-motion-duration-slow) var(--memori-motion-ease-out),
+        transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
+}
+
+.popup[data-ending-style] {
+    transition:
+        opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+    opacity: 0;
+    transform: translateY(calc(var(--memori-spacing-xs) * -1));
+}
+
+.popup:focus {
+    outline: none;
+}
+
+.status {
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-small);
+    line-height: var(--memori-text-line-normal);
+}
+
+.empty {
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-small);
+    line-height: var(--memori-text-line-normal);
+}
+
+.list {
+    max-height: min(55vh, calc(var(--memori-spacing-sm) * 35));
+    outline: none;
+    overflow-y: auto;
+}
+
+.group {
+    padding: 0;
+}
+
+.groupLabel {
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: var(--memori-text-line-normal);
+}
+
+.item {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    border: 0;
+    border-radius: calc(var(--memori-radius-field) - 1px);
+    background: none;
+    color: var(--memori-text-color);
+    cursor: pointer;
+    font-size: var(--memori-text-size-base);
+    font-weight: var(--memori-text-weight-normal);
+    gap: var(--memori-spacing-sm);
+    line-height: var(--memori-text-line-normal);
+    outline: none;
+    text-align: left;
+    transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+}
+
+.item:focus-visible {
+    outline: var(--memori-border) solid var(--memori-primary);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.item:hover:not([data-disabled]),
+.item[data-highlighted]:not([data-disabled]) {
+    background-color: var(--memori-main-background);
+}
+
+.item[data-disabled] {
+    background-color: transparent;
+    color: var(--memori-neutral);
+    cursor: not-allowed;
+}
+
+.itemText {
+    overflow: hidden;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.itemIcons {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: inherit;
+    gap: var(--memori-spacing-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .input,
+    .item {
+        transition:
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    }
+
+    .inputChevron {
+        transition: none;
+    }
+
+    .input[data-popup-open] ~ .inputChevron {
+        transform: translateY(-50%);
+    }
+
+    .popup {
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
+
+    .popup[data-starting-style],
+    .popup[data-ending-style] {
+        transform: none;
+    }
+}

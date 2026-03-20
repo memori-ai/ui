@@ -169,14 +169,6 @@
     background-color: var(--memori-primary-active);
 }
 
-/* Dark mode: disabled primary — explicit white label + icon (currentColor / spinner) */
-[data-theme='dark'] .memori-button--primary:disabled,
-:root.dark .memori-button--primary:disabled,
-[data-theme='dark'] .memori-button--primary.memori-button--disabled,
-:root.dark .memori-button--primary.memori-button--disabled {
-    color: var(--memori-surface-contrast-inverse);
-}
-
 /* Secondary Variant */
 .memori-button--secondary {
     border-color: var(--memori-secondary);

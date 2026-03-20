@@ -1,25 +1,35 @@
 import * as React from 'react'
 import type { Table as TanStackTable } from '@tanstack/react-table'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'lucide-react'
 import { Button } from '../Button'
+import { Input } from '../Input'
 import { SelectBox } from '../SelectBox'
 
 export interface TablePaginationProps<TData> {
   table: TanStackTable<TData>
-  /**
-   * Page size choices for the SelectBox (values are coerced to numbers).
-   * @default [10, 25, 50, 100]
-   */
   pageSizeOptions?: number[]
+  manualPagination?: boolean
+  /** Total rows on the server when using manual pagination */
+  rowCount?: number
 }
 
 export function TablePagination<TData>({
   table,
   pageSizeOptions = [10, 25, 50, 100],
+  manualPagination = false,
+  rowCount: rowCountProp,
 }: TablePaginationProps<TData>) {
   const { pageIndex, pageSize } = table.getState().pagination
-  const pageCount = table.getPageCount()
-  const totalRows = table.getCoreRowModel().rows.length
+  const totalRows =
+    manualPagination && rowCountProp !== undefined
+      ? rowCountProp
+      : table.getCoreRowModel().rows.length
+
   const start = totalRows === 0 ? 0 : pageIndex * pageSize + 1
   const end = Math.min((pageIndex + 1) * pageSize, totalRows)
 
@@ -33,6 +43,26 @@ export function TablePagination<TData>({
       })),
     [pageSizeOptions],
   )
+
+  const jumpFieldId = React.useId()
+
+  const [jumpValue, setJumpValue] = React.useState(() => String(pageIndex + 1))
+  React.useEffect(() => {
+    setJumpValue(String(pageIndex + 1))
+  }, [pageIndex])
+
+  const applyJump = React.useCallback(() => {
+    const n = Number.parseInt(jumpValue, 10)
+    const max = table.getPageCount()
+    if (Number.isNaN(n) || max === 0) {
+      return
+    }
+    const clamped = Math.min(Math.max(1, n), max)
+    table.setPageIndex(clamped - 1)
+    setJumpValue(String(clamped))
+  }, [jumpValue, table])
+
+  const displayPageCount = table.getPageCount()
 
   return (
     <div
@@ -52,6 +82,21 @@ export function TablePagination<TData>({
             size="sm"
             shape="circle"
             disabled={!table.getCanPreviousPage()}
+            onClick={() => table.setPageIndex(0)}
+            ariaLabel="First page"
+            icon={
+              <ChevronsLeft
+                size={18}
+                aria-hidden
+              />
+            }
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            shape="circle"
+            disabled={!table.getCanPreviousPage()}
             onClick={() => table.previousPage()}
             ariaLabel="Previous page"
             icon={
@@ -62,8 +107,8 @@ export function TablePagination<TData>({
             }
           />
           <span className="memori-table-pagination__page-badge">
-            {numberFormat.format(pageCount === 0 ? 0 : pageIndex + 1)} /{' '}
-            {numberFormat.format(pageCount)}
+            {numberFormat.format(displayPageCount === 0 ? 0 : pageIndex + 1)} /{' '}
+            {numberFormat.format(displayPageCount)}
           </span>
           <Button
             type="button"
@@ -75,6 +120,23 @@ export function TablePagination<TData>({
             ariaLabel="Next page"
             icon={
               <ChevronRight
+                size={18}
+                aria-hidden
+              />
+            }
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            shape="circle"
+            disabled={!table.getCanNextPage()}
+            onClick={() =>
+              table.setPageIndex(Math.max(0, table.getPageCount() - 1))
+            }
+            ariaLabel="Last page"
+            icon={
+              <ChevronsRight
                 size={18}
                 aria-hidden
               />

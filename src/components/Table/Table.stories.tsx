@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ColumnDef } from '@tanstack/react-table'
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  PaginationState,
+} from '@tanstack/react-table'
+import { useMemo, useState } from 'react'
+import { Trash2 } from 'lucide-react'
 import { Button } from '../Button'
 import { Table, type TableProps } from './Table'
 
@@ -44,7 +50,7 @@ const sampleData: Person[] = [
   },
 ]
 
-const columns: ColumnDef<Person>[] = [
+const baseColumns: ColumnDef<Person>[] = [
   {
     accessorKey: 'name',
     header: 'Name',
@@ -56,11 +62,16 @@ const columns: ColumnDef<Person>[] = [
   {
     accessorKey: 'role',
     header: 'Role',
+    meta: {
+      badge: true,
+      badgeColorMap: { Engineer: 'blue', Researcher: 'teal' },
+    },
   },
   {
     accessorKey: 'id',
     header: 'ID',
     enableSorting: false,
+    meta: { hiddenByDefault: true, disableHiding: false },
   },
 ]
 
@@ -81,7 +92,7 @@ export const SortAndResize: Story = {
   name: 'Sort and column resize',
   args: {
     data: sampleData,
-    columns,
+    columns: baseColumns,
   },
 }
 
@@ -90,9 +101,10 @@ export const SelectionAndPagination: Story = {
   render: () => (
     <Table<Person>
       data={largeDataset}
-      columns={columns}
+      columns={baseColumns}
       enableRowSelection
       enablePagination
+      enableColumnResizing={false}
       toolbar={
         <Button
           type="button"
@@ -106,9 +118,164 @@ export const SelectionAndPagination: Story = {
   ),
 }
 
+export const BulkActions: Story = {
+  name: 'Bulk actions',
+  render: () => (
+    <Table<Person>
+      data={sampleData}
+      columns={baseColumns}
+      enablePagination
+      bulkActions={[
+        {
+          label: 'Remove',
+          icon: <Trash2 size={16} />,
+          variant: 'danger',
+          onClick: rows => {
+            // eslint-disable-next-line no-console
+            console.log(
+              'bulk',
+              rows.map(r => r.original.id),
+            )
+          },
+        },
+      ]}
+    />
+  ),
+}
+
+export const RowActions: Story = {
+  name: 'Row actions',
+  render: () => (
+    <Table<Person>
+      data={sampleData}
+      columns={baseColumns}
+      rowActions={[
+        {
+          label: 'Edit',
+          onClick: row => {
+            // eslint-disable-next-line no-console
+            console.log('edit', row.original.id)
+          },
+        },
+        {
+          label: 'Delete',
+          variant: 'danger',
+          onClick: row => {
+            // eslint-disable-next-line no-console
+            console.log('delete', row.original.id)
+          },
+        },
+      ]}
+    />
+  ),
+}
+
+export const ServerFiltersAndSearch: Story = {
+  name: 'Server search and column filters',
+  render: function ServerFiltersStory() {
+    const [search, setSearch] = useState('')
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    const [pagination, setPagination] = useState<PaginationState>({
+      pageIndex: 0,
+      pageSize: 10,
+    })
+
+    const columns = useMemo<ColumnDef<Person>[]>(
+      () => [
+        { accessorKey: 'name', header: 'Name' },
+        { accessorKey: 'email', header: 'Email' },
+        {
+          accessorKey: 'role',
+          header: 'Role',
+          meta: {
+            filterVariant: 'select',
+            filterOptions: ['Engineer', 'Researcher'],
+          },
+        },
+        {
+          accessorKey: 'id',
+          header: 'ID',
+          meta: { filterVariant: 'text' },
+        },
+      ],
+      [],
+    )
+
+    const filtered = useMemo(() => {
+      let rows = [...largeDataset]
+      if (search.trim()) {
+        const q = search.toLowerCase()
+        rows = rows.filter(
+          r =>
+            r.name.toLowerCase().includes(q) ||
+            r.email.toLowerCase().includes(q),
+        )
+      }
+      for (const f of columnFilters) {
+        if (f.id === 'role' && f.value) {
+          rows = rows.filter(r => r.role === f.value)
+        }
+        if (f.id === 'id' && f.value) {
+          const s = String(f.value)
+          rows = rows.filter(r => r.id.includes(s))
+        }
+      }
+      return rows
+    }, [search, columnFilters])
+
+    const pageRows = useMemo(() => {
+      const start = pagination.pageIndex * pagination.pageSize
+      return filtered.slice(start, start + pagination.pageSize)
+    }, [filtered, pagination])
+
+    return (
+      <Table<Person>
+        data={pageRows}
+        columns={columns}
+        enablePagination
+        manualPagination
+        rowCount={filtered.length}
+        pagination={pagination}
+        onPaginationChange={setPagination}
+        search={search}
+        onSearchChange={setSearch}
+        columnFilters={columnFilters}
+        onColumnFiltersChange={setColumnFilters}
+        tableId="story-server-table"
+      />
+    )
+  },
+}
+
+export const LoadingAndEmpty: Story = {
+  name: 'Loading and empty',
+  render: function LoadingStory() {
+    const [loading, setLoading] = useState(true)
+    return (
+      <div>
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          onClick={() => setLoading(l => !l)}
+          style={{ marginBottom: 16 }}
+        >
+          Toggle loading
+        </Button>
+        <Table<Person>
+          data={loading ? [] : sampleData}
+          columns={baseColumns}
+          isLoading={loading}
+          emptyState={<span>No people match your criteria.</span>}
+        />
+      </div>
+    )
+  },
+}
+
 export const Empty: Story = {
   args: {
     data: [],
-    columns,
+    columns: baseColumns,
   },
 }

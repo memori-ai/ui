@@ -39,6 +39,12 @@ export { SelectBox } from './components/SelectBox'
 export { Slider } from './components/Slider'
 export { Spin } from './components/Spin'
 export { Table } from './components/Table'
-export type { TableProps, ColumnDef } from './components/Table'
+export type {
+  TableProps,
+  ColumnDef,
+  ColumnFiltersState,
+  BulkAction,
+  RowAction,
+} from './components/Table'
 export { Tooltip } from './components/Tooltip'
 export { useTheme, type Theme } from './theme/useTheme'

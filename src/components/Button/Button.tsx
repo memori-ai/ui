@@ -24,12 +24,19 @@ export interface ButtonProps
    * Button variant
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'ghost'
+    | 'link'
+    | 'danger'
+    | 'toolbar'
   /**
    * Button size
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   /**
    * Whether the button should take full width
    */
@@ -116,10 +123,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: 'memori-button--secondary',
       outline: 'memori-button--outline',
       ghost: 'memori-button--ghost',
+      link: 'memori-button--link',
       danger: 'memori-button--danger',
+      toolbar: 'memori-button--toolbar',
     }[effectiveVariant]
 
     const sizeClass = {
+      xs: 'memori-button--xs',
       sm: 'memori-button--sm',
       md: 'memori-button--md',
       lg: 'memori-button--lg',

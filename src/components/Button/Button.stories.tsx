@@ -20,7 +20,15 @@ const meta = {
       control: {
         type: 'select',
       },
-      options: ['primary', 'secondary', 'outline', 'ghost', 'danger'],
+      options: [
+        'primary',
+        'secondary',
+        'outline',
+        'ghost',
+        'link',
+        'danger',
+        'toolbar',
+      ],
       description: 'Button variant style',
     },
     size: {
@@ -219,9 +227,21 @@ export const AllVariants: Story = {
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
       <Button variant="danger">Danger</Button>
+      <Button variant="toolbar">Toolbar</Button>
     </div>
   ),
+}
+
+/**
+ * Link variant — underlined text using primary color (for actions styled as links).
+ */
+export const Link: Story = {
+  args: {
+    children: 'Learn more',
+    variant: 'link',
+  },
 }
 
 /**
@@ -323,6 +343,12 @@ export const LoadingVariants: Story = {
         Ghost
       </Button>
       <Button
+        variant="link"
+        loading
+      >
+        Link
+      </Button>
+      <Button
         variant="danger"
         loading
       >
@@ -388,6 +414,11 @@ export const IconButtons: Story = {
         variant="ghost"
         icon={<Close />}
         aria-label="Close"
+      />
+      <Button
+        variant="link"
+        icon={<Download />}
+        aria-label="Download link"
       />
       <Button
         variant="danger"
@@ -503,6 +534,12 @@ export const ActiveVariants: Story = {
         active
       >
         Ghost Active
+      </Button>
+      <Button
+        variant="link"
+        active
+      >
+        Link Active
       </Button>
     </div>
   ),
@@ -658,7 +695,9 @@ export const AllVariantsComplete: Story = {
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
       <Button variant="danger">Danger</Button>
+      <Button variant="toolbar">Toolbar</Button>
     </div>
   ),
 }
@@ -676,7 +715,9 @@ export const Showcase: Story = {
           <Button variant="secondary">Secondary</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
           <Button variant="danger">Danger</Button>
+          <Button variant="toolbar">Toolbar</Button>
         </div>
       </div>
 

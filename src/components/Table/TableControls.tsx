@@ -1,10 +1,16 @@
 import * as React from 'react'
-import type { Table as TanStackTable } from '@tanstack/react-table'
+import type {
+  ColumnFiltersState,
+  Table as TanStackTable,
+} from '@tanstack/react-table'
 import { Columns3 } from 'lucide-react'
 import cx from 'classnames'
+import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
 import { Input } from '../Input'
+import type { FilterDef } from './tableTypes'
+import { TableFilterPopover } from './TableFilterPopover'
 import './tableMeta'
 
 export interface TableControlsProps<TData> {
@@ -14,6 +20,9 @@ export interface TableControlsProps<TData> {
   onSearchInputChange: (value: string) => void
   globalFilterPlaceholder?: string
   showColumnsMenu: boolean
+  filterDefs?: FilterDef[]
+  columnFilters: ColumnFiltersState
+  onColumnFiltersChange: (next: ColumnFiltersState) => void
 }
 
 export function TableControls<TData>({
@@ -23,6 +32,9 @@ export function TableControls<TData>({
   onSearchInputChange,
   globalFilterPlaceholder = 'Search…',
   showColumnsMenu,
+  filterDefs,
+  columnFilters,
+  onColumnFiltersChange,
 }: TableControlsProps<TData>) {
   const hideableColumns = table
     .getAllLeafColumns()
@@ -46,18 +58,36 @@ export function TableControls<TData>({
           aria-label={globalFilterPlaceholder}
         />
       ) : null}
+      {filterDefs && filterDefs.length > 0 ? (
+        <TableFilterPopover
+          filterDefs={filterDefs}
+          value={columnFilters}
+          onChange={onColumnFiltersChange}
+        />
+      ) : null}
       {showColumnsMenu && hideableColumns.length > 0 ? (
         <Dropdown>
           <Dropdown.Trigger
             showChevron={false}
-            className="memori-table-controls__columns-trigger"
-          >
-            <Columns3
-              size={16}
-              aria-hidden
-            />
-            Columns
-          </Dropdown.Trigger>
+            render={(props, state) => (
+              <Button
+                {...props}
+                type="button"
+                variant="toolbar"
+                active={state.open}
+                className={cx(
+                  'memori-table-controls__columns-trigger',
+                  props.className,
+                )}
+              >
+                <Columns3
+                  size={16}
+                  aria-hidden
+                />
+                Columns
+              </Button>
+            )}
+          />
           <Dropdown.Menu align="end">
             <div
               className="memori-table-controls__columns-panel"

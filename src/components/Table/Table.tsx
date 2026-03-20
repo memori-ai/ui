@@ -20,11 +20,12 @@ import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
 import { TableBody } from './TableBody'
 import { TableControls } from './TableControls'
+import { TableFilterChips } from './TableFilterChips'
 import { TableFilterRow } from './TableFilterRow'
 import { TableHeader } from './TableHeader'
 import { TablePagination } from './TablePagination'
 import { TableToolbar } from './TableToolbar'
-import type { BulkAction, RowAction } from './tableTypes'
+import type { BulkAction, FilterDef, RowAction } from './tableTypes'
 import './tableMeta'
 import './styles.css'
 
@@ -97,6 +98,8 @@ export interface TableProps<TData> {
   columnFilters?: ColumnFiltersState
   onColumnFiltersChange?: (filters: ColumnFiltersState) => void
 
+  filterDefs?: FilterDef[]
+
   manualPagination?: boolean
   rowCount?: number
   pagination?: PaginationState
@@ -126,6 +129,7 @@ export function Table<TData>({
   searchDebounceMs = 300,
   columnFilters: columnFiltersProp,
   onColumnFiltersChange: onColumnFiltersChangeProp,
+  filterDefs,
   manualPagination: manualPaginationProp,
   rowCount: rowCountProp,
   pagination: paginationProp,
@@ -476,7 +480,8 @@ export function Table<TData>({
         c.id !== 'select' &&
         c.id !== 'actions',
     )
-  const showTopBar = showSearchChrome || showColumnsMenu
+  const showFilterControls = (filterDefs?.length ?? 0) > 0
+  const showTopBar = showSearchChrome || showColumnsMenu || showFilterControls
 
   const wrapperStyle =
     maxBodyHeight === false
@@ -500,6 +505,16 @@ export function Table<TData>({
           onSearchInputChange={handleSearchInput}
           globalFilterPlaceholder={globalFilterPlaceholder}
           showColumnsMenu={showColumnsMenu}
+          filterDefs={filterDefs}
+          columnFilters={columnFilters}
+          onColumnFiltersChange={handleColumnFiltersCommit}
+        />
+      ) : null}
+      {filterDefs && filterDefs.length > 0 ? (
+        <TableFilterChips
+          filterDefs={filterDefs}
+          value={columnFilters}
+          onChange={handleColumnFiltersCommit}
         />
       ) : null}
       <div className="memori-table-scroll">

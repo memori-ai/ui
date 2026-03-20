@@ -45,6 +45,10 @@ export type {
   ColumnFiltersState,
   BulkAction,
   RowAction,
+  FilterDef,
+  FilterOption,
+  FilterVariant,
+  DateRangeValue,
 } from './components/Table'
 export { Tooltip } from './components/Tooltip'
 export { useTheme, type Theme } from './theme/useTheme'

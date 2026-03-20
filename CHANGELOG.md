@@ -1,5 +1,13 @@
 
 
+## [1.8.0](https://github.com/memori-ai/ui/compare/v1.7.0...v1.8.0) (2026-03-20)
+
+
+### Features
+
+* add success variant to Input component ([1f1755c](https://github.com/memori-ai/ui/commit/1f1755c2aaa03297129362116ad34449db017daa))
+* enhance Button component with new disabled states and dark theme support ([aaa7831](https://github.com/memori-ai/ui/commit/aaa7831e807a4ccdd98a480acaeb26e76ec00d14))
+
 ## [1.7.0](https://github.com/memori-ai/ui/compare/v1.6.2...v1.7.0) (2026-03-20)
 
 

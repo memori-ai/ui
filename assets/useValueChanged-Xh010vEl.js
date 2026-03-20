@@ -1,0 +1,1 @@
+import{r as a}from"./iframe-Bn9CEIwO.js";import{u as n,d as o}from"./useRenderElement-wx8wirWP.js";function f(r,s){const t=a.useRef(r),e=n(s);o(()=>{t.current!==r&&e(t.current)},[r,e]),o(()=>{t.current=r},[r])}export{f as u};

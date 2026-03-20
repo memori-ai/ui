@@ -52,7 +52,7 @@ const preview: Preview = {
       options: {
         // 👇 Default options
         dark: { name: 'Dark', value: '#191919' },
-        light: { name: 'Light', value: '#F7F9F2' },
+        light: { name: 'Light', value: '#fff' },
       },
       default: 'light',
     },

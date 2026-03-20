@@ -216,7 +216,7 @@
 
 .memori-drawer__close:hover {
     background-color: var(--memori-main-background);
-    color: #fff;
+    color: var(--memori-text-color);
 }
 
 .memori-drawer__close:focus-visible {

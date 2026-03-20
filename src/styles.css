@@ -1,4 +1,5 @@
 @import url('./theme/variables.css');
+@import url('./theme/keyframes.css');
 @import url('./styles/animations.css');
 @import url('./styles/loading.css');
 @import url('./components/Table/styles.css');

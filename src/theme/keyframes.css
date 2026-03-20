@@ -1,0 +1,139 @@
+/**
+ * Shared @keyframes for component microinteractions.
+ * Use durations/easings from theme/variables.css at the call site.
+ * Keyframes that use transform are defined only when motion is allowed.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+    /* microinteraction: horizontal shake for validation errors (one-shot via animation on error class) */
+    @keyframes memori-shake {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        16.66%,
+        50%,
+        83.33% {
+            transform: translateX(-4px);
+        }
+
+        33.33%,
+        66.66% {
+            transform: translateX(4px);
+        }
+    }
+
+    /* microinteraction: checkmark pops in when checkbox becomes checked */
+    @keyframes memori-checkmark-scale {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* microinteraction: continuous rotation for loaders */
+    @keyframes memori-spin-rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* microinteraction: modal backdrop */
+    @keyframes memori-modal-fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes memori-modal-fade-out {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* microinteraction: modal dialog enter / leave */
+    @keyframes memori-modal-scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes memori-modal-scale-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+    }
+
+    /* microinteraction: drawer backdrop */
+    @keyframes memori-drawer-fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes memori-drawer-fade-out {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes memori-drawer-spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+/* microinteraction: opacity-only pulse for reduced-motion loading states */
+@keyframes memori-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}

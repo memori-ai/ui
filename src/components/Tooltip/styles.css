@@ -20,10 +20,9 @@
     font-size: 0.85em;
     opacity: 0;
     text-align: center;
-    transform: none;
-    transition:
-        opacity 200ms var(--memori-motion-ease),
-        transform 200ms var(--memori-motion-ease);
+
+    /* microinteraction: disappear uses opacity only (snappier) */
+    transition: opacity var(--memori-motion-duration-fast) var(--memori-motion-ease);
     transition-delay: 80ms;
 }
 
@@ -46,7 +45,7 @@
     content: '';
     opacity: 0;
     transform: translateY(-50%);
-    transition: opacity 200ms var(--memori-motion-ease);
+    transition: opacity var(--memori-motion-duration-fast) var(--memori-motion-ease);
 }
 
 .memori-tooltip.memori-tooltip--align-left .memori-tooltip--content::before {
@@ -107,6 +106,19 @@
     margin-bottom: initial;
 }
 
+/* microinteraction: enter adds scale on inner surface (transform stays on content for placement) */
+.memori-tooltip__surface {
+    display: block;
+    transform: scale(0.95);
+    transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .memori-tooltip__surface {
+        transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+}
+
 .memori-tooltip:not(.memori-tooltip--disabled).memori-tooltip--visible .memori-tooltip--content,
 .memori-tooltip:not(.memori-tooltip--disabled).memori-tooltip--visible .memori-tooltip--content::before {
     display: block;
@@ -122,6 +134,11 @@
 .memori-tooltip:not(.memori-tooltip--visible, .memori-tooltip--disabled):hover .memori-tooltip--content::before {
     display: block;
     opacity: 1;
+}
+
+.memori-tooltip:not(.memori-tooltip--disabled).memori-tooltip--visible .memori-tooltip__surface,
+.memori-tooltip:not(.memori-tooltip--disabled, .memori-tooltip--visible):hover .memori-tooltip__surface {
+    transform: scale(1);
 }
 
 .memori-tooltip.memori-tooltip--align-topRight:not(.memori-tooltip--disabled).memori-tooltip--visible
@@ -167,5 +184,10 @@
     .memori-tooltip .memori-tooltip--content::before {
         transition: none;
         transition-delay: 0ms;
+    }
+
+    .memori-tooltip__surface {
+        transform: none;
+        transition: none;
     }
 }

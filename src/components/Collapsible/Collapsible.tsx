@@ -173,7 +173,9 @@ export const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
           className={cx('memori-collapsible__panel', panelClassName)}
           style={panelStyle}
         >
-          {children}
+          <div className="memori-collapsible__panel-outer">
+            <div className="memori-collapsible__panel-inner">{children}</div>
+          </div>
         </BaseCollapsible.Panel>
       </BaseCollapsible.Root>
     )

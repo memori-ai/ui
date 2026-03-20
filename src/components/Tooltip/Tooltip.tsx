@@ -38,7 +38,9 @@ const Tooltip: FC<Props> = ({
       },
     )}
   >
-    <div className="memori-tooltip--content">{content}</div>
+    <div className="memori-tooltip--content">
+      <div className="memori-tooltip__surface">{content}</div>
+    </div>
     <div className="memori-tooltip--trigger">{children}</div>
   </div>
 )

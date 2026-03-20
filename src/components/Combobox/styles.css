@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     color: var(--memori-text-color);
-    transition: transform var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    transition: transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
 }
 
 .memori-combobox__trigger[data-popup-open] .memori-combobox__trigger-icon {
@@ -121,6 +121,7 @@
    POPUP
    ============================================ */
 
+/* microinteraction: popup panel motion (matches SelectBox / design guide) */
 .memori-combobox__popup {
     min-width: var(--anchor-width, 0);
     box-sizing: border-box;
@@ -133,14 +134,20 @@
     font-family: var(--memori-font-family);
     transform-origin: var(--transform-origin);
     transition:
-        opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+        opacity var(--memori-motion-duration-slow) var(--memori-motion-ease-out),
+        transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
+}
+
+.memori-combobox__popup[data-ending-style] {
+    transition:
+        opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
 }
 
 .memori-combobox__popup[data-starting-style],
 .memori-combobox__popup[data-ending-style] {
     opacity: 0;
-    transform: scale(0.96);
+    transform: translateY(-4px);
 }
 
 .memori-combobox__popup:focus {
@@ -287,10 +294,16 @@
 
 @media (prefers-reduced-motion: reduce) {
     .memori-combobox__trigger,
-    .memori-combobox__trigger-icon,
-    .memori-combobox__popup,
     .memori-combobox__search,
     .memori-combobox__item {
+        transition:
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    }
+
+    .memori-combobox__trigger-icon {
         transition: none;
     }
 
@@ -298,9 +311,12 @@
         transform: none;
     }
 
+    .memori-combobox__popup {
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
+
     .memori-combobox__popup[data-starting-style],
     .memori-combobox__popup[data-ending-style] {
-        opacity: 1;
         transform: none;
     }
 }

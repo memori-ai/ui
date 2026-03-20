@@ -2,6 +2,7 @@
    BACKDROP
    ============================================ */
 
+/* microinteraction: backdrop fades in with motion tokens (keyframes in theme/keyframes.css) */
 .memori-modal__backdrop {
     position: fixed;
     z-index: 40;
@@ -40,13 +41,14 @@
    POPUP
    ============================================ */
 
+/* microinteraction: panel scales in (slow) and out (normal) per design guide */
 .memori-modal__popup {
     position: relative;
     padding: var(--memori-spacing-lg);
     border-radius: var(--memori-radius-box);
     margin-right: auto;
     margin-left: auto;
-    animation: memori-modal-scale-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    animation: memori-modal-scale-in var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
     background-color: var(--memori-secondary-background);
     box-shadow: var(--memori-shadow-md);
     font-family: var(--memori-font-family);
@@ -209,50 +211,6 @@
 
 .memori-modal__footer button + button {
     margin-left: 0;
-}
-
-@keyframes memori-modal-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes memori-modal-fade-out {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes memori-modal-scale-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes memori-modal-scale-out {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(0.95);
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -8,7 +8,11 @@ exports[`renders Tooltip aligned left unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content by default as I am controlled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content by default as I am controlled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -27,7 +31,11 @@ exports[`renders Tooltip aligned right unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content by default as I am controlled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content by default as I am controlled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -46,7 +54,11 @@ exports[`renders Tooltip aligned top left unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content by default as I am controlled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content by default as I am controlled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -65,7 +77,11 @@ exports[`renders Tooltip aligned top right unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content by default as I am controlled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content by default as I am controlled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -84,7 +100,11 @@ exports[`renders Tooltip disabled unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content but I am disabled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content but I am disabled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -103,7 +123,11 @@ exports[`renders Tooltip unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -122,7 +146,11 @@ exports[`renders Tooltip visible unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      Here is some tooltip content by default as I am controlled
+      <div
+        class="memori-tooltip__surface"
+      >
+        Here is some tooltip content by default as I am controlled
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"
@@ -141,17 +169,21 @@ exports[`renders Tooltip with jsx content unchanged 1`] = `
     <div
       class="memori-tooltip--content"
     >
-      <p>
-        Here we have some JSX, useful for
-        <a
-          href="https://memori.ai"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          links
-        </a>
-        , for example.
-      </p>
+      <div
+        class="memori-tooltip__surface"
+      >
+        <p>
+          Here we have some JSX, useful for
+          <a
+            href="https://memori.ai"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            links
+          </a>
+          , for example.
+        </p>
+      </div>
     </div>
     <div
       class="memori-tooltip--trigger"

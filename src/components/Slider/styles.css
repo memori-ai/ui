@@ -63,13 +63,14 @@
     transform: translateY(-50%);
 }
 
+/* microinteraction: track fill follows value */
 .memori-slider__track-fill {
     position: absolute;
     width: var(--percentage);
     height: 100%;
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-primary);
-    transition: width var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    transition: width var(--memori-motion-duration-fast) var(--memori-motion-ease);
 }
 
 .memori-slider__marks {
@@ -116,6 +117,7 @@
     white-space: nowrap;
 }
 
+/* microinteraction: thumb scales on drag only */
 .memori-slider__thumb {
     position: absolute;
     z-index: 2;
@@ -133,18 +135,18 @@
     touch-action: none;
     transform: translate(-50%, -50%);
     transition:
-        transform var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+        box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease);
 }
 
-.memori-slider__thumb:active {
-    cursor: grabbing;
+.memori-slider__thumb:hover {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
 }
 
-.memori-slider__thumb:hover,
 .memori-slider__thumb:active {
     box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
-    transform: translate(-50%, -50%) scale(1.1);
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(1.15);
 }
 
 /* Portrait/Totem specific styles */
@@ -226,11 +228,22 @@
     box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
 }
 
-[data-theme='dark'] .memori-slider__thumb:hover,
-[data-theme='dark'] .memori-slider__thumb:active,
-:root.dark .memori-slider__thumb:hover,
+[data-theme='dark'] .memori-slider__thumb:hover {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
+}
+
+[data-theme='dark'] .memori-slider__thumb:active {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+:root.dark .memori-slider__thumb:hover {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
+}
+
 :root.dark .memori-slider__thumb:active {
     box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
+    transform: translate(-50%, -50%) scale(1.15);
 }
 
 @media (prefers-reduced-motion: reduce) {

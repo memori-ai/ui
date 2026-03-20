@@ -2,10 +2,10 @@
     line-height: 1;
 }
 
+/* JS toggles max-height for clamping — do not transition max-height (layout) */
 .memori-expandable__inner {
     overflow: hidden;
     max-height: 9999px;
-    transition: max-height var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
 }
 
 .memori-expandable > button {

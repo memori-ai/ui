@@ -87,7 +87,7 @@
     pointer-events: auto;
 }
 
-/* Alert animations */
+/* microinteraction: toast enter (slow) / exit (normal, smaller nudge) */
 .memori-alert[data-starting-style],
 .memori-alert[data-ending-style] {
     opacity: 0;
@@ -98,15 +98,15 @@
     opacity: 1;
     transform: translateY(0);
     transition:
-        opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+        opacity var(--memori-motion-duration-slow) var(--memori-motion-ease-out),
+        transform var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
 }
 
 .memori-alert[data-ending-style] {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     transition:
-        opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
+        opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-in),
+        transform var(--memori-motion-duration-normal) var(--memori-motion-ease-in);
 }
 
 /* Swipe animations */
@@ -305,17 +305,23 @@
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .memori-alert,
-    .memori-alert[data-starting-style],
-    .memori-alert[data-ending-style],
-    .memori-alert[data-open],
     .memori-alert__close {
         animation: none;
-        transition: none;
+        transition:
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            opacity var(--memori-motion-duration-normal) var(--memori-motion-ease);
     }
 
+    .memori-alert[data-open],
     .memori-alert[data-starting-style],
     .memori-alert[data-ending-style] {
+        animation: none;
         transform: none;
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
+
+    .memori-alert[data-swipe='end'] {
+        animation: none;
     }
 }

@@ -9,7 +9,7 @@ export interface InputProps extends Omit<BaseInputProps, 'className' | 'size'> {
    * Input variant
    * @default 'default'
    */
-  variant?: 'default' | 'error' | 'disabled'
+  variant?: 'default' | 'error' | 'success' | 'disabled'
   /**
    * Input size
    * @default 'md'
@@ -67,9 +67,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const variantClass =
       variant === 'error'
         ? 'memori-input--error'
-        : variant === 'disabled'
-          ? 'memori-input--disabled'
-          : 'memori-input--default'
+        : variant === 'success'
+          ? 'memori-input--success'
+          : variant === 'disabled'
+            ? 'memori-input--disabled'
+            : 'memori-input--default'
 
     const sizeClass =
       size === 'sm'

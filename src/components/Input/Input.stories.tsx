@@ -12,7 +12,7 @@ const meta = {
       control: {
         type: 'select',
       },
-      options: ['default', 'error', 'disabled'],
+      options: ['default', 'error', 'success', 'disabled'],
       description: 'Input variant style',
     },
     size: {
@@ -92,6 +92,17 @@ export const Error: Story = {
     placeholder: 'This field has an error',
     variant: 'error',
     defaultValue: 'Invalid input',
+  },
+}
+
+/**
+ * Success variant for valid input (e.g. after validation passes).
+ */
+export const Success: Story = {
+  args: {
+    placeholder: 'Looks good',
+    variant: 'success',
+    defaultValue: 'Valid value',
   },
 }
 
@@ -205,6 +216,10 @@ export const AllVariants: Story = {
       <Input
         placeholder="Error variant"
         variant="error"
+      />
+      <Input
+        placeholder="Success variant"
+        variant="success"
       />
       <Input
         placeholder="Disabled variant"

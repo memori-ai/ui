@@ -531,6 +531,124 @@ export const DisabledDanger: Story = {
 }
 
 /**
+ * Disabled danger — background uses the semantic error color (`--memori-error`), not primary-disabled.
+ * Compare with disabled primary in {@link AllVariants} or {@link Disabled}.
+ */
+export const DisabledDangerSemanticBackground: Story = {
+  args: {
+    children: 'Delete',
+    variant: 'danger',
+    disabled: true,
+  },
+}
+
+/**
+ * Disabled primary, icon-only — on dark theme the icon should render white (`currentColor` / `--memori-surface-contrast-inverse`).
+ * Storybook dark background applies `data-theme="dark"` on the document root (see `.storybook/preview.ts`).
+ */
+export const DisabledPrimaryIconOnlyDark: Story = {
+  args: {
+    variant: 'primary',
+    icon: <Plus />,
+    disabled: true,
+    'aria-label': 'Add (disabled)',
+  },
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+}
+
+/**
+ * Disabled primary with icon and label — same dark-theme white content as {@link DisabledPrimaryIconOnlyDark}.
+ */
+export const DisabledPrimaryWithIconDark: Story = {
+  args: {
+    variant: 'primary',
+    icon: <Download />,
+    children: 'Download',
+    disabled: true,
+  },
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+}
+
+/**
+ * Dark theme regression: disabled primary icon-only (white icon) and disabled danger (error background).
+ */
+export const DisabledContextsDark: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        maxWidth: 360,
+      }}
+    >
+      <div>
+        <p
+          style={{
+            margin: '0 0 8px',
+            fontSize: 12,
+            opacity: 0.85,
+            color: 'inherit',
+          }}
+        >
+          Primary · icon-only · disabled — icon white
+        </p>
+        <Button
+          variant="primary"
+          icon={<Plus />}
+          disabled
+          aria-label="Add (disabled)"
+        />
+      </div>
+      <div>
+        <p
+          style={{
+            margin: '0 0 8px',
+            fontSize: 12,
+            opacity: 0.85,
+            color: 'inherit',
+          }}
+        >
+          Primary · icon + label · disabled — content white
+        </p>
+        <Button
+          variant="primary"
+          icon={<Download />}
+          disabled
+        >
+          Download
+        </Button>
+      </div>
+      <div>
+        <p
+          style={{
+            margin: '0 0 8px',
+            fontSize: 12,
+            opacity: 0.85,
+            color: 'inherit',
+          }}
+        >
+          Danger · disabled — error-colored background
+        </p>
+        <Button
+          variant="danger"
+          disabled
+        >
+          Delete
+        </Button>
+      </div>
+    </div>
+  ),
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+}
+
+/**
  * All variants including new ones displayed together.
  */
 export const AllVariantsComplete: Story = {

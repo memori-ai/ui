@@ -1,5 +1,13 @@
 
 
+## [1.7.0](https://github.com/memori-ai/ui/compare/v1.6.2...v1.7.0) (2026-03-20)
+
+
+### Features
+
+* add Combobox component with support for grouped options and search functionality ([f0dfa15](https://github.com/memori-ai/ui/commit/f0dfa150648c0273c7f375d6a191b7f8a5e1c34d))
+* introduce Field and Form components with validation and error handling ([bf479c6](https://github.com/memori-ai/ui/commit/bf479c60d0987b93bf6e5e49b2e3925bf2306058))
+
 ## [1.6.2](https://github.com/memori-ai/ui/compare/v1.6.1...v1.6.2) (2026-03-19)
 
 ## [1.6.1](https://github.com/memori-ai/ui/compare/v1.6.0...v1.6.1) (2026-03-13)

@@ -1,0 +1,157 @@
+/**
+ * Layout and native control styling for Real Examples demos.
+ * Library components use their own styles; this file covers page shell and
+ * patterns without dedicated components (textarea, radio group).
+ */
+
+.page {
+    max-width: var(--memori-layout-max-width);
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: var(--memori-spacing-5xl) clamp(var(--memori-spacing-md), 4vw, var(--memori-spacing-xl));
+    margin: 0 auto;
+    background-color: var(--memori-main-background);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
+}
+
+.title {
+    margin: 0;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-heading-large);
+    font-weight: var(--memori-text-weight-bold);
+    line-height: var(--memori-text-line-tight);
+}
+
+.subtitle {
+    margin: var(--memori-spacing-sm) 0 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-base);
+    font-weight: var(--memori-text-weight-normal);
+    line-height: var(--memori-text-line-normal);
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--memori-border-color);
+    margin: var(--memori-spacing-lg) 0;
+}
+
+.formStack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-lg);
+}
+
+.sectionTitle {
+    margin: 0 0 var(--memori-spacing-md);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-base);
+    font-weight: var(--memori-text-weight-bold);
+}
+
+/* Textarea: reuse Input surface tokens via memori-input classes from Input/styles.css */
+.textarea {
+    display: block;
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.textareaFooter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--memori-spacing-xs);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.instructionsHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--memori-spacing-sm);
+    gap: var(--memori-spacing-sm);
+}
+
+.instructionsLabelRow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-medium);
+    gap: var(--memori-spacing-xs);
+}
+
+.infoTrigger {
+    display: inline-flex;
+    padding: 0;
+    border: none;
+    border-radius: var(--memori-radius-field);
+    background: none;
+    color: var(--memori-neutral);
+    cursor: help;
+}
+
+.infoTrigger:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+/* Horizontal radio group (no Radio component in library) */
+.radioRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--memori-spacing-lg) var(--memori-spacing-xl);
+}
+
+.radioOption {
+    display: flex;
+    max-width: 280px;
+    flex: 1 1 200px;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: var(--memori-spacing-sm);
+}
+
+.radioInput {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin: 2px 0 0;
+    accent-color: var(--memori-primary);
+    cursor: pointer;
+}
+
+.radioBody {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.radioLabelRow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-base);
+    font-weight: var(--memori-text-weight-medium);
+    gap: var(--memori-spacing-xs);
+}
+
+.radioSub {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.expandButton {
+    text-decoration: none;
+}
+
+.expandButton:hover {
+    text-decoration: none;
+}

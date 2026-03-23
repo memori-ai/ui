@@ -28,15 +28,8 @@ const withTheme: Decorator = (Story, context) => {
 
 const style = document.createElement('style')
 style.textContent = `
-  :root {
-    --memori-label-color: #141414;
-  }
-  :root.dark {
-    --memori-label-color: #fff;
-  }
-
   body {
-    color: var(--memori-label-color);
+    color: var(--memori-text-color);
   }
 `
 document.head.appendChild(style)
@@ -51,8 +44,8 @@ const preview: Preview = {
     backgrounds: {
       options: {
         // 👇 Default options
-        dark: { name: 'Dark', value: '#191919' },
-        light: { name: 'Light', value: '#fff' },
+        dark: { name: 'Dark', value: 'oklch(32.1% 0 0deg)' },
+        light: { name: 'Light', value: 'oklch(97.9% 0.01 120deg)' },
       },
       default: 'light',
     },

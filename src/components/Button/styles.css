@@ -398,8 +398,8 @@
 }
 
 .memori-button--ghost:hover:not(:disabled, .memori-button--disabled) {
+    background-color: var(--memori-main-background);
     box-shadow: none;
-    transform: none;
 }
 
 /* Link Variant — text link appearance (still a `<button>` for actions) */

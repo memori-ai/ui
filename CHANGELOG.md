@@ -1,5 +1,18 @@
 
 
+## [1.9.0](https://github.com/memori-ai/ui/compare/v1.8.0...v1.9.0) (2026-03-23)
+
+
+### Features
+
+* add AgentAISettings and AgentGeneralSettings components ([05a5f38](https://github.com/memori-ai/ui/commit/05a5f38be86709d296ab3d2c0d266eab982c8bd0))
+* add filtering capabilities to Table component with new FilterDef types and UI elements ([122998b](https://github.com/memori-ai/ui/commit/122998b76108016ad8e13d507bb283c21b797994))
+* add soft and softSecondary button variants with updated styles ([e887123](https://github.com/memori-ai/ui/commit/e887123eec3e548a15df9b3ea3d855f340687c79))
+* add Table component with sorting, pagination, and row selection features ([bc22c2a](https://github.com/memori-ai/ui/commit/bc22c2a926f725700f32c78e126bfe9547518bc8))
+* enhance Table component with new filtering, bulk actions, and improved pagination ([fe27900](https://github.com/memori-ai/ui/commit/fe2790055b77cf36e96995388b66801663fe4a6c))
+* integrate Combobox and Autocomplete components into ComponentShowcase ([eae1a03](https://github.com/memori-ai/ui/commit/eae1a03a10b0b46d1044505273b3f4a176421e6c))
+* introduce Autocomplete component ([66294cc](https://github.com/memori-ai/ui/commit/66294cc1b8fcdd0f942d5536717151b82158f51c))
+
 ## [1.8.0](https://github.com/memori-ai/ui/compare/v1.7.0...v1.8.0) (2026-03-20)
 
 

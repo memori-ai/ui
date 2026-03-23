@@ -34,6 +34,105 @@ function App() {
 }
 ```
 
+## Peer dependencies
+
+The package expects compatible versions of these libraries in your app (they are not bundled inside `@memori.ai/ui`):
+
+| Package         | Notes                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| `react`         | ^18.2.0                                                                                           |
+| `react-dom`     | ^18.2.0                                                                                           |
+| `i18next`       | Required for translated components (Table, Expandable, …)                                         |
+| `react-i18next` | Use [`MemoriI18nProvider`](#internationalization-i18n) or `I18nextProvider` with merged resources |
+
+TypeScript types for React are optional peers.
+
+## Internationalization (i18n)
+
+Components such as **Table** and **Expandable** use [`useTranslation()`](https://react.i18next.com/) from **react-i18next**. They read strings from the **i18n instance** in React context (`t('table.searchPlaceholder')`, etc.).
+
+**Peer dependencies:** `i18next` and `react-i18next`.
+
+### Option A — Quick start (bundled instance)
+
+Use the preconfigured instance and provider exported from the package:
+
+```tsx
+import { MemoriI18nProvider } from '@memori.ai/ui'
+
+function Root() {
+  return (
+    <MemoriI18nProvider>
+      <App />
+    </MemoriI18nProvider>
+  )
+}
+```
+
+The default provider uses the bundled **`memoriI18n`** instance (all `table.*` locales: `en`, `it`, `es`, `fr`, `de`, with `fallbackLng: 'en'`). Pass **`i18n={…}`** when you use your own instance after `addMemoriTableToI18n`.
+
+### Option B — Existing i18next setup
+
+Merge Memori UI strings into your initialized instance (after `i18n.init()`):
+
+```ts
+import i18n from './your-i18n'
+import { addMemoriTableToI18n } from '@memori.ai/ui'
+
+addMemoriTableToI18n(i18n)
+```
+
+Optionally pass `{ namespace: 'translation' }` (default) if you use a custom namespace. Then wrap your app with `<I18nextProvider i18n={i18n}>` from `react-i18next` as usual, or use `<MemoriI18nProvider i18n={i18n}>`.
+
+### Option C — Manual bundles
+
+Import locale objects and attach them yourself:
+
+- `tableEn`, `tableIt`, `tableEs`, `tableFr`, `tableDe`, or the combined `MEMORI_TABLE_LOCALES`
+
+Types: `MemoriTableTranslations`, `MemoriSupportedLocale`.
+
+Column titles, filter labels, and row/bulk action labels still come from **your** column definitions and data, not from these bundles.
+
+**Storybook** in this repo uses `MemoriI18nProvider` so previews match a real integration.
+
+## Components (public API)
+
+All exports are from `@memori.ai/ui`. Types are exported where listed—use your IDE or `dist` `.d.ts` for the full shape (many props extend [Base UI](https://base-ui.com/) primitives).
+
+| Export                                                   | Description                                                     | Main props / types                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Alert**                                                | Single toast UI (usually driven by the manager, not used alone) | Renders one toast; prefer `useAlertManager().add(...)`                                                                                                                                                                                                                                                                                                                         |
+| **AlertProvider**                                        | Toast/alerts context                                            | `children`, `defaultDuration?`, `limit?` — see `AlertProviderProps`                                                                                                                                                                                                                                                                                                            |
+| **AlertViewport**                                        | Renders the alert stack                                         | `placement?`, `className?`, `style?` — see `AlertViewportProps`                                                                                                                                                                                                                                                                                                                |
+| **useAlertManager**                                      | Hook: `add`, `close`, `toasts`                                  | Must be used under `AlertProvider`                                                                                                                                                                                                                                                                                                                                             |
+| **createAlertOptions**                                   | Maps `AddAlertOptions` → toast payload                          | Used with `alertManager.add(createAlertOptions({ ... }))`                                                                                                                                                                                                                                                                                                                      |
+| **Button**                                               | Button                                                          | `variant`, `size`, `loading`, `icon`, `iconPosition`, `shape`, `fullWidth`, `shadow`, `active`, `danger`, `ariaLabel`, `type`, … — `ButtonProps`                                                                                                                                                                                                                               |
+| **Autocomplete**                                         | Searchable text field + suggestions                             | `options`, `value` / `defaultValue`, `onChange`, `placeholder`, `mode`, `label`, `disabled`, `loading`, `filter`, … — `AutocompleteProps`                                                                                                                                                                                                                                      |
+| **Combobox**                                             | Select with search                                              | `options`, `value` / `defaultValue`, `onChange`, `placeholder`, `searchPlaceholder`, `label`, `disabled`, … — `ComboboxProps`                                                                                                                                                                                                                                                  |
+| **Collapsible**                                          | Expandable section                                              | `summary`, `children`, `open` / `defaultOpen`, `onOpenChange`, `disabled`, `className`, … — `CollapsibleProps`                                                                                                                                                                                                                                                                 |
+| **Card**                                                 | Card container                                                  | `title`, `description`, `cover`, `variant`, `padding`, `component`, `loading`, `hoverable`, `focusable`, … — `CardProps`                                                                                                                                                                                                                                                       |
+| **Checkbox**                                             | Checkbox                                                        | `checked`, `defaultChecked`, `indeterminate`, `label`, `onChange`, `disabled`, `name`, `value`, … — `CheckboxProps`                                                                                                                                                                                                                                                            |
+| **ConfirmDialog**                                        | Confirm/cancel modal                                            | `isOpen`, `onClose`, `onConfirm`, `title`, `message`, `confirmText?`, `cancelText?`, `loading?`                                                                                                                                                                                                                                                                                |
+| **Expandable**                                           | Truncated text with expand                                      | `children`, `rows`, `mode`, `defaultExpanded`, `expandSymbol`, `collapseSymbol`, `lineHeightMultiplier`, `className`, … (see `Expandable.tsx`)                                                                                                                                                                                                                                 |
+| **Dropdown**                                             | Menu (compound)                                                 | **Dropdown**: `open`, `defaultOpen`, `onOpenChange`, `disabled`, … — **Dropdown.Trigger**: `showChevron`, `render`, … — **Dropdown.Menu** / **Item** / **Separator** / **Group** — see `Dropdown*Props` in source                                                                                                                                                              |
+| **Drawer**                                               | Slide-over panel                                                | `open`, `onOpenChange`, `onClose`, `anchor`, `size`, `title`, `description`, `footer`, `loading`, `closable`, … — `DrawerProps`                                                                                                                                                                                                                                                |
+| **Input**                                                | Text input                                                      | `variant`, `size`, `fullWidth`, `placeholder`, `value`, `onValueChange`, `disabled`, `type`, … — `InputProps`                                                                                                                                                                                                                                                                  |
+| **Field**                                                | Compound field primitives                                       | `Field.Root`, `Label`, `Description`, `Error`, `Control`, `Item`, `Validity` (Base UI field API)                                                                                                                                                                                                                                                                               |
+| **FieldGroup**                                           | Label + helper + error + control                                | `label`, `helperText`, `error`, `required`, `invalid`, `children`, … — `FieldGroupProps`                                                                                                                                                                                                                                                                                       |
+| **Form**                                                 | Form root with validation helpers                               | `errors`, `onFormSubmit`, `validationMode`, `onSubmit`, `children`, … — `FormProps`                                                                                                                                                                                                                                                                                            |
+| **Modal**                                                | Dialog                                                          | `open`, `onOpenChange`, `onClose`, `title`, `description`, `children`, `footer`, `loading`, `closable`, `size`, `width` / `widthMd` / `widthLg`, `closeOnOverlayClick`, `closeOnEsc`, `modal`, `initialFocus`, `finalFocus`, … — `ModalProps`                                                                                                                                  |
+| **SelectBox**                                            | Native-style select                                             | `options`, `value`, `onChange`, `placeholder`, `label`, `disabled`, `error`, `name`, … — `SelectBoxProps`                                                                                                                                                                                                                                                                      |
+| **Slider**                                               | Range input                                                     | `min`, `max`, `step`, `value`, `defaultValue`, `label`, `onChange`, `disabled`, … — `SliderProps`                                                                                                                                                                                                                                                                              |
+| **Spin**                                                 | Loading spinner / overlay                                       | `spinning`, `primary`, `children`, `className`, `spinnerClassName`, … — `SpinProps`                                                                                                                                                                                                                                                                                            |
+| **Table**                                                | Data table ([TanStack Table](https://tanstack.com/table))       | `data`, `columns`, `enableRowSelection`, `enablePagination`, `enableColumnResizing`, `bulkActions`, `rowActions`, `filterDefs`, `search` / `onSearchChange`, `columnFilters`, `manualPagination`, `rowCount`, … — `TableProps`; also export types `ColumnDef`, `ColumnFiltersState`, `BulkAction`, `RowAction`, `FilterDef`, `FilterOption`, `FilterVariant`, `DateRangeValue` |
+| **Tooltip**                                              | Tooltip (CSS-positioned)                                        | `content`, `children`, `align`, `disabled`, `visible`, `className` — default export `Props`                                                                                                                                                                                                                                                                                    |
+| **useTheme**                                             | Light/dark theme                                                | Returns `{ theme, setTheme, toggleTheme }` — type `Theme`                                                                                                                                                                                                                                                                                                                      |
+| **memoriI18n**                                           | Preconfigured i18next instance                                  | All `table.*` locales; use with `MemoriI18nProvider` or `addMemoriTableToI18n`                                                                                                                                                                                                                                                                                                 |
+| **MemoriI18nProvider**                                   | React provider for `useTranslation`                             | `children`, `i18n?` (defaults to `memoriI18n`) — `MemoriI18nProviderProps`                                                                                                                                                                                                                                                                                                     |
+| **addMemoriTableToI18n**                                 | Merge `table` strings into an existing i18n                     | `(instance, options?)` — `AddMemoriTableToI18nOptions`                                                                                                                                                                                                                                                                                                                         |
+| **tableEn** / **tableIt** / … / **MEMORI_TABLE_LOCALES** | Raw locale objects                                              | For custom resource wiring; types `MemoriTableTranslations`, `MemoriSupportedLocale`                                                                                                                                                                                                                                                                                           |
+
 ## Theming & Customization
 
 This library uses a **dynamic OKLCH color system**. The entire color palette (shades 100-900) is automatically generated from base primary and secondary colors using CSS Relative Color Syntax.

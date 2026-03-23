@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Form as BaseForm } from '@base-ui/react/form'
 import type { FormProps as BaseFormProps } from '@base-ui/react/form'
 import cx from 'classnames'
-import styles from './styles.module.css'
+import './styles.css'
 
 /* ----------------------------------------------------------------------------
  * Styled Form Root
@@ -85,8 +85,8 @@ const FormRoot = React.forwardRef<HTMLFormElement, FormProps>(
   ) => {
     const mergedClassName =
       typeof className === 'function'
-        ? (state: FormState) => cx(styles.root, className(state))
-        : cx(styles.root, className)
+        ? (state: FormState) => cx('memori-form', className(state))
+        : cx('memori-form', className)
 
     const mergedStyle =
       typeof style === 'function'

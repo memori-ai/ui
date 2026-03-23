@@ -116,7 +116,12 @@ const CustomSlider = ({
       className={cx('memori-slider', {
         'memori-slider--disabled': disabled,
       })}
-      style={{ '--percentage': `${percentage}%` } as React.CSSProperties}
+      style={
+        {
+          '--percentage': `${percentage}%`,
+          '--percentage-number': percentage,
+        } as React.CSSProperties
+      }
     >
       <div className="memori-slider__header">
         {label && <div className="memori-slider__label">{label}</div>}
@@ -130,7 +135,9 @@ const CustomSlider = ({
         onTouchStart={e => handleInteractionStart(e.touches[0]?.clientX ?? 0)}
       >
         <div className="memori-slider__track">
-          <div className="memori-slider__track-fill" />
+          <div className="memori-slider__track-fill-clip">
+            <div className="memori-slider__track-fill" />
+          </div>
         </div>
 
         <div className="memori-slider__marks">

@@ -280,7 +280,7 @@
     padding: var(--memori-spacing-xs);
     border-radius: 999px;
     background-color: var(--memori-primary);
-    color: #fff;
+    color: var(--memori-primary-content);
     font-size: var(--memori-text-size-xs);
     font-weight: var(--memori-text-weight-semibold);
     line-height: 1.25;
@@ -652,14 +652,22 @@
 
 .memori-table__badge--primary {
     border: var(--memori-border) solid var(--memori-border-primary);
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 90%);
-    color: var(--memori-text-color);
+    background-color: var(--memori-primary-subtle);
+    color: var(--memori-primary);
+}
+
+.memori-table__badge--primary:hover {
+    background-color: var(--memori-primary-subtle-hover);
 }
 
 .memori-table__badge--secondary {
-    border: var(--memori-border) solid color-mix(in oklch, var(--memori-secondary), transparent 50%);
-    background-color: color-mix(in oklch, var(--memori-secondary), transparent 88%);
-    color: var(--memori-text-color);
+    border: var(--memori-border) solid var(--memori-border-secondary);
+    background-color: var(--memori-secondary-subtle);
+    color: var(--memori-secondary);
+}
+
+.memori-table__badge--secondary:hover {
+    background-color: var(--memori-secondary-subtle-hover);
 }
 
 .memori-table__badge--accent {
@@ -908,8 +916,8 @@
     min-width: 5.5rem;
     padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
     border-radius: var(--memori-radius-selector);
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
-    color: var(--memori-text-color);
+    background-color: var(--memori-primary-subtle);
+    color: var(--memori-primary);
     font-variant-numeric: tabular-nums;
     line-height: var(--memori-text-line-normal);
     text-align: center;
@@ -976,7 +984,7 @@
 
     .memori-table__header-cell {
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-        box-shadow: 0 4px 12px -6px rgb(0 0 0 / 14%);
+        box-shadow: var(--memori-shadow-sm);
         font-size: var(--memori-text-size-small);
     }
 

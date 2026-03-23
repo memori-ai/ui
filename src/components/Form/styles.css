@@ -4,7 +4,7 @@
  * Built on @base-ui/react Form. WCAG 2.1 AA+.
  */
 
-.root {
+.memori-form {
     display: flex;
     max-width: var(--memori-layout-max-width);
     flex-direction: column;
@@ -13,16 +13,23 @@
     font-size: var(--memori-text-size-base);
     gap: var(--memori-spacing-md);
     line-height: var(--memori-text-line-normal);
+    padding-inline: var(--memori-spacing-4xl);
 }
 
-.root:focus-within {
+@media (width <= 1024px) {
+    .memori-form {
+        padding-inline: var(--memori-spacing-md);
+    }
+}
+
+.memori-form:focus-within {
     outline: 0;
 }
 
 /* Focus-visible is handled by child controls (Field, Input, Button) */
 
 @media (prefers-reduced-motion: reduce) {
-    .root {
+    .memori-form {
         transition: none;
     }
 }

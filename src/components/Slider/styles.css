@@ -63,14 +63,28 @@
     transform: translateY(-50%);
 }
 
-/* microinteraction: track fill follows value */
+/* Clip + transform avoids animating width (layout); thumb still uses --percentage for position */
+.memori-slider__track-fill-clip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
 .memori-slider__track-fill {
     position: absolute;
-    width: var(--percentage);
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-primary);
-    transition: width var(--memori-motion-duration-fast) var(--memori-motion-ease);
+    transform: scaleX(calc(var(--percentage-number, 0) / 100));
+    transform-origin: left center;
+    transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
 }
 
 .memori-slider__marks {
@@ -123,14 +137,13 @@
     z-index: 2;
     top: 50%;
     left: var(--percentage);
-    width: 40px;
-    max-width: 40px;
-    height: 40px;
-    max-height: 40px;
-    border: 4px solid var(--memori-primary);
+    width: 28px;
+    max-width: 28px;
+    height: 28px;
+    max-height: 28px;
+    border: 2px solid var(--memori-primary);
     border-radius: 50%;
     background-color: var(--memori-secondary-background);
-    box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
     cursor: grab;
     touch-action: none;
     transform: translate(-50%, -50%);
@@ -140,11 +153,11 @@
 }
 
 .memori-slider__thumb:hover {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+    box-shadow: var(--memori-shadow-lg);
 }
 
 .memori-slider__thumb:active {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+    box-shadow: var(--memori-shadow-lg);
     cursor: grabbing;
     transform: translate(-50%, -50%) scale(1.15);
 }
@@ -223,26 +236,11 @@
     opacity: 0.6;
 }
 
-[data-theme='dark'] .memori-slider__thumb,
-:root.dark .memori-slider__thumb {
-    box-shadow: 0 3px 6px rgb(0 0 0 / 40%);
-}
-
-[data-theme='dark'] .memori-slider__thumb:hover {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
-}
-
 [data-theme='dark'] .memori-slider__thumb:active {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
     transform: translate(-50%, -50%) scale(1.15);
 }
 
-:root.dark .memori-slider__thumb:hover {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
-}
-
 :root.dark .memori-slider__thumb:active {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
     transform: translate(-50%, -50%) scale(1.15);
 }
 

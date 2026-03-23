@@ -39,7 +39,7 @@
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-field);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     color: var(--memori-text-color);
     cursor: pointer;
     font-size: var(--memori-text-size-base);
@@ -59,7 +59,6 @@
 
 .memori-combobox__trigger:disabled {
     border-color: var(--memori-border-color);
-    background-color: var(--memori-neutral-content);
     color: var(--memori-neutral);
     cursor: not-allowed;
     opacity: 0.7;
@@ -67,7 +66,6 @@
 
 .memori-combobox__trigger:hover:not(:disabled) {
     border-color: var(--memori-border-primary-hover);
-    background-color: var(--memori-neutral-content);
 }
 
 .memori-combobox__trigger[data-popup-open] {
@@ -77,6 +75,7 @@
 .memori-combobox__value {
     overflow: hidden;
     min-width: 0;
+    margin-right: auto;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -90,6 +89,7 @@
 .memori-combobox__trigger-icons {
     display: inline-flex;
     align-items: center;
+    margin-right: var(--memori-spacing-sm);
     color: inherit;
     gap: var(--memori-spacing-sm);
 }
@@ -129,7 +129,6 @@
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-box);
     background-color: var(--memori-secondary-background);
-    box-shadow: var(--memori-shadow-lg);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     transform-origin: var(--transform-origin);
@@ -142,6 +141,11 @@
     transition:
         opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
         transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
+}
+
+.memori-combobox__check-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .memori-combobox__popup[data-starting-style],
@@ -171,7 +175,6 @@
     padding-right: var(--memori-spacing-2xl);
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-field);
-    background-color: var(--memori-main-background);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     font-size: var(--memori-text-size-base);
@@ -263,7 +266,7 @@
 }
 
 .memori-combobox__item[data-selected] {
-    color: var(--memori-primary);
+    color: var(--memori-primary-active);
     font-weight: var(--memori-text-weight-medium);
 }
 

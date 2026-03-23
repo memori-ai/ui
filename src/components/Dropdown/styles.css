@@ -24,7 +24,7 @@
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-field);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     color: var(--memori-text-color);
     cursor: pointer;
     font-size: var(--memori-text-size-base);
@@ -93,7 +93,7 @@
     padding: var(--memori-spacing-sm);
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-box);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: 0 4px 12px oklch(0% 0 0deg / 15%);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
@@ -148,7 +148,7 @@
 
 .memori-dropdown__item:hover:not([data-disabled]),
 .memori-dropdown__item[data-highlighted]:not([data-disabled]) {
-    background-color: var(--memori-secondary-background);
+    background-color: var(--memori-main-background);
 }
 
 .memori-dropdown__item[data-disabled] {

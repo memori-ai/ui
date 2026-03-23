@@ -7,7 +7,7 @@ import type {
   FieldErrorProps,
 } from '@base-ui/react/field'
 import cx from 'classnames'
-import styles from './styles.module.css'
+import './styles.css'
 
 /* ----------------------------------------------------------------------------
  * Styled Root
@@ -18,8 +18,8 @@ const FieldRoot = React.forwardRef<HTMLDivElement, FieldRootProps>(
     const mergedClassName =
       typeof className === 'function'
         ? (state: import('@base-ui/react/field').FieldRoot.State) =>
-            cx(styles.root, className(state))
-        : cx(styles.root, className)
+            cx('memori-field', className(state))
+        : cx('memori-field', className)
 
     const mergedStyle =
       typeof style === 'function'
@@ -49,8 +49,8 @@ const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
     const mergedClassName =
       typeof className === 'function'
         ? (state: import('@base-ui/react/field').FieldLabel.State) =>
-            cx(styles.label, className(state))
-        : cx(styles.label, className)
+            cx('memori-field__label', className(state))
+        : cx('memori-field__label', className)
 
     const mergedStyle =
       typeof style === 'function'
@@ -82,8 +82,8 @@ const FieldDescription = React.forwardRef<
   const mergedClassName =
     typeof className === 'function'
       ? (state: import('@base-ui/react/field').FieldDescription.State) =>
-          cx(styles.description, className(state))
-      : cx(styles.description, className)
+          cx('memori-field__description', className(state))
+      : cx('memori-field__description', className)
 
   const mergedStyle =
     typeof style === 'function'
@@ -112,8 +112,8 @@ const FieldError = React.forwardRef<HTMLDivElement, FieldErrorProps>(
     const mergedClassName =
       typeof className === 'function'
         ? (state: import('@base-ui/react/field').FieldError.State) =>
-            cx(styles.error, className(state))
-        : cx(styles.error, className)
+            cx('memori-field__error', className(state))
+        : cx('memori-field__error', className)
 
     const mergedStyle =
       typeof style === 'function'
@@ -212,7 +212,7 @@ const FieldGroup = React.forwardRef<HTMLDivElement, FieldGroupProps>(
             {label}
             {required && (
               <span
-                className={styles.requiredIndicator}
+                className="memori-field__required-indicator"
                 aria-hidden="true"
               >
                 *
@@ -220,7 +220,7 @@ const FieldGroup = React.forwardRef<HTMLDivElement, FieldGroupProps>(
             )}
           </Field.Label>
         )}
-        <div className={styles.controlWrapper}>{children}</div>
+        <div className="memori-field__control-wrapper">{children}</div>
         {helperText != null && !showError && (
           <Field.Description>{helperText}</Field.Description>
         )}

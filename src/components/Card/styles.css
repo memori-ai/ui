@@ -14,7 +14,6 @@
     border-radius: var(--memori-radius-box);
     margin: 0;
     background-color: var(--memori-secondary-background);
-    box-shadow: var(--memori-shadow-md);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     text-align: left;
@@ -71,7 +70,9 @@
 /* Elevated: stronger shadow */
 .memori-card--elevated {
     border: 1px solid transparent;
-    box-shadow: var(--memori-shadow-xl);
+    box-shadow:
+        0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
+        0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
 }
 
 /* Dark mode: add subtle border for better visibility */
@@ -82,13 +83,13 @@
 
 /* Flat: no shadow, border only */
 .memori-card--flat {
-    border: var(--memori-border) solid var(--memori-border-color);
+    border: none;
     box-shadow: none;
 }
 
 /* Outlined: Border, no shadow */
 .memori-card--outlined {
-    border: 1px solid var(--memori-border-color);
+    border: 1px solid color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
     box-shadow: none;
 }
 
@@ -122,7 +123,7 @@
 
 .memori-card--interactive:hover {
     border-color: var(--memori-border-primary-hover);
-    box-shadow: var(--memori-shadow-primary);
+    box-shadow: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
     transform: translateY(-2px);
     transition:
         border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),

@@ -4,7 +4,7 @@ exports[`Slider > renders Slider unchanged 1`] = `
 <div>
   <div
     class="memori-slider"
-    style="--percentage: 50%;"
+    style="--percentage: 50%; --percentage-number: 50;"
   >
     <div
       class="memori-slider__header"
@@ -22,8 +22,12 @@ exports[`Slider > renders Slider unchanged 1`] = `
         class="memori-slider__track"
       >
         <div
-          class="memori-slider__track-fill"
-        />
+          class="memori-slider__track-fill-clip"
+        >
+          <div
+            class="memori-slider__track-fill"
+          />
+        </div>
       </div>
       <div
         class="memori-slider__marks"
@@ -106,7 +110,7 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
 <div>
   <div
     class="memori-slider"
-    style="--percentage: 50%;"
+    style="--percentage: 50%; --percentage-number: 50;"
   >
     <div
       class="memori-slider__header"
@@ -124,8 +128,12 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
         class="memori-slider__track"
       >
         <div
-          class="memori-slider__track-fill"
-        />
+          class="memori-slider__track-fill-clip"
+        >
+          <div
+            class="memori-slider__track-fill"
+          />
+        </div>
       </div>
       <div
         class="memori-slider__marks"
@@ -208,7 +216,7 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
 <div>
   <div
     class="memori-slider memori-slider--disabled"
-    style="--percentage: 50%;"
+    style="--percentage: 50%; --percentage-number: 50;"
   >
     <div
       class="memori-slider__header"
@@ -226,8 +234,12 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
         class="memori-slider__track"
       >
         <div
-          class="memori-slider__track-fill"
-        />
+          class="memori-slider__track-fill-clip"
+        >
+          <div
+            class="memori-slider__track-fill"
+          />
+        </div>
       </div>
       <div
         class="memori-slider__marks"
@@ -310,7 +322,7 @@ exports[`Slider > renders Slider with label prop unchanged 1`] = `
 <div>
   <div
     class="memori-slider"
-    style="--percentage: 50%;"
+    style="--percentage: 50%; --percentage-number: 50;"
   >
     <div
       class="memori-slider__header"
@@ -333,8 +345,12 @@ exports[`Slider > renders Slider with label prop unchanged 1`] = `
         class="memori-slider__track"
       >
         <div
-          class="memori-slider__track-fill"
-        />
+          class="memori-slider__track-fill-clip"
+        >
+          <div
+            class="memori-slider__track-fill"
+          />
+        </div>
       </div>
       <div
         class="memori-slider__marks"

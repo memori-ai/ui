@@ -6,6 +6,7 @@
     justify-content: center;
     border: 1px solid transparent;
     border-radius: var(--memori-radius-field);
+    box-shadow: var(--memori-button-box-shadow);
     cursor: pointer;
     font-family: var(--memori-font-family);
     font-weight: var(--memori-text-weight-medium);
@@ -28,7 +29,9 @@
     border-radius: inherit;
     box-shadow: var(--memori-focus-ring);
     content: '';
-    inset: 0;
+
+    /* Align ring to outer border (1px) so outline-offset reads as gap from the visible edge */
+    inset: -1px;
     opacity: 0;
     outline: 2px solid var(--memori-primary);
     outline-offset: var(--memori-focus-ring-offset);
@@ -59,18 +62,74 @@
     opacity: 0.6;
 }
 
+/* Soft variants — :disabled before :hover (no-descending-specificity) */
+.memori-button--soft {
+    border-color: var(--memori-border-primary);
+    background-color: var(--memori-primary-subtle);
+    box-shadow: none;
+    color: var(--memori-primary);
+}
+
+.memori-button--soft:disabled,
+.memori-button--soft.memori-button--disabled {
+    border-color: var(--memori-border-primary);
+    background-color: var(--memori-primary-subtle);
+    color: var(--memori-primary-disabled);
+    opacity: 0.65;
+}
+
+.memori-button--soft:hover:not(:disabled, .memori-button--disabled) {
+    border-color: var(--memori-border-primary-hover);
+    background-color: var(--memori-primary-subtle-hover);
+    box-shadow: var(--memori-shadow-sm);
+    color: var(--memori-primary);
+}
+
+.memori-button--soft:active:not(:disabled, .memori-button--disabled),
+.memori-button--soft.memori-button--active {
+    border-color: var(--memori-border-primary-hover);
+    background-color: var(--memori-primary-subtle-hover);
+    color: var(--memori-primary-active);
+}
+
+.memori-button--softSecondary {
+    border-color: var(--memori-border-secondary);
+    background-color: var(--memori-secondary-subtle);
+    box-shadow: none;
+    color: var(--memori-secondary);
+}
+
+.memori-button--softSecondary:disabled,
+.memori-button--softSecondary.memori-button--disabled {
+    border-color: var(--memori-border-secondary);
+    background-color: var(--memori-secondary-subtle);
+    color: var(--memori-secondary-disabled);
+    opacity: 0.65;
+}
+
+.memori-button--softSecondary:hover:not(:disabled, .memori-button--disabled) {
+    border-color: var(--memori-border-secondary-hover);
+    background-color: var(--memori-secondary-subtle-hover);
+    box-shadow: var(--memori-shadow-sm);
+    color: var(--memori-secondary);
+}
+
+.memori-button--softSecondary:active:not(:disabled, .memori-button--disabled),
+.memori-button--softSecondary.memori-button--active {
+    border-color: var(--memori-border-secondary-hover);
+    background-color: var(--memori-secondary-subtle-hover);
+    color: var(--memori-secondary-active);
+}
+
 /* microinteraction: hover uses scale + existing shadow; transform uses fast + ease-out */
 .memori-button:hover:not(:disabled, .memori-button--disabled) {
-    box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 10%),
-        0 2px 4px -2px rgb(0 0 0 / 10%);
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 /* microinteraction: press uses scale + ease-in on transform */
 .memori-button:active:not(:disabled, .memori-button--disabled) {
     box-shadow: none;
-    transform: scale(0.97);
+    transform: scale(0.99);
     transition:
         background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
         border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
@@ -161,7 +220,6 @@
 
 .memori-button--primary:hover:not(:disabled, .memori-button--disabled) {
     border-color: var(--memori-primary-hover);
-    background-color: var(--memori-primary-hover);
 }
 
 .memori-button--primary:active:not(:disabled, .memori-button--disabled),
@@ -184,7 +242,6 @@
 
 .memori-button--secondary:hover:not(:disabled, .memori-button--disabled) {
     border-color: var(--memori-secondary-hover);
-    background-color: var(--memori-secondary-hover);
 }
 
 .memori-button--secondary:active:not(:disabled, .memori-button--disabled),
@@ -197,6 +254,7 @@
 .memori-button--outline {
     border-color: var(--memori-primary);
     background-color: transparent;
+    box-shadow: none;
     color: var(--memori-primary);
 }
 
@@ -216,6 +274,7 @@
 .memori-button--outline:hover:not(:disabled, .memori-button--disabled) {
     border-color: var(--memori-primary-hover);
     background-color: var(--memori-primary-hover);
+    box-shadow: var(--memori-shadow-primary);
     color: var(--memori-primary-content);
 }
 
@@ -230,7 +289,7 @@
 .memori-button--toolbar {
     border: var(--memori-border) solid var(--memori-border-color);
     background-color: var(--memori-main-background);
-    box-shadow: none;
+    box-shadow: none; /* overrides --memori-button-box-shadow */
     color: var(--memori-text-color);
     font-weight: var(--memori-text-weight-normal);
     transform: none;
@@ -248,7 +307,8 @@
 .memori-button--toolbar:focus-visible {
     border-color: var(--memori-border-primary);
     box-shadow: var(--memori-focus-ring);
-    outline: none;
+    outline: 2px solid var(--memori-primary);
+    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .memori-button--toolbar.memori-button--active {
@@ -320,10 +380,11 @@
 .memori-button--ghost {
     border-color: transparent;
     background-color: transparent;
+    box-shadow: none;
     color: var(--memori-text-color);
 }
 
-/* Ghost variant disabled state */
+/* Ghost variant disabled state — before :hover (no-descending-specificity) */
 .memori-button--ghost.memori-button--disabled,
 .memori-button--ghost:disabled {
     border-color: transparent;
@@ -334,6 +395,11 @@
 .memori-button--ghost:disabled:hover {
     border-color: transparent;
     background-color: transparent;
+}
+
+.memori-button--ghost:hover:not(:disabled, .memori-button--disabled) {
+    box-shadow: none;
+    transform: none;
 }
 
 /* Link Variant — text link appearance (still a `<button>` for actions) */
@@ -435,7 +501,7 @@
 
 .memori-button--md {
     min-height: 40px;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    padding: var(--memori-button-padding);
     font-size: var(--memori-text-size-base);
 }
 
@@ -521,21 +587,15 @@
    ============================================ */
 
 .memori-button--shadow {
-    box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 10%),
-        0 2px 4px -2px rgb(0 0 0 / 10%);
+    box-shadow: var(--memori-shadow-sm);
 }
 
 .memori-button--shadow:hover:not(:disabled, .memori-button--disabled) {
-    box-shadow:
-        0 6px 10px -2px rgb(0 0 0 / 12%),
-        0 4px 6px -3px rgb(0 0 0 / 10%);
+    box-shadow: var(--memori-shadow-md);
 }
 
 .memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
-    box-shadow:
-        0 2px 4px -2px rgb(0 0 0 / 8%),
-        0 1px 2px -1px rgb(0 0 0 / 6%);
+    box-shadow: var(--memori-shadow-xs);
 }
 
 .memori-button--full-width {
@@ -557,4 +617,30 @@
 .memori-button--disabled:hover {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
+}
+
+/* Touch / coarse pointers: meet ~44px minimum target (WCAG 2.5.5 AAA-style) */
+@media (pointer: coarse) {
+    .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--xs {
+        min-width: 44px;
+        min-height: 44px;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    }
+
+    .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--sm {
+        min-height: 44px;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    }
+
+    .memori-button--circle.memori-button--sm,
+    .memori-button--icon-only.memori-button--sm {
+        width: 44px;
+        min-height: 44px;
+    }
+
+    .memori-button--circle.memori-button--md,
+    .memori-button--icon-only.memori-button--md {
+        width: 44px;
+        min-height: 44px;
+    }
 }

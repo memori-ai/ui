@@ -1,6 +1,6 @@
 import React, { forwardRef, useId, useMemo } from 'react'
 import { Combobox as BaseCombobox } from '@base-ui/react/combobox'
-import { ChevronDown, Search } from 'lucide-react'
+import { Check, ChevronDown, Search } from 'lucide-react'
 import cx from 'classnames'
 import './styles.css'
 
@@ -252,6 +252,9 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                                     {item.icons}
                                   </span>
                                 )}
+                                <BaseCombobox.ItemIndicator>
+                                  <Check className="memori-combobox__check-icon" />
+                                </BaseCombobox.ItemIndicator>
                               </BaseCombobox.Item>
                             )}
                           </BaseCombobox.Collection>
@@ -278,6 +281,9 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                               {item.icons}
                             </span>
                           )}
+                          <BaseCombobox.ItemIndicator>
+                            <Check className="memori-combobox__check-icon" />
+                          </BaseCombobox.ItemIndicator>
                         </BaseCombobox.Item>
                       )}
                 </BaseCombobox.List>

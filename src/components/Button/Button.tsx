@@ -27,6 +27,8 @@ export interface ButtonProps
   variant?:
     | 'primary'
     | 'secondary'
+    | 'soft'
+    | 'softSecondary'
     | 'outline'
     | 'ghost'
     | 'link'
@@ -121,6 +123,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const variantClass = {
       primary: 'memori-button--primary',
       secondary: 'memori-button--secondary',
+      soft: 'memori-button--soft',
+      softSecondary: 'memori-button--softSecondary',
       outline: 'memori-button--outline',
       ghost: 'memori-button--ghost',
       link: 'memori-button--link',

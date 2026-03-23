@@ -2,7 +2,6 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Field, FieldGroup } from './Field'
 import { Input } from '../Input/Input'
-import styles from './styles.module.css'
 
 const meta = {
   title: 'Form/Field',
@@ -188,7 +187,7 @@ export const Composition: Story = {
       <Field.Label>
         Full name
         <span
-          className={styles.requiredIndicator}
+          className="memori-field__required-indicator"
           aria-hidden="true"
         >
           *

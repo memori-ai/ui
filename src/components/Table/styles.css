@@ -397,7 +397,7 @@
 
 .memori-table__filter-date-error {
     margin: 0;
-    color: var(--memori-danger, #c62828);
+    color: var(--memori-error);
     font-size: var(--memori-text-size-xs);
 }
 

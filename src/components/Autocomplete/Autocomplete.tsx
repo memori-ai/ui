@@ -6,7 +6,7 @@ import type {
 } from '@base-ui/react/autocomplete'
 import { ChevronDown } from 'lucide-react'
 import cx from 'classnames'
-import styles from './styles.module.css'
+import './styles.css'
 
 /* ----------------------------------------------------------------------------
  * Types
@@ -224,17 +224,17 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       <>
         {label != null && label !== '' && (
           <label
-            className={styles.label}
+            className="memori-autocomplete__label"
             htmlFor={inputId}
             id={`${rootId}-label`}
           >
             {label}
           </label>
         )}
-        <div className={styles.inputRow}>
+        <div className="memori-autocomplete__input-row">
           <BaseAutocomplete.Input
             id={inputId}
-            className={cx(styles.input, inputClassName)}
+            className={cx('memori-autocomplete__input', inputClassName)}
             placeholder={placeholder}
             aria-labelledby={
               label != null && label !== '' ? `${rootId}-label` : undefined
@@ -243,44 +243,42 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
           {clearable && (
             <BaseAutocomplete.Clear
               type="button"
-              className={styles.clear}
+              className="memori-autocomplete__clear"
               aria-label="Clear"
             />
           )}
           <span
-            className={styles.inputChevron}
+            className="memori-autocomplete__input-chevron"
             aria-hidden
           >
             <ChevronDown size={16} />
           </span>
         </div>
-        <BaseAutocomplete.Portal className={styles.portal}>
+        <BaseAutocomplete.Portal className="memori-autocomplete__portal">
           <BaseAutocomplete.Positioner
-            className={styles.positioner}
+            className="memori-autocomplete__positioner"
             sideOffset={8}
             side="bottom"
             align="start"
           >
-            <BaseAutocomplete.Popup className={styles.popup}>
+            <BaseAutocomplete.Popup className="memori-autocomplete__popup">
               {loading && (
-                <BaseAutocomplete.Status className={styles.status}>
+                <BaseAutocomplete.Status className="memori-autocomplete__status">
                   {loadingText}
                 </BaseAutocomplete.Status>
               )}
-              <BaseAutocomplete.Empty className={styles.empty}>
+              <BaseAutocomplete.Empty className="memori-autocomplete__empty">
                 {emptyText}
               </BaseAutocomplete.Empty>
-              <BaseAutocomplete.List className={styles.list}>
+              <BaseAutocomplete.List className="memori-autocomplete__list">
                 {isGroupedOptions(options)
                   ? options.map(group => (
                       <BaseAutocomplete.Group
                         key={group.groupLabel}
                         items={group.options}
-                        className={styles.group}
+                        className="memori-autocomplete__group"
                       >
-                        <BaseAutocomplete.GroupLabel
-                          className={styles.groupLabel}
-                        >
+                        <BaseAutocomplete.GroupLabel className="memori-autocomplete__group-label">
                           {group.groupLabel}
                         </BaseAutocomplete.GroupLabel>
                         <BaseAutocomplete.Collection>
@@ -290,16 +288,16 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                               value={item}
                               disabled={item.disabled}
                               index={index}
-                              className={styles.item}
+                              className="memori-autocomplete__item"
                             >
-                              <span className={styles.itemText}>
+                              <span className="memori-autocomplete__item-text">
                                 {item.label}
                               </span>
                               {(item.icon != null ||
                                 (item.icons != null &&
                                   item.icons.length > 0)) && (
                                 <span
-                                  className={styles.itemIcons}
+                                  className="memori-autocomplete__item-icons"
                                   aria-hidden
                                 >
                                   {item.icon}
@@ -317,13 +315,15 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                         value={item}
                         disabled={item.disabled}
                         index={index}
-                        className={styles.item}
+                        className="memori-autocomplete__item"
                       >
-                        <span className={styles.itemText}>{item.label}</span>
+                        <span className="memori-autocomplete__item-text">
+                          {item.label}
+                        </span>
                         {(item.icon != null ||
                           (item.icons != null && item.icons.length > 0)) && (
                           <span
-                            className={styles.itemIcons}
+                            className="memori-autocomplete__item-icons"
                             aria-hidden
                           >
                             {item.icon}
@@ -342,7 +342,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     return (
       <div
         ref={ref}
-        className={cx(styles.root, className)}
+        className={cx('memori-autocomplete', className)}
         style={style}
       >
         {grouped ? (

@@ -1,5 +1,12 @@
 
 
+## [1.10.0](https://github.com/memori-ai/ui/compare/v1.9.0...v1.10.0) (2026-03-23)
+
+
+### Features
+
+* integrate i18n support into Table component and add MemoriI18nProvider ([5831f2c](https://github.com/memori-ai/ui/commit/5831f2cd124ecffae04fe64b00b9148c851eb491))
+
 ## [1.9.0](https://github.com/memori-ai/ui/compare/v1.8.0...v1.9.0) (2026-03-23)
 
 

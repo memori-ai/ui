@@ -1,6 +1,21 @@
 import './styles.css'
 
 export {
+  memoriI18n,
+  MemoriI18nProvider,
+  addMemoriTableToI18n,
+  tableEn,
+  tableIt,
+  tableEs,
+  tableFr,
+  tableDe,
+  MEMORI_TABLE_LOCALES,
+  type MemoriTableTranslations,
+  type MemoriSupportedLocale,
+  type MemoriI18nProviderProps,
+  type AddMemoriTableToI18nOptions,
+} from './i18n'
+export {
   Alert,
   AlertProvider,
   AlertViewport,

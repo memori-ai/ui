@@ -55,6 +55,62 @@ const sampleData: Person[] = [
     role: 'Researcher',
     status: 'active',
   },
+  {
+    id: '5',
+    name: 'Ada Lovelace',
+    email: 'ada@example.com',
+    role: 'Engineer',
+    status: 'active',
+  },
+  {
+    id: '6',
+    name: 'Alan Turing',
+    email: 'alan@example.com',
+    role: 'Researcher',
+    status: 'active',
+  },
+  {
+    id: '7',
+    name: 'Grace Hopper',
+    email: 'grace@example.com',
+    role: 'Engineer',
+    status: 'inactive',
+  },
+  {
+    id: '8',
+    name: 'Edsger Dijkstra',
+    email: 'edsger@example.com',
+    role: 'Researcher',
+    status: 'active',
+  },
+  {
+    id: '9',
+    name: 'Ada Lovelace',
+    email: 'ada@example.com',
+    role: 'Engineer',
+    status: 'active',
+  },
+  {
+    id: '10',
+    name: 'Alan Turing',
+    email: 'alan@example.com',
+    role: 'Researcher',
+    status: 'active',
+  },
+  {
+    id: '11',
+    name: 'Grace Hopper',
+    email: 'grace@example.com',
+    role: 'Engineer',
+    status: 'inactive',
+  },
+  {
+    id: '12',
+    name: 'Edsger Dijkstra',
+    email: 'edsger@example.com',
+    role: 'Researcher',
+    status: 'active',
+  },
 ]
 
 const baseColumns: ColumnDef<Person>[] = [
@@ -404,6 +460,21 @@ export const ToolbarFilters: Story = {
         columnFilters={columnFilters}
         onColumnFiltersChange={setColumnFilters}
         filterDefs={toolbarFilterDefs}
+        enableRowSelection={true}
+        bulkActions={[
+          {
+            label: 'Remove',
+            icon: <Trash2 size={16} />,
+            variant: 'danger',
+            onClick: rows => {
+              // eslint-disable-next-line no-console
+              console.log(
+                'bulk',
+                rows.map(r => r.original.id),
+              )
+            },
+          },
+        ]}
         tableId="story-toolbar-filters-table"
       />
     )

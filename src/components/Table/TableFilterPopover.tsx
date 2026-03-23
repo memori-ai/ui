@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { ColumnFiltersState } from '@tanstack/react-table'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { SlidersHorizontal } from 'lucide-react'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 import { Button } from '../Button'
@@ -27,6 +28,7 @@ export function TableFilterPopover({
   value,
   onChange,
 }: TableFilterPopoverProps) {
+  const { t } = useTranslation()
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false)
   const [draft, setDraft] = React.useState<ColumnFiltersState>(() =>
@@ -83,7 +85,7 @@ export function TableFilterPopover({
         }
         onClick={handleOpenClick}
       >
-        Filters
+        {t('table.filtersButton')}
         {activeCount > 0 ? (
           <span className="memori-table__filter-badge">{activeCount}</span>
         ) : null}
@@ -92,7 +94,7 @@ export function TableFilterPopover({
         <div
           className="memori-table__filter-popover"
           role="dialog"
-          aria-label="Table filters"
+          aria-label={t('table.filtersDialogAria')}
         >
           <div className="memori-table__filter-popover-body">
             {filterDefs.map(def => (
@@ -110,7 +112,7 @@ export function TableFilterPopover({
               className="memori-table__filter-clear-all"
               onClick={handleClearDraft}
             >
-              Clear all
+              {t('table.clearAll')}
             </Button>
             <Button
               type="button"
@@ -119,7 +121,7 @@ export function TableFilterPopover({
               disabled={applyDisabled}
               onClick={handleApply}
             >
-              Apply
+              {t('table.apply')}
             </Button>
           </div>
         </div>
@@ -237,6 +239,7 @@ function DateRangeSection({
   draft: ColumnFiltersState
   setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
 }) {
+  const { t } = useTranslation()
   const raw = getFilterValue(draft, def.id) as DateRangeValue | undefined
   const from = raw?.from ?? ''
   const to = raw?.to ?? ''
@@ -256,7 +259,9 @@ function DateRangeSection({
       <div className="memori-table__filter-section-label">{def.label}</div>
       <div className="memori-table__filter-date-range">
         <label className="memori-table__filter-date-field">
-          <span className="memori-table__filter-date-field-label">From</span>
+          <span className="memori-table__filter-date-field-label">
+            {t('table.dateFrom')}
+          </span>
           <input
             type="date"
             className="memori-table__filter-date-input"
@@ -270,7 +275,9 @@ function DateRangeSection({
           />
         </label>
         <label className="memori-table__filter-date-field">
-          <span className="memori-table__filter-date-field-label">To</span>
+          <span className="memori-table__filter-date-field-label">
+            {t('table.dateTo')}
+          </span>
           <input
             type="date"
             className="memori-table__filter-date-input"
@@ -289,7 +296,7 @@ function DateRangeSection({
           className="memori-table__filter-date-error"
           role="alert"
         >
-          End date must be after start date
+          {t('table.dateRangeInvalid')}
         </p>
       ) : null}
     </div>

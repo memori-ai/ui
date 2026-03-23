@@ -2,21 +2,22 @@ import * as React from 'react'
 import { flexRender, type Table as TanStackTable } from '@tanstack/react-table'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 export interface TableHeaderProps<TData> {
   table: TanStackTable<TData>
   /** Optional second row (e.g. column filters), as `<tr>` children */
   filterRow?: React.ReactNode
-}
-
-function sortAriaLabel(headerLabel: string) {
-  return `Sort by ${headerLabel}`
+  /** Full-width row below filters, above the table body (e.g. bulk / selection toolbar) */
+  selectionToolbar?: React.ReactNode
 }
 
 export function TableHeader<TData>({
   table,
   filterRow,
+  selectionToolbar,
 }: TableHeaderProps<TData>) {
+  const { t } = useTranslation()
   return (
     <thead className="memori-table__head">
       {table.getHeaderGroups().map(headerGroup => (
@@ -99,7 +100,7 @@ export function TableHeader<TData>({
                           !sortDir && 'memori-table__sort-button--inactive',
                         )}
                         onClick={header.column.getToggleSortingHandler()}
-                        aria-label={sortAriaLabel(headerLabel)}
+                        aria-label={t('table.sortBy', { label: headerLabel })}
                       >
                         {sortDir === 'asc' ? (
                           <ArrowUp
@@ -129,7 +130,9 @@ export function TableHeader<TData>({
                       <div
                         role="separator"
                         aria-orientation="vertical"
-                        aria-label={`Resize column ${headerLabel}`}
+                        aria-label={t('table.resizeColumn', {
+                          label: headerLabel,
+                        })}
                         className={cx(
                           'memori-table__resize-handle',
                           header.column.getIsResizing() &&
@@ -147,6 +150,17 @@ export function TableHeader<TData>({
         </tr>
       ))}
       {filterRow}
+      {selectionToolbar ? (
+        <tr className="memori-table__toolbar-row">
+          <th
+            className="memori-table__toolbar-cell"
+            colSpan={table.getVisibleLeafColumns().length}
+            scope="row"
+          >
+            {selectionToolbar}
+          </th>
+        </tr>
+      ) : null}
     </thead>
   )
 }

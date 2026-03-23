@@ -6,8 +6,8 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
-import { Input } from '../Input'
 import { SelectBox } from '../SelectBox'
 
 export interface TablePaginationProps<TData> {
@@ -24,6 +24,7 @@ export function TablePagination<TData>({
   manualPagination = false,
   rowCount: rowCountProp,
 }: TablePaginationProps<TData>) {
+  const { t } = useTranslation()
   const { pageIndex, pageSize } = table.getState().pagination
   const totalRows =
     manualPagination && rowCountProp !== undefined
@@ -44,35 +45,20 @@ export function TablePagination<TData>({
     [pageSizeOptions],
   )
 
-  const jumpFieldId = React.useId()
-
-  const [jumpValue, setJumpValue] = React.useState(() => String(pageIndex + 1))
-  React.useEffect(() => {
-    setJumpValue(String(pageIndex + 1))
-  }, [pageIndex])
-
-  const applyJump = React.useCallback(() => {
-    const n = Number.parseInt(jumpValue, 10)
-    const max = table.getPageCount()
-    if (Number.isNaN(n) || max === 0) {
-      return
-    }
-    const clamped = Math.min(Math.max(1, n), max)
-    table.setPageIndex(clamped - 1)
-    setJumpValue(String(clamped))
-  }, [jumpValue, table])
-
   const displayPageCount = table.getPageCount()
 
   return (
     <div
       className="memori-table-pagination"
       role="navigation"
-      aria-label="Table pagination"
+      aria-label={t('table.paginationNavAria')}
     >
       <span className="memori-table-pagination__range">
-        {numberFormat.format(start)}–{numberFormat.format(end)} of{' '}
-        {numberFormat.format(totalRows)}
+        {t('table.paginationRange', {
+          start: numberFormat.format(start),
+          end: numberFormat.format(end),
+          total: numberFormat.format(totalRows),
+        })}
       </span>
       <div className="memori-table-pagination__main">
         <div className="memori-table-pagination__nav">
@@ -83,7 +69,7 @@ export function TablePagination<TData>({
             shape="circle"
             disabled={!table.getCanPreviousPage()}
             onClick={() => table.setPageIndex(0)}
-            ariaLabel="First page"
+            ariaLabel={t('table.paginationFirst')}
             icon={
               <ChevronsLeft
                 size={18}
@@ -98,7 +84,7 @@ export function TablePagination<TData>({
             shape="circle"
             disabled={!table.getCanPreviousPage()}
             onClick={() => table.previousPage()}
-            ariaLabel="Previous page"
+            ariaLabel={t('table.paginationPrev')}
             icon={
               <ChevronLeft
                 size={18}
@@ -117,7 +103,7 @@ export function TablePagination<TData>({
             shape="circle"
             disabled={!table.getCanNextPage()}
             onClick={() => table.nextPage()}
-            ariaLabel="Next page"
+            ariaLabel={t('table.paginationNext')}
             icon={
               <ChevronRight
                 size={18}
@@ -134,7 +120,7 @@ export function TablePagination<TData>({
             onClick={() =>
               table.setPageIndex(Math.max(0, table.getPageCount() - 1))
             }
-            ariaLabel="Last page"
+            ariaLabel={t('table.paginationLast')}
             icon={
               <ChevronsRight
                 size={18}
@@ -146,7 +132,7 @@ export function TablePagination<TData>({
         <div className="memori-table-pagination__page-size">
           <SelectBox
             className="memori-table-pagination__select"
-            label="Rows per page"
+            label={t('table.rowsPerPage')}
             name="tablePageSize"
             options={sizeSelectOptions}
             value={String(pageSize)}

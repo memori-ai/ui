@@ -4,6 +4,7 @@ import type {
   Table as TanStackTable,
 } from '@tanstack/react-table'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { Input } from '../Input'
 import './tableMeta'
 
@@ -42,6 +43,7 @@ export function TableFilterRow<TData>({
   onColumnFiltersChange,
   filterDebounceMs,
 }: TableFilterRowProps<TData>) {
+  const { t } = useTranslation()
   const headerGroup = table.getHeaderGroups()[0]
   if (!headerGroup) {
     return null
@@ -145,13 +147,13 @@ export function TableFilterRow<TData>({
               <select
                 className="memori-table__filter-select"
                 value={value}
-                aria-label={`Filter ${col.id}`}
+                aria-label={t('table.filterColumn', { column: col.id })}
                 onChange={e => {
                   const v = e.target.value
                   setFilterValue(col.id, v === '' ? undefined : v)
                 }}
               >
-                <option value="">All</option>
+                <option value="">{t('table.filterAll')}</option>
                 {options.map(opt => (
                   <option
                     key={opt}
@@ -178,7 +180,7 @@ export function TableFilterRow<TData>({
                 size="sm"
                 className="memori-table__filter-input"
                 value={draft}
-                aria-label={`Filter ${col.id}`}
+                aria-label={t('table.filterColumn', { column: col.id })}
                 onChange={e => {
                   const v = e.target.value
                   setTextDrafts(prev => ({ ...prev, [col.id]: v }))

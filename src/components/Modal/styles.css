@@ -45,12 +45,13 @@
 .memori-modal__popup {
     position: relative;
     padding: var(--memori-spacing-lg);
+    border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-box);
     margin-right: auto;
     margin-left: auto;
     animation: memori-modal-scale-in var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
     background-color: var(--memori-secondary-background);
-    box-shadow: var(--memori-shadow-md);
+    box-shadow: var(--memori-shadow-sm);
     font-family: var(--memori-font-family);
     outline: none;
     transition: outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);

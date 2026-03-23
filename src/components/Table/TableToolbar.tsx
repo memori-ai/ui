@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { Row, Table as TanStackTable } from '@tanstack/react-table'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
 import type { BulkAction } from './tableTypes'
 
@@ -18,6 +19,7 @@ export function TableToolbar<TData>({
   bulkActions,
   legacyToolbar,
 }: TableToolbarProps<TData>) {
+  const { t } = useTranslation()
   const count = table.getSelectedRowModel().rows.length
   const hasBulk = (bulkActions?.length ?? 0) > 0
 
@@ -36,10 +38,10 @@ export function TableToolbar<TData>({
           className,
         )}
         role="toolbar"
-        aria-label="Bulk actions"
+        aria-label={t('table.bulkActionsAria')}
       >
         <span className="memori-table-toolbar__count">
-          {count} {count === 1 ? 'row' : 'rows'} selected
+          {t('table.selectionCount', { count })}
         </span>
         <div className="memori-table-toolbar__actions">
           <Button
@@ -48,7 +50,7 @@ export function TableToolbar<TData>({
             size="sm"
             onClick={() => table.resetRowSelection()}
           >
-            Clear selection
+            {t('table.clearSelection')}
           </Button>
           {bulkActions!.map(action => (
             <Button
@@ -72,9 +74,11 @@ export function TableToolbar<TData>({
       <div
         className={cx('memori-table-toolbar', className)}
         role="toolbar"
-        aria-label="Row selection"
+        aria-label={t('table.rowSelectionAria')}
       >
-        <span className="memori-table-toolbar__count">{count} selected</span>
+        <span className="memori-table-toolbar__count">
+          {t('table.selectedCount', { count })}
+        </span>
         {legacyToolbar}
       </div>
     )

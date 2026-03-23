@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { Table as TanStackTable } from '@tanstack/react-table'
+import { useTranslation } from 'react-i18next'
 import { TableRow } from './TableRow'
 
 export interface TableBodyProps<TData> {
@@ -17,6 +18,7 @@ export function TableBody<TData>({
   emptyState,
   skeletonRowCount = 10,
 }: TableBodyProps<TData>) {
+  const { t } = useTranslation()
   const rows = table.getRowModel().rows
   const visibleColumns = table.getVisibleLeafColumns()
   const colCount = visibleColumns.length
@@ -29,14 +31,31 @@ export function TableBody<TData>({
           <tr
             key={`sk-${i}`}
             className="memori-table__row memori-table__row--skeleton"
+            style={
+              {
+                '--memori-skeleton-row-index': i,
+              } as React.CSSProperties
+            }
           >
-            {visibleColumns.map(col => (
+            {visibleColumns.map((col, colIndex) => (
               <td
                 key={col.id}
                 className="memori-table__cell memori-table__cell--skeleton"
                 style={{ width: col.getSize() }}
               >
-                <span className="memori-table__skeleton-bar" />
+                {i === 0 && colIndex === 0 ? (
+                  <span
+                    className="memori-table__sr-only"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {t('table.loadingTable')}
+                  </span>
+                ) : null}
+                <span
+                  className="memori-table__skeleton-bar"
+                  aria-hidden
+                />
               </td>
             ))}
           </tr>
@@ -54,7 +73,7 @@ export function TableBody<TData>({
             colSpan={colCount}
           >
             <div className="memori-table__empty">
-              {emptyState ?? 'No results found.'}
+              {emptyState ?? t('table.emptyState')}
             </div>
           </td>
         </tr>

@@ -1,5 +1,5 @@
 .memori-table-wrapper {
-    --memori-table-body-max-height: min(70vh, 32rem);
+    --memori-table-body-max-height: min(75vh, 40rem);
 
     overflow: hidden;
     width: 100%;
@@ -24,6 +24,14 @@
     overscroll-behavior: contain;
 }
 
+.memori-table-scroll--loading {
+    /* Keeps the scroll region from collapsing when many rows replace skeletons; max-height on this box still caps height */
+    min-height: calc(
+        var(--memori-table-thead-estimate, 5.5rem) + var(--memori-table-skeleton-rows, 10) *
+            var(--memori-table-skeleton-row-height, 2.75rem)
+    );
+}
+
 .memori-table {
     width: 100%;
     box-sizing: border-box;
@@ -43,6 +51,19 @@
 
 .memori-table__header-row {
     border-bottom: var(--memori-border) solid var(--memori-border-color);
+}
+
+.memori-table__toolbar-row {
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+}
+
+.memori-table__toolbar-cell {
+    padding: 0;
+    border: none;
+    background-color: color-mix(in oklch, var(--memori-main-background), var(--memori-secondary-background) 22%);
+    font-weight: var(--memori-text-weight-normal);
+    text-align: left;
+    vertical-align: middle;
 }
 
 /* Sticky header + opaque background so scrolling rows don’t show through */
@@ -199,14 +220,6 @@
     background-color: color-mix(in oklch, var(--memori-primary), transparent 84%);
 }
 
-.memori-table__header-cell--select {
-    text-align: center;
-}
-
-.memori-table__cell--select {
-    text-align: center;
-}
-
 .memori-table__cell {
     min-width: 0;
     box-sizing: border-box;
@@ -216,6 +229,22 @@
 
 .memori-table__cell:last-child {
     border-right: none;
+}
+
+.memori-table__body .memori-table__row--selected .memori-table__cell {
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 88%);
+}
+
+.memori-table__body .memori-table__row--selected:hover .memori-table__cell {
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 84%);
+}
+
+.memori-table__header-cell--select {
+    text-align: center;
+}
+
+.memori-table__cell--select {
+    text-align: center;
 }
 
 .memori-table-controls {
@@ -622,11 +651,6 @@
     background-color: var(--memori-secondary-background);
 }
 
-.memori-table__row--selected .memori-table__cell--pinned-left,
-.memori-table__row--selected .memori-table__cell--pinned-right {
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 88%);
-}
-
 .memori-table__row:hover .memori-table__cell--pinned-left,
 .memori-table__row:hover .memori-table__cell--pinned-right {
     background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
@@ -749,9 +773,38 @@
     font-size: var(--memori-text-size-small);
 }
 
+.memori-table__sr-only {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border-width: 0;
+    margin: -1px;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.memori-table__row--skeleton .memori-table__cell--skeleton {
+    vertical-align: middle;
+}
+
+.memori-table__body--loading .memori-table__row--skeleton:first-child .memori-table__cell--skeleton:first-child {
+    position: relative;
+}
+
+.memori-table__body--loading .memori-table__row--skeleton {
+    pointer-events: none;
+}
+
+.memori-table__body--loading .memori-table__row--skeleton:nth-child(even) {
+    background-color: color-mix(in oklch, var(--memori-main-background), transparent 55%);
+}
+
 .memori-table__skeleton-bar {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 0.65rem;
     border-radius: var(--memori-radius-field);
     animation: memori-table-skeleton-shimmer 1.2s ease-in-out infinite;
@@ -767,6 +820,12 @@
 @media (prefers-reduced-motion: reduce) {
     .memori-table__skeleton-bar {
         animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .memori-table__body--loading .memori-table__skeleton-bar {
+        animation-delay: calc(var(--memori-skeleton-row-index, 0) * 40ms);
     }
 }
 
@@ -1007,10 +1066,6 @@
         background-color: color-mix(in oklch, var(--memori-main-background), transparent 60%);
     }
 
-    .memori-table__row--selected:nth-child(even) {
-        background-color: color-mix(in oklch, var(--memori-primary), transparent 86%);
-    }
-
     .memori-table-footer {
         background-color: color-mix(in oklch, var(--memori-main-background), var(--memori-secondary-background) 22%);
     }
@@ -1101,6 +1156,10 @@
     }
 
     .memori-table__row--selected:active {
+        background-color: color-mix(in oklch, var(--memori-primary), transparent 86%);
+    }
+
+    .memori-table__body .memori-table__row--selected:active .memori-table__cell {
         background-color: color-mix(in oklch, var(--memori-primary), transparent 86%);
     }
 }

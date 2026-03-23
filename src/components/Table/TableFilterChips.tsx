@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { ColumnFiltersState } from '@tanstack/react-table'
+import { useTranslation } from 'react-i18next'
 import type { DateRangeValue, FilterDef } from './tableTypes'
 import {
   getFilterValue,
@@ -22,6 +23,7 @@ type ChipModel = {
 function buildChips(
   filterDefs: FilterDef[],
   value: ColumnFiltersState,
+  dateEmpty: string,
 ): ChipModel[] {
   const chips: ChipModel[] = []
   for (const def of filterDefs) {
@@ -49,8 +51,8 @@ function buildChips(
     } else if (def.variant === 'date-range') {
       const dr = raw as DateRangeValue | undefined
       if (dr?.from?.trim() || dr?.to?.trim()) {
-        const from = dr?.from?.trim() || '…'
-        const to = dr?.to?.trim() || '…'
+        const from = dr?.from?.trim() || dateEmpty
+        const to = dr?.to?.trim() || dateEmpty
         chips.push({
           key: `${def.id}:range`,
           text: `${def.label}: ${from} – ${to}`,
@@ -73,9 +75,10 @@ export function TableFilterChips({
   value,
   onChange,
 }: TableFilterChipsProps) {
+  const { t } = useTranslation()
   const chips = React.useMemo(
-    () => buildChips(filterDefs, value),
-    [filterDefs, value],
+    () => buildChips(filterDefs, value, t('table.dateChipEmpty')),
+    [filterDefs, value, t],
   )
 
   if (chips.length === 0) {
@@ -84,7 +87,9 @@ export function TableFilterChips({
 
   return (
     <div className="memori-table__filter-chips-row">
-      <span className="memori-table__filter-chips-muted">Active:</span>
+      <span className="memori-table__filter-chips-muted">
+        {t('table.filterChipsActive')}
+      </span>
       <div
         className="memori-table__filter-chips-list"
         role="list"
@@ -99,7 +104,7 @@ export function TableFilterChips({
             <button
               type="button"
               className="memori-table__filter-chip-remove"
-              aria-label={`Remove ${chip.text}`}
+              aria-label={t('table.removeFilter', { label: chip.text })}
               onClick={() => onChange(chip.onRemove())}
             >
               ×
@@ -112,7 +117,7 @@ export function TableFilterChips({
         className="memori-table__filter-chips-clear-all"
         onClick={() => onChange([])}
       >
-        Clear all
+        {t('table.filterChipsClearAll')}
       </button>
     </div>
   )

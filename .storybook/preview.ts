@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 import type { Decorator } from '@storybook/react'
 import React from 'react'
 
+import { MemoriI18nProvider } from '../src/i18n/MemoriI18nProvider'
 import '../src/styles.css'
 
 // Decorator to sync Storybook background control with component theme
@@ -24,6 +25,15 @@ const withTheme: Decorator = (Story, context) => {
   }
 
   return React.createElement(Story)
+}
+
+/** Same provider as consuming apps: bundled `memoriI18n` with all `table.*` locales. */
+const withI18n: Decorator = Story => {
+  return React.createElement(
+    MemoriI18nProvider,
+    null,
+    React.createElement(Story),
+  )
 }
 
 const style = document.createElement('style')
@@ -63,7 +73,7 @@ const preview: Preview = {
       test: 'todo',
     },
   },
-  decorators: [withTheme],
+  decorators: [withI18n, withTheme],
 }
 
 export default preview

@@ -5,6 +5,7 @@ import type {
 } from '@tanstack/react-table'
 import { Columns3 } from 'lucide-react'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
@@ -30,12 +31,15 @@ export function TableControls<TData>({
   showSearch,
   search,
   onSearchInputChange,
-  globalFilterPlaceholder = 'Search…',
+  globalFilterPlaceholder,
   showColumnsMenu,
   filterDefs,
   columnFilters,
   onColumnFiltersChange,
 }: TableControlsProps<TData>) {
+  const { t } = useTranslation()
+  const searchPlaceholder =
+    globalFilterPlaceholder ?? t('table.searchPlaceholder')
   const hideableColumns = table
     .getAllLeafColumns()
     .filter(
@@ -52,10 +56,10 @@ export function TableControls<TData>({
         <Input
           type="search"
           className="memori-table-controls__search"
-          placeholder={globalFilterPlaceholder}
+          placeholder={searchPlaceholder}
           value={search}
           onChange={e => onSearchInputChange(e.target.value)}
-          aria-label={globalFilterPlaceholder}
+          aria-label={searchPlaceholder}
         />
       ) : null}
       {filterDefs && filterDefs.length > 0 ? (
@@ -84,7 +88,7 @@ export function TableControls<TData>({
                   size={16}
                   aria-hidden
                 />
-                Columns
+                {t('table.columns')}
               </Button>
             )}
           />
@@ -92,7 +96,7 @@ export function TableControls<TData>({
             <div
               className="memori-table-controls__columns-panel"
               role="group"
-              aria-label="Column visibility"
+              aria-label={t('table.columnVisibilityAria')}
             >
               {hideableColumns.map(column => {
                 const label =
@@ -112,7 +116,7 @@ export function TableControls<TData>({
                       checked={column.getIsVisible()}
                       disabled={!column.getCanHide()}
                       onChange={checked => column.toggleVisibility(!!checked)}
-                      aria-label={`Show ${label}`}
+                      aria-label={t('table.showColumn', { label })}
                     />
                     <span className="memori-table-controls__column-label">
                       {label}

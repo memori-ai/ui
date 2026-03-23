@@ -15,6 +15,7 @@ import {
   type Updater,
 } from '@tanstack/react-table'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { MoreHorizontal } from 'lucide-react'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
@@ -135,6 +136,7 @@ export function Table<TData>({
   pagination: paginationProp,
   onPaginationChange: onPaginationChangeProp,
 }: TableProps<TData>) {
+  const { t } = useTranslation()
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnSizing, setColumnSizing] = React.useState<ColumnSizingState>({})
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
@@ -321,26 +323,26 @@ export function Table<TData>({
             enableResizing: false,
             enableHiding: false,
             meta: { disableHiding: true },
-            header: ({ table: t }) => (
+            header: ({ table: tableInstance }) => (
               <Checkbox
                 checked={
                   enablePagination
-                    ? t.getIsAllPageRowsSelected()
-                    : t.getIsAllRowsSelected()
+                    ? tableInstance.getIsAllPageRowsSelected()
+                    : tableInstance.getIsAllRowsSelected()
                 }
                 indeterminate={
                   enablePagination
-                    ? t.getIsSomePageRowsSelected()
-                    : t.getIsSomeRowsSelected()
+                    ? tableInstance.getIsSomePageRowsSelected()
+                    : tableInstance.getIsSomeRowsSelected()
                 }
                 onChange={checked => {
                   if (enablePagination) {
-                    t.toggleAllPageRowsSelected(!!checked)
+                    tableInstance.toggleAllPageRowsSelected(!!checked)
                   } else {
-                    t.toggleAllRowsSelected(!!checked)
+                    tableInstance.toggleAllRowsSelected(!!checked)
                   }
                 }}
-                aria-label="Select all"
+                aria-label={t('table.selectAll')}
               />
             ),
             cell: ({ row }) => (
@@ -348,7 +350,7 @@ export function Table<TData>({
                 checked={row.getIsSelected()}
                 disabled={!row.getCanSelect()}
                 onChange={checked => row.toggleSelected(!!checked)}
-                aria-label="Select row"
+                aria-label={t('table.selectRow')}
               />
             ),
           }
@@ -379,7 +381,7 @@ export function Table<TData>({
             <Dropdown.Trigger
               showChevron={false}
               className="memori-table__row-actions-trigger"
-              aria-label="Row actions"
+              aria-label={t('table.rowActions')}
             >
               <MoreHorizontal
                 size={18}
@@ -408,7 +410,7 @@ export function Table<TData>({
     }
 
     return [...withSelect, actionsColumn]
-  }, [columns, enablePagination, showSelectColumn, showRowActionsColumn])
+  }, [columns, enablePagination, showSelectColumn, showRowActionsColumn, t])
 
   const initialColumnPinning = React.useMemo(
     () => ({
@@ -483,6 +485,21 @@ export function Table<TData>({
   const showFilterControls = (filterDefs?.length ?? 0) > 0
   const showTopBar = showSearchChrome || showColumnsMenu || showFilterControls
 
+  const loadingSkeletonRowCount = React.useMemo(() => {
+    if (enablePagination) {
+      return pagination.pageSize
+    }
+    const minRows = 12
+    const maxRows = 50
+    return Math.min(Math.max(data.length, minRows), maxRows)
+  }, [enablePagination, pagination.pageSize, data.length])
+
+  const selectedRowCount = table.getSelectedRowModel().rows.length
+  const showSelectionToolbar =
+    (showBulkBar ||
+      (enableRowSelection && toolbar !== undefined && !showBulkBar)) &&
+    selectedRowCount > 0
+
   const wrapperStyle =
     maxBodyHeight === false
       ? ({ '--memori-table-body-max-height': 'none' } as React.CSSProperties)
@@ -517,9 +534,22 @@ export function Table<TData>({
           onChange={handleColumnFiltersCommit}
         />
       ) : null}
-      <div className="memori-table-scroll">
+      <div
+        className={cx(
+          'memori-table-scroll',
+          isLoading && 'memori-table-scroll--loading',
+        )}
+        style={
+          isLoading
+            ? ({
+                '--memori-table-skeleton-rows': loadingSkeletonRowCount,
+              } as React.CSSProperties)
+            : undefined
+        }
+      >
         <table
           className="memori-table"
+          aria-busy={isLoading}
           style={{
             width: '100%',
             minWidth: table.getTotalSize(),
@@ -545,40 +575,37 @@ export function Table<TData>({
                 />
               ) : null
             }
+            selectionToolbar={
+              showSelectionToolbar ? (
+                <TableToolbar
+                  table={table}
+                  bulkActions={bulkActions}
+                  legacyToolbar={
+                    enableRowSelection && toolbar !== undefined && !showBulkBar
+                      ? toolbar
+                      : undefined
+                  }
+                />
+              ) : undefined
+            }
           />
           <TableBody
             table={table}
             selectionEnabled={selectionEnabled}
             isLoading={isLoading}
             emptyState={emptyState}
-            skeletonRowCount={Math.min(10, pagination.pageSize)}
+            skeletonRowCount={loadingSkeletonRowCount}
           />
         </table>
       </div>
-      {(enablePagination ||
-        showBulkBar ||
-        (enableRowSelection && toolbar !== undefined && !showBulkBar)) && (
+      {enablePagination && (
         <div className="memori-table-footer">
-          {(showBulkBar ||
-            (enableRowSelection && toolbar !== undefined && !showBulkBar)) && (
-            <TableToolbar
-              table={table}
-              bulkActions={bulkActions}
-              legacyToolbar={
-                enableRowSelection && toolbar !== undefined && !showBulkBar
-                  ? toolbar
-                  : undefined
-              }
-            />
-          )}
-          {enablePagination && (
-            <TablePagination
-              table={table}
-              pageSizeOptions={pageSizeOptions}
-              manualPagination={manualPagination}
-              rowCount={rowCountProp}
-            />
-          )}
+          <TablePagination
+            table={table}
+            pageSizeOptions={pageSizeOptions}
+            manualPagination={manualPagination}
+            rowCount={rowCountProp}
+          />
         </div>
       )}
     </div>

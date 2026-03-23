@@ -20,6 +20,10 @@ import { Modal } from '../components/Modal'
 import Drawer from '../components/Drawer'
 import './variables.css'
 import { Dropdown } from '../components/Dropdown'
+import { Combobox } from '../components/Combobox'
+import { Autocomplete } from '../components/Autocomplete'
+import { Form } from '../components/Form'
+import { FieldGroup } from '../components/Field'
 
 // Theme wrapper component
 const ThemeWrapper = ({
@@ -50,7 +54,11 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
   const [selectValue, setSelectValue] = useState<string | null>('option1')
   const [sliderValue, setSliderValue] = useState(50)
   const [inputValue, setInputValue] = useState('Sample text')
+  const [comboboxValue, setComboboxValue] = useState<string | null>(null)
+  const [autocompleteValue, setAutocompleteValue] = useState('')
   const alertManager = useAlertManager()
+
+  const modalFormId = 'component-showcase-modal-form'
 
   const selectOptions = [
     { value: 'option1', label: 'Option 1' },
@@ -114,7 +122,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
 
           {/* Alerts Section */}
           <Card
-            variant="elevated"
+            variant="flat"
             padding="lg"
             title="Alerts"
           >
@@ -201,7 +209,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
 
           {/* Form Elements Section */}
           <Card
-            variant="elevated"
+            variant="flat"
             padding="lg"
             title="Form Elements"
           >
@@ -376,12 +384,43 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   disabled
                 />
               </div>
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--memori-spacing-md)',
+                  width: '100%',
+                  minWidth: 0,
+                }}
+              >
+                <div style={{ width: '100%', minWidth: 0 }}>
+                  <Combobox
+                    label="Combobox"
+                    options={selectOptions}
+                    value={comboboxValue}
+                    onChange={setComboboxValue}
+                    placeholder="Search and select…"
+                    searchPlaceholder="Filter options…"
+                  />
+                </div>
+                <div style={{ width: '100%', minWidth: 0 }}>
+                  <Autocomplete
+                    label="Autocomplete"
+                    options={selectOptions}
+                    value={autocompleteValue}
+                    onChange={next => setAutocompleteValue(next)}
+                    placeholder="Type to filter…"
+                    clearable
+                  />
+                </div>
+              </div>
             </div>
           </Card>
 
           {/* Buttons Section */}
           <Card
-            variant="elevated"
+            variant="flat"
             padding="lg"
             title="Buttons"
           >
@@ -437,7 +476,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             }}
           >
             <Card
-              variant="elevated"
+              variant="flat"
               padding="md"
               title="Elevated Card"
             >
@@ -467,7 +506,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               </p>
             </Card>
             <Card
-              variant="elevated"
+              variant="flat"
               padding="md"
               title="Card with Actions"
             >
@@ -587,7 +626,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             open={modalOpen}
             onOpenChange={setModalOpen}
             title="Example Modal"
-            description="This is a modal dialog demonstrating the Modal component."
+            description="Modal with a Form inside: FieldGroup, inputs, and submit via the footer."
             footer={
               <div
                 style={{
@@ -603,10 +642,11 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   Cancel
                 </Button>
                 <Button
+                  type="submit"
+                  form={modalFormId}
                   variant="primary"
-                  onClick={() => setModalOpen(false)}
                 >
-                  Confirm
+                  Save
                 </Button>
               </div>
             }
@@ -616,32 +656,52 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 padding: 'var(--memori-spacing-md) 0',
               }}
             >
-              <p
-                style={{
-                  fontSize: 'var(--memori-text-size-base)',
-                  lineHeight: 'var(--memori-text-line-normal)',
-                  marginBottom: 'var(--memori-spacing-md)',
+              <Form
+                id={modalFormId}
+                onFormSubmit={values => {
+                  alertManager.add(
+                    createAlertOptions({
+                      severity: 'success',
+                      title: 'Form saved',
+                      description: `Submitted: ${JSON.stringify(values)}`,
+                      closable: true,
+                    }),
+                  )
+                  setModalOpen(false)
                 }}
               >
-                This modal contains form elements and demonstrates how
-                components work together.
-              </p>
-              <div style={{ width: '100%', maxWidth: '100%', minWidth: 0 }}>
-                <label
+                <div
                   style={{
-                    display: 'block',
-                    fontSize: 'var(--memori-text-size-small)',
-                    fontWeight: 'var(--memori-text-weight-semibold)',
-                    marginBottom: 'var(--memori-spacing-xs)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--memori-spacing-md)',
                   }}
                 >
-                  Modal Input
-                </label>
-                <Input
-                  placeholder="Enter value in modal"
-                  fullWidth
-                />
-              </div>
+                  <FieldGroup
+                    name="title"
+                    label="Title"
+                    helperText="Shown on dashboards and lists."
+                    required
+                  >
+                    <Input
+                      name="title"
+                      placeholder="e.g. Quarterly review"
+                      fullWidth
+                      required
+                    />
+                  </FieldGroup>
+                  <FieldGroup
+                    name="notes"
+                    label="Notes"
+                  >
+                    <Input
+                      name="notes"
+                      placeholder="Optional details"
+                      fullWidth
+                    />
+                  </FieldGroup>
+                </div>
+              </Form>
             </div>
           </Modal>
 

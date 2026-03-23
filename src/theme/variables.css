@@ -1,234 +1,250 @@
-/**
- * Design Tokens - CSS Variables
+/* Design tokens — @memori.ai/ui
  *
- * Key variables only. Primary and secondary are customizable; all derived
- * values (hover, subtle, borders, focus ring, shadow-primary, skeleton) are
- * computed from them and update automatically.
- *
- * Customize brand colors on a container:
- *   .my-branded-app {
- *     --memori-primary-color: oklch(55% 0.25 260deg);
- *     --memori-secondary-color: oklch(75% 0.18 180deg);
- *   }
- * Ensure accessible contrast (e.g. WCAG AA) when overriding; verify
- * --memori-primary-content / --memori-secondary-content on your custom colors.
- *
- * When overriding --memori-primary dynamically (e.g. via JS or a scoped stylesheet),
- * re-define the derived variables in the SAME rule so they use your primary.
- * Copy the block below into your override selector (see README or this file's
- * "Dynamic primary override" section at the end).
+ * Override hook pattern (consumer API):
+ *   Set ONLY --memori-primary-color and --memori-secondary-color (section 1) to brand the library.
+ *   All derived tokens in sections 2+ use var(--memori-primary-color, <fallback>) — never override
+ *   computed tokens directly. Re-define derived tokens in the SAME selector as your hook overrides
+ *   if you need full control (see README / Storybook theme docs).
  */
 
-:root {
-    /* Theme settings */
-    color-scheme: light; /* color of browser-provided UI */
+@layer memori.theme {
+    /* ─── 2–11. Light theme tokens (single :root for stylelint no-duplicate-selectors) ─ */
+    :root {
+        color-scheme: light;
 
-    --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
+        /* ─── 2. Brand & primary chain ──────────── */
+        --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg));
+        --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
+        --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 20%);
+        --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
+        --memori-primary-subtle: color-mix(in oklch, var(--memori-primary), white 88%);
+        --memori-primary-subtle-hover: color-mix(in oklch, var(--memori-primary), white 78%);
+        --memori-primary-content: oklch(99% 0.01 250deg); /* on solid primary — WCAG AA vs default primary */
+        --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 70%);
+        --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 50%);
+        --memori-focus-ring-color: color-mix(in oklch, var(--memori-primary), transparent 55%);
+        --memori-focus-ring: 0 0 0 3px var(--memori-focus-ring-color);
+        --memori-focus-ring-offset: 3px;
+        --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
 
-    /* ============================================
-       CUSTOMIZABLE BRAND COLORS (User-settable)
-       ============================================ */
-    --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg));
-    --memori-secondary: var(--memori-secondary-color, oklch(70% 0.15 200deg));
+        /* ─── 3. Secondary chain ────────────────── */
+        --memori-secondary: var(--memori-secondary-color, oklch(70% 0.15 200deg));
+        --memori-secondary-hover: color-mix(in oklch, var(--memori-secondary), black 15%);
+        --memori-secondary-active: color-mix(in oklch, var(--memori-secondary), black 25%);
+        --memori-secondary-disabled: color-mix(in oklch, var(--memori-secondary), transparent 60%);
+        --memori-secondary-subtle: color-mix(in oklch, var(--memori-secondary), white 88%);
+        --memori-secondary-subtle-hover: color-mix(in oklch, var(--memori-secondary), white 78%);
+        --memori-secondary-content: oklch(99% 0.01 200deg); /* on solid secondary — WCAG AA */
+        --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 70%);
+        --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 50%);
+        --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 70%);
 
-    /* RGB triple for use in rgb(var(--memori-primary-rgb)) — PDF export, share, etc. */
-    --memori-primary-rgb: 130, 70, 175;
+        /* ─── 4. Semantic surface & text ─────────── */
+        --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
+        --memori-main-background: oklch(97.9% 0.01 120deg);
+        --memori-secondary-background: oklch(100% 0 0deg);
+        --memori-text-color: oklch(20% 0.05 240deg);
+        --memori-border-color: color-mix(in oklch, oklch(45% 0.05 240deg), transparent 84%);
+        --memori-surface-contrast: #000;
+        --memori-surface-contrast-inverse: #fff;
+        --memori-neutral: oklch(50% 0.05 240deg);
+        --memori-neutral-content: oklch(97% 0.01 240deg);
+        --memori-accent: oklch(65% 0.25 160deg);
+        --memori-accent-content: oklch(99% 0.01 160deg);
 
-    /* ============================================
-       DERIVED PRIMARY COLORS (Auto-calculated)
-       ============================================ */
+        /* Optional: set on .memori-widget — wired below */
+        --memori-integration-text-color: var(--memori-text-color);
+        --memori-layout-max-width: 1280px;
 
-    /* Primary interactive states */
-    --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
-    --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 25%);
-    --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
+        /* ─── 5. Feedback states ────────────────── */
+        --memori-success: oklch(65% 0.25 140deg);
+        --memori-success-content: oklch(99% 0.01 140deg);
+        --memori-warning: oklch(80% 0.25 80deg);
+        --memori-warning-content: oklch(22% 0.06 80deg);
+        --memori-error: oklch(65% 0.3 30deg);
+        --memori-error-content: oklch(99% 0.01 30deg);
+        --memori-info: oklch(70% 0.2 220deg);
+        --memori-info-content: oklch(99% 0.01 220deg);
 
-    /* Primary borders */
-    --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 70%);
-    --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 50%);
+        /* ─── 6. Spacing scale ───────────────────── */
+        --memori-spacing-xs: 4px;
+        --memori-spacing-sm: 8px;
+        --memori-spacing-md: 16px;
+        --memori-spacing-lg: 24px;
+        --memori-spacing-xl: 32px;
+        --memori-spacing-2xl: 40px;
+        --memori-spacing-3xl: 48px;
+        --memori-spacing-4xl: 64px;
+        --memori-spacing-5xl: 80px;
+        --memori-modal-size-sm: 400px;
+        --memori-modal-size-md: 600px;
+        --memori-modal-size-lg: 800px;
+        --memori-modal-size-xl: 960px;
+        --memori-modal-size-full: 100%;
 
-    /* ============================================
-       DERIVED SECONDARY COLORS (Auto-calculated)
-       ============================================ */
-    --memori-secondary-hover: color-mix(in oklch, var(--memori-secondary), black 15%);
-    --memori-secondary-active: color-mix(in oklch, var(--memori-secondary), black 25%);
-    --memori-secondary-disabled: color-mix(in oklch, var(--memori-secondary), transparent 60%);
-    --memori-secondary-subtle: color-mix(in oklch, var(--memori-secondary), white 60%);
-    --memori-secondary-subtle-hover: color-mix(in oklch, var(--memori-secondary), white 50%);
+        /* ─── 7. Typography ──────────────────────── */
+        --memori-text-size-xs: 0.625rem;
+        --memori-text-size-sm: 0.75rem;
+        --memori-text-size-small: 0.875rem;
+        --memori-text-size-base: 1rem;
+        --memori-text-size-large: 1.125rem;
+        --memori-text-size-heading: 1.25rem;
+        --memori-text-size-heading-large: 1.5rem;
+        --memori-text-size-heading-xlarge: 1.75rem;
+        --memori-text-weight-normal: 400;
+        --memori-text-weight-medium: 500;
+        --memori-text-weight-semibold: 600;
+        --memori-text-weight-bold: 700;
+        --memori-text-line-tight: 1.2;
+        --memori-text-line-normal: 1.5;
+        --memori-text-line-relaxed: 1.75;
 
-    /* ============================================
-       EFFECTS USING DYNAMIC COLORS
-       ============================================ */
-    --memori-focus-ring-color: color-mix(in oklch, var(--memori-primary), transparent 80%);
-    --memori-focus-ring: 0 0 0 3px var(--memori-focus-ring-color);
-    --memori-focus-ring-offset: 2px;
-    --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
+        /* ─── 8. Radius & borders ───────────────── */
+        --memori-radius-field: 0.75rem;
+        --memori-radius-selector: 0.75rem;
+        --memori-radius-box: 0.75rem;
+        --memori-border: 1px;
 
-    /* Loading/skeleton - adapt to primary */
-    --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
-    --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
+        /* ─── 9. Shadows ──────────────────────────── */
+        --memori-shadow-xs: 0 1px 2px 0 color-mix(in oklch, var(--memori-surface-contrast) 5%, transparent);
+        --memori-shadow-sm:
+            0 1px 3px 0 color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
+            0 1px 2px -1px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
+        --memori-shadow-md:
+            0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
+            0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
+        --memori-shadow-lg:
+            0 10px 15px -3px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
+            0 4px 6px -4px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
+        --memori-shadow-xl:
+            0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
+            0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
+        --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 25%, transparent);
 
-    /* ============================================
-       INTEGRATION / LAYOUT
-       ============================================ */
+        /* ─── 10. Motion ────────────────────────── */
+        --memori-motion-duration-fast: 150ms;
+        --memori-motion-duration-normal: 200ms;
+        --memori-motion-duration-slow: 280ms;
 
-    /* Optional override for integration text; set on .memori-widget or parent. */
-    --memori-integration-text-color: var(--memori-text-color);
-    --memori-layout-max-width: 1280px;
+        /* Default UI easing: decelerate out (not generic `ease`) */
+        --memori-motion-ease: cubic-bezier(0.33, 1, 0.68, 1);
+        --memori-motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+        --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+        --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
 
-    /* ============================================
-       STATIC COLORS (Don't change with theme)
-       ============================================ */
-    --memori-main-background: oklch(97.9% 0.01 120deg);
-    --memori-secondary-background: #fff;
-    --memori-text-color: oklch(20% 0.05 240deg);
-    --memori-border-color: rgb(73 103 125 / 16%);
+        /* ─── 11. Effects ─────────────────────────── */
+        --memori-primary-alpha: color-mix(in oklch, var(--memori-primary) 15%, transparent);
+        --memori-overlay-backdrop: color-mix(
+            in oklch,
+            color-mix(in oklch, var(--memori-surface-contrast) 30%, transparent) 85%,
+            var(--memori-primary-alpha) 15%
+        );
+        --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
+        --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
 
-    /* Content on primary/secondary (verify contrast when customizing colors) */
-    --memori-primary-content: oklch(98% 0.01 240deg);
-    --memori-secondary-content: oklch(98% 0.01 200deg);
+        /* Grain intensity (0–1); consumed by Card elevated ::after */
+        --memori-noise: 0.35;
+        --memori-blur-background: 10px;
+        --memori-button-padding: 0.5rem 1.5rem;
+        --memori-button-box-shadow: var(--memori-shadow-xs);
 
-    /* Accent colors - highlights and emphasis */
-    --memori-accent: oklch(65% 0.25 160deg);
-    --memori-accent-content: oklch(98% 0.01 160deg);
+        /* Tooltip: inverse surface on light canvas */
+        --memori-tooltip-background: color-mix(in oklch, var(--memori-surface-contrast) 82%, transparent);
+        --memori-tooltip-foreground: var(--memori-secondary-background);
+        --memori-tooltip-caret: var(--memori-tooltip-background);
+    }
 
-    /* Neutral colors - grays and muted tones */
-    --memori-neutral: oklch(50% 0.05 240deg);
-    --memori-neutral-content: #f7f7f7; /* Light gray */
+    /* ─── 12. Dark theme overrides ──────────── */
+    [data-theme='dark'],
+    .dark,
+    :root.dark {
+        color-scheme: dark;
 
-    /* Semantic colors - fixed meaning */
-    --memori-success: oklch(65% 0.25 140deg);
-    --memori-success-content: oklch(98% 0.01 140deg);
-    --memori-warning: oklch(80% 0.25 80deg);
-    --memori-warning-content: oklch(20% 0.05 80deg);
-    --memori-error: oklch(65% 0.3 30deg);
-    --memori-error-content: oklch(98% 0.01 30deg);
-    --memori-info: oklch(70% 0.2 220deg);
-    --memori-info-content: oklch(98% 0.01 220deg);
+        /* Primary chain — muted on dark canvases */
+        --memori-primary-hover: color-mix(in oklch, var(--memori-primary), white 12%);
+        --memori-primary-active: color-mix(in oklch, var(--memori-primary), white 22%);
+        --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 55%);
+        --memori-primary-subtle: color-mix(in oklch, var(--memori-primary), black 72%);
+        --memori-primary-subtle-hover: color-mix(in oklch, var(--memori-primary), black 62%);
+        --memori-primary-content: oklch(99% 0.01 250deg);
+        --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 45%);
+        --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 30%);
+        --memori-focus-ring-color: color-mix(in oklch, var(--memori-primary), transparent 40%);
+        --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 55%);
 
-    /* Spacing */
-    --memori-spacing-xs: 4px;
-    --memori-spacing-sm: 8px;
-    --memori-spacing-md: 16px;
-    --memori-spacing-lg: 24px;
-    --memori-spacing-xl: 32px;
-    --memori-spacing-2xl: 40px;
-    --memori-spacing-3xl: 48px;
-    --memori-spacing-4xl: 64px;
-    --memori-spacing-5xl: 80px;
+        /* Secondary chain */
+        --memori-secondary-hover: color-mix(in oklch, var(--memori-secondary), white 12%);
+        --memori-secondary-active: color-mix(in oklch, var(--memori-secondary), white 22%);
+        --memori-secondary-disabled: color-mix(in oklch, var(--memori-secondary), transparent 55%);
+        --memori-secondary-subtle: color-mix(in oklch, var(--memori-secondary), black 72%);
+        --memori-secondary-subtle-hover: color-mix(in oklch, var(--memori-secondary), black 62%);
+        --memori-secondary-content: oklch(99% 0.01 200deg);
+        --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 45%);
+        --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 30%);
+        --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 55%);
 
-    /* Typography - Font Sizes */
-    --memori-text-size-xs: 0.625rem; /* 10px - Extra small text, tiny labels */
-    --memori-text-size-sm: 0.75rem; /* 12px - Small text, labels */
-    --memori-text-size-small: 0.875rem; /* 14px - Small text, labels */
-    --memori-text-size-base: 1rem; /* 16px - Base body text (accessibility minimum) */
-    --memori-text-size-large: 1.125rem; /* 18px - Large body text, emphasized content */
-    --memori-text-size-heading: 1.25rem; /* 20px - Small headings, subheadings */
-    --memori-text-size-heading-large: 1.5rem; /* 24px - Medium headings */
-    --memori-text-size-heading-xlarge: 1.75rem; /* 28px - Large headings */
+        /* Surfaces & text */
+        --memori-main-background: oklch(32.1% 0 0deg);
+        --memori-secondary-background: oklch(21.2% 0 0deg);
+        --memori-text-color: oklch(99% 0.01 240deg);
+        --memori-border-color: color-mix(in oklch, oklch(75% 0.04 240deg), transparent 55%);
+        --memori-surface-contrast: #fff;
+        --memori-surface-contrast-inverse: #000;
+        --memori-neutral: oklch(72% 0.04 240deg);
+        --memori-neutral-content: oklch(22% 0.04 240deg);
+        --memori-accent: oklch(72% 0.2 160deg);
+        --memori-accent-content: oklch(16% 0.04 160deg);
+        --memori-integration-text-color: var(--memori-text-color);
 
-    /* Typography - Font Weights */
-    --memori-text-weight-normal: 400; /* Regular weight for body text */
-    --memori-text-weight-medium: 500; /* Medium weight for emphasis */
-    --memori-text-weight-semibold: 600; /* Semibold for headings and labels */
-    --memori-text-weight-bold: 700; /* Bold for strong emphasis */
+        /* Feedback */
+        --memori-success: oklch(72% 0.18 140deg);
+        --memori-success-content: oklch(16% 0.06 140deg);
+        --memori-warning: oklch(78% 0.16 80deg);
+        --memori-warning-content: oklch(18% 0.07 80deg);
+        --memori-error: oklch(68% 0.22 30deg);
+        --memori-error-content: oklch(99% 0.01 30deg);
+        --memori-info: oklch(72% 0.16 220deg);
+        --memori-info-content: oklch(16% 0.05 220deg);
 
-    /* Typography - Line Heights */
-    --memori-text-line-tight: 1.2; /* Tight line height for headings */
-    --memori-text-line-normal: 1.5; /* Normal line height for body text */
-    --memori-text-line-relaxed: 1.75; /* Relaxed line height for long-form content */
+        /* Shadows — higher luminance / opacity so depth reads on dark surfaces */
+        --memori-shadow-xs: 0 1px 2px 0 color-mix(in oklch, var(--memori-surface-contrast) 14%, transparent);
+        --memori-shadow-sm:
+            0 1px 3px 0 color-mix(in oklch, var(--memori-surface-contrast) 22%, transparent),
+            0 1px 2px -1px color-mix(in oklch, var(--memori-surface-contrast) 18%, transparent);
+        --memori-shadow-md:
+            0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 28%, transparent),
+            0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 22%, transparent);
+        --memori-shadow-lg:
+            0 10px 15px -3px color-mix(in oklch, var(--memori-surface-contrast) 34%, transparent),
+            0 4px 6px -4px color-mix(in oklch, var(--memori-surface-contrast) 28%, transparent);
+        --memori-shadow-xl:
+            0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 40%, transparent),
+            0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 34%, transparent);
+        --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 48%, transparent);
 
-    /* Border radius - use one value for form controls (inputs + buttons) for visual harmony */
-    --memori-radius-form: 0.75rem; /* Inputs, buttons, and all form controls (8px) */
-    --memori-radius-selector: var(--memori-radius-form); /* Pills, selectors; matches form */
-    --memori-radius-field: var(--memori-radius-form); /* Input fields; matches buttons */
-    --memori-radius-box: 0.75rem; /* Cards, modals, containers */
+        /* Effects */
+        --memori-primary-alpha: color-mix(in oklch, var(--memori-primary) 22%, transparent);
+        --memori-overlay-backdrop: color-mix(
+            in oklch,
+            color-mix(in oklch, var(--memori-surface-contrast) 30%, transparent) 85%,
+            var(--memori-primary-alpha) 15%
+        );
+        --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), black 78%);
+        --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), black 68%);
+        --memori-noise: 0.28;
+        --memori-button-box-shadow: var(--memori-shadow-xs);
 
-    /* Border size */
-    --memori-border: 1px; /* Default border width for borders */
+        /* Tooltip: elevated surface on dark canvas */
+        --memori-tooltip-background: color-mix(in oklch, var(--memori-secondary-background) 94%, white 6%);
+        --memori-tooltip-foreground: var(--memori-text-color);
+        --memori-tooltip-caret: var(--memori-tooltip-background);
 
-    /* Button (padding and shadow for ExportHistoryButton, PoweredBy, etc.) */
-    --memori-button-padding: 0.5rem 1.5rem;
-    --memori-button-box-shadow: var(--memori-shadow-sm);
+        /* Theme-invariant (inherits from :root): spacing scale, motion, typography scale, font-family,
+           modal size tokens, --memori-border, --memori-layout-max-width, --memori-blur-background px value */
+    }
 
-    /* Modal sizes */
-    --memori-modal-size-sm: 400px;
-    --memori-modal-size-md: 600px;
-    --memori-modal-size-lg: 800px;
-    --memori-modal-size-xl: 960px;
-    --memori-modal-size-full: 100%;
-
-    /* Effects - Shadows */
-    --memori-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 5%);
-    --memori-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
-    --memori-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
-    --memori-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
-    --memori-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
-    --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
-    --memori-noise: 0; /* Noise/grain effect intensity (0 = no noise) */
-
-    /* Backdrop blur (e.g. MediaItemWidget) */
-    --memori-blur-background: 10px;
-
-    /* Motion - for hover/focus and micro-interactions (under 300ms) */
-    --memori-motion-duration-fast: 150ms;
-    --memori-motion-duration-normal: 200ms;
-    --memori-motion-duration-slow: 280ms;
-    --memori-motion-ease: ease;
-    --memori-motion-ease-in-out: ease-in-out;
-    --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
-    --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
+    /* Integration root: override --memori-integration-text-color to theme embedded UI copy */
+    .memori-widget {
+        color: var(--memori-integration-text-color);
+    }
 }
-
-/* Dark theme */
-[data-theme='dark'],
-:root.dark {
-    color-scheme: dark;
-
-    /* Integration / layout - inverted for dark mode */
-    --memori-surface-contrast: black;
-    --memori-surface-contrast-inverse: white;
-
-    /* Base colors - inverted for dark mode */
-    --memori-main-background: oklch(32.1% 0 0deg);
-    --memori-secondary-background: oklch(21.2% 0 0deg);
-    --memori-primary-subtle: oklch(27% 0.035 240deg);
-    --memori-text-color: #fff;
-
-    /* Neutral colors - inverted for dark mode */
-    --memori-neutral: oklch(50% 0.05 240deg);
-    --memori-border-color: rgb(73 103 125 / 16%);
-    --memori-neutral-content: oklch(20% 0.05 240deg);
-
-    /* Dark theme shadows */
-    --memori-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 30%);
-    --memori-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 40%), 0 1px 2px -1px rgb(0 0 0 / 30%);
-    --memori-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 50%), 0 2px 4px -2px rgb(0 0 0 / 40%);
-    --memori-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 60%), 0 4px 6px -4px rgb(0 0 0 / 50%);
-    --memori-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 70%), 0 8px 10px -6px rgb(0 0 0 / 60%);
-    --memori-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 80%);
-}
-
-/*
- * Dynamic primary override (copy into your selector when setting --memori-primary in JS)
- * Re-defining these in the same rule ensures hover/subtle/focus/skeleton use your primary.
- * When using RGB (e.g. for PDF/share), set --memori-primary-rgb to "R, G, B" and use
- * --memori-primary-color: rgb(var(--memori-primary-rgb)); (no second argument).
- *
- * your-selector {
- *   --memori-primary-color: <your-color>;
- *   --memori-primary: <your-color>;
- *   --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
- *   --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 25%);
- *   --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
- *   --memori-primary-subtle: color-mix(in oklch, var(--memori-primary), white 60%);
- *   --memori-primary-subtle-hover: color-mix(in oklch, var(--memori-primary), white 50%);
- *   --memori-border-primary: color-mix(in oklch, var(--memori-primary), transparent 70%);
- *   --memori-border-primary-hover: color-mix(in oklch, var(--memori-primary), transparent 50%);
- *   --memori-focus-ring-color: color-mix(in oklch, var(--memori-primary), transparent 80%);
- *   --memori-focus-ring: 0 0 0 3px var(--memori-focus-ring-color);
- *   --memori-shadow-primary: 0 8px 16px -4px color-mix(in oklch, var(--memori-primary), transparent 70%);
- *   --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
- *   --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
- * }
- */

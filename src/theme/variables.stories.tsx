@@ -34,7 +34,7 @@ const ColorSwatch = ({
           backgroundColor: `var(${variable})`,
           borderRadius: 'var(--memori-radius-field)',
           border: '1px solid var(--memori-primary-subtle)',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          boxShadow: 'var(--memori-shadow-sm)',
         }}
       />
       <div>

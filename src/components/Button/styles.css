@@ -123,7 +123,7 @@
 
 /* microinteraction: hover uses scale + existing shadow; transform uses fast + ease-out */
 .memori-button:hover:not(:disabled, .memori-button--disabled) {
-    transform: scale(1.01);
+    transform: scale(1.015);
 }
 
 /* microinteraction: press uses scale + ease-in on transform */

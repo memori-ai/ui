@@ -53,6 +53,14 @@ export { Modal } from './components/Modal'
 export { SelectBox } from './components/SelectBox'
 export { Slider } from './components/Slider'
 export { Spin } from './components/Spin'
+export { Tabs } from './components/Tabs'
+export type {
+  TabsRootProps,
+  TabsListProps,
+  TabsTabProps,
+  TabsPanelProps,
+  TabsIndicatorProps,
+} from './components/Tabs'
 export { Table } from './components/Table'
 export type {
   TableProps,

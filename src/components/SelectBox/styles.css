@@ -160,6 +160,7 @@
     color: var(--memori-text-color);
     cursor: pointer;
     font-size: var(--memori-text-size-base);
+    gap: var(--memori-spacing-sm);
     outline: none;
 
     /* microinteraction: option hover */

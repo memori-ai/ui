@@ -10,11 +10,10 @@
     top: 50%;
     left: 100%;
     display: none;
-    overflow: hidden auto;
+    overflow: visible;
     width: auto;
     min-width: min(12.5rem, calc(100vw - 2 * var(--memori-spacing-lg)));
     max-width: min(20rem, calc(100vw - 2 * var(--memori-spacing-md)));
-    max-height: min(40vh, 16rem);
     box-sizing: border-box;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border-radius: var(--memori-radius-field);

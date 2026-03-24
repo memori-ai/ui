@@ -54,6 +54,9 @@
 }
 
 .memori-table__toolbar-row {
+    position: sticky;
+    z-index: 10;
+    top: 35px;
     border-bottom: var(--memori-border) solid var(--memori-border-color);
 }
 
@@ -212,14 +215,6 @@
     background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
 }
 
-.memori-table__row--selected {
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 88%);
-}
-
-.memori-table__row--selected:hover {
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 84%);
-}
-
 .memori-table__cell {
     min-width: 0;
     box-sizing: border-box;
@@ -235,8 +230,33 @@
     background-color: color-mix(in oklch, var(--memori-primary), transparent 88%);
 }
 
+/* Pinned/select/actions cells set their own fill for opacity over scroll; mirror row hover on every cell */
+.memori-table__body .memori-table__row:hover .memori-table__cell {
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
+}
+
 .memori-table__body .memori-table__row--selected:hover .memori-table__cell {
     background-color: color-mix(in oklch, var(--memori-primary), transparent 84%);
+}
+
+.memori-table__row--selected {
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 88%);
+}
+
+.memori-table__row--selected:hover {
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 84%);
+}
+
+/* Unchecked indicator uses token fill globally; let row / selection tint show through */
+.memori-table__body
+    .memori-table__row--selected
+    .memori-table__cell--select
+    .memori-checkbox__indicator:not(.memori-checkbox__indicator--checked, .memori-checkbox__indicator--indeterminate),
+.memori-table__body
+    .memori-table__row:hover
+    .memori-table__cell--select
+    .memori-checkbox__indicator:not(.memori-checkbox__indicator--checked, .memori-checkbox__indicator--indeterminate) {
+    background-color: transparent;
 }
 
 .memori-table__header-cell--select {
@@ -651,11 +671,6 @@
     background-color: var(--memori-secondary-background);
 }
 
-.memori-table__row:hover .memori-table__cell--pinned-left,
-.memori-table__row:hover .memori-table__cell--pinned-right {
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
-}
-
 .memori-table__badge {
     display: inline-flex;
     max-width: 100%;
@@ -976,7 +991,7 @@
     padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
     border-radius: var(--memori-radius-selector);
     background-color: var(--memori-primary-subtle);
-    color: var(--memori-primary);
+    color: var(--memori-neutral);
     font-variant-numeric: tabular-nums;
     line-height: var(--memori-text-line-normal);
     text-align: center;
@@ -1152,6 +1167,10 @@
 
 @media (hover: none) {
     .memori-table__row:active {
+        background-color: color-mix(in oklch, var(--memori-primary), transparent 92%);
+    }
+
+    .memori-table__body .memori-table__row:active .memori-table__cell {
         background-color: color-mix(in oklch, var(--memori-primary), transparent 92%);
     }
 

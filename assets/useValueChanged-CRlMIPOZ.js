@@ -1,1 +1,0 @@
-import{r as s}from"./iframe-B8-rblLz.js";import{a as n,d as a}from"./floating-ui.utils.dom--RLsitNG.js";function f(r,o){const t=s.useRef(r),e=n(o);a(()=>{t.current!==r&&e(t.current)},[r,e]),a(()=>{t.current=r},[r])}export{f as u};

@@ -9,11 +9,19 @@ export type BulkAction<TData> = {
 }
 
 export type RowAction<TData> = {
+  /** Stable key; defaults to `label` when omitted */
+  id?: string
   label: string
   icon?: ReactNode
   variant?: 'default' | 'danger'
   onClick: (row: Row<TData>) => void
 }
+
+/** Row actions: overflow menu (⋯) or icon buttons in the cell */
+export type RowActionsVariant = 'menu' | 'inline'
+
+/** Footer pagination layout */
+export type TablePaginationVariant = 'simplified' | 'detailed'
 
 export type FilterVariant = 'select' | 'multi-select' | 'date-range' | 'boolean'
 

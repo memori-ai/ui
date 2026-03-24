@@ -3,7 +3,7 @@ import type {
   ColumnFiltersState,
   Table as TanStackTable,
 } from '@tanstack/react-table'
-import { Columns3 } from 'lucide-react'
+import { Columns3, Search } from 'lucide-react'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
@@ -53,14 +53,22 @@ export function TableControls<TData>({
   return (
     <div className="memori-table-controls">
       {showSearch ? (
-        <Input
-          type="search"
-          className="memori-table-controls__search"
-          placeholder={searchPlaceholder}
-          value={search}
-          onChange={e => onSearchInputChange(e.target.value)}
-          aria-label={searchPlaceholder}
-        />
+        <div className="memori-table-controls__search-wrap">
+          <Search
+            className="memori-table-controls__search-icon"
+            size={18}
+            strokeWidth={2}
+            aria-hidden
+          />
+          <Input
+            type="search"
+            className="memori-table-controls__search memori-table-controls__search-input"
+            placeholder={searchPlaceholder}
+            value={search}
+            onChange={e => onSearchInputChange(e.target.value)}
+            aria-label={searchPlaceholder}
+          />
+        </div>
       ) : null}
       {filterDefs && filterDefs.length > 0 ? (
         <TableFilterPopover

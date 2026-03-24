@@ -5,7 +5,7 @@ import type {
   PaginationState,
 } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
-import { Trash2 } from 'lucide-react'
+import { Info, Trash2 } from 'lucide-react'
 import { Button } from '../Button'
 import { Table, type TableProps } from './Table'
 import type { FilterDef } from './tableTypes'
@@ -151,6 +151,161 @@ const meta: Meta<TableProps<Person>> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: `
+Data table built on [TanStack Table](https://tanstack.com/table) with Memori styling: sorting, column resize, toolbar search, column filters, toolbar filter popover (\`filterDefs\`), row selection, bulk actions, row actions, loading and empty states, and footer pagination (\`simplified\` or \`detailed\`).
+
+**i18n:** Wrap the app with \`MemoriI18nProvider\` (or merge strings via \`addMemoriTableToI18n\`). See the root **README** for internationalization.
+
+The **Props** table below lists every \`TableProps\` field. For the same reference in the repo docs, see the README section **Table**.
+        `.trim(),
+      },
+    },
+  },
+  argTypes: {
+    data: {
+      control: false,
+      description: '**Required.** Row data array.',
+    },
+    columns: {
+      control: false,
+      description:
+        '**Required.** `ColumnDef<TData>[]` — headers, accessors, sorting, and optional `meta` (badges, filters, `hiddenByDefault`, …).',
+    },
+    className: {
+      description: 'Optional class name on the outer table wrapper.',
+    },
+    enableRowSelection: {
+      control: 'boolean',
+      description: 'Shows a selection column with checkboxes.',
+    },
+    enableColumnResizing: {
+      control: 'boolean',
+      description: 'Enables drag-to-resize on columns.',
+    },
+    getRowId: {
+      control: false,
+      description:
+        '`(originalRow, index) => string` — stable id for selection and React keys; use when rows have no natural id.',
+    },
+    enablePagination: {
+      control: 'boolean',
+      description:
+        'Shows footer pagination (client-side unless `manualPagination` is true).',
+    },
+    initialPageSize: {
+      control: 'number',
+      description:
+        'Initial page size when using internal pagination (defaults to a valid `pageSizeOptions` entry).',
+    },
+    pageSizeOptions: {
+      control: false,
+      description:
+        'Choices for the page-size select (default `[10, 25, 50, 100]`).',
+    },
+    toolbar: {
+      control: false,
+      description:
+        'Custom `ReactNode` in the toolbar row (e.g. bulk actions slot next to search).',
+    },
+    maxBodyHeight: {
+      control: false,
+      description:
+        'CSS `maxHeight` for a scrollable body, or `false` for no max height.',
+    },
+    isLoading: {
+      control: 'boolean',
+      description: 'Shows a loading overlay on the table body.',
+    },
+    emptyState: {
+      control: false,
+      description:
+        'Rendered when there are zero rows and the table is not loading.',
+    },
+    bulkActions: {
+      control: false,
+      description:
+        '`BulkAction<TData>[]` — toolbar actions when rows are selected (`label`, `icon`, `variant`, `onClick(rows)`).',
+    },
+    rowActions: {
+      control: false,
+      description:
+        '`RowAction<TData>[]` — per-row actions (`label`, `id`, `icon`, `variant`, `onClick(row)`).',
+    },
+    rowActionsVariant: {
+      control: 'inline-radio',
+      options: ['menu', 'inline'],
+      description:
+        '`menu` — overflow ⋯ menu; `inline` — icon buttons in the actions cell.',
+    },
+    globalFilterPlaceholder: {
+      control: 'text',
+      description:
+        'Placeholder for the toolbar search field (overrides default i18n string).',
+    },
+    tableId: {
+      control: 'text',
+      description:
+        'If set, persists column visibility to `localStorage` under `memori-table:columnVisibility:<tableId>`.',
+    },
+    search: {
+      control: 'text',
+      description: 'Controlled value for the toolbar search field.',
+    },
+    onSearchChange: {
+      control: false,
+      description:
+        '`(value: string) => void` — debounced by `searchDebounceMs`.',
+    },
+    searchDebounceMs: {
+      control: 'number',
+      description: 'Debounce delay in ms for `onSearchChange` (default `300`).',
+    },
+    columnFilters: {
+      control: false,
+      description:
+        'Controlled TanStack `ColumnFiltersState` for header/toolbar filters.',
+    },
+    onColumnFiltersChange: {
+      control: false,
+      description: '`(filters: ColumnFiltersState) => void`.',
+    },
+    filterDefs: {
+      control: false,
+      description:
+        '`FilterDef[]` — declarative toolbar filters; `id` must match a column `accessorKey` or `id`.',
+    },
+    manualPagination: {
+      control: 'boolean',
+      description:
+        'Set `true` for server-side pagination; pass **`rowCount`** (total on server) and usually controlled **`pagination`** / **`onPaginationChange**`.',
+    },
+    rowCount: {
+      control: 'number',
+      description: 'Total row count when `manualPagination` is `true`.',
+    },
+    pagination: {
+      control: false,
+      description:
+        'Controlled `{ pageIndex, pageSize }`. Pair with `onPaginationChange`; omit both for internal state.',
+    },
+    onPaginationChange: {
+      control: false,
+      description:
+        'TanStack `Updater<PaginationState>` callback for controlled pagination.',
+    },
+    paginationVariant: {
+      control: 'inline-radio',
+      options: ['simplified', 'detailed'],
+      description:
+        '`simplified` — range + page badge + nav; `detailed` — total + windowed page buttons + page size.',
+    },
+    paginationTotalLabel: {
+      control: 'text',
+      description:
+        'With `paginationVariant="detailed"`, optional noun for the total line (e.g. `"Orders"`).',
+    },
   },
   render: args => <Table<Person> {...args} />,
 }
@@ -237,6 +392,63 @@ export const RowActions: Story = {
           },
         },
       ]}
+    />
+  ),
+}
+
+export const RowActionsInline: Story = {
+  name: 'Row actions (inline)',
+  render: () => (
+    <Table<Person>
+      data={sampleData}
+      columns={baseColumns}
+      rowActionsVariant="inline"
+      rowActions={[
+        {
+          id: 'info',
+          label: 'Details',
+          icon: (
+            <Info
+              size={16}
+              aria-hidden
+            />
+          ),
+          onClick: row => {
+            // eslint-disable-next-line no-console
+            console.log('details', row.original.id)
+          },
+        },
+        {
+          id: 'delete',
+          label: 'Delete',
+          icon: (
+            <Trash2
+              size={16}
+              aria-hidden
+            />
+          ),
+          variant: 'danger',
+          onClick: row => {
+            // eslint-disable-next-line no-console
+            console.log('delete', row.original.id)
+          },
+        },
+      ]}
+    />
+  ),
+}
+
+export const DetailedPagination: Story = {
+  name: 'Detailed pagination',
+  render: () => (
+    <Table<Person>
+      data={largeDataset}
+      columns={baseColumns}
+      enablePagination
+      paginationVariant="detailed"
+      paginationTotalLabel="People"
+      pageSizeOptions={[5, 10, 25, 50]}
+      initialPageSize={5}
     />
   ),
 }

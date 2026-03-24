@@ -288,7 +288,7 @@
 /* Toolbar variant — field-style control (table toolbars, filter popover trigger, etc.) */
 .memori-button--toolbar {
     border: var(--memori-border) solid var(--memori-border-color);
-    background-color: var(--memori-main-background);
+    background-color: var(--memori-secondary-background);
     box-shadow: none; /* overrides --memori-button-box-shadow */
     color: var(--memori-text-color);
     font-weight: var(--memori-text-weight-normal);
@@ -537,7 +537,7 @@
    ============================================ */
 
 .memori-button--round {
-    border-radius: 999px;
+    border-radius: var(--memori-radius-pill);
 }
 
 .memori-button--circle {

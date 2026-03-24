@@ -62,17 +62,27 @@ export type {
   TabsPanelProps,
   TabsIndicatorProps,
 } from './components/Tabs'
-export { Table } from './components/Table'
+export {
+  Table,
+  getDetailedPaginationPadding,
+  getPaginationWindowItems,
+  PAGINATION_DETAILED_SLOT_COUNT,
+  PAGINATION_LEADING_BLOCK_SIZE,
+} from './components/Table'
 export type {
   TableProps,
   ColumnDef,
   ColumnFiltersState,
   BulkAction,
   RowAction,
+  RowActionsVariant,
+  TablePaginationVariant,
   FilterDef,
   FilterOption,
   FilterVariant,
   DateRangeValue,
+  PaginationWindowItem,
+  GetPaginationWindowItemsOptions,
 } from './components/Table'
 export { Tooltip } from './components/Tooltip'
 export { useTheme, type Theme } from './theme/useTheme'

@@ -17,6 +17,7 @@ import {
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { MoreHorizontal } from 'lucide-react'
+import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
 import { TableBody } from './TableBody'
@@ -26,7 +27,13 @@ import { TableFilterRow } from './TableFilterRow'
 import { TableHeader } from './TableHeader'
 import { TablePagination } from './TablePagination'
 import { TableToolbar } from './TableToolbar'
-import type { BulkAction, FilterDef, RowAction } from './tableTypes'
+import type {
+  BulkAction,
+  FilterDef,
+  RowAction,
+  RowActionsVariant,
+  TablePaginationVariant,
+} from './tableTypes'
 import './tableMeta'
 import './styles.css'
 
@@ -88,6 +95,10 @@ export interface TableProps<TData> {
   emptyState?: React.ReactNode
   bulkActions?: BulkAction<TData>[]
   rowActions?: RowAction<TData>[]
+  /**
+   * How row actions render: overflow menu (default) or icon buttons in the cell.
+   */
+  rowActionsVariant?: RowActionsVariant
   globalFilterPlaceholder?: string
   /** Storage key for column visibility persistence */
   tableId?: string
@@ -105,6 +116,13 @@ export interface TableProps<TData> {
   rowCount?: number
   pagination?: PaginationState
   onPaginationChange?: (updater: Updater<PaginationState>) => void
+  /**
+   * Footer pagination layout. `simplified` keeps the compact range + page badge + nav;
+   * `detailed` matches a dashboard-style bar (total on the left, page numbers, page size).
+   */
+  paginationVariant?: TablePaginationVariant
+  /** Used with `paginationVariant="detailed"` — e.g. `"Reminders"` → "Total Reminders: 78". */
+  paginationTotalLabel?: string
 }
 
 export function Table<TData>({
@@ -123,6 +141,7 @@ export function Table<TData>({
   emptyState,
   bulkActions,
   rowActions,
+  rowActionsVariant = 'menu',
   globalFilterPlaceholder,
   tableId,
   search: searchProp,
@@ -135,6 +154,8 @@ export function Table<TData>({
   rowCount: rowCountProp,
   pagination: paginationProp,
   onPaginationChange: onPaginationChangeProp,
+  paginationVariant = 'simplified',
+  paginationTotalLabel,
 }: TableProps<TData>) {
   const { t } = useTranslation()
   const [sorting, setSorting] = React.useState<SortingState>([])
@@ -361,11 +382,23 @@ export function Table<TData>({
       return withSelect
     }
 
+    const actionsCount = rowActions?.length ?? 0
+    const actionsColumnWidth =
+      rowActionsVariant === 'inline' && actionsCount > 0
+        ? Math.min(
+            420,
+            Math.max(
+              72,
+              40 * actionsCount + 8 * Math.max(0, actionsCount - 1) + 16,
+            ),
+          )
+        : 48
+
     const actionsColumn: ColumnDef<TData, unknown> = {
       id: 'actions',
-      size: 48,
-      minSize: 48,
-      maxSize: 56,
+      size: actionsColumnWidth,
+      minSize: actionsColumnWidth,
+      maxSize: Math.max(56, actionsColumnWidth),
       enableSorting: false,
       enableResizing: false,
       enableHiding: false,
@@ -375,6 +408,42 @@ export function Table<TData>({
         const actions = rowActionsRef.current
         if (!actions?.length) {
           return null
+        }
+        if (rowActionsVariant === 'inline') {
+          return (
+            <div
+              className="memori-table__row-actions memori-table__row-actions--inline"
+              role="group"
+              aria-label={t('table.rowActions')}
+            >
+              {actions.map(action => (
+                <Button
+                  key={action.id ?? action.label}
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  ariaLabel={action.label}
+                  title={action.label}
+                  className={
+                    action.variant === 'danger'
+                      ? 'memori-table__row-action-btn--danger'
+                      : undefined
+                  }
+                  icon={
+                    action.icon ?? (
+                      <span
+                        className="memori-table__row-actions-inline-fallback"
+                        aria-hidden
+                      >
+                        {action.label.slice(0, 1).toUpperCase()}
+                      </span>
+                    )
+                  }
+                  onClick={() => action.onClick(row)}
+                />
+              ))}
+            </div>
+          )
         }
         return (
           <Dropdown>
@@ -391,7 +460,7 @@ export function Table<TData>({
             <Dropdown.Menu align="end">
               {actions.map(action => (
                 <Dropdown.Item
-                  key={action.label}
+                  key={action.id ?? action.label}
                   icon={action.icon}
                   className={
                     action.variant === 'danger'
@@ -410,7 +479,15 @@ export function Table<TData>({
     }
 
     return [...withSelect, actionsColumn]
-  }, [columns, enablePagination, showSelectColumn, showRowActionsColumn, t])
+  }, [
+    columns,
+    enablePagination,
+    rowActions,
+    rowActionsVariant,
+    showSelectColumn,
+    showRowActionsColumn,
+    t,
+  ])
 
   const initialColumnPinning = React.useMemo(
     () => ({
@@ -605,6 +682,8 @@ export function Table<TData>({
             pageSizeOptions={pageSizeOptions}
             manualPagination={manualPagination}
             rowCount={rowCountProp}
+            variant={paginationVariant}
+            paginationTotalLabel={paginationTotalLabel}
           />
         </div>
       )}

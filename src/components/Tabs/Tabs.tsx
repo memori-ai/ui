@@ -28,16 +28,32 @@ function mergeClassName<S>(
 
 type TabsListState = import('@base-ui/react/tabs').TabsList.State
 
+export type TabsVariant = 'segmented' | 'underline'
+
 export interface TabsRootProps extends Omit<
   BaseTabsRootProps,
   'className' | 'style'
 > {
+  /**
+   * Visual style: `segmented` (sliding pill) or `underline` (baseline + thick marker).
+   * @default 'segmented'
+   */
+  variant?: TabsVariant
   className?: string | BaseTabsRootProps['className']
   style?: React.CSSProperties | BaseTabsRootProps['style']
 }
 
 const TabsRoot = React.forwardRef<HTMLDivElement, TabsRootProps>(
-  ({ className, style, orientation = 'horizontal', ...props }, ref) => {
+  (
+    {
+      className,
+      style,
+      orientation = 'horizontal',
+      variant = 'segmented',
+      ...props
+    },
+    ref,
+  ) => {
     const baseClass =
       orientation === 'vertical'
         ? 'memori-tabs memori-tabs--vertical'
@@ -54,6 +70,7 @@ const TabsRoot = React.forwardRef<HTMLDivElement, TabsRootProps>(
     return (
       <BaseTabs.Root
         ref={ref}
+        data-memori-variant={variant}
         orientation={orientation}
         {...props}
         className={mergedClass}

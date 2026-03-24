@@ -1,6 +1,16 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { FileText, LayoutGrid, Settings } from 'lucide-react'
+import {
+  AppWindow,
+  ArrowDownCircle,
+  CalendarDays,
+  Clapperboard,
+  FileText,
+  LayoutGrid,
+  Music2,
+  Settings,
+  UserRound,
+} from 'lucide-react'
 import { Tabs } from './Tabs'
 
 const meta = {
@@ -12,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Tabbed interface built on `@base-ui/react/tabs`. Follows the WAI-ARIA tabs pattern (WCAG 2.1 AA+): `tablist`, `tab`, and `tabpanel` roles, roving focus, and arrow-key navigation. Controlled state uses `value` and `onValueChange` (same idea as MUI `value` / `onChange`). `Tabs.List` defaults `activateOnFocus` to `true` so arrow keys move selection; set `activateOnFocus={false}` to match Base UI’s default (activate with Enter/Space only). Motion uses design tokens; tab hover/active uses subtle scale feedback and visible panels fade/slide in, while `prefers-reduced-motion` disables decorative animation.',
+          'Built on `@base-ui/react/tabs`. Set **`variant`** on `Tabs.Root`: `segmented` (muted track + sliding white pill) or `underline` (baseline rule + thick marker). WAI-ARIA tabs (WCAG 2.1 AA+), roving focus, arrow keys. Controlled API: `value` / `onValueChange`. `Tabs.List` defaults `activateOnFocus` to `true`. `prefers-reduced-motion` disables non-essential animation.',
       },
     },
   },
@@ -21,6 +31,151 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
+
+export const Underline: Story = {
+  render: () => (
+    <div
+      style={{
+        maxWidth: 'var(--memori-modal-size-md)',
+        padding: 'var(--memori-spacing-md)',
+        borderRadius: 'var(--memori-radius-box)',
+        backgroundColor: 'var(--memori-secondary-background)',
+        boxShadow: 'var(--memori-shadow-sm)',
+      }}
+    >
+      <Tabs.Root
+        variant="underline"
+        defaultValue="assignee"
+      >
+        <Tabs.List aria-label="Project views">
+          <Tabs.Tab value="status">
+            <span className="memori-tabs__tab-inner">
+              <ArrowDownCircle
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2}
+              />
+              <span>By Status</span>
+            </span>
+          </Tabs.Tab>
+          <Tabs.Tab value="assignee">
+            <span className="memori-tabs__tab-inner">
+              <UserRound
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2}
+              />
+              <span>By Assignee</span>
+            </span>
+          </Tabs.Tab>
+          <Tabs.Tab value="projects">
+            <span className="memori-tabs__tab-inner">
+              <LayoutGrid
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2}
+              />
+              <span>All projects</span>
+            </span>
+          </Tabs.Tab>
+          <Tabs.Tab value="calendar">
+            <span className="memori-tabs__tab-inner">
+              <CalendarDays
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2}
+              />
+              <span>Calendar</span>
+            </span>
+          </Tabs.Tab>
+          <Tabs.Indicator />
+        </Tabs.List>
+        <Tabs.Panel
+          value="status"
+          keepMounted
+        >
+          <p>Filter by status.</p>
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="assignee"
+          keepMounted
+        >
+          <p>Filter by assignee.</p>
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="projects"
+          keepMounted
+        >
+          <p>All projects.</p>
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="calendar"
+          keepMounted
+        >
+          <p>Calendar view.</p>
+        </Tabs.Panel>
+      </Tabs.Root>
+    </div>
+  ),
+}
+
+export const Segmented: Story = {
+  render: () => (
+    <Tabs.Root defaultValue="music">
+      <Tabs.List aria-label="Media type">
+        <Tabs.Tab value="music">
+          <span className="memori-tabs__tab-inner">
+            <Music2
+              aria-hidden="true"
+              size={18}
+              strokeWidth={2}
+            />
+            <span>Music</span>
+          </span>
+        </Tabs.Tab>
+        <Tabs.Tab value="movies">
+          <span className="memori-tabs__tab-inner">
+            <Clapperboard
+              aria-hidden="true"
+              size={18}
+              strokeWidth={2}
+            />
+            <span>Movies</span>
+          </span>
+        </Tabs.Tab>
+        <Tabs.Tab value="app">
+          <span className="memori-tabs__tab-inner">
+            <AppWindow
+              aria-hidden="true"
+              size={18}
+              strokeWidth={2}
+            />
+            <span>App</span>
+          </span>
+        </Tabs.Tab>
+        <Tabs.Indicator />
+      </Tabs.List>
+      <Tabs.Panel
+        value="music"
+        keepMounted
+      >
+        <p>Music library and playlists.</p>
+      </Tabs.Panel>
+      <Tabs.Panel
+        value="movies"
+        keepMounted
+      >
+        <p>Films and series.</p>
+      </Tabs.Panel>
+      <Tabs.Panel
+        value="app"
+        keepMounted
+      >
+        <p>Application settings and data.</p>
+      </Tabs.Panel>
+    </Tabs.Root>
+  ),
+}
 
 export const Default: Story = {
   render: () => (

@@ -56,6 +56,7 @@ export { Spin } from './components/Spin'
 export { Tabs } from './components/Tabs'
 export type {
   TabsRootProps,
+  TabsVariant,
   TabsListProps,
   TabsTabProps,
   TabsPanelProps,

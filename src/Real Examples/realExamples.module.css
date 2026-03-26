@@ -155,3 +155,209 @@
 .expandButton:hover {
     text-decoration: none;
 }
+
+/* Dashboard examples (content list, conversations) */
+.contentSection,
+.conversationsSection {
+    margin-bottom: var(--memori-spacing-lg);
+}
+
+.tabsList {
+    flex-wrap: wrap;
+    margin-bottom: var(--memori-spacing-md);
+}
+
+.tabPanel {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--memori-spacing-md);
+}
+
+.tabPlaceholder {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-base);
+}
+
+.dashboardToolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: var(--memori-spacing-md);
+    gap: var(--memori-spacing-md);
+}
+
+.contentListToolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--memori-spacing-md);
+}
+
+/* Search: one shell so icon + field share a border; icon centered (no baseline gap on SVG) */
+.searchField {
+    display: flex;
+    overflow: hidden;
+    min-width: 0;
+    max-width: min(100%, 36rem);
+    box-sizing: border-box;
+    flex: 1 1 16rem;
+    align-items: stretch;
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-field);
+    background-color: var(--memori-secondary-background);
+    transition:
+        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+}
+
+.searchField:focus-within {
+    border-color: var(--memori-border-primary);
+    box-shadow: var(--memori-focus-ring);
+}
+
+.searchIconWrap {
+    display: flex;
+    width: 2.75rem;
+    flex-shrink: 0;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
+    border-right: var(--memori-border) solid var(--memori-border-color);
+    background-color: color-mix(in oklch, var(--memori-secondary-background), var(--memori-main-background) 40%);
+    color: var(--memori-neutral);
+    pointer-events: none;
+}
+
+/* Lucide SVGs are inline by default — extra line-box space looks like a misaligned icon */
+.searchIconWrap svg {
+    display: block;
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+}
+
+.searchField .memori-input {
+    min-width: 0;
+    flex: 1;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.dateRangeField {
+    display: flex;
+    min-width: min(100%, 220px);
+    flex: 0 1 280px;
+    align-items: stretch;
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-field);
+    background-color: var(--memori-secondary-background);
+    gap: 0;
+}
+
+.dateRangeIcon {
+    flex-shrink: 0;
+    align-self: center;
+    margin-left: var(--memori-spacing-md);
+    color: var(--memori-neutral);
+}
+
+.dateRangeField .memori-input {
+    min-width: 0;
+    flex: 1;
+    border: none;
+    border-radius: var(--memori-radius-field);
+    background: transparent;
+}
+
+.searchField .memori-input:focus,
+.searchField .memori-input:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Avoid double focus ring: shell uses :focus-within above */
+.searchField .memori-input:focus::before,
+.searchField .memori-input:focus-within::before {
+    opacity: 0;
+}
+
+.conversationsSelect {
+    min-width: 200px;
+    flex: 0 1 220px;
+}
+
+/* Long titles / answers: wrap cleanly inside table cells */
+.contentCell {
+    display: block;
+    min-width: 0;
+    line-height: var(--memori-text-line-normal);
+}
+
+.contentCellText {
+    display: inline;
+    overflow-wrap: anywhere;
+}
+
+.expandLink {
+    display: inline;
+    margin-left: var(--memori-spacing-sm);
+    vertical-align: baseline;
+}
+
+.tableCellText {
+    display: block;
+    min-width: 0;
+    line-height: var(--memori-text-line-normal);
+    overflow-wrap: anywhere;
+}
+
+.tableMutedCell {
+    color: var(--memori-neutral);
+}
+
+.pillGroup {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--memori-spacing-xs);
+}
+
+.headerWithHint {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--memori-spacing-xs);
+}
+
+.headerInfoIcon {
+    display: inline-flex;
+    padding: 2px;
+    border: none;
+    border-radius: var(--memori-radius-field);
+    background: none;
+    color: var(--memori-neutral);
+    cursor: help;
+    vertical-align: middle;
+}
+
+.headerInfoIcon:hover {
+    color: var(--memori-text-color);
+}
+
+.headerInfoIcon:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.cellWithIcon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--memori-spacing-xs);
+    white-space: nowrap;
+}
+
+.cellIcon {
+    color: var(--memori-neutral);
+}

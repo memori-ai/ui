@@ -85,4 +85,11 @@ export type {
   GetPaginationWindowItemsOptions,
 } from './components/Table'
 export { Tooltip } from './components/Tooltip'
+export type {
+  TooltipLegacyAlign,
+  TooltipPlacement,
+  TooltipProps,
+} from './components/Tooltip'
+export { Section } from './components/Section'
+export type { SectionProps } from './components/Section'
 export { useTheme, type Theme } from './theme/useTheme'

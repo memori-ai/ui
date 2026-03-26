@@ -31,14 +31,19 @@ export interface TableCellProps<TData> {
 export function TableCell<TData>({ cell }: TableCellProps<TData>) {
   const pinned = cell.column.getIsPinned()
   const pinStyle: React.CSSProperties = {}
+  const pinnedZBase = cell.column.id === 'actions' ? 2 : 1
   if (pinned === 'left') {
     pinStyle.position = 'sticky'
     pinStyle.left = cell.column.getStart('left')
-    pinStyle.zIndex = 1
+    pinStyle.zIndex = pinnedZBase
   } else if (pinned === 'right') {
     pinStyle.position = 'sticky'
     pinStyle.right = cell.column.getAfter('right')
-    pinStyle.zIndex = 1
+    // Actions column uses a row-level CSS variable so hovered rows stack above scrolling cell content.
+    pinStyle.zIndex =
+      cell.column.id === 'actions'
+        ? ('var(--memori-table-row-actions-z, 2)' as React.CSSProperties['zIndex'])
+        : pinnedZBase
   }
 
   const meta = cell.column.columnDef.meta

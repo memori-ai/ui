@@ -24,6 +24,8 @@ export interface TableControlsProps<TData> {
   filterDefs?: FilterDef[]
   columnFilters: ColumnFiltersState
   onColumnFiltersChange: (next: ColumnFiltersState) => void
+  /** Rendered after the filter control (to the right of the filter button), before the columns menu. */
+  controlsAfterFilters?: React.ReactNode
 }
 
 export function TableControls<TData>({
@@ -36,6 +38,7 @@ export function TableControls<TData>({
   filterDefs,
   columnFilters,
   onColumnFiltersChange,
+  controlsAfterFilters,
 }: TableControlsProps<TData>) {
   const { t } = useTranslation()
   const searchPlaceholder =
@@ -77,6 +80,7 @@ export function TableControls<TData>({
           onChange={onColumnFiltersChange}
         />
       ) : null}
+      {controlsAfterFilters}
       {showColumnsMenu && hideableColumns.length > 0 ? (
         <Dropdown>
           <Dropdown.Trigger

@@ -215,6 +215,16 @@
     background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
 }
 
+.memori-table__body .memori-table__row {
+    --memori-table-row-actions-z: 2;
+}
+
+.memori-table__body .memori-table__row:hover,
+.memori-table__body .memori-table__row:focus-within {
+    /* Lift sticky actions column above horizontal scroll / overlapping cell content */
+    --memori-table-row-actions-z: 5;
+}
+
 .memori-table__cell {
     min-width: 0;
     box-sizing: border-box;
@@ -767,6 +777,13 @@
     width: 3rem;
     max-width: 100%;
     text-align: center;
+}
+
+/* Above the sticky cell layer (pinned body cells use z-index 1–2) so triggers/menus aren’t covered */
+.memori-table__cell--actions .memori-table__row-actions,
+.memori-table__cell--actions .memori-dropdown {
+    position: relative;
+    z-index: 3;
 }
 
 .memori-table__row-actions--inline {

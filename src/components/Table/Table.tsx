@@ -102,6 +102,7 @@ export interface TableProps<TData> {
   globalFilterPlaceholder?: string
   /** Storage key for column visibility persistence */
   tableId?: string
+  showColumnsMenu?: boolean
 
   search?: string
   onSearchChange?: (value: string) => void
@@ -111,6 +112,11 @@ export interface TableProps<TData> {
   onColumnFiltersChange?: (filters: ColumnFiltersState) => void
 
   filterDefs?: FilterDef[]
+  /**
+   * Extra controls to the right of the filter button (e.g. another toolbar button).
+   * Only the table toolbar is shown; pass this when you need custom actions beside filters.
+   */
+  controlsAfterFilters?: React.ReactNode
 
   manualPagination?: boolean
   rowCount?: number
@@ -150,12 +156,14 @@ export function Table<TData>({
   columnFilters: columnFiltersProp,
   onColumnFiltersChange: onColumnFiltersChangeProp,
   filterDefs,
+  controlsAfterFilters,
   manualPagination: manualPaginationProp,
   rowCount: rowCountProp,
   pagination: paginationProp,
   onPaginationChange: onPaginationChangeProp,
   paginationVariant = 'simplified',
   paginationTotalLabel,
+  showColumnsMenu = false,
 }: TableProps<TData>) {
   const { t } = useTranslation()
   const [sorting, setSorting] = React.useState<SortingState>([])
@@ -550,7 +558,7 @@ export function Table<TData>({
   })
 
   const showSearchChrome = !!onSearchChange
-  const showColumnsMenu = table
+  const showColumnsMenuInternal = table
     .getAllLeafColumns()
     .some(
       c =>
@@ -560,7 +568,11 @@ export function Table<TData>({
         c.id !== 'actions',
     )
   const showFilterControls = (filterDefs?.length ?? 0) > 0
-  const showTopBar = showSearchChrome || showColumnsMenu || showFilterControls
+  const showTopBar =
+    showSearchChrome ||
+    (showColumnsMenu && showColumnsMenuInternal) ||
+    showFilterControls ||
+    controlsAfterFilters != null
 
   const loadingSkeletonRowCount = React.useMemo(() => {
     if (enablePagination) {
@@ -602,6 +614,7 @@ export function Table<TData>({
           filterDefs={filterDefs}
           columnFilters={columnFilters}
           onColumnFiltersChange={handleColumnFiltersCommit}
+          controlsAfterFilters={controlsAfterFilters}
         />
       ) : null}
       {filterDefs && filterDefs.length > 0 ? (

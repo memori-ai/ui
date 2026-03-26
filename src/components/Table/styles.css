@@ -377,7 +377,6 @@
     border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-field);
     background-color: var(--memori-main-background);
-    box-shadow: var(--memori-shadow-sm);
 }
 
 .memori-table__filter-popover-body {
@@ -1115,7 +1114,6 @@
     .memori-table-pagination__page-num[aria-current='page'].memori-button--soft {
     border-color: var(--memori-primary);
     background-color: var(--memori-primary);
-    box-shadow: var(--memori-shadow-sm);
     color: var(--memori-primary-content);
     font-weight: var(--memori-text-weight-semibold);
 }
@@ -1128,7 +1126,6 @@
     ) {
     border-color: var(--memori-primary-hover);
     background-color: var(--memori-primary-hover);
-    box-shadow: var(--memori-shadow-primary);
     color: var(--memori-primary-content);
 }
 

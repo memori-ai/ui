@@ -398,7 +398,7 @@
 }
 
 .memori-button--ghost:hover:not(:disabled, .memori-button--disabled) {
-    background-color: var(--memori-main-background);
+    background-color: transparent;
     box-shadow: none;
 }
 

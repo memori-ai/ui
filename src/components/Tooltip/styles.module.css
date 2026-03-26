@@ -35,7 +35,6 @@
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border-radius: var(--memori-radius-field);
     background: var(--memori-tooltip-background);
-    box-shadow: var(--memori-shadow-lg);
     color: var(--memori-tooltip-foreground);
     font-family: var(--memori-font-family);
     font-size: var(--memori-text-size-small);

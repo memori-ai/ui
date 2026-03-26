@@ -1,6 +1,6 @@
 {
   "name": "@memori.ai/ui",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "type": "module",
   "description": "Memori.ai UI Component Library",
   "main": "./dist/memori-ai-ui.cjs.js",

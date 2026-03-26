@@ -1,5 +1,7 @@
 
 
+## [1.11.1](https://github.com/memori-ai/ui/compare/v1.11.0...v1.11.1) (2026-03-26)
+
 ## [1.11.0](https://github.com/memori-ai/ui/compare/v1.10.0...v1.11.0) (2026-03-26)
 
 

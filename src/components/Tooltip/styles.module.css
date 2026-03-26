@@ -1,0 +1,92 @@
+.root {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.trigger {
+    display: inline-flex;
+    max-width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: inherit;
+    font: inherit;
+    outline: none;
+    text-align: inherit;
+}
+
+.trigger:focus-visible {
+    border-radius: var(--memori-radius-field);
+    box-shadow: var(--memori-focus-ring);
+}
+
+.positioner {
+    z-index: 1300;
+}
+
+.popup {
+    min-width: min(12.5rem, calc(100vw - 2 * var(--memori-spacing-lg)));
+    max-width: min(20rem, calc(100vw - 2 * var(--memori-spacing-md)));
+    box-sizing: border-box;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    border-radius: var(--memori-radius-field);
+    background: var(--memori-tooltip-background);
+    box-shadow: var(--memori-shadow-lg);
+    color: var(--memori-tooltip-foreground);
+    font-family: var(--memori-font-family);
+    font-size: var(--memori-text-size-small);
+    font-weight: var(--memori-text-weight-normal);
+    hyphens: auto;
+    line-height: var(--memori-text-line-normal);
+    overflow-wrap: anywhere;
+    text-align: start;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition:
+            opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+}
+
+.arrow {
+    background-color: var(--memori-tooltip-background);
+    fill: var(--memori-tooltip-caret);
+}
+
+.surface {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    transform: scale(0.95);
+    transform-origin: center center;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+}
+
+.popup[data-open] .surface,
+.popup[data-starting-style] .surface {
+    transform: scale(1);
+}
+
+.popup a {
+    color: var(--memori-tooltip-foreground);
+    text-decoration: underline;
+    text-underline-offset: calc(var(--memori-spacing-xs) / 2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup {
+        transition: none;
+    }
+
+    .surface {
+        transform: none;
+        transition: none;
+    }
+}

@@ -1,5 +1,17 @@
 
 
+## [1.11.0](https://github.com/memori-ai/ui/compare/v1.10.0...v1.11.0) (2026-03-26)
+
+
+### Features
+
+* add ContentListDashboard and ConversationsDashboard components with mock data ([8406a44](https://github.com/memori-ai/ui/commit/8406a4496d4ba146c0cf01df980b749b48ad3e8b))
+* add Section component with styles, stories, and tests ([ec1fb6f](https://github.com/memori-ai/ui/commit/ec1fb6fddd261c05c19943f38c5c815e85b4d267))
+* add Tabs component with styles and stories ([ef3a395](https://github.com/memori-ai/ui/commit/ef3a395cedd10a929ae61d1656cc328695d41d19))
+* enhance Table component with detailed pagination and inline row actions ([24c46b1](https://github.com/memori-ai/ui/commit/24c46b13034d29fb8bbb551787e36648037c1e67))
+* enhance Table component with new controls and improved z-index management for sticky actions ([c525f88](https://github.com/memori-ai/ui/commit/c525f88374edc7cdbc8548af7c1a4d8b6324a691))
+* introduce Tabs variants and enhance styles for segmented and underline options ([9b0816b](https://github.com/memori-ai/ui/commit/9b0816bc7783a2ed49c528122d50a1b84d91efc1))
+
 ## [1.10.0](https://github.com/memori-ai/ui/compare/v1.9.0...v1.10.0) (2026-03-23)
 
 

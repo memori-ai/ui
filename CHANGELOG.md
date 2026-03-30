@@ -1,5 +1,12 @@
 
 
+## [1.12.0](https://github.com/memori-ai/ui/compare/v1.11.1...v1.12.0) (2026-03-30)
+
+
+### Features
+
+* integrate Tooltip component into Expandable ([96a4dee](https://github.com/memori-ai/ui/commit/96a4dee5e5121ef245c90f5ef9ace3257c6f3b67))
+
 ## [1.11.1](https://github.com/memori-ai/ui/compare/v1.11.0...v1.11.1) (2026-03-26)
 
 ## [1.11.0](https://github.com/memori-ai/ui/compare/v1.10.0...v1.11.0) (2026-03-26)

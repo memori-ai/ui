@@ -29,7 +29,6 @@
 }
 
 .popup {
-    min-width: min(12.5rem, calc(100vw - 2 * var(--memori-spacing-lg)));
     max-width: min(20rem, calc(100vw - 2 * var(--memori-spacing-md)));
     box-sizing: border-box;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);

@@ -3,6 +3,7 @@ import Button from '../Button'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { truncateMessage, MAX_MSG_CHARS, MAX_MSG_WORDS } from './helpers'
+import { Tooltip } from '../Tooltip'
 
 import './styles.css'
 
@@ -34,6 +35,7 @@ const Expandable = ({
 }: Props) => {
   const { i18n } = useTranslation()
   const lang = i18n.language
+  const { t } = useTranslation()
   const collapseSymbolText = collapseSymbol(lang)
   const expandSymbolText = expandSymbol(lang)
   const [expanded, setExpanded] = useState(defaultExpanded)
@@ -96,13 +98,15 @@ const Expandable = ({
         {renderContent()}
       </div>
       {needsExpanding && !expanded && (
-        <Button
-          variant="ghost"
-          className={btnClassName}
-          onClick={() => setExpanded(true)}
-        >
-          {expandSymbolText}
-        </Button>
+        <Tooltip content={t('expandable.expand')}>
+          <Button
+            variant="ghost"
+            className={btnClassName}
+            onClick={() => setExpanded(true)}
+          >
+            {expandSymbolText}
+          </Button>
+        </Tooltip>
       )}
       {needsExpanding && expanded && (
         <Button

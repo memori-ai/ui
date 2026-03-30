@@ -13,7 +13,7 @@
         color-scheme: light;
 
         /* ─── 2. Brand & primary chain ──────────── */
-        --memori-primary: var(--memori-primary-color, oklch(48% 0.19 297deg));
+        --memori-primary: var(--memori-primary-color, oklch(54.47% 0.217 307.53deg));
         --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
         --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 20%);
         --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);

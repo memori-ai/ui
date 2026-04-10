@@ -124,6 +124,7 @@
 .memori-card--interactive:hover {
     border-color: var(--memori-border-primary-hover);
     background-color: var(--memori-primary-subtle-hover);
+    box-shadow: 0 4px 16px rgb(109 40 217 / 12%);
     transform: translateY(-2px);
     transition:
         border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),

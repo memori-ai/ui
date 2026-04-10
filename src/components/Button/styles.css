@@ -250,6 +250,11 @@
     background-color: var(--memori-secondary-active);
 }
 
+.memori-button--secondary:focus-visible::before {
+    box-shadow: var(--memori-focus-ring-secondary);
+    outline-color: var(--memori-secondary);
+}
+
 /* Outline Variant */
 .memori-button--outline {
     border-color: var(--memori-primary);

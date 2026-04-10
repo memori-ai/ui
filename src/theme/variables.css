@@ -13,7 +13,7 @@
         color-scheme: light;
 
         /* ─── 2. Brand & primary chain ──────────── */
-        --memori-primary: var(--memori-primary-color, oklch(54.47% 0.217 307.53deg));
+        --memori-primary: var(--memori-primary-color, oklch(51.55% 0.1653 307.99deg));
         --memori-primary-hover: color-mix(in oklch, var(--memori-primary), black 15%);
         --memori-primary-active: color-mix(in oklch, var(--memori-primary), black 20%);
         --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 60%);
@@ -38,6 +38,8 @@
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 70%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 50%);
         --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 70%);
+        --memori-focus-ring-secondary-color: color-mix(in oklch, var(--memori-secondary), transparent 55%);
+        --memori-focus-ring-secondary: 0 0 0 3px var(--memori-focus-ring-secondary-color);
 
         /* ─── 4. Semantic surface & text ─────────── */
         --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
@@ -182,6 +184,7 @@
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 45%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 30%);
         --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 55%);
+        --memori-focus-ring-secondary-color: color-mix(in oklch, var(--memori-secondary), transparent 40%);
 
         /* Surfaces & text */
         --memori-main-background: oklch(32.1% 0 0deg);

@@ -129,7 +129,7 @@
 /* microinteraction: press uses scale + ease-in on transform */
 .memori-button:active:not(:disabled, .memori-button--disabled) {
     box-shadow: none;
-    transform: scale(0.99);
+    transform: scale(0.98);
     transition:
         background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
         border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),

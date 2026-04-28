@@ -92,12 +92,12 @@
     "vitest-browser-react": "^2.0.2"
   },
   "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "i18next": "^25.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^16.3.5",
-    "i18next": "^25.5.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
     "typescript": ">=5.0"
   },
   "peerDependenciesMeta": {
@@ -128,5 +128,6 @@
     "type": "git",
     "url": "https://github.com/memori-ai/ui.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@3.2.3+sha512.f26f951f67de0c6a33ee381e5ff364709c87e70eb5e65c694e4facde3512f1fa80b8679e6ba31ce7d340fbb46f08dd683af9457e240f25a204be7427940d767e"
 }

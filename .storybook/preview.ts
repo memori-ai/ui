@@ -55,7 +55,7 @@ const preview: Preview = {
       options: {
         // 👇 Default options
         dark: { name: 'Dark', value: 'oklch(32.1% 0 0deg)' },
-        light: { name: 'Light', value: 'oklch(97.9% 0.01 120deg)' },
+        light: { name: 'Light', value: 'oklch(97.1% 0 0deg)' },
       },
       default: 'light',
     },

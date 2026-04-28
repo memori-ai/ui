@@ -43,7 +43,7 @@
 
         /* ─── 4. Semantic surface & text ─────────── */
         --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
-        --memori-main-background: oklch(97.9% 0.01 120deg);
+        --memori-main-background: oklch(97.1% 0 0deg);
         --memori-secondary-background: oklch(100% 0 0deg);
         --memori-text-color: oklch(20% 0.05 240deg);
         --memori-border-color: color-mix(in oklch, oklch(45% 0.05 240deg), transparent 84%);

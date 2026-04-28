@@ -169,7 +169,7 @@
 .memori-drawer__title {
     margin: 0;
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-large);
+    font-size: var(--memori-text-size-heading);
     font-weight: var(--memori-text-weight-semibold);
     line-height: var(--memori-text-line-tight);
 }

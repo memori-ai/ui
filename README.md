@@ -123,7 +123,7 @@ All exports are from `@memori.ai/ui`. Types are exported where listed—use your
 | **Form**                                                 | Form root with validation helpers                               | `errors`, `onFormSubmit`, `validationMode`, `onSubmit`, `children`, … — `FormProps`                                                                                                                                                           |
 | **Modal**                                                | Dialog                                                          | `open`, `onOpenChange`, `onClose`, `title`, `description`, `children`, `footer`, `loading`, `closable`, `size`, `width` / `widthMd` / `widthLg`, `closeOnOverlayClick`, `closeOnEsc`, `modal`, `initialFocus`, `finalFocus`, … — `ModalProps` |
 | **SelectBox**                                            | Native-style select                                             | `options`, `value`, `onChange`, `placeholder`, `label`, `disabled`, `error`, `name`, … — `SelectBoxProps`                                                                                                                                     |
-| **Slider**                                               | Range input                                                     | `min`, `max`, `step`, `value`, `defaultValue`, `label`, `onChange`, `disabled`, … — `SliderProps`                                                                                                                                             |
+| **Slider**                                               | Range input                                                     | `min`, `max`, `step`, `value`, `defaultValue`, `label`, `ariaLabel`, `onChange`, `disabled`, … — `SliderProps`                                                                                                                                |
 | **Spin**                                                 | Loading spinner / overlay                                       | `spinning`, `primary`, `children`, `className`, `spinnerClassName`, … — `SpinProps`                                                                                                                                                           |
 | **Table**                                                | Data table ([TanStack Table](https://tanstack.com/table))       | Full list: [Table](#table). Exported types: `ColumnDef`, `ColumnFiltersState`, `BulkAction`, `RowAction`, `RowActionsVariant`, `TablePaginationVariant`, `FilterDef`, `FilterOption`, `FilterVariant`, `DateRangeValue`, pagination helpers   |
 | **Tooltip**                                              | Tooltip (CSS-positioned)                                        | `content`, `children`, `align`, `disabled`, `visible`, `className` — default export `Props`                                                                                                                                                   |
@@ -291,6 +291,22 @@ To run tests (in watch mode):
 bun run test
 # this is not the same as `bun test`
 # `bun test` runs the tests using Bun test runner and it's not compatible with our setup
+```
+
+To run Storybook accessibility tests (WCAG / axe) in CI mode:
+
+```bash
+bun run test:a11y
+```
+
+This runs the Storybook Vitest project with `@storybook/addon-a11y` checks enabled as errors.  
+The run fails on accessibility violations (for example: missing accessible names, empty headers, or insufficient color contrast).
+
+Useful while iterating:
+
+```bash
+bun run storybook
+# then open the Testing panel in Storybook and run component tests
 ```
 
 Linting:

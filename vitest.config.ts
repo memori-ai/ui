@@ -1,14 +1,41 @@
-import { defineConfig } from 'vitest/config'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 import { playwright } from '@vitest/browser-playwright'
-import react from '@vitejs/plugin-react'
+import { defineConfig, configDefaults } from 'vitest/config'
 
-const isCI = process.env.CI === 'true'
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  plugins: [react()],
   test: {
-    environment: 'happy-dom',
-    setupFiles: './vitest.setup.ts',
-    globals: true,
+    projects: [
+      {
+        test: {
+          name: 'unit',
+          environment: 'happy-dom',
+          setupFiles: './vitest.setup.ts',
+          globals: true,
+          exclude: [...configDefaults.exclude, '**/*.stories.*'],
+        },
+      },
+      {
+        plugins: [
+          storybookTest({
+            configDir: path.join(dirname, '.storybook'),
+            storybookScript: 'bun run storybook -- --ci --no-open',
+          }),
+        ],
+        test: {
+          name: 'storybook',
+          browser: {
+            enabled: true,
+            provider: playwright({}),
+            headless: true,
+            instances: [{ browser: 'chromium' }],
+          },
+          setupFiles: ['./.storybook/vitest.setup.ts'],
+        },
+      },
+    ],
   },
 })

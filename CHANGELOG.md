@@ -1,5 +1,12 @@
 
 
+## [1.13.0](https://github.com/memori-ai/ui/compare/v1.12.0...v1.13.0) (2026-04-28)
+
+
+### Features
+
+* add Popover component with customizable placement and styling options ([ab95db2](https://github.com/memori-ai/ui/commit/ab95db2c6668014197de24ea8e0ed2e81b52a2c9))
+
 ## [1.12.0](https://github.com/memori-ai/ui/compare/v1.11.1...v1.12.0) (2026-03-30)
 
 

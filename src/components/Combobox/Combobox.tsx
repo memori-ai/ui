@@ -124,6 +124,10 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
         ? (flatOptions.find(o => o.value === defaultValue) ?? null)
         : null
     const triggerId = useId()
+    const accessibleName =
+      label ??
+      (selectedOption != null ? getOptionLabel(selectedOption) : undefined) ??
+      placeholder
 
     return (
       <div
@@ -159,7 +163,9 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
           <BaseCombobox.Trigger
             id={triggerId}
             className="memori-combobox__trigger"
-            aria-label={label != null && label !== '' ? undefined : label}
+            aria-label={
+              label != null && label !== '' ? undefined : accessibleName
+            }
             aria-labelledby={
               label != null && label !== '' ? `${triggerId}-label` : undefined
             }

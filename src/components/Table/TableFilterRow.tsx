@@ -101,10 +101,7 @@ export function TableFilterRow<TData>({
   )
 
   return (
-    <tr
-      className="memori-table__filter-row"
-      aria-hidden
-    >
+    <tr className="memori-table__filter-row">
       {headerGroup.headers.map(header => {
         const col = header.column
         const meta = col.columnDef.meta
@@ -112,7 +109,7 @@ export function TableFilterRow<TData>({
 
         if (header.isPlaceholder) {
           return (
-            <th
+            <td
               key={header.id}
               className="memori-table__filter-cell"
               style={{ width: header.getSize() }}
@@ -122,7 +119,7 @@ export function TableFilterRow<TData>({
 
         if (col.id === 'select' || col.id === 'actions') {
           return (
-            <th
+            <td
               key={header.id}
               className={cx(
                 'memori-table__filter-cell',
@@ -139,7 +136,7 @@ export function TableFilterRow<TData>({
           const value = raw == null ? '' : String(raw)
 
           return (
-            <th
+            <td
               key={header.id}
               className="memori-table__filter-cell"
               style={{ width: header.getSize() }}
@@ -163,7 +160,7 @@ export function TableFilterRow<TData>({
                   </option>
                 ))}
               </select>
-            </th>
+            </td>
           )
         }
 
@@ -171,7 +168,7 @@ export function TableFilterRow<TData>({
           const draft = textDrafts[col.id] ?? ''
 
           return (
-            <th
+            <td
               key={header.id}
               className="memori-table__filter-cell"
               style={{ width: header.getSize() }}
@@ -190,12 +187,12 @@ export function TableFilterRow<TData>({
                   debouncedCommit(next)
                 }}
               />
-            </th>
+            </td>
           )
         }
 
         return (
-          <th
+          <td
             key={header.id}
             className="memori-table__filter-cell"
             style={{ width: header.getSize() }}

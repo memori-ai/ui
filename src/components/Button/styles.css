@@ -96,7 +96,7 @@
     border-color: var(--memori-border-secondary);
     background-color: var(--memori-secondary-subtle);
     box-shadow: none;
-    color: var(--memori-secondary);
+    color: var(--memori-text-color);
 }
 
 .memori-button--softSecondary:disabled,
@@ -111,7 +111,7 @@
     border-color: var(--memori-border-secondary-hover);
     background-color: var(--memori-secondary-subtle-hover);
     box-shadow: var(--memori-shadow-sm);
-    color: var(--memori-secondary);
+    color: var(--memori-text-color);
 }
 
 .memori-button--softSecondary:active:not(:disabled, .memori-button--disabled),
@@ -248,6 +248,7 @@
 .memori-button--secondary.memori-button--active {
     border-color: var(--memori-secondary-active);
     background-color: var(--memori-secondary-active);
+    color: var(--memori-secondary-content-active, var(--memori-secondary-content));
 }
 
 .memori-button--secondary:focus-visible::before {
@@ -288,6 +289,10 @@
     border-color: var(--memori-primary-active);
     background-color: var(--memori-primary-active);
     color: var(--memori-primary-content);
+}
+
+:is([data-theme='dark'], .dark, :root.dark) .memori-button--outline {
+    color: var(--memori-text-color);
 }
 
 /* Toolbar variant — field-style control (table toolbars, filter popover trigger, etc.) */

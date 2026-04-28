@@ -149,7 +149,7 @@
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
     border: var(--memori-border) solid transparent;
     background: transparent;
-    color: var(--memori-neutral);
+    color: color-mix(in oklch, var(--memori-text-color) 82%, var(--memori-main-background));
     cursor: pointer;
     font-family: var(--memori-font-family);
     font-size: var(--memori-text-size-small);

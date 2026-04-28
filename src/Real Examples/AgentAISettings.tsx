@@ -98,16 +98,16 @@ export function AgentAISettings() {
                     content="Combina recupero contenuti (NLP) e generazione (GenAI)."
                     align="topRight"
                   >
-                    <span
+                    <button
+                      type="button"
                       className={styles.infoTrigger}
-                      tabIndex={0}
                       aria-label="Informazioni"
                     >
                       <Info
                         size={16}
                         strokeWidth={2}
                       />
-                    </span>
+                    </button>
                   </Tooltip>
                 </span>
                 <span className={styles.radioSub}>( NLP + GenAI )</span>
@@ -130,16 +130,16 @@ export function AgentAISettings() {
                     content="Solo generazione GenAI, senza priorità ai contenuti indicizzati."
                     align="topRight"
                   >
-                    <span
+                    <button
+                      type="button"
                       className={styles.infoTrigger}
-                      tabIndex={0}
                       aria-label="Informazioni"
                     >
                       <Info
                         size={16}
                         strokeWidth={2}
                       />
-                    </span>
+                    </button>
                   </Tooltip>
                 </span>
                 <span className={styles.radioSub}>( GenAI )</span>
@@ -162,16 +162,16 @@ export function AgentAISettings() {
                     content="Solo NLP sui contenuti, senza generazione libera."
                     align="topRight"
                   >
-                    <span
+                    <button
+                      type="button"
                       className={styles.infoTrigger}
-                      tabIndex={0}
                       aria-label="Informazioni"
                     >
                       <Info
                         size={16}
                         strokeWidth={2}
                       />
-                    </span>
+                    </button>
                   </Tooltip>
                 </span>
                 <span className={styles.radioSub}>( NLP )</span>
@@ -202,16 +202,16 @@ export function AgentAISettings() {
                 content="Istruzioni di sistema inviate al modello insieme al contesto."
                 align="topRight"
               >
-                <span
+                <button
+                  type="button"
                   className={styles.infoTrigger}
-                  tabIndex={0}
                   aria-label="Informazioni sulle istruzioni"
                 >
                   <Info
                     size={16}
                     strokeWidth={2}
                   />
-                </span>
+                </button>
               </Tooltip>
             </div>
             <Button

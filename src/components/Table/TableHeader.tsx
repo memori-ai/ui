@@ -42,6 +42,9 @@ export function TableHeader<TData>({
               typeof header.column.columnDef.header === 'string'
                 ? header.column.columnDef.header
                 : header.column.id
+            const hasTextualHeader =
+              typeof header.column.columnDef.header === 'string' &&
+              header.column.columnDef.header.trim().length > 0
 
             const pinStyle: React.CSSProperties = {}
             if (pinned === 'left') {
@@ -88,6 +91,11 @@ export function TableHeader<TData>({
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
+                      {!hasTextualHeader && header.column.id === 'actions' ? (
+                        <span className="memori-table__sr-only">
+                          {t('table.actions')}
+                        </span>
+                      ) : null}
                     </div>
                     {canSort && (
                       <button

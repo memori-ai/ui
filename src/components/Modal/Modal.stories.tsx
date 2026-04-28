@@ -122,6 +122,7 @@ export const Open: Story = {
     open: true,
     closable: true,
     onOpenChange: () => {},
+    'aria-label': 'Modal',
   },
 }
 

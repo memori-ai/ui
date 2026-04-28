@@ -281,6 +281,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref,
   ) => {
+    const popupId = React.useId()
+    const titleId = React.useId()
+    const descriptionId = React.useId()
+
     // Handle open change with escape key support
     const handleOpenChange = React.useCallback(
       (newOpen: boolean, eventDetails?: any) => {
@@ -356,6 +360,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       sizeClass,
       contentClassName,
     )
+    const hasTitle = title != null
+    const hasDescription = description != null
+    const effectiveAriaLabelledBy =
+      ariaLabelledBy ?? (hasTitle ? titleId : undefined)
+    const effectiveAriaDescribedBy =
+      ariaDescribedBy ?? (hasDescription ? descriptionId : undefined)
 
     return (
       <Dialog.Root
@@ -385,10 +395,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               finalFocus={finalFocus}
               className={popupClassName}
               style={popupStyle}
+              id={popupId}
               data-testid={dataTestId}
-              aria-label={!title ? ariaLabel : undefined}
-              aria-labelledby={title ? undefined : ariaLabelledBy}
-              aria-describedby={description ? undefined : ariaDescribedBy}
+              aria-label={hasTitle ? undefined : ariaLabel}
+              aria-labelledby={effectiveAriaLabelledBy}
+              aria-describedby={effectiveAriaDescribedBy}
               {...(widthMd && { 'data-width-md': '' })}
               {...(widthLg && { 'data-width-lg': '' })}
             >
@@ -406,6 +417,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <Spin spinning={loading}>
                 {title && (
                   <Dialog.Title
+                    id={titleId}
                     className={cx('memori-modal__title', titleClassName)}
                   >
                     {title}
@@ -413,6 +425,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 )}
                 {description && (
                   <Dialog.Description
+                    id={descriptionId}
                     className={cx(
                       'memori-modal__description',
                       descriptionClassName,
@@ -421,7 +434,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     {description}
                   </Dialog.Description>
                 )}
-                <div className="memori-modal__content">{children}</div>
+                <div
+                  className="memori-modal__content"
+                  tabIndex={0}
+                >
+                  {children}
+                </div>
                 {footer && (
                   <div className={cx('memori-modal__footer', footerClassName)}>
                     {footer}

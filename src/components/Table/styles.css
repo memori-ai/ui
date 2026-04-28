@@ -730,7 +730,7 @@
 .memori-table__badge--secondary {
     border: var(--memori-border) solid var(--memori-border-secondary);
     background-color: var(--memori-secondary-subtle);
-    color: var(--memori-secondary);
+    color: var(--memori-text-color);
 }
 
 .memori-table__badge--secondary:hover {

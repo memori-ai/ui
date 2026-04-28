@@ -34,7 +34,8 @@
         --memori-secondary-disabled: color-mix(in oklch, var(--memori-secondary), transparent 60%);
         --memori-secondary-subtle: color-mix(in oklch, var(--memori-secondary), white 88%);
         --memori-secondary-subtle-hover: color-mix(in oklch, var(--memori-secondary), white 78%);
-        --memori-secondary-content: oklch(99% 0.01 200deg); /* on solid secondary — WCAG AA */
+        --memori-secondary-content: oklch(20% 0.05 240deg); /* on solid secondary — WCAG AA */
+        --memori-secondary-content-active: oklch(99% 0.01 200deg);
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 70%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 50%);
         --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 70%);
@@ -64,7 +65,8 @@
         --memori-warning: oklch(80% 0.25 80deg);
         --memori-warning-content: oklch(22% 0.06 80deg);
         --memori-error: oklch(65% 0.3 30deg);
-        --memori-error-content: oklch(99% 0.01 30deg);
+        --memori-error-content: oklch(20% 0.05 240deg);
+        --memori-error-text: oklch(54% 0.24 28deg);
         --memori-info: oklch(70% 0.2 220deg);
         --memori-info-content: oklch(99% 0.01 220deg);
 
@@ -180,7 +182,8 @@
         --memori-secondary-disabled: color-mix(in oklch, var(--memori-secondary), transparent 55%);
         --memori-secondary-subtle: color-mix(in oklch, var(--memori-secondary), black 72%);
         --memori-secondary-subtle-hover: color-mix(in oklch, var(--memori-secondary), black 62%);
-        --memori-secondary-content: oklch(99% 0.01 200deg);
+        --memori-secondary-content: oklch(16% 0.04 240deg);
+        --memori-secondary-content-active: oklch(16% 0.04 240deg);
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 45%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 30%);
         --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 55%);
@@ -205,7 +208,8 @@
         --memori-warning: oklch(78% 0.16 80deg);
         --memori-warning-content: oklch(18% 0.07 80deg);
         --memori-error: oklch(68% 0.22 30deg);
-        --memori-error-content: oklch(99% 0.01 30deg);
+        --memori-error-content: oklch(16% 0.04 240deg);
+        --memori-error-text: oklch(76% 0.18 28deg);
         --memori-info: oklch(72% 0.16 220deg);
         --memori-info-content: oklch(16% 0.05 220deg);
 

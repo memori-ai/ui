@@ -17,6 +17,7 @@ export interface SliderProps {
   disabled?: boolean
   className?: string
   style?: React.CSSProperties
+  ariaLabel?: string
 }
 
 const CustomSlider = ({
@@ -28,6 +29,7 @@ const CustomSlider = ({
   label,
   onChange,
   disabled = false,
+  ariaLabel,
 }: SliderProps) => {
   const [internalValue, setInternalValue] = useState(defaultValue)
   const isControlled = valueProp !== undefined
@@ -41,6 +43,10 @@ const CustomSlider = ({
   const percentage = ((value - min) / (max - min)) * 100
 
   const marks = []
+  const labelText =
+    typeof label === 'string' && label.trim().length > 0
+      ? label
+      : ariaLabel || 'Slider'
   for (let i = min; i <= max; i += (max - min) / 4) {
     marks.push(Math.round(i))
   }
@@ -155,6 +161,7 @@ const CustomSlider = ({
         <div
           className="memori-slider__thumb"
           role="slider"
+          aria-label={labelText}
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value}

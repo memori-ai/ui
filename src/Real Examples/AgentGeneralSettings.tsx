@@ -42,6 +42,7 @@ export function AgentGeneralSettings() {
             className={`memori-input memori-input--default memori-input--md memori-input--full-width ${styles.textarea}`}
             defaultValue="Agente di test per storybook"
             rows={4}
+            aria-label="Descrizione"
           />
         </FieldGroup>
 

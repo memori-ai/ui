@@ -36,7 +36,7 @@
 
 .memori-field__required-indicator {
     margin-left: var(--memori-spacing-xs);
-    color: var(--memori-error);
+    color: var(--memori-error-text, var(--memori-error));
     font-weight: var(--memori-text-weight-normal);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .memori-field__error {
-    color: var(--memori-error);
+    color: var(--memori-error-text, var(--memori-error));
     font-size: var(--memori-text-size-sm);
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);

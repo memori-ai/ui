@@ -45,6 +45,17 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
     },
     ref,
   ) => {
+    const selectedOption = options.find(option => option.value === value)
+    const selectedLabelText =
+      typeof selectedOption?.label === 'string'
+        ? selectedOption.label
+        : undefined
+    const accessibleName =
+      label ??
+      selectedLabelText ??
+      (value != null ? String(value) : undefined) ??
+      placeholder
+
     return (
       <div
         className={cx('memori-select', className)}
@@ -65,12 +76,13 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
               'memori-select__trigger',
               error && 'memori-select__trigger--error',
             )}
+            aria-label={accessibleName}
           >
             <Select.Value
               className="memori-select__value"
               data-placeholder={placeholder}
             >
-              {displayValue}
+              {displayValue ?? selectedOption?.label}
             </Select.Value>
             <Select.Icon className="memori-select__icon">
               <ChevronDown size={16} />

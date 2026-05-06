@@ -50,6 +50,11 @@
     background: var(--memori-primary-subtle);
 }
 
+.triggerActive:not(:disabled) {
+    border-color: var(--memori-border-primary-hover);
+    background: var(--memori-primary-subtle);
+}
+
 .positioner {
     z-index: 1300;
 }

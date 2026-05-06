@@ -1,6 +1,6 @@
 import { Popover as BasePopover } from '@base-ui/react/popover'
 import cx from 'classnames'
-import React, { forwardRef, useMemo } from 'react'
+import React, { forwardRef, useCallback, useMemo, useState } from 'react'
 
 import styles from './styles.module.css'
 
@@ -206,6 +206,23 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       style: arrowSlotStyle,
       ...arrowRest
     } = slotProps?.arrow ?? {}
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(
+      defaultOpen ?? false,
+    )
+    const isControlled = open !== undefined
+    const isOpen = isControlled ? open : uncontrolledOpen
+    const handleOpenChange = useCallback<PopoverRootChangeHandler>(
+      (...args) => {
+        const [nextOpen] = args
+
+        if (!isControlled) {
+          setUncontrolledOpen(nextOpen)
+        }
+
+        onOpenChange?.(...args)
+      },
+      [isControlled, onOpenChange],
+    )
 
     return (
       <span
@@ -215,13 +232,17 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       >
         <BasePopover.Root
           defaultOpen={defaultOpen}
-          onOpenChange={onOpenChange}
+          onOpenChange={handleOpenChange}
           open={open}
           {...rootProps}
         >
           <BasePopover.Trigger
             {...triggerRest}
-            className={cx(styles.trigger, triggerSlotClassName)}
+            className={cx(
+              styles.trigger,
+              isOpen && styles.triggerActive,
+              triggerSlotClassName,
+            )}
             disabled={disabled}
             ref={ref}
             style={triggerSlotStyle}

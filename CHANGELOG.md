@@ -1,5 +1,12 @@
 
 
+## [1.14.0](https://github.com/memori-ai/ui/compare/v1.13.1...v1.14.0) (2026-05-06)
+
+
+### Features
+
+* enhance Popover component with controlled open state and active trigger styling ([f0b8793](https://github.com/memori-ai/ui/commit/f0b87931cec787728e7b07b4c7359be81197e3a8))
+
 ## [1.13.1](https://github.com/memori-ai/ui/compare/v1.13.0...v1.13.1) (2026-05-06)
 
 ## [1.13.0](https://github.com/memori-ai/ui/compare/v1.12.0...v1.13.0) (2026-04-28)

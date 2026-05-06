@@ -65,6 +65,8 @@
         --memori-warning: oklch(80% 0.25 80deg);
         --memori-warning-content: oklch(22% 0.06 80deg);
         --memori-error: oklch(65% 0.3 30deg);
+        --memori-error-hover: color-mix(in oklch, var(--memori-error), black 15%);
+        --memori-error-active: color-mix(in oklch, var(--memori-error), black 20%);
         --memori-error-content: oklch(20% 0.05 240deg);
         --memori-error-text: oklch(54% 0.24 28deg);
         --memori-info: oklch(70% 0.2 220deg);
@@ -208,6 +210,8 @@
         --memori-warning: oklch(78% 0.16 80deg);
         --memori-warning-content: oklch(18% 0.07 80deg);
         --memori-error: oklch(68% 0.22 30deg);
+        --memori-error-hover: color-mix(in oklch, var(--memori-error), white 12%);
+        --memori-error-active: color-mix(in oklch, var(--memori-error), white 22%);
         --memori-error-content: oklch(16% 0.04 240deg);
         --memori-error-text: oklch(76% 0.18 28deg);
         --memori-info: oklch(72% 0.16 220deg);

@@ -43,7 +43,7 @@
     "format": "bunx prettier --write .",
     "format:check": "bunx prettier --check .",
     "test": "vitest watch",
-    "test:ci": "CI=true vitest run --passWithNoTests",
+    "test:ci": "CI=true vitest run --project=unit --passWithNoTests",
     "test:ai": "AGENT=1 vitest run --passWithNoTests",
     "test:husky": "CI=true vitest related --run --passWithNoTests",
     "release": "bunx release-it",

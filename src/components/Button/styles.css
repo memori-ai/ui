@@ -481,16 +481,15 @@
     color: var(--memori-error-content);
 }
 
-.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-error);
-    background-color: var(--memori-error);
+.memori-button.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+    border-color: var(--memori-error-hover);
+    background-color: var(--memori-error-hover);
 }
 
-.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button--danger.memori-button--active {
-    border-color: var(--memori-error);
-    background-color: var(--memori-error);
-    opacity: 0.9;
+.memori-button.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+.memori-button.memori-button--danger.memori-button--active {
+    border-color: var(--memori-error-active);
+    background-color: var(--memori-error-active);
 }
 
 /* ============================================
@@ -618,13 +617,17 @@
 }
 
 .memori-button--disabled {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
     cursor: not-allowed;
     opacity: 0.6;
 }
 
-.memori-button--disabled:hover {
+/* Primary-tinted disabled surface — never apply to danger (semantic error fill). */
+.memori-button--disabled:not(.memori-button--danger) {
+    border-color: var(--memori-border-color);
+    background-color: var(--memori-primary-disabled);
+}
+
+.memori-button--disabled:hover:not(.memori-button--danger) {
     border-color: var(--memori-border-color);
     background-color: var(--memori-primary-disabled);
 }

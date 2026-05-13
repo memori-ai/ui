@@ -46,6 +46,18 @@
         --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
         --memori-main-background: oklch(97.1% 0 0deg);
         --memori-secondary-background: oklch(100% 0 0deg);
+
+        /* Inset surface — for elements nested inside a card/panel (select trigger,
+           dropdown panel, info rows). Sits between secondary (card) and main (page).
+           Light: ~oklch(98.3%) — subtle dip below the card.
+           Dark: ~oklch(26.1%) — subtle lift above the card (recessed-vs-elevated
+           reads inverted in dark mode). Single color-mix handles both via the
+           theme-aware vars. */
+        --memori-inset-background: color-mix(
+            in oklch,
+            var(--memori-secondary-background),
+            var(--memori-main-background) 45%
+        );
         --memori-text-color: oklch(20% 0.05 240deg);
         --memori-border-color: color-mix(in oklch, oklch(45% 0.05 240deg), transparent 84%);
         --memori-surface-contrast: #000;

@@ -131,7 +131,7 @@
 }
 
 .memori-table__sort-button:hover {
-    background-color: color-mix(in oklch, var(--memori-primary), transparent 92%);
+    background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
     color: var(--memori-text-color);
 }
 

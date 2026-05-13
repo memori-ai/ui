@@ -47,7 +47,7 @@
 
 .trigger:hover:not(:disabled) {
     border-color: var(--memori-border-primary-hover);
-    background: var(--memori-primary-subtle);
+    background: var(--memori-primary-subtle-hover);
 }
 
 .triggerActive:not(:disabled) {

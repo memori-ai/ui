@@ -226,7 +226,7 @@
 }
 
 .memori-alert__close:hover {
-    background-color: oklch(from var(--memori-text-color) l c h / 10%);
+    background-color: var(--memori-main-background);
     opacity: 1;
 }
 

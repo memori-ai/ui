@@ -132,8 +132,8 @@
             0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
             0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
         --memori-shadow-lg:
-            0 10px 15px -3px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
-            0 4px 6px -4px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
+            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 8%, transparent),
+            0 10px 15px -3px color-mix(in oklch, oklch(0% 0 0deg) 6%, transparent);
         --memori-shadow-xl:
             0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
             0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
@@ -238,8 +238,8 @@
             0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 28%, transparent),
             0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 22%, transparent);
         --memori-shadow-lg:
-            0 10px 15px -3px color-mix(in oklch, var(--memori-surface-contrast) 34%, transparent),
-            0 4px 6px -4px color-mix(in oklch, var(--memori-surface-contrast) 28%, transparent);
+            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 40%, transparent),
+            0 2px 4px -2px color-mix(in oklch, oklch(0% 0 0deg) 30%, transparent);
         --memori-shadow-xl:
             0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 40%, transparent),
             0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 34%, transparent);

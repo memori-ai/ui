@@ -113,7 +113,7 @@
     border-radius: 0.375rem;
     background-clip: padding-box;
     background-color: var(--memori-inset-background);
-    box-shadow: var(--memori-shadow-sm);
+    box-shadow: var(--memori-shadow-lg);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
     transform-origin: var(--transform-origin);
@@ -169,7 +169,7 @@
 
 .memori-select__item:hover,
 .memori-select__item[data-highlighted] {
-    background-color: var(--memori-primary-subtle);
+    background-color: var(--memori-main-background);
 }
 
 .memori-select__item[data-selected] {

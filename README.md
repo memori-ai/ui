@@ -1,66 +1,68 @@
 # MemoriAI UI
 
-This is the UI library for Memori AI and [AIsuru](https://www.aisuru.com).
+React component library for Memori AI and [AIsuru](https://www.aisuru.com), used by the AIsuru platform and [Memori Client](https://github.com/memori-ai/memori-client) components.
 
-Used by AIsuru platform and [Client](https://github.com/memori-ai/memori-client) components.
-
-See [Storybook](https://memori-ai.github.io/ui/) for a showcase of all components and their usage.
+For live examples, prop details, interaction states, and accessibility checks, use [Storybook](https://memori-ai.github.io/ui/). This README is the short integration guide.
 
 ## Installation
 
 ```bash
 bun add @memori.ai/ui
 # npm install @memori.ai/ui
-# or yarn or pnpm
+# yarn add @memori.ai/ui
+# pnpm add @memori.ai/ui
 ```
 
-## Usage
+## Quick Start
 
-### 1. Import Styles (Required)
-
-You **must** import the compiled CSS file in your application's entry point (e.g., `main.tsx` or `App.tsx`) to ensure components are styled correctly.
+Import the compiled stylesheet once from your application root, then import components from the package entry point.
 
 ```tsx
 import '@memori.ai/ui/styles.css'
-```
+import { Button, MemoriI18nProvider } from '@memori.ai/ui'
 
-### 2. Import Components
-
-```tsx
-import { Button } from '@memori.ai/ui'
-
-function App() {
-  return <Button variant="primary">Click me</Button>
+export function App() {
+  return (
+    <MemoriI18nProvider>
+      <Button variant="primary">Click me</Button>
+    </MemoriI18nProvider>
+  )
 }
 ```
 
-## Peer dependencies
+## Before You Integrate
 
-The package expects compatible versions of these libraries in your app (they are not bundled inside `@memori.ai/ui`):
+- **Styles are required:** import `@memori.ai/ui/styles.css` once, usually in `main.tsx`, `App.tsx`, or your framework root layout.
+- **Font is not bundled:** the default token uses `'Lexend Deca Variable', 'Lexend Deca', sans-serif`. Load that font in the host app, or override `--memori-font-family`.
+- **Modern CSS is required:** the theme uses `oklch()`, `color-mix()`, CSS cascade layers, and CSS custom properties. Target modern browsers such as Chrome/Edge 111+, Safari 16.4+, and Firefox 113+.
+- **Next.js App Router:** components are client-side React components. Use them from your own `'use client'` files and import the CSS once from the root layout.
+- **Theming is CSS-token based:** prefer overriding hook tokens such as `--memori-primary-color`, `--memori-secondary-color`, and `--memori-font-family` in the host app.
+- **Deep docs live in Storybook:** component-level behavior, visual variants, and accessibility examples should be documented in [Storybook](https://memori-ai.github.io/ui/), not expanded indefinitely in this README.
 
-| Package         | Notes                                                                                             |
-| --------------- | ------------------------------------------------------------------------------------------------- |
-| `react`         | ^18.2.0                                                                                           |
-| `react-dom`     | ^18.2.0                                                                                           |
-| `i18next`       | Required for translated components (Table, Expandable, …)                                         |
-| `react-i18next` | Use [`MemoriI18nProvider`](#internationalization-i18n) or `I18nextProvider` with merged resources |
+## Peer Dependencies
 
-TypeScript types for React are optional peers.
+The host application must provide these compatible packages:
 
-## Internationalization (i18n)
+| Package            | Version   | Notes                                  |
+| ------------------ | --------- | -------------------------------------- |
+| `react`            | `^18.2.0` | Required peer dependency               |
+| `react-dom`        | `^18.2.0` | Required peer dependency               |
+| `i18next`          | `^25.5.0` | Required for translated components     |
+| `react-i18next`    | `^16.3.5` | Required for translated components     |
+| `typescript`       | `>=5.0`   | Optional peer for TypeScript consumers |
+| `@types/react`     | `^18.2.0` | Optional peer                          |
+| `@types/react-dom` | `^18.2.0` | Optional peer                          |
 
-Components such as **Table** and **Expandable** use [`useTranslation()`](https://react.i18next.com/) from **react-i18next**. They read strings from the **i18n instance** in React context (`t('table.searchPlaceholder')`, etc.).
+Runtime dependencies such as `@base-ui/react`, `@tanstack/react-table`, `classnames`, and `lucide-react` are installed with the package.
 
-**Peer dependencies:** `i18next` and `react-i18next`.
+## Internationalization
 
-### Option A — Quick start (bundled instance)
-
-Use the preconfigured instance and provider exported from the package:
+Components such as `Table` and `Expandable` use `react-i18next`. The package exports a preconfigured provider for the built-in table locales: `en`, `it`, `es`, `fr`, and `de`.
 
 ```tsx
 import { MemoriI18nProvider } from '@memori.ai/ui'
 
-function Root() {
+export function Root() {
   return (
     <MemoriI18nProvider>
       <App />
@@ -69,11 +71,7 @@ function Root() {
 }
 ```
 
-The default provider uses the bundled **`memoriI18n`** instance (all `table.*` locales: `en`, `it`, `es`, `fr`, `de`, with `fallbackLng: 'en'`). Pass **`i18n={…}`** when you use your own instance after `addMemoriTableToI18n`.
-
-### Option B — Existing i18next setup
-
-Merge Memori UI strings into your initialized instance (after `i18n.init()`):
+If your app already owns an `i18next` instance, merge the Memori UI resources after `i18n.init()`:
 
 ```ts
 import i18n from './your-i18n'
@@ -82,157 +80,29 @@ import { addMemoriTableToI18n } from '@memori.ai/ui'
 addMemoriTableToI18n(i18n)
 ```
 
-Optionally pass `{ namespace: 'translation' }` (default) if you use a custom namespace. Then wrap your app with `<I18nextProvider i18n={i18n}>` from `react-i18next` as usual, or use `<MemoriI18nProvider i18n={i18n}>`.
+Then use your existing `I18nextProvider`, or pass the instance to `<MemoriI18nProvider i18n={i18n}>`. Column titles, filter labels, row actions, and bulk action labels still come from your app data.
 
-### Option C — Manual bundles
+For custom resource wiring, import `tableEn`, `tableIt`, `tableEs`, `tableFr`, `tableDe`, or `MEMORI_TABLE_LOCALES`.
 
-Import locale objects and attach them yourself:
+## Theming
 
-- `tableEn`, `tableIt`, `tableEs`, `tableFr`, `tableDe`, or the combined `MEMORI_TABLE_LOCALES`
-
-Types: `MemoriTableTranslations`, `MemoriSupportedLocale`.
-
-Column titles, filter labels, and row/bulk action labels still come from **your** column definitions and data, not from these bundles.
-
-**Storybook** in this repo uses `MemoriI18nProvider` so previews match a real integration.
-
-## Components (public API)
-
-All exports are from `@memori.ai/ui`. Types are exported where listed—use your IDE or `dist` `.d.ts` for the full shape (many props extend [Base UI](https://base-ui.com/) primitives).
-
-| Export                                                   | Description                                                     | Main props / types                                                                                                                                                                                                                            |
-| -------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Alert**                                                | Single toast UI (usually driven by the manager, not used alone) | Renders one toast; prefer `useAlertManager().add(...)`                                                                                                                                                                                        |
-| **AlertProvider**                                        | Toast/alerts context                                            | `children`, `defaultDuration?`, `limit?` — see `AlertProviderProps`                                                                                                                                                                           |
-| **AlertViewport**                                        | Renders the alert stack                                         | `placement?`, `className?`, `style?` — see `AlertViewportProps`                                                                                                                                                                               |
-| **useAlertManager**                                      | Hook: `add`, `close`, `toasts`                                  | Must be used under `AlertProvider`                                                                                                                                                                                                            |
-| **createAlertOptions**                                   | Maps `AddAlertOptions` → toast payload                          | Used with `alertManager.add(createAlertOptions({ ... }))`                                                                                                                                                                                     |
-| **Button**                                               | Button                                                          | `variant`, `size`, `loading`, `icon`, `iconPosition`, `shape`, `fullWidth`, `shadow`, `active`, `danger`, `ariaLabel`, `type`, … — `ButtonProps`                                                                                              |
-| **Autocomplete**                                         | Searchable text field + suggestions                             | `options`, `value` / `defaultValue`, `onChange`, `placeholder`, `mode`, `label`, `disabled`, `loading`, `filter`, … — `AutocompleteProps`                                                                                                     |
-| **Combobox**                                             | Select with search                                              | `options`, `value` / `defaultValue`, `onChange`, `placeholder`, `searchPlaceholder`, `label`, `disabled`, … — `ComboboxProps`                                                                                                                 |
-| **Collapsible**                                          | Expandable section                                              | `summary`, `children`, `open` / `defaultOpen`, `onOpenChange`, `disabled`, `className`, … — `CollapsibleProps`                                                                                                                                |
-| **Card**                                                 | Card container                                                  | `title`, `description`, `cover`, `variant`, `padding`, `component`, `loading`, `hoverable`, `focusable`, … — `CardProps`                                                                                                                      |
-| **Checkbox**                                             | Checkbox                                                        | `checked`, `defaultChecked`, `indeterminate`, `label`, `onChange`, `disabled`, `name`, `value`, … — `CheckboxProps`                                                                                                                           |
-| **ConfirmDialog**                                        | Confirm/cancel modal                                            | `isOpen`, `onClose`, `onConfirm`, `title`, `message`, `confirmText?`, `cancelText?`, `loading?`                                                                                                                                               |
-| **Expandable**                                           | Truncated text with expand                                      | `children`, `rows`, `mode`, `defaultExpanded`, `expandSymbol`, `collapseSymbol`, `lineHeightMultiplier`, `className`, … (see `Expandable.tsx`)                                                                                                |
-| **Dropdown**                                             | Menu (compound)                                                 | **Dropdown**: `open`, `defaultOpen`, `onOpenChange`, `disabled`, … — **Dropdown.Trigger**: `showChevron`, `render`, … — **Dropdown.Menu** / **Item** / **Separator** / **Group** — see `Dropdown*Props` in source                             |
-| **Drawer**                                               | Slide-over panel                                                | `open`, `onOpenChange`, `onClose`, `anchor`, `size`, `title`, `description`, `footer`, `loading`, `closable`, … — `DrawerProps`                                                                                                               |
-| **Input**                                                | Text input                                                      | `variant`, `size`, `fullWidth`, `placeholder`, `value`, `onValueChange`, `disabled`, `type`, … — `InputProps`                                                                                                                                 |
-| **Field**                                                | Compound field primitives                                       | `Field.Root`, `Label`, `Description`, `Error`, `Control`, `Item`, `Validity` (Base UI field API)                                                                                                                                              |
-| **FieldGroup**                                           | Label + helper + error + control                                | `label`, `helperText`, `error`, `required`, `invalid`, `children`, … — `FieldGroupProps`                                                                                                                                                      |
-| **Form**                                                 | Form root with validation helpers                               | `errors`, `onFormSubmit`, `validationMode`, `onSubmit`, `children`, … — `FormProps`                                                                                                                                                           |
-| **Modal**                                                | Dialog                                                          | `open`, `onOpenChange`, `onClose`, `title`, `description`, `children`, `footer`, `loading`, `closable`, `size`, `width` / `widthMd` / `widthLg`, `closeOnOverlayClick`, `closeOnEsc`, `modal`, `initialFocus`, `finalFocus`, … — `ModalProps` |
-| **SelectBox**                                            | Native-style select                                             | `options`, `value`, `onChange`, `placeholder`, `label`, `disabled`, `error`, `name`, … — `SelectBoxProps`                                                                                                                                     |
-| **Slider**                                               | Range input                                                     | `min`, `max`, `step`, `value`, `defaultValue`, `label`, `ariaLabel`, `onChange`, `disabled`, … — `SliderProps`                                                                                                                                |
-| **Spin**                                                 | Loading spinner / overlay                                       | `spinning`, `primary`, `children`, `className`, `spinnerClassName`, … — `SpinProps`                                                                                                                                                           |
-| **Table**                                                | Data table ([TanStack Table](https://tanstack.com/table))       | Full list: [Table](#table). Exported types: `ColumnDef`, `ColumnFiltersState`, `BulkAction`, `RowAction`, `RowActionsVariant`, `TablePaginationVariant`, `FilterDef`, `FilterOption`, `FilterVariant`, `DateRangeValue`, pagination helpers   |
-| **Tooltip**                                              | Tooltip (CSS-positioned)                                        | `content`, `children`, `align`, `disabled`, `visible`, `className` — default export `Props`                                                                                                                                                   |
-| **useTheme**                                             | Light/dark theme                                                | Returns `{ theme, setTheme, toggleTheme }` — type `Theme`                                                                                                                                                                                     |
-| **memoriI18n**                                           | Preconfigured i18next instance                                  | All `table.*` locales; use with `MemoriI18nProvider` or `addMemoriTableToI18n`                                                                                                                                                                |
-| **MemoriI18nProvider**                                   | React provider for `useTranslation`                             | `children`, `i18n?` (defaults to `memoriI18n`) — `MemoriI18nProviderProps`                                                                                                                                                                    |
-| **addMemoriTableToI18n**                                 | Merge `table` strings into an existing i18n                     | `(instance, options?)` — `AddMemoriTableToI18nOptions`                                                                                                                                                                                        |
-| **tableEn** / **tableIt** / … / **MEMORI_TABLE_LOCALES** | Raw locale objects                                              | For custom resource wiring; types `MemoriTableTranslations`, `MemoriSupportedLocale`                                                                                                                                                          |
-
-### Table
-
-Props are typed as **`TableProps<TData>`**. The **Table** is built on [@tanstack/react-table](https://tanstack.com/table). Column definitions use `ColumnDef<TData>`; optional `meta` fields (badges, `hiddenByDefault`, filter config, etc.) are documented in the component source and Storybook stories.
-
-| Prop                      | Type                                            | Default             | Description                                                                                                                         |
-| ------------------------- | ----------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **`data`**                | `TData[]`                                       | —                   | **Required.** Row data.                                                                                                             |
-| **`columns`**             | `ColumnDef<TData, unknown>[]`                   | —                   | **Required.** Column definitions (headers, cells, sorting, `meta`, …).                                                              |
-| `className`               | `string`                                        | —                   | Extra class on the table wrapper.                                                                                                   |
-| `enableRowSelection`      | `boolean`                                       | `false`             | Shows a selection column and checkboxes.                                                                                            |
-| `enableColumnResizing`    | `boolean`                                       | `false`             | Enables drag-to-resize columns.                                                                                                     |
-| `getRowId`                | `(originalRow: TData, index: number) => string` | —                   | Stable row id for selection and keys; recommended when rows lack a natural id.                                                      |
-| `enablePagination`        | `boolean`                                       | `false`             | Shows footer pagination (client-side unless `manualPagination` is used).                                                            |
-| `initialPageSize`         | `number`                                        | `10`                | Page size when using internal pagination state (must match an entry in `pageSizeOptions` when possible).                            |
-| `pageSizeOptions`         | `number[]`                                      | `[10, 25, 50, 100]` | Options in the page-size control.                                                                                                   |
-| `toolbar`                 | `ReactNode`                                     | —                   | Custom nodes rendered in the toolbar row (e.g. actions next to search).                                                             |
-| `maxBodyHeight`           | `CSSProperties['maxHeight'] \| false`           | —                   | Scrollable body: set a max height, or `false` for no cap.                                                                           |
-| `isLoading`               | `boolean`                                       | `false`             | Shows a loading overlay over the body.                                                                                              |
-| `emptyState`              | `ReactNode`                                     | —                   | Replaces the body when there are zero rows (and not loading).                                                                       |
-| `bulkActions`             | `BulkAction<TData>[]`                           | —                   | Toolbar bulk actions when rows are selected (`label`, optional `icon` / `variant`, `onClick(rows)`).                                |
-| `rowActions`              | `RowAction<TData>[]`                            | —                   | Per-row actions (`label`, optional `id` / `icon` / `variant`, `onClick(row)`).                                                      |
-| `rowActionsVariant`       | `'menu' \| 'inline'`                            | `'menu'`            | `menu` — overflow ⋯ menu; `inline` — icon buttons in the cell.                                                                      |
-| `globalFilterPlaceholder` | `string`                                        | —                   | Placeholder for the toolbar search field (library default comes from i18n).                                                         |
-| `tableId`                 | `string`                                        | —                   | If set, column visibility is persisted under `localStorage` (`memori-table:columnVisibility:<id>`).                                 |
-| `search`                  | `string`                                        | —                   | Controlled global search value (toolbar).                                                                                           |
-| `onSearchChange`          | `(value: string) => void`                       | —                   | Called when the search field changes (debounced by `searchDebounceMs`).                                                             |
-| `searchDebounceMs`        | `number`                                        | `300`               | Debounce delay for `onSearchChange`.                                                                                                |
-| `columnFilters`           | `ColumnFiltersState`                            | —                   | Controlled TanStack column filter state.                                                                                            |
-| `onColumnFiltersChange`   | `(filters: ColumnFiltersState) => void`         | —                   | Updates column filters (header filters and/or toolbar chips when `filterDefs` is set).                                              |
-| `filterDefs`              | `FilterDef[]`                                   | —                   | Declarative toolbar filters (`select`, `multi-select`, `date-range`, `boolean`); ids must match column `accessorKey` / `id`.        |
-| `manualPagination`        | `boolean`                                       | `false`             | **Server pagination:** set `true` when `data` is only the current page; supply **`rowCount`** (total rows on the server).           |
-| `rowCount`                | `number`                                        | —                   | Total row count when `manualPagination` is `true`.                                                                                  |
-| `pagination`              | `PaginationState`                               | —                   | Controlled pagination `{ pageIndex, pageSize }`. Use with **`onPaginationChange`**.                                                 |
-| `onPaginationChange`      | `(updater: Updater<PaginationState>) => void`   | —                   | TanStack-style updater for pagination. If **`pagination` / `onPaginationChange` are omitted**, pagination state is kept internally. |
-| `paginationVariant`       | `'simplified' \| 'detailed'`                    | `'simplified'`      | Footer layout: compact range + badge, or dashboard-style (total + page buttons + page size).                                        |
-| `paginationTotalLabel`    | `string`                                        | —                   | With `paginationVariant="detailed"`, optional noun for the total line (e.g. `"Users"` → “Total Users: 42”).                         |
-
-**Also exported:** `getDetailedPaginationPadding`, `getPaginationWindowItems`, `PAGINATION_DETAILED_SLOT_COUNT`, `PAGINATION_LEADING_BLOCK_SIZE`, and related pagination helper types from the package entry point.
-
-## Theming & Customization
-
-This library uses a **dynamic OKLCH color system**. The entire color palette (shades 100-900) is automatically generated from base primary and secondary colors using CSS Relative Color Syntax.
-
-### Design Tokens
-
-The library exposes CSS variables for shadows, interactive states, and focus. Use these tokens in your app or when extending components.
-
-#### Shadows
-
-| Token                     | Use case                             |
-| ------------------------- | ------------------------------------ |
-| `--memori-shadow-xs`      | Subtle depth for small elements      |
-| `--memori-shadow-sm`      | Default for buttons, cards           |
-| `--memori-shadow-md`      | Hover states                         |
-| `--memori-shadow-lg`      | Modals, dropdowns                    |
-| `--memori-shadow-xl`      | Hero cards, major sections           |
-| `--memori-shadow-2xl`     | Maximum elevation                    |
-| `--memori-shadow-primary` | Brand-colored shadow for CTA buttons |
-
-Shadows are overridden in dark theme for better contrast.
-
-#### Interactive state tokens
-
-Primary interactive states are derived from your brand color and can be overridden:
-
-- `--memori-primary-hover` – hover background/border
-- `--memori-primary-active` – pressed/active state
-- `--memori-primary-disabled` – disabled state
-- `--memori-focus-ring` – focus outline (box-shadow)
-- `--memori-focus-ring-offset` – gap between element and ring
-
-#### Overriding brand colors
-
-Set `--memori-primary-color` (and optionally `--memori-secondary-color`) in your app. Interactive states and `--memori-shadow-primary` are computed from these.
+Memori UI uses a dynamic OKLCH color system. Set the main hook tokens in the host app; derived tokens such as hover, active, border, focus, and shadow states are computed from them.
 
 ```css
 :root {
-  /* Override Primary (purple default) */
   --memori-primary-color: oklch(0.55 0.22 290);
-
-  /* Override Secondary (cyan default) */
   --memori-secondary-color: oklch(0.7 0.15 200);
+  --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
 }
 ```
 
-**Note:** The legacy token `--memori-depth` has been removed. Use the shadow scale (`--memori-shadow-xs` through `--memori-shadow-2xl`) instead.
-
-### Dark Mode
-
-The library includes built-in dark mode support. All components automatically adapt when dark mode is enabled.
-
-#### Using the Theme Hook
-
-The easiest way to add theme switching is using the `useTheme` hook:
+Dark mode is enabled with `data-theme="dark"` or a `dark` class on the document root. No attribute means the default light theme.
 
 ```tsx
 import { useTheme } from '@memori.ai/ui'
 
-function App() {
-  const { theme, setTheme, toggleTheme } = useTheme()
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <button onClick={toggleTheme}>
@@ -242,124 +112,97 @@ function App() {
 }
 ```
 
-The hook automatically:
+The most common integrator tokens are:
 
-- Detects system preference on first load
-- Persists theme choice in localStorage
-- Applies the theme to the document root
+| Token family      | Examples                                                                                                                                 |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Brand             | `--memori-primary-color`, `--memori-secondary-color`, `--memori-primary-content`                                                         |
+| Surface and text  | `--memori-main-background`, `--memori-secondary-background`, `--memori-inset-background`, `--memori-text-color`, `--memori-border-color` |
+| Typography        | `--memori-font-family`, `--memori-text-size-base`, `--memori-text-weight-medium`, `--memori-text-line-normal`                            |
+| Spacing           | `--memori-spacing-xs` through `--memori-spacing-5xl`                                                                                     |
+| Radius and border | `--memori-radius-field`, `--memori-radius-selector`, `--memori-radius-box`, `--memori-border`                                            |
+| Shadows           | `--memori-shadow-xs` through `--memori-shadow-2xl`, `--memori-shadow-primary`                                                            |
+| Motion            | `--memori-motion-duration-fast`, `--memori-motion-duration-normal`, `--memori-motion-ease`                                               |
+| Feedback          | `--memori-success`, `--memori-warning`, `--memori-error`, `--memori-info`                                                                |
 
-#### Manual Theme Control
+The full token source is `src/theme/variables.css`, and visual examples are available in Storybook.
 
-You can also control the theme manually by setting a `data-theme` attribute or `dark` class on the document root:
+## Public API
 
-```tsx
-// Set dark mode
-document.documentElement.setAttribute('data-theme', 'dark')
-// or
-document.documentElement.classList.add('dark')
+All supported runtime exports come from `@memori.ai/ui`. For the full TypeScript shape, use your IDE, the generated `dist/index.d.ts`, and the component stories.
 
-// Set light mode
-document.documentElement.removeAttribute('data-theme')
-document.documentElement.classList.remove('dark')
-```
+| Export                                                                        | Description                                             | Main props / types                                                                                                                              |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Alert`                                                                       | Single toast UI, usually driven by the manager          | Prefer `useAlertManager().add(...)`                                                                                                             |
+| `AlertProvider`                                                               | Toast/alerts context                                    | `AlertProviderProps`                                                                                                                            |
+| `AlertViewport`                                                               | Renders the alert stack                                 | `AlertViewportProps`                                                                                                                            |
+| `useAlertManager`                                                             | Alert hook                                              | `add`, `close`, `toasts`                                                                                                                        |
+| `createAlertOptions`                                                          | Maps alert options to toast payloads                    | `AddAlertOptions`                                                                                                                               |
+| `Button`                                                                      | Button                                                  | `ButtonProps`                                                                                                                                   |
+| `Autocomplete`                                                                | Searchable text field with suggestions                  | `AutocompleteProps`, `AutocompleteOption`, `AutocompleteGroupOption`                                                                            |
+| `Combobox`                                                                    | Select with search                                      | `ComboboxProps`                                                                                                                                 |
+| `Card`                                                                        | Card container                                          | `CardProps`                                                                                                                                     |
+| `Checkbox`                                                                    | Checkbox                                                | `CheckboxProps`                                                                                                                                 |
+| `Collapsible`                                                                 | Expandable section                                      | `CollapsibleProps`                                                                                                                              |
+| `ConfirmDialog`                                                               | Confirm/cancel modal                                    | `isOpen`, `onClose`, `onConfirm`, `title`, `message`                                                                                            |
+| `Drawer`                                                                      | Slide-over panel                                        | `DrawerProps`                                                                                                                                   |
+| `Dropdown`                                                                    | Compound menu                                           | `Dropdown.Trigger`, `Dropdown.Menu`, `Dropdown.Item`, `Dropdown.Separator`, `Dropdown.Group`                                                    |
+| `Expandable`                                                                  | Truncated text with expand/collapse                     | See component stories and type declarations                                                                                                     |
+| `Field`                                                                       | Compound field primitives                               | `Field.Root`, `Label`, `Description`, `Error`, `Control`, `Item`, `Validity`                                                                    |
+| `FieldGroup`                                                                  | Label, helper, error, and control wrapper               | `FieldGroupProps`                                                                                                                               |
+| `Form`                                                                        | Form root with validation helpers                       | `FormProps`, `FormValidationMode`                                                                                                               |
+| `Input`                                                                       | Text input                                              | `InputProps`                                                                                                                                    |
+| `Modal`                                                                       | Dialog                                                  | `ModalProps`                                                                                                                                    |
+| `Popover`                                                                     | Anchored floating content                               | `PopoverProps`, `PopoverPlacement`                                                                                                              |
+| `Section`                                                                     | Page/module header                                      | `SectionProps`                                                                                                                                  |
+| `SelectBox`                                                                   | Native-style select                                     | `SelectBoxProps`                                                                                                                                |
+| `Slider`                                                                      | Range input                                             | `SliderProps`                                                                                                                                   |
+| `Spin`                                                                        | Loading spinner / overlay                               | `SpinProps`                                                                                                                                     |
+| `Table`                                                                       | Data table built on TanStack Table                      | `TableProps`, `ColumnDef`, `ColumnFiltersState`, `BulkAction`, `RowAction`, `FilterDef`, pagination helpers                                     |
+| `Tabs`                                                                        | Compound tabs primitive                                 | `Tabs.Root`, `Tabs.List`, `Tabs.Tab`, `Tabs.Panel`, `Tabs.Indicator`, `TabsVariant`                                                             |
+| `Tooltip`                                                                     | Anchored tooltip built on Base UI                       | `TooltipProps`, `TooltipPlacement`, `TooltipLegacyAlign`; prefer `title`, `placement`, and `open` over legacy `content`, `align`, and `visible` |
+| `useTheme`                                                                    | Light/dark theme hook                                   | `Theme`; returns `{ theme, setTheme, toggleTheme }`                                                                                             |
+| `memoriI18n`                                                                  | Preconfigured i18next instance                          | Built-in table locales                                                                                                                          |
+| `MemoriI18nProvider`                                                          | React provider for translated components                | `MemoriI18nProviderProps`                                                                                                                       |
+| `addMemoriTableToI18n`                                                        | Adds bundled table strings to an existing i18n instance | `AddMemoriTableToI18nOptions`                                                                                                                   |
+| `tableEn`, `tableIt`, `tableEs`, `tableFr`, `tableDe`, `MEMORI_TABLE_LOCALES` | Raw locale resources                                    | `MemoriTableTranslations`, `MemoriSupportedLocale`                                                                                              |
 
-### Styling Architecture
+## Table Integration Notes
 
-- **Plain CSS**: We use standard CSS files, not CSS Modules or CSS-in-JS.
-- **Namespace**: All CSS classes and variables are prefixed with `memori-` to avoid conflicts (e.g., `.memori-button`, `--memori-spacing-md`).
-- **BEM Convention**: Classes follow the Block Element Modifier convention (e.g., `.memori-card__header--active`).
-- **Theme**: Is defined inside the '/theme/variables.css' file.
-- **Icons**: We use [Lucide React](https://lucide.dev) for all icons.
+`Table` is typed as `TableProps<TData>` and uses [TanStack Table](https://tanstack.com/table). Define columns with `ColumnDef<TData>`, pass stable row IDs with `getRowId` when possible, and use controlled state for server-driven search, filters, or pagination.
+
+Server pagination uses `manualPagination`, `rowCount`, `pagination`, and `onPaginationChange`. Column visibility can be persisted by passing `tableId`; it stores preferences in `localStorage` under `memori-table:columnVisibility:<id>`.
+
+Also exported: `getDetailedPaginationPadding`, `getPaginationWindowItems`, `PAGINATION_DETAILED_SLOT_COUNT`, `PAGINATION_LEADING_BLOCK_SIZE`, and related pagination helper types.
+
+## Packaging
+
+- ESM and CJS builds are published: `dist/memori-ai-ui.es.js` and `dist/memori-ai-ui.cjs.js`.
+- Type declarations are published at `dist/index.d.ts`.
+- CSS is emitted as a single file and exported as `@memori.ai/ui/styles.css`.
+- CSS is marked as a side effect so bundlers keep the required stylesheet when imported.
+- The package is published as public MIT-licensed npm package `@memori.ai/ui`.
 
 ## Development
 
-To install dependencies:
-
 ```bash
 bun install
-```
-
-To run Storybook:
-
-```bash
 bun run storybook # or bun sb
-```
-
-To run tests (in watch mode):
-
-```bash
 bun run test
-# this is not the same as `bun test`
-# `bun test` runs the tests using Bun test runner and it's not compatible with our setup
-```
-
-To run Storybook accessibility tests (WCAG / axe) in CI mode:
-
-```bash
 bun run test:a11y
-```
-
-This runs the Storybook Vitest project with `@storybook/addon-a11y` checks enabled as errors.  
-The run fails on accessibility violations (for example: missing accessible names, empty headers, or insufficient color contrast).
-
-Useful while iterating:
-
-```bash
-bun run storybook
-# then open the Testing panel in Storybook and run component tests
-```
-
-Linting:
-
-```bash
 bun lint
-```
-
-Linting CSS:
-
-```bash
 bun lint:css
-```
-
-Formatting:
-
-```bash
-bun format
-```
-
-Formatting check:
-
-```bash
 bun format:check
-```
-
-Type checking:
-
-```bash
 bun typecheck
-```
-
-Building:
-
-```bash
 bun run build
 ```
 
-Release:
+Use `bun run test` for the Vitest watch setup; this project is not configured for the Bun test runner. `bun run test:a11y` runs Storybook accessibility checks through Vitest and fails on WCAG/axe violations.
 
-```bash
-bun run release
-```
+## Links
 
-## Tech stack
-
-- [Bun](https://bun.com)
-- [React](https://react.dev)
-- [@base-ui/react](https://github.com/base-ui/react)
-- [Storybook](https://storybook.js.org)
-- [Vite](https://vitejs.dev)
-- [Vitest](https://vitest.dev)
-- [Playwright](https://playwright.dev)
-- [React Testing Library](https://testing-library.com/react)
-- [React I18next](https://react.i18next.com)
-- [Lucide React](https://lucide.dev)
+- [Storybook](https://memori-ai.github.io/ui/)
+- [Memori Client](https://github.com/memori-ai/memori-client)
+- [Changelog](./CHANGELOG.md)
+- [Repository](https://github.com/memori-ai/ui.git)
+- License: MIT

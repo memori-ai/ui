@@ -5,6 +5,7 @@ import type { InteractionType } from '@base-ui/utils/useEnhancedClickHandler'
 import cx from 'classnames'
 import Spin from '../Spin/Spin'
 import { X as Close } from 'lucide-react'
+import { useStableId } from '../../hooks/useStableId'
 import './styles.css'
 
 export interface ModalProps extends Omit<
@@ -281,9 +282,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref,
   ) => {
-    const popupId = React.useId()
-    const titleId = React.useId()
-    const descriptionId = React.useId()
+    const popupId = useStableId('memori-modal')
+    const titleId = useStableId('memori-modal-title')
+    const descriptionId = useStableId('memori-modal-description')
 
     // Handle open change with escape key support
     const handleOpenChange = React.useCallback(

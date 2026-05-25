@@ -3,6 +3,7 @@ import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 import type { CollapsibleRootProps } from '@base-ui/react/collapsible'
 import cx from 'classnames'
 import { ChevronDown } from 'lucide-react'
+import { useStableId } from '../../hooks/useStableId'
 import './styles.css'
 
 export interface CollapsibleProps extends Omit<
@@ -132,7 +133,7 @@ export const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
     )
 
     // Generate unique IDs for accessibility
-    const collapsibleId = React.useId()
+    const collapsibleId = useStableId('memori-collapsible')
     const triggerId = id || `collapsible-trigger-${collapsibleId}`
     const panelId = `collapsible-panel-${collapsibleId}`
 

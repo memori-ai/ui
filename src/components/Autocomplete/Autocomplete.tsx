@@ -1,4 +1,4 @@
-import React, { forwardRef, useId, useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 import type {
   AutocompleteRootChangeEventDetails,
@@ -6,6 +6,7 @@ import type {
 } from '@base-ui/react/autocomplete'
 import { ChevronDown } from 'lucide-react'
 import cx from 'classnames'
+import { useStableId } from '../../hooks/useStableId'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -177,7 +178,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     },
     ref,
   ) => {
-    const reactId = useId()
+    const reactId = useStableId('memori-autocomplete')
     const rootId = idProp ?? reactId
     const inputId = idProp != null ? `${idProp}-input` : `${reactId}-input`
 

@@ -1,9 +1,10 @@
-import React, { useId, useState } from 'react'
+import React, { useState } from 'react'
 import { Boxes, Info, Layers, Maximize2, Sparkles } from 'lucide-react'
 import { Button } from '../components/Button'
 import { Combobox } from '../components/Combobox'
 import type { ComboboxOption } from '../components/Combobox'
 import { Tooltip } from '../components/Tooltip'
+import { useStableId } from '../hooks/useStableId'
 import '../components/Input/styles.css'
 import styles from './realExamples.module.css'
 
@@ -53,7 +54,7 @@ export function AgentAISettings() {
   const [mechanism, setMechanism] = useState<Mechanism>('content-then-ai')
   const [instructions, setInstructions] = useState('')
   const [model, setModel] = useState<string | null>('memori-openai')
-  const groupName = useId()
+  const groupName = useStableId('agent-ai-settings')
 
   const selectedModelOption = modelOptions.find(o => o.value === model)
   const triggerEndIcons =

@@ -1,7 +1,8 @@
-import React, { forwardRef, useId, useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { Combobox as BaseCombobox } from '@base-ui/react/combobox'
 import { Check, ChevronDown, Search } from 'lucide-react'
 import cx from 'classnames'
+import { useStableId } from '../../hooks/useStableId'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -123,7 +124,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
       defaultValue != null
         ? (flatOptions.find(o => o.value === defaultValue) ?? null)
         : null
-    const triggerId = useId()
+    const triggerId = useStableId('memori-combobox')
     const accessibleName =
       label ??
       (selectedOption != null ? getOptionLabel(selectedOption) : undefined) ??

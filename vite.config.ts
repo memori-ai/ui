@@ -44,7 +44,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: format => {
         if (format === 'es') return 'memori-ai-ui.es.js'
-        if (format === 'cjs') return 'memori-ai-ui.cjs.js'
+        if (format === 'cjs') return 'memori-ai-ui.cjs'
         return `memori-ai-ui.${format}.js`
       },
     },

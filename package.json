@@ -3,7 +3,7 @@
   "version": "1.14.1",
   "type": "module",
   "description": "Memori.ai UI Component Library",
-  "main": "./dist/memori-ai-ui.cjs.js",
+  "main": "./dist/memori-ai-ui.cjs",
   "module": "./dist/memori-ai-ui.es.js",
   "types": "./dist/index.d.ts",
   "style": "./dist/memori-ai-ui.css",
@@ -11,7 +11,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/memori-ai-ui.es.js",
-      "require": "./dist/memori-ai-ui.cjs.js"
+      "require": "./dist/memori-ai-ui.cjs"
     },
     "./styles.css": {
       "import": "./dist/memori-ai-ui.css",

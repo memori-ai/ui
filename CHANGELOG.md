@@ -1,5 +1,12 @@
 
 
+## [1.14.2](https://github.com/memori-ai/ui/compare/v1.14.1...v1.14.2) (2026-05-25)
+
+
+### Bug Fixes
+
+* update package.json and vite.config.ts to remove file extensions from CommonJS module paths ([0aaae0c](https://github.com/memori-ai/ui/commit/0aaae0c04a3912ac3233200464acc61570795234))
+
 ## [1.14.1](https://github.com/memori-ai/ui/compare/v1.14.0...v1.14.1) (2026-05-13)
 
 ## [1.14.0](https://github.com/memori-ai/ui/compare/v1.13.1...v1.14.0) (2026-05-06)

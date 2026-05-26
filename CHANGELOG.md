@@ -1,5 +1,12 @@
 
 
+## [1.15.0](https://github.com/memori-ai/ui/compare/v1.14.4...v1.15.0) (2026-05-26)
+
+
+### Features
+
+* enhance components with theme and portal support ([7e869e5](https://github.com/memori-ai/ui/commit/7e869e5d1c7d7da2f56259b8d794e9cef5528f14))
+
 ## [1.14.4](https://github.com/memori-ai/ui/compare/v1.14.3...v1.14.4) (2026-05-26)
 
 ## [1.14.3](https://github.com/memori-ai/ui/compare/v1.14.2...v1.14.3) (2026-05-25)

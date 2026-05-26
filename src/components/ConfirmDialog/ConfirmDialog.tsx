@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal } from '../Modal/Modal'
 import Button from '../Button'
+import type { Theme } from '../../theme/useTheme'
 
 export interface ConfirmDialogProps {
   isOpen: boolean
@@ -11,6 +12,17 @@ export interface ConfirmDialogProps {
   confirmText?: string
   cancelText?: string
   loading?: boolean
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
 }
 
 const ConfirmDialog = ({
@@ -22,6 +34,8 @@ const ConfirmDialog = ({
   confirmText = 'Confirm',
   cancelText = 'Cancel',
   loading = false,
+  container,
+  theme,
 }: ConfirmDialogProps) => {
   const handleOpenChange = (open: boolean) => {
     if (!open) onClose()
@@ -56,6 +70,8 @@ const ConfirmDialog = ({
       closable={!loading}
       closeOnEsc={!loading}
       closeOnOverlayClick={!loading}
+      container={container}
+      theme={theme}
     >
       <div>{message}</div>
     </Modal>

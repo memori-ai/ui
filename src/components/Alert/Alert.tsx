@@ -9,6 +9,8 @@ import {
   Info,
 } from 'lucide-react'
 
+import { useMemoriTheme } from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 /**
@@ -73,6 +75,12 @@ export interface AlertProviderProps {
 export interface AlertViewportProps {
   /** Placement position of the viewport */
   placement?: AlertPlacement
+  /**
+   * Theme stamped on the viewport (as `data-theme`) so design tokens resolve
+   * for every nested alert. Falls back to the nearest `ThemeProvider` /
+   * `MemoriUIProvider` value.
+   */
+  theme?: Theme
   /** Additional CSS class name */
   className?: string
   /** Additional inline styles */
@@ -205,8 +213,9 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
  */
 const AlertViewport = React.forwardRef<HTMLDivElement, AlertViewportProps>(
   function AlertViewport(props, forwardedRef) {
-    const { placement = 'top-end', className, style } = props
+    const { placement = 'top-end', className, style, theme } = props
     const toastManager = Toast.useToastManager()
+    const resolvedTheme = useMemoriTheme(theme)
 
     return (
       <Toast.Viewport
@@ -217,6 +226,7 @@ const AlertViewport = React.forwardRef<HTMLDivElement, AlertViewportProps>(
           className,
         )}
         style={style}
+        data-theme={resolvedTheme}
       >
         {toastManager.toasts.map((toast: AlertToast) => (
           <Alert

@@ -1,4 +1,14 @@
-.root {
+/**
+ * Popover styles
+ * Uses design tokens from theme/variables.css only.
+ * Built on @base-ui/react Popover. WCAG 2.1 AA+.
+ */
+
+/* ============================================
+   ROOT
+   ============================================ */
+
+.memori-popover {
     position: relative;
     z-index: 1;
     display: inline-flex;
@@ -6,7 +16,11 @@
     vertical-align: middle;
 }
 
-.trigger {
+/* ============================================
+   TRIGGER
+   ============================================ */
+
+.memori-popover__trigger {
     display: inline-flex;
     min-width: 0;
     align-items: center;
@@ -24,8 +38,10 @@
     gap: var(--memori-spacing-xs);
     line-height: var(--memori-text-line-normal);
     text-align: start;
+}
 
-    @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
+    .memori-popover__trigger {
         transition:
             box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
@@ -33,33 +49,41 @@
     }
 }
 
-.trigger:focus-visible {
+.memori-popover__trigger:focus-visible {
     box-shadow: var(--memori-focus-ring);
     outline: none;
 }
 
-.trigger:disabled {
+.memori-popover__trigger:disabled {
     border-color: var(--memori-border-color);
     background: var(--memori-main-background);
     color: var(--memori-neutral);
     cursor: not-allowed;
 }
 
-.trigger:hover:not(:disabled) {
+.memori-popover__trigger:hover:not(:disabled) {
     border-color: var(--memori-border-primary-hover);
     background: var(--memori-primary-subtle-hover);
 }
 
-.triggerActive:not(:disabled) {
+.memori-popover__trigger--active:not(:disabled) {
     border-color: var(--memori-border-primary-hover);
     background: var(--memori-primary-subtle);
 }
 
-.positioner {
+/* ============================================
+   POSITIONER
+   ============================================ */
+
+.memori-popover__positioner {
     z-index: 1300;
 }
 
-.popup {
+/* ============================================
+   POPUP
+   ============================================ */
+
+.memori-popover__popup {
     box-sizing: border-box;
     padding: var(--memori-spacing-md);
     border: var(--memori-border) solid var(--memori-border-color);
@@ -70,15 +94,21 @@
     font-family: var(--memori-font-family);
     inline-size: min(var(--memori-modal-size-sm), calc(100vw - (2 * var(--memori-spacing-md))));
     max-inline-size: calc(100vw - (2 * var(--memori-spacing-md)));
+}
 
-    @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
+    .memori-popover__popup {
         transition:
             opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 }
 
-.header {
+/* ============================================
+   HEADER
+   ============================================ */
+
+.memori-popover__header {
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -86,7 +116,7 @@
     gap: var(--memori-spacing-sm);
 }
 
-.title {
+.memori-popover__title {
     margin: 0;
     color: var(--memori-text-color);
     font-size: var(--memori-text-size-large);
@@ -94,7 +124,7 @@
     line-height: var(--memori-text-line-tight);
 }
 
-.description {
+.memori-popover__description {
     margin: 0;
     margin-bottom: var(--memori-spacing-sm);
     color: var(--memori-neutral);
@@ -103,14 +133,18 @@
     line-height: var(--memori-text-line-normal);
 }
 
-.content {
+.memori-popover__content {
     color: var(--memori-text-color);
     font-size: var(--memori-text-size-base);
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
 }
 
-.close {
+/* ============================================
+   CLOSE
+   ============================================ */
+
+.memori-popover__close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -124,32 +158,40 @@
     inline-size: calc(var(--memori-spacing-md) + var(--memori-spacing-sm));
 }
 
-.close:hover {
+.memori-popover__close:hover {
     background: var(--memori-main-background);
     color: var(--memori-text-color);
 }
 
-.close:focus-visible {
+.memori-popover__close:focus-visible {
     box-shadow: var(--memori-focus-ring);
     outline: none;
 }
 
-.closeGlyph {
+.memori-popover__close-glyph {
     font-size: var(--memori-text-size-heading);
     font-weight: var(--memori-text-weight-medium);
     line-height: 1;
 }
 
-.arrow {
+/* ============================================
+   ARROW
+   ============================================ */
+
+.memori-popover__arrow {
     background-color: var(--memori-secondary-background);
     fill: var(--memori-secondary-background);
     stroke: var(--memori-border-color);
     stroke-width: 1px;
 }
 
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
 @media (prefers-reduced-motion: reduce) {
-    .trigger,
-    .popup {
+    .memori-popover__trigger,
+    .memori-popover__popup {
         transition: none;
     }
 }

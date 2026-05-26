@@ -2,6 +2,11 @@ import React, { forwardRef } from 'react'
 import { Select } from '@base-ui/react'
 import { ChevronDown, Check } from 'lucide-react'
 import cx from 'classnames'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 export interface SelectBoxOption {
@@ -22,6 +27,17 @@ export interface SelectBoxProps {
   required?: boolean
   error?: boolean
   name?: string
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
   className?: string
   style?: React.CSSProperties
 }
@@ -40,12 +56,16 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
       required,
       error,
       name,
+      container,
+      theme,
       className,
       style,
     },
     ref,
   ) => {
     const selectedOption = options.find(option => option.value === value)
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
     const selectedLabelText =
       typeof selectedOption?.label === 'string'
         ? selectedOption.label
@@ -88,14 +108,21 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
               <ChevronDown size={16} />
             </Select.Icon>
           </Select.Trigger>
-          <Select.Portal className="memori-select__portal">
+          <Select.Portal
+            className="memori-select__portal"
+            container={portalContainer ?? undefined}
+          >
             <Select.Positioner
               className="memori-select__positioner"
               sideOffset={8}
               side="bottom"
               align="start"
+              data-theme={resolvedTheme}
             >
-              <Select.Popup className="memori-select__popup">
+              <Select.Popup
+                className="memori-select__popup"
+                data-theme={resolvedTheme}
+              >
                 {options.map(option => (
                   <Select.Item
                     key={option.value}

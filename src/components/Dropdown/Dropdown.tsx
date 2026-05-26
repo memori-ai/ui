@@ -3,6 +3,11 @@ import { Menu } from '@base-ui/react/menu'
 import type { MenuRootProps } from '@base-ui/react/menu'
 import cx from 'classnames'
 import { ChevronDown } from 'lucide-react'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -208,9 +213,17 @@ export interface DropdownMenuProps {
   align?: 'start' | 'center' | 'end'
 
   /**
-   * Container element for the portal. Defaults to document.body.
+   * Container element for the portal. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
    */
   container?: HTMLElement | null
+
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
 
   /**
    * Additional CSS class name for the popup.
@@ -229,21 +242,26 @@ function DropdownMenu({
   placement = 'bottom',
   align = 'start',
   container,
+  theme,
   className,
   style,
 }: DropdownMenuProps) {
+  const portalContainer = usePortalContainer(container)
+  const resolvedTheme = useMemoriTheme(theme)
   return (
-    <Menu.Portal container={container ?? document.body}>
+    <Menu.Portal container={portalContainer ?? undefined}>
       <Menu.Positioner
         sideOffset={sideOffset}
         side={placement}
         align={align}
         className="memori-dropdown__positioner"
+        data-theme={resolvedTheme}
       >
         <Menu.Popup
           className={cx('memori-dropdown__popup', className)}
           style={style}
           role="menu"
+          data-theme={resolvedTheme}
         >
           {children}
         </Menu.Popup>

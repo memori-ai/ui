@@ -3,6 +3,11 @@ import { Combobox as BaseCombobox } from '@base-ui/react/combobox'
 import { Check, ChevronDown, Search } from 'lucide-react'
 import cx from 'classnames'
 import { useStableId } from '../../hooks/useStableId'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -81,6 +86,17 @@ export interface ComboboxProps {
   name?: string
   /** Optional icons rendered before the chevron on the trigger (e.g. Wrench) */
   triggerEndIcons?: React.ReactNode
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
   /** Root wrapper className */
   className?: string
   /** Root wrapper style */
@@ -105,6 +121,8 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
       label,
       name,
       triggerEndIcons,
+      container,
+      theme,
       className,
       style,
     },
@@ -112,6 +130,8 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
   ) => {
     const normalizedItems = useMemo(() => normalizeItems(options), [options])
     const flatOptions = useMemo(() => flattenOptions(options), [options])
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
 
     const itemToStringLabel = (item: ComboboxOption) => getOptionLabel(item)
     const itemToStringValue = (item: ComboboxOption) => String(item.value)
@@ -204,14 +224,21 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
               <ChevronDown size={16} />
             </span>
           </BaseCombobox.Trigger>
-          <BaseCombobox.Portal className="memori-combobox__portal">
+          <BaseCombobox.Portal
+            className="memori-combobox__portal"
+            container={portalContainer ?? undefined}
+          >
             <BaseCombobox.Positioner
               className="memori-combobox__positioner"
               sideOffset={8}
               side="bottom"
               align="start"
+              data-theme={resolvedTheme}
             >
-              <BaseCombobox.Popup className="memori-combobox__popup">
+              <BaseCombobox.Popup
+                className="memori-combobox__popup"
+                data-theme={resolvedTheme}
+              >
                 <div className="memori-combobox__search-wrap">
                   <BaseCombobox.Input
                     className="memori-combobox__search"

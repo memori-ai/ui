@@ -6,6 +6,11 @@ import cx from 'classnames'
 import Spin from '../Spin/Spin'
 import { X as Close } from 'lucide-react'
 import { useStableId } from '../../hooks/useStableId'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 export interface ModalProps extends Omit<
@@ -235,6 +240,19 @@ export interface ModalProps extends Omit<
    * If provided, replaces the default X icon
    */
   closeIcon?: React.ReactNode
+
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
@@ -278,6 +296,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       animated = true,
       closeButton,
       closeIcon,
+      container,
+      theme,
       ...restProps
     },
     ref,
@@ -285,6 +305,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const popupId = useStableId('memori-modal')
     const titleId = useStableId('memori-modal-title')
     const descriptionId = useStableId('memori-modal-description')
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
 
     // Handle open change with escape key support
     const handleOpenChange = React.useCallback(
@@ -377,13 +399,15 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         disablePointerDismissal={shouldDisablePointerDismissal}
         {...restProps}
       >
-        <Dialog.Portal>
+        <Dialog.Portal container={portalContainer ?? undefined}>
           {animated && (
             <Dialog.Backdrop
               className={cx('memori-modal__backdrop', backdropClassName)}
+              data-theme={resolvedTheme}
             />
           )}
           <Dialog.Viewport
+            data-theme={resolvedTheme}
             className={cx(
               'memori-modal__viewport',
               centered && 'memori-modal__viewport--centered',
@@ -398,6 +422,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               style={popupStyle}
               id={popupId}
               data-testid={dataTestId}
+              data-theme={resolvedTheme}
               aria-label={hasTitle ? undefined : ariaLabel}
               aria-labelledby={effectiveAriaLabelledBy}
               aria-describedby={effectiveAriaDescribedBy}

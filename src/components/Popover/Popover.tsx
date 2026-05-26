@@ -2,7 +2,12 @@ import { Popover as BasePopover } from '@base-ui/react/popover'
 import cx from 'classnames'
 import React, { forwardRef, useCallback, useMemo, useState } from 'react'
 
-import styles from './styles.module.css'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
+import './styles.css'
 
 type Side = 'top' | 'bottom' | 'left' | 'right' | 'inline-end' | 'inline-start'
 type Align = 'start' | 'center' | 'end'
@@ -90,6 +95,17 @@ export interface PopoverProps extends Omit<
    * Called when open state changes.
    */
   onOpenChange?: PopoverRootChangeHandler
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
   className?: string
   style?: React.CSSProperties
   contentClassName?: string
@@ -162,6 +178,8 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       style,
       contentClassName,
       contentStyle,
+      container,
+      theme,
       slotProps,
       ...rootProps
     } = props
@@ -170,6 +188,9 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       () => parsePlacement(placement),
       [placement],
     )
+
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
 
     const {
       className: triggerSlotClassName,
@@ -227,7 +248,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
     return (
       <span
         {...slotProps?.root}
-        className={cx(styles.root, className, slotProps?.root?.className)}
+        className={cx('memori-popover', className, slotProps?.root?.className)}
         style={mergeStyle(style, slotProps?.root?.style)}
       >
         <BasePopover.Root
@@ -239,8 +260,8 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
           <BasePopover.Trigger
             {...triggerRest}
             className={cx(
-              styles.trigger,
-              isOpen && styles.triggerActive,
+              'memori-popover__trigger',
+              isOpen && 'memori-popover__trigger--active',
               triggerSlotClassName,
             )}
             disabled={disabled}
@@ -249,21 +270,29 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
           >
             {children}
           </BasePopover.Trigger>
-          <BasePopover.Portal {...slotProps?.portal}>
+          <BasePopover.Portal
+            container={portalContainer ?? undefined}
+            {...slotProps?.portal}
+          >
             <BasePopover.Positioner
               {...positionerRest}
               align={positionerRest.align ?? align}
               alignOffset={positionerRest.alignOffset ?? alignOffset}
-              className={cx(styles.positioner, positionerSlotClassName)}
+              className={cx(
+                'memori-popover__positioner',
+                positionerSlotClassName,
+              )}
               collisionPadding={positionerRest.collisionPadding ?? 8}
               side={positionerRest.side ?? side}
               sideOffset={positionerRest.sideOffset ?? sideOffset}
+              data-theme={resolvedTheme}
               style={positionerSlotStyle}
             >
               <BasePopover.Popup
+                data-theme={resolvedTheme}
                 {...popupRest}
                 className={cx(
-                  styles.popup,
+                  'memori-popover__popup',
                   contentClassName,
                   popupSlotClassName,
                 )}
@@ -272,16 +301,19 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
                 {arrow ? (
                   <BasePopover.Arrow
                     {...arrowRest}
-                    className={cx(styles.arrow, arrowSlotClassName)}
+                    className={cx('memori-popover__arrow', arrowSlotClassName)}
                     style={arrowSlotStyle}
                   />
                 ) : null}
                 {(title || closable) && (
-                  <div className={styles.header}>
+                  <div className="memori-popover__header">
                     {title ? (
                       <BasePopover.Title
                         {...titleRest}
-                        className={cx(styles.title, titleSlotClassName)}
+                        className={cx(
+                          'memori-popover__title',
+                          titleSlotClassName,
+                        )}
                         style={titleSlotStyle}
                       >
                         {title}
@@ -293,12 +325,15 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
                       <BasePopover.Close
                         {...closeRest}
                         aria-label={closeRest['aria-label'] ?? closeLabel}
-                        className={cx(styles.close, closeSlotClassName)}
+                        className={cx(
+                          'memori-popover__close',
+                          closeSlotClassName,
+                        )}
                         style={closeSlotStyle}
                       >
                         <span
                           aria-hidden
-                          className={styles.closeGlyph}
+                          className="memori-popover__close-glyph"
                         >
                           ×
                         </span>
@@ -309,14 +344,17 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
                 {description ? (
                   <BasePopover.Description
                     {...descriptionRest}
-                    className={cx(styles.description, descriptionSlotClassName)}
+                    className={cx(
+                      'memori-popover__description',
+                      descriptionSlotClassName,
+                    )}
                     style={descriptionSlotStyle}
                   >
                     {description}
                   </BasePopover.Description>
                 ) : null}
                 {content ? (
-                  <div className={styles.content}>{content}</div>
+                  <div className="memori-popover__content">{content}</div>
                 ) : null}
               </BasePopover.Popup>
             </BasePopover.Positioner>

@@ -7,6 +7,11 @@ import type {
 import { ChevronDown } from 'lucide-react'
 import cx from 'classnames'
 import { useStableId } from '../../hooks/useStableId'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 /* ----------------------------------------------------------------------------
@@ -126,6 +131,17 @@ export interface AutocompleteProps {
   filteredItems?:
     | readonly AutocompleteOption[]
     | readonly { value: string; items: readonly AutocompleteOption[] }[]
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
   /** Root wrapper className */
   className?: string
   /** Root wrapper style */
@@ -172,6 +188,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       onItemHighlighted,
       filter,
       filteredItems,
+      container,
+      theme,
       className,
       style,
       inputClassName,
@@ -179,6 +197,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     ref,
   ) => {
     const reactId = useStableId('memori-autocomplete')
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
     const rootId = idProp ?? reactId
     const inputId = idProp != null ? `${idProp}-input` : `${reactId}-input`
 
@@ -255,14 +275,21 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
             <ChevronDown size={16} />
           </span>
         </div>
-        <BaseAutocomplete.Portal className="memori-autocomplete__portal">
+        <BaseAutocomplete.Portal
+          className="memori-autocomplete__portal"
+          container={portalContainer ?? undefined}
+        >
           <BaseAutocomplete.Positioner
             className="memori-autocomplete__positioner"
             sideOffset={8}
             side="bottom"
             align="start"
+            data-theme={resolvedTheme}
           >
-            <BaseAutocomplete.Popup className="memori-autocomplete__popup">
+            <BaseAutocomplete.Popup
+              className="memori-autocomplete__popup"
+              data-theme={resolvedTheme}
+            >
               {loading && (
                 <BaseAutocomplete.Status className="memori-autocomplete__status">
                   {loadingText}

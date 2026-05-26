@@ -3,10 +3,10 @@
 exports[`renders Tooltip aligned left unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       data-popup-open=""
       id="base-ui-_r_b_"
     >
@@ -19,10 +19,10 @@ exports[`renders Tooltip aligned left unchanged 1`] = `
 exports[`renders Tooltip aligned right unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       data-popup-open=""
       id="base-ui-_r_j_"
     >
@@ -35,10 +35,10 @@ exports[`renders Tooltip aligned right unchanged 1`] = `
 exports[`renders Tooltip aligned top left unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       data-popup-open=""
       id="base-ui-_r_f_"
     >
@@ -51,10 +51,10 @@ exports[`renders Tooltip aligned top left unchanged 1`] = `
 exports[`renders Tooltip aligned top right unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       data-popup-open=""
       id="base-ui-_r_n_"
     >
@@ -67,10 +67,10 @@ exports[`renders Tooltip aligned top right unchanged 1`] = `
 exports[`renders Tooltip disabled unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       id="base-ui-_r_5_"
     >
       Hover me
@@ -82,10 +82,10 @@ exports[`renders Tooltip disabled unchanged 1`] = `
 exports[`renders Tooltip unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       id="base-ui-_r_1_"
     >
       Hover me
@@ -97,10 +97,10 @@ exports[`renders Tooltip unchanged 1`] = `
 exports[`renders Tooltip visible unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       data-popup-open=""
       id="base-ui-_r_7_"
     >
@@ -113,10 +113,10 @@ exports[`renders Tooltip visible unchanged 1`] = `
 exports[`renders Tooltip with jsx content unchanged 1`] = `
 <div>
   <span
-    class="_root_1aba97"
+    class="memori-tooltip"
   >
     <span
-      class="_trigger_1aba97"
+      class="memori-tooltip__trigger"
       id="base-ui-_r_3_"
     >
       Hover me

@@ -41,6 +41,7 @@ export { Collapsible } from './components/Collapsible'
 export { Card } from './components/Card'
 export { Checkbox } from './components/Checkbox'
 export { ConfirmDialog } from './components/ConfirmDialog'
+export type { ConfirmDialogProps } from './components/ConfirmDialog'
 export { Expandable } from './components/Expandable'
 export { Dropdown } from './components/Dropdown'
 export { Drawer } from './components/Drawer'
@@ -95,3 +96,17 @@ export type {
 export { Section } from './components/Section'
 export type { SectionProps } from './components/Section'
 export { useTheme, type Theme } from './theme/useTheme'
+export {
+  MemoriUIProvider,
+  PortalContainerProvider,
+  ThemeProvider,
+  usePortalContainer,
+  useMemoriTheme,
+} from './theme/MemoriUIProvider'
+export type {
+  MemoriUIProviderProps,
+  PortalContainerProviderProps,
+  ThemeProviderProps,
+} from './theme/MemoriUIProvider'
+export type { DrawerProps } from './components/Drawer'
+export type { ModalProps } from './components/Modal'

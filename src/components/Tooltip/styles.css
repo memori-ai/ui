@@ -1,4 +1,14 @@
-.root {
+/**
+ * Tooltip styles
+ * Uses design tokens from theme/variables.css only.
+ * Built on @base-ui/react Tooltip. WCAG 2.1 AA+.
+ */
+
+/* ============================================
+   ROOT
+   ============================================ */
+
+.memori-tooltip {
     position: relative;
     z-index: 1;
     display: inline-flex;
@@ -6,7 +16,11 @@
     vertical-align: middle;
 }
 
-.trigger {
+/* ============================================
+   TRIGGER
+   ============================================ */
+
+.memori-tooltip__trigger {
     display: inline-flex;
     max-width: 100%;
     padding: 0;
@@ -19,16 +33,24 @@
     text-align: inherit;
 }
 
-.trigger:focus-visible {
+.memori-tooltip__trigger:focus-visible {
     border-radius: var(--memori-radius-field);
     box-shadow: var(--memori-focus-ring);
 }
 
-.positioner {
+/* ============================================
+   POSITIONER
+   ============================================ */
+
+.memori-tooltip__positioner {
     z-index: 1300;
 }
 
-.popup {
+/* ============================================
+   POPUP
+   ============================================ */
+
+.memori-tooltip__popup {
     max-width: min(20rem, calc(100vw - 2 * var(--memori-spacing-md)));
     box-sizing: border-box;
     padding: var(--memori-spacing-sm) var(--memori-spacing-md);
@@ -42,48 +64,64 @@
     line-height: var(--memori-text-line-normal);
     overflow-wrap: anywhere;
     text-align: start;
+}
 
-    @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
+    .memori-tooltip__popup {
         transition:
             opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 }
 
-.arrow {
-    background-color: var(--memori-tooltip-background);
-    fill: var(--memori-tooltip-caret);
-}
-
-.surface {
-    display: block;
-    min-width: 0;
-    max-width: 100%;
-    transform: scale(0.95);
-    transform-origin: center center;
-
-    @media (prefers-reduced-motion: no-preference) {
-        transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
-    }
-}
-
-.popup[data-open] .surface,
-.popup[data-starting-style] .surface {
-    transform: scale(1);
-}
-
-.popup a {
+.memori-tooltip__popup a {
     color: var(--memori-tooltip-foreground);
     text-decoration: underline;
     text-underline-offset: calc(var(--memori-spacing-xs) / 2);
 }
 
+/* ============================================
+   ARROW
+   ============================================ */
+
+.memori-tooltip__arrow {
+    background-color: var(--memori-tooltip-background);
+    fill: var(--memori-tooltip-caret);
+}
+
+/* ============================================
+   SURFACE
+   ============================================ */
+
+.memori-tooltip__surface {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    transform: scale(0.95);
+    transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .memori-tooltip__surface {
+        transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+}
+
+.memori-tooltip__popup[data-open] .memori-tooltip__surface,
+.memori-tooltip__popup[data-starting-style] .memori-tooltip__surface {
+    transform: scale(1);
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
 @media (prefers-reduced-motion: reduce) {
-    .popup {
+    .memori-tooltip__popup {
         transition: none;
     }
 
-    .surface {
+    .memori-tooltip__surface {
         transform: none;
         transition: none;
     }

@@ -2,6 +2,11 @@ import * as React from 'react'
 import { Dialog, type DialogRootChangeEventDetails } from '@base-ui/react'
 import cx from 'classnames'
 import { X, Loader2 } from 'lucide-react'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
 import './styles.css'
 
 export interface DrawerProps {
@@ -80,6 +85,20 @@ export interface DrawerProps {
    * @default true
    */
   closable?: boolean
+
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   * Pass `null` to keep falling back to the provider/default.
+   */
+  container?: HTMLElement | null
+
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
@@ -99,6 +118,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       style,
       showCloseButton = true,
       closable = true,
+      container,
+      theme,
       ...rest
     },
     ref,
@@ -117,15 +138,22 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const shouldShowCloseButton =
       closable !== undefined ? closable : showCloseButton
 
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
+
     return (
       <Dialog.Root
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <Dialog.Portal>
-          <Dialog.Backdrop className="memori-drawer__backdrop" />
+        <Dialog.Portal container={portalContainer ?? undefined}>
+          <Dialog.Backdrop
+            className="memori-drawer__backdrop"
+            data-theme={resolvedTheme}
+          />
           <Dialog.Popup
             ref={ref}
+            data-theme={resolvedTheme}
             className={cx(
               'memori-drawer',
               `memori-drawer--${anchor}`,

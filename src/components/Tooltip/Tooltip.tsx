@@ -2,7 +2,12 @@ import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import cx from 'classnames'
 import React, { forwardRef, useMemo } from 'react'
 
-import styles from './styles.module.css'
+import {
+  useMemoriTheme,
+  usePortalContainer,
+} from '../../theme/MemoriUIProvider'
+import type { Theme } from '../../theme/useTheme'
+import './styles.css'
 
 /** Matches Base UI / Floating UI anchor positioning. */
 type Side = 'top' | 'bottom' | 'left' | 'right' | 'inline-end' | 'inline-start'
@@ -98,6 +103,17 @@ export interface TooltipProps {
    * @default true
    */
   arrow?: boolean
+  /**
+   * Container element used as the portal root. Defaults to the nearest
+   * `PortalContainerProvider` value, then to `document.body`.
+   */
+  container?: HTMLElement | null
+  /**
+   * Theme stamped on the portal popup (as `data-theme`) so design tokens
+   * resolve correctly regardless of where the portal mounts. Falls back to
+   * the nearest `ThemeProvider` / `MemoriUIProvider` value.
+   */
+  theme?: Theme
   className?: string
   style?: React.CSSProperties
   slotProps?: {
@@ -106,6 +122,7 @@ export interface TooltipProps {
       React.ComponentProps<typeof BaseTooltip.Trigger>,
       'children' | 'delay' | 'closeDelay'
     >
+    portal?: React.ComponentProps<typeof BaseTooltip.Portal>
     positioner?: React.ComponentProps<typeof BaseTooltip.Positioner>
     popup?: React.ComponentProps<typeof BaseTooltip.Popup>
     arrow?: React.ComponentProps<typeof BaseTooltip.Arrow>
@@ -213,12 +230,17 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       sideOffset = 8,
       disableHoverablePopup = false,
       arrow = true,
+      container,
+      theme,
       className,
       style,
       slotProps,
     } = props
 
     const label = title ?? content
+
+    const portalContainer = usePortalContainer(container)
+    const resolvedTheme = useMemoriTheme(theme)
 
     const { side, align } = useMemo(
       () => resolveSideAlign(placement, alignProp),
@@ -256,7 +278,11 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       ...arrowRest
     } = slotProps?.arrow ?? {}
 
-    const rootClassName = cx(styles.root, className, slotProps?.root?.className)
+    const rootClassName = cx(
+      'memori-tooltip',
+      className,
+      slotProps?.root?.className,
+    )
     const rootStyle = mergeStyle(style, slotProps?.root?.style)
 
     if (label == null || label === false) {
@@ -288,7 +314,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
           <BaseTooltip.Trigger
             {...triggerRest}
             ref={ref}
-            className={cx(styles.trigger, triggerSlotClassName)}
+            className={cx('memori-tooltip__trigger', triggerSlotClassName)}
             closeDelay={leaveDelay}
             delay={enterDelay}
             render={<span />}
@@ -296,29 +322,37 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
           >
             {children}
           </BaseTooltip.Trigger>
-          <BaseTooltip.Portal>
+          <BaseTooltip.Portal
+            container={portalContainer ?? undefined}
+            {...slotProps?.portal}
+          >
             <BaseTooltip.Positioner
               {...positionerRest}
               align={align}
-              className={cx(styles.positioner, positionerSlotClassName)}
+              className={cx(
+                'memori-tooltip__positioner',
+                positionerSlotClassName,
+              )}
               collisionPadding={positionerRest.collisionPadding ?? 8}
+              data-theme={resolvedTheme}
               side={side}
               sideOffset={positionerRest.sideOffset ?? sideOffset}
               style={positionerSlotStyle}
             >
               <BaseTooltip.Popup
+                data-theme={resolvedTheme}
                 {...popupRest}
-                className={cx(styles.popup, popupSlotClassName)}
+                className={cx('memori-tooltip__popup', popupSlotClassName)}
                 style={popupSlotStyle}
               >
                 {arrow ? (
                   <BaseTooltip.Arrow
                     {...arrowRest}
-                    className={cx(styles.arrow, arrowSlotClassName)}
+                    className={cx('memori-tooltip__arrow', arrowSlotClassName)}
                     style={arrowSlotStyle}
                   />
                 ) : null}
-                <span className={styles.surface}>{label}</span>
+                <span className="memori-tooltip__surface">{label}</span>
               </BaseTooltip.Popup>
             </BaseTooltip.Positioner>
           </BaseTooltip.Portal>

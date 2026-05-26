@@ -1,5 +1,12 @@
 
 
+## [1.16.0](https://github.com/memori-ai/ui/compare/v1.15.0...v1.16.0) (2026-05-26)
+
+
+### Features
+
+* add subtle danger variants to Button component with updated styles ([38af2c5](https://github.com/memori-ai/ui/commit/38af2c58d5aa1ab77d7b17fe20ba7563b0a2e1b0))
+
 ## [1.15.0](https://github.com/memori-ai/ui/compare/v1.14.4...v1.15.0) (2026-05-26)
 
 

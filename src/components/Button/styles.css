@@ -494,6 +494,121 @@
 }
 
 /* ============================================
+   DANGER MODIFIER ON SUBTLE VARIANTS
+   When `danger` is combined with a subtle variant (outline/ghost/link/soft),
+   the variant keeps its structure and only its accent color is re-tinted to
+   the semantic error palette. Selectors below use double-class specificity so
+   they beat the standalone `.memori-button--danger` solid styles above.
+   ============================================ */
+
+/* Outline + danger */
+.memori-button.memori-button--outline.memori-button--danger {
+    border-color: var(--memori-error);
+    background-color: transparent;
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--outline.memori-button--danger.memori-button--disabled,
+.memori-button.memori-button--outline.memori-button--danger:disabled {
+    border-color: var(--memori-border-color);
+    background-color: transparent;
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--outline.memori-button--danger.memori-button--disabled:hover,
+.memori-button.memori-button--outline.memori-button--danger:disabled:hover {
+    border-color: var(--memori-border-color);
+    background-color: transparent;
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--outline.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+    border-color: var(--memori-error-hover);
+    background-color: var(--memori-error-hover);
+    color: var(--memori-error-content);
+}
+
+.memori-button.memori-button--outline.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+.memori-button.memori-button--outline.memori-button--danger.memori-button--active {
+    border-color: var(--memori-error-active);
+    background-color: var(--memori-error-active);
+    color: var(--memori-error-content);
+}
+
+/* Dark theme: outline normally promotes text to text-color — keep danger tint instead */
+:is([data-theme='dark'], .dark, :root.dark) .memori-button--outline.memori-button--danger {
+    color: var(--memori-error-text);
+}
+
+/* Ghost + danger — red text, subtle red wash on hover */
+.memori-button.memori-button--ghost.memori-button--danger {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--ghost.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+    border-color: transparent;
+    background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
+    color: var(--memori-error-hover);
+}
+
+.memori-button.memori-button--ghost.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+.memori-button.memori-button--ghost.memori-button--danger.memori-button--active {
+    border-color: transparent;
+    background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
+    color: var(--memori-error-active);
+}
+
+/* Link + danger — red underlined text */
+.memori-button.memori-button--link.memori-button--danger {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--link.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--memori-error-hover);
+}
+
+.memori-button.memori-button--link.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+.memori-button.memori-button--link.memori-button--danger.memori-button--active {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--memori-error-active);
+}
+
+/* Soft + danger — subtle red surface with red text */
+.memori-button.memori-button--soft.memori-button--danger {
+    border-color: var(--memori-error);
+    background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
+    color: var(--memori-error);
+}
+
+.memori-button.memori-button--soft.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+    border-color: var(--memori-error-hover);
+    background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
+    color: var(--memori-error-hover);
+}
+
+.memori-button.memori-button--soft.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+.memori-button.memori-button--soft.memori-button--danger.memori-button--active {
+    border-color: var(--memori-error-active);
+    background-color: color-mix(in oklch, var(--memori-error), transparent 75%);
+    color: var(--memori-error-active);
+}
+
+/* Focus ring uses the danger accent for all subtle danger combos */
+.memori-button--outline.memori-button--danger:focus-visible::before,
+.memori-button--ghost.memori-button--danger:focus-visible::before,
+.memori-button--link.memori-button--danger:focus-visible::before,
+.memori-button--soft.memori-button--danger:focus-visible::before {
+    outline-color: var(--memori-error);
+}
+
+/* ============================================
    SIZES
    ============================================ */
 

@@ -305,6 +305,42 @@ export const DangerProp: Story = {
 }
 
 /**
+ * Subtle variants (outline / ghost / link / soft) keep their structure when
+ * combined with `danger` and only re-tint to the semantic error palette.
+ * Solid variants still fully override to the solid danger style.
+ */
+export const DangerSubtleVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button
+        variant="outline"
+        danger
+      >
+        Outline danger
+      </Button>
+      <Button
+        variant="ghost"
+        danger
+      >
+        Ghost danger
+      </Button>
+      <Button
+        variant="link"
+        danger
+      >
+        Link danger
+      </Button>
+      <Button
+        variant="soft"
+        danger
+      >
+        Soft danger
+      </Button>
+    </div>
+  ),
+}
+
+/**
  * Loading state shows a spinner and disables the button.
  */
 export const Loading: Story = {

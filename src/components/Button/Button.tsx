@@ -117,8 +117,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    // Determine the effective variant (danger prop overrides variant)
-    const effectiveVariant = danger ? 'danger' : variant
+    // Subtle variants keep their structure (transparent / bordered / underlined)
+    // when combined with `danger` — the danger prop only re-tints them.
+    // For solid variants (primary, secondary, toolbar, softSecondary) `danger`
+    // still fully overrides to the solid danger style.
+    const subtleVariants = ['outline', 'ghost', 'link', 'soft'] as const
+    const isSubtleDanger =
+      danger && (subtleVariants as readonly string[]).includes(variant)
+    const effectiveVariant = danger && !isSubtleDanger ? 'danger' : variant
 
     const variantClass = {
       primary: 'memori-button--primary',
@@ -168,6 +174,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cx(
           'memori-button',
           variantClass,
+          isSubtleDanger && 'memori-button--danger',
           sizeClass,
           shapeClass,
           fullWidth && 'memori-button--full-width',

@@ -43,17 +43,17 @@ export function App() {
 
 The host application must provide these compatible packages:
 
-| Package            | Version   | Notes                                  |
-| ------------------ | --------- | -------------------------------------- |
-| `react`            | `^18.2.0` | Required peer dependency               |
-| `react-dom`        | `^18.2.0` | Required peer dependency               |
-| `i18next`          | `^25.5.0` | Required for translated components     |
-| `react-i18next`    | `^16.3.5` | Required for translated components     |
-| `typescript`       | `>=5.0`   | Optional peer for TypeScript consumers |
-| `@types/react`     | `^18.2.0` | Optional peer                          |
-| `@types/react-dom` | `^18.2.0` | Optional peer                          |
+| Package            | Version        | Notes                                      |
+| ------------------ | -------------- | ------------------------------------------ |
+| `react`            | `^17 \|\| ^18` | Required peer dependency, React 17 and 18+ |
+| `react-dom`        | `^17 \|\| ^18` | Required peer dependency, React 17 and 18+ |
+| `i18next`          | `^25.5.0`      | Required for translated components         |
+| `react-i18next`    | `^16.3.5`      | Required for translated components         |
+| `typescript`       | `>=5.0`        | Optional peer for TypeScript consumers     |
+| `@types/react`     | `^17 \|\| ^18` | Optional peer                              |
+| `@types/react-dom` | `^17 \|\| ^18` | Optional peer                              |
 
-Runtime dependencies such as `@base-ui/react`, `@tanstack/react-table`, `classnames`, and `lucide-react` are installed with the package.
+Runtime dependencies such as `@base-ui/react`, `@tanstack/react-table`, `classnames`, `lucide-react`, and `use-sync-external-store` (used as a shim so internal hooks work on React 17) are installed with the package.
 
 ## Internationalization
 

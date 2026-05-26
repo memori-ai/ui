@@ -1,4 +1,7 @@
-import * as React from 'react'
+// Use the shim instead of React.useSyncExternalStore so the hook works under
+// React 17 (where the API is unavailable). The shim re-exports the native hook
+// on React 18+.
+import { useSyncExternalStore } from 'use-sync-external-store/shim'
 
 const QUERY = '(min-width: 640px)'
 
@@ -7,7 +10,7 @@ const QUERY = '(min-width: 640px)'
  * Below this breakpoint, pagination falls back to the shorter windowed pattern.
  */
 export function usePaginationLeadingBlockEnabled(): boolean {
-  return React.useSyncExternalStore(
+  return useSyncExternalStore(
     onStoreChange => {
       if (typeof window === 'undefined') {
         return () => {}

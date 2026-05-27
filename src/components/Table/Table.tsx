@@ -432,6 +432,7 @@ export function Table<TData>({
                   size="sm"
                   ariaLabel={action.label}
                   title={action.label}
+                  danger={action.variant === 'danger'}
                   className={
                     action.variant === 'danger'
                       ? 'memori-table__row-action-btn--danger'

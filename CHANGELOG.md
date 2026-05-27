@@ -1,5 +1,12 @@
 
 
+## [1.16.1](https://github.com/memori-ai/ui/compare/v1.16.0...v1.16.1) (2026-05-27)
+
+
+### Features
+
+* add danger variant support to Table component action buttons ([480bc03](https://github.com/memori-ai/ui/commit/480bc0364d3130d8464f6a7d8865cd5b456a5a4a))
+
 ## [1.16.0](https://github.com/memori-ai/ui/compare/v1.15.0...v1.16.0) (2026-05-26)
 
 

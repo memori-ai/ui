@@ -1,5 +1,12 @@
 
 
+## [1.16.2](https://github.com/memori-ai/ui/compare/v1.16.1...v1.16.2) (2026-05-28)
+
+
+### Bug Fixes
+
+* **Spin:** change display property from inline-block to block for better layout ([e40e863](https://github.com/memori-ai/ui/commit/e40e86375880b75eb73d391ee5d0083877a852f9))
+
 ## [1.16.1](https://github.com/memori-ai/ui/compare/v1.16.0...v1.16.1) (2026-05-27)
 
 

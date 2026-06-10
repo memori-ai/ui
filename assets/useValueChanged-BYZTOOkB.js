@@ -1,0 +1,1 @@
+import{r as a}from"./iframe-cGtJURnu.js";import{b as c,c as o}from"./useRenderElement-DhP6jT1L.js";function f(r,s){const t=a.useRef(r),e=c(s);o(()=>{t.current!==r&&e(t.current)},[r,e]),o(()=>{t.current=r},[r])}export{f as u};

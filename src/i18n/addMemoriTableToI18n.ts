@@ -3,17 +3,19 @@ import {
   MEMORI_TABLE_LOCALES,
   type MemoriSupportedLocale,
 } from './tableLocales'
+import { MEMORI_ALERT_LOCALES, MEMORI_EXPANDABLE_LOCALES } from './uiLocales'
 
 export interface AddMemoriTableToI18nOptions {
   /**
-   * i18next namespace to merge `table` under.
-   * @default 'translation' (keys: `table.searchPlaceholder`, …)
+   * i18next namespace to merge UI strings under.
+   * @default 'translation' (keys: `table.*`, `expandable.*`, `alert.*`)
    */
   namespace?: string
 }
 
 /**
- * Merges Memori UI `table.*` strings into an existing i18next instance for every shipped locale.
+ * Merges Memori UI `table.*`, `expandable.*`, and `alert.*` strings into an
+ * existing i18next instance for every shipped locale.
  * Call after `i18n.init()` (or use `await` if your init is async).
  *
  * @example
@@ -34,6 +36,14 @@ export function addMemoriTableToI18n(
     MEMORI_TABLE_LOCALES,
   ) as MemoriSupportedLocale[]) {
     const table = MEMORI_TABLE_LOCALES[lng]
-    instance.addResourceBundle(lng, namespace, { table }, true, true)
+    const expandable = MEMORI_EXPANDABLE_LOCALES[lng]
+    const alert = MEMORI_ALERT_LOCALES[lng]
+    instance.addResourceBundle(
+      lng,
+      namespace,
+      { table, expandable, alert },
+      true,
+      true,
+    )
   }
 }

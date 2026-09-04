@@ -9,6 +9,23 @@ export {
   type MemoriSupportedLocale,
 } from './tableLocales'
 
+export {
+  expandableEn,
+  expandableIt,
+  expandableEs,
+  expandableFr,
+  expandableDe,
+  MEMORI_EXPANDABLE_LOCALES,
+  alertEn,
+  alertIt,
+  alertEs,
+  alertFr,
+  alertDe,
+  MEMORI_ALERT_LOCALES,
+  type MemoriExpandableTranslations,
+  type MemoriAlertTranslations,
+} from './uiLocales'
+
 export { memoriI18n } from './i18n'
 export {
   addMemoriTableToI18n,

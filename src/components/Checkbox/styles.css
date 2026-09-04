@@ -1,185 +1,187 @@
-/**
+@layer memori.components {
+    /**
  * Checkbox Component Styles
  * Uses CSS Modules with design tokens from variables.css
  */
 
-/* Root checkbox container */
-.memori-checkbox {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    color: var(--memori-text-color);
-    cursor: pointer;
-    font-family: var(--memori-font-family);
-    font-size: var(--memori-text-size-small);
-    font-weight: var(--memori-text-weight-normal);
-    gap: var(--memori-spacing-sm);
-    line-height: var(--memori-text-line-normal);
-    transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
-    user-select: none;
-}
-
-.memori-checkbox:hover:not(.memori-checkbox--disabled) {
-    color: var(--memori-text-color);
-}
-
-/* Checkbox indicator (the box) */
-.memori-checkbox__indicator {
-    position: relative;
-    display: inline-flex;
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--memori-border-color);
-    border-radius: var(--memori-radius-field);
-    background-color: var(--memori-secondary-background);
-
-    /* microinteraction: returning to unchecked uses ease-in */
-    transition:
-        background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-        border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-        box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
-        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
-}
-
-/* microinteraction: checked / indeterminate uses ease-out on fill */
-.memori-checkbox__indicator--checked,
-.memori-checkbox__indicator--indeterminate {
-    transition:
-        background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-        border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-        box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
-        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
-}
-
-/* Checked state */
-.memori-checkbox__indicator--checked {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
-}
-
-/* Indeterminate state */
-.memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
-}
-
-/* Icon inside indicator */
-.memori-checkbox__icon-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.memori-checkbox__icon {
-    display: block;
-    color: var(--memori-primary-content);
-}
-
-/* microinteraction: checkmark scales in with design-token easing (keyframes in theme/keyframes.css) */
-@media (prefers-reduced-motion: no-preference) {
-    .memori-checkbox__icon {
-        animation: memori-checkmark-scale var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    /* Root checkbox container */
+    .memori-checkbox {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        color: var(--memori-text-color);
+        cursor: pointer;
+        font-family: var(--memori-font-family);
+        font-size: var(--memori-text-size-small);
+        font-weight: var(--memori-text-weight-normal);
+        gap: var(--memori-spacing-sm);
+        line-height: var(--memori-text-line-normal);
+        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        user-select: none;
     }
-}
 
-/* Label text */
-.memori-checkbox__label {
-    cursor: pointer;
-    user-select: none;
-}
-
-/* Disabled state - must come before hover states for specificity */
-.memori-checkbox--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-}
-
-.memori-checkbox--disabled .memori-checkbox__indicator {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
-    cursor: not-allowed;
-    transform: none;
-}
-
-.memori-checkbox--disabled .memori-checkbox__indicator--checked,
-.memori-checkbox--disabled .memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
-}
-
-/* Focus-visible state - must come before hover states */
-.memori-checkbox:focus-visible .memori-checkbox__indicator {
-    outline: 2px solid var(--memori-primary);
-    outline-offset: var(--memori-focus-ring-offset);
-}
-
-/* microinteraction: press feedback via transform (gated for reduced-motion users) */
-@media (prefers-reduced-motion: no-preference) {
-    .memori-checkbox:active:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
-        transform: scale(0.9);
+    .memori-checkbox:hover:not(.memori-checkbox--disabled) {
+        color: var(--memori-text-color);
     }
-}
 
-.memori-checkbox--disabled .memori-checkbox__label {
-    color: var(--memori-neutral);
-    cursor: not-allowed;
-}
-
-.memori-checkbox--disabled .memori-checkbox__icon {
-    color: var(--memori-primary-content);
-}
-
-/* Hover states - must come after disabled and focus states */
-.memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
-    border-color: var(--memori-border-primary-hover);
-    box-shadow: var(--memori-focus-ring);
-}
-
-.memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--checked {
-    border-color: var(--memori-primary-hover);
-    background-color: var(--memori-primary-hover);
-}
-
-.memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--indeterminate {
-    border-color: var(--memori-primary-hover);
-    background-color: var(--memori-primary-hover);
-}
-
-.memori-checkbox--disabled.memori-checkbox:hover .memori-checkbox__indicator {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
-    box-shadow: none;
-}
-
-/* microinteraction: reduced motion — color/box-shadow only; no scale keyframe on icon */
-@media (prefers-reduced-motion: reduce) {
-    .memori-checkbox,
+    /* Checkbox indicator (the box) */
     .memori-checkbox__indicator {
+        position: relative;
+        display: inline-flex;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--memori-border-color);
+        border-radius: var(--memori-radius-field);
+        background-color: var(--memori-secondary-background);
+
+        /* microinteraction: returning to unchecked uses ease-in */
         transition:
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
+            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
             box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
     }
 
+    /* microinteraction: checked / indeterminate uses ease-out on fill */
     .memori-checkbox__indicator--checked,
     .memori-checkbox__indicator--indeterminate {
         transition:
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease);
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
+            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+
+    /* Checked state */
+    .memori-checkbox__indicator--checked {
+        border-color: var(--memori-primary);
+        background-color: var(--memori-primary);
+    }
+
+    /* Indeterminate state */
+    .memori-checkbox__indicator--indeterminate {
+        border-color: var(--memori-primary);
+        background-color: var(--memori-primary);
+    }
+
+    /* Icon inside indicator */
+    .memori-checkbox__icon-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
     }
 
     .memori-checkbox__icon {
-        animation: none;
+        display: block;
+        color: var(--memori-primary-content);
     }
 
-    .memori-checkbox:active:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
+    /* microinteraction: checkmark scales in with design-token easing (keyframes in theme/keyframes.css) */
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-checkbox__icon {
+            animation: memori-checkmark-scale var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+        }
+    }
+
+    /* Label text */
+    .memori-checkbox__label {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    /* Disabled state - must come before hover states for specificity */
+    .memori-checkbox--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .memori-checkbox--disabled .memori-checkbox__indicator {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-primary-disabled);
+        cursor: not-allowed;
         transform: none;
+    }
+
+    .memori-checkbox--disabled .memori-checkbox__indicator--checked,
+    .memori-checkbox--disabled .memori-checkbox__indicator--indeterminate {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-primary-disabled);
+    }
+
+    /* Focus-visible state - must come before hover states */
+    .memori-checkbox:focus-visible .memori-checkbox__indicator {
+        outline: 2px solid var(--memori-primary);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
+
+    /* microinteraction: press feedback via transform (gated for reduced-motion users) */
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-checkbox:active:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
+            transform: scale(0.9);
+        }
+    }
+
+    .memori-checkbox--disabled .memori-checkbox__label {
+        color: var(--memori-neutral);
+        cursor: not-allowed;
+    }
+
+    .memori-checkbox--disabled .memori-checkbox__icon {
+        color: var(--memori-primary-content);
+    }
+
+    /* Hover states - must come after disabled and focus states */
+    .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
+        border-color: var(--memori-border-primary-hover);
+        box-shadow: var(--memori-focus-ring);
+    }
+
+    .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--checked {
+        border-color: var(--memori-primary-hover);
+        background-color: var(--memori-primary-hover);
+    }
+
+    .memori-checkbox:hover:not(.memori-checkbox--disabled) .memori-checkbox__indicator--indeterminate {
+        border-color: var(--memori-primary-hover);
+        background-color: var(--memori-primary-hover);
+    }
+
+    .memori-checkbox--disabled.memori-checkbox:hover .memori-checkbox__indicator {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-primary-disabled);
+        box-shadow: none;
+    }
+
+    /* microinteraction: reduced motion — color/box-shadow only; no scale keyframe on icon */
+    @media (prefers-reduced-motion: reduce) {
+        .memori-checkbox,
+        .memori-checkbox__indicator {
+            transition:
+                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        }
+
+        .memori-checkbox__indicator--checked,
+        .memori-checkbox__indicator--indeterminate {
+            transition:
+                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease);
+        }
+
+        .memori-checkbox__icon {
+            animation: none;
+        }
+
+        .memori-checkbox:active:not(.memori-checkbox--disabled) .memori-checkbox__indicator {
+            transform: none;
+        }
     }
 }

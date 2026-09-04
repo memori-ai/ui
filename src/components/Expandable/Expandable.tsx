@@ -27,17 +27,18 @@ const Expandable = ({
   btnClassName,
   lineHeightMultiplier = 1.2,
   defaultExpanded = false,
-  expandSymbol = () => '...',
-  collapseSymbol = (lang: string) =>
-    lang === 'it' ? 'Mostra meno' : 'Show less',
+  expandSymbol,
+  collapseSymbol,
   children,
   mode = 'rows',
 }: Props) => {
   const { i18n } = useTranslation()
   const lang = i18n.language
   const { t } = useTranslation()
-  const collapseSymbolText = collapseSymbol(lang)
-  const expandSymbolText = expandSymbol(lang)
+  const collapseSymbolText =
+    collapseSymbol?.(lang) ??
+    t('expandable.collapse', { defaultValue: 'Show less' })
+  const expandSymbolText = expandSymbol?.(lang) ?? '...'
   const [expanded, setExpanded] = useState(defaultExpanded)
   const [needsExpanding, setNeedsExpanding] = useState(false)
   const [rowHeight, setRowHeight] = useState(16)

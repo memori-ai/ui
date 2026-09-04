@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 export type Theme = 'light' | 'dark'
 
 /**
- * Hook to manage theme switching between light and dark modes
+ * @deprecated Prefer `data-theme` on the surface root plus `MemoriUIProvider`
+ * / `useMemoriTheme` for embedded widgets. This hook mutates
+ * `document.documentElement` and `localStorage['theme']`, which is unsafe in
+ * multi-widget or host-page embeds.
+ *
+ * Hook to manage theme switching between light and dark modes (app-shell only).
  *
  * @example
  * ```tsx
+ * // Prefer for full-page apps only — do not use inside embeds:
  * const { theme, setTheme, toggleTheme } = useTheme()
- *
- * return (
- *   <button onClick={toggleTheme}>
- *     Current theme: {theme}
- *   </button>
- * )
  * ```
  */
 export function useTheme() {

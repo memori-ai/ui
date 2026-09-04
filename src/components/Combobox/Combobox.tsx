@@ -254,14 +254,14 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                 </div>
                 <BaseCombobox.List className="memori-combobox__list">
                   {isGroupedOptions(options)
-                    ? options.map(group => (
+                    ? (group: { value: string; items: ComboboxOption[] }) => (
                         <BaseCombobox.Group
-                          key={group.groupLabel}
-                          items={group.options}
+                          key={group.value}
+                          items={group.items}
                           className="memori-combobox__group"
                         >
                           <BaseCombobox.GroupLabel className="memori-combobox__group-label">
-                            {group.groupLabel}
+                            {group.value}
                           </BaseCombobox.GroupLabel>
                           <BaseCombobox.Collection>
                             {(item: ComboboxOption, index: number) => (
@@ -293,7 +293,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
                             )}
                           </BaseCombobox.Collection>
                         </BaseCombobox.Group>
-                      ))
+                      )
                     : (item: ComboboxOption, index: number) => (
                         <BaseCombobox.Item
                           key={item.value}

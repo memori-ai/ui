@@ -38,7 +38,6 @@
         --memori-secondary-content-active: oklch(99% 0.01 200deg);
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 70%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 50%);
-        --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 70%);
         --memori-focus-ring-secondary-color: color-mix(in oklch, var(--memori-secondary), transparent 55%);
         --memori-focus-ring-secondary: 0 0 0 3px var(--memori-focus-ring-secondary-color);
 
@@ -122,9 +121,6 @@
         --memori-shadow-lg:
             0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 8%, transparent),
             0 10px 15px -3px color-mix(in oklch, oklch(0% 0 0deg) 6%, transparent);
-        --memori-shadow-xl:
-            0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
-            0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
         --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 25%, transparent);
 
         /* ─── 10. Motion ────────────────────────── */
@@ -140,16 +136,8 @@
 
         /* ─── 11. Effects ─────────────────────────── */
         --memori-primary-alpha: color-mix(in oklch, var(--memori-primary) 15%, transparent);
-        --memori-overlay-backdrop: color-mix(
-            in oklch,
-            color-mix(in oklch, var(--memori-surface-contrast) 30%, transparent) 85%,
-            var(--memori-primary-alpha) 15%
-        );
         --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), white 85%);
         --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), white 75%);
-
-        /* Grain intensity (0–1); consumed by Card elevated ::after */
-        --memori-noise: 0.35;
         --memori-blur-background: 10px;
         --memori-button-padding: 0.5rem 1.5rem;
         --memori-button-box-shadow: var(--memori-shadow-xs);
@@ -166,7 +154,8 @@
     :root.dark {
         color-scheme: dark;
 
-        /* Primary chain — muted on dark canvases */
+        /* Primary chain — lighten hover/active on dark canvases.
+           Keep --memori-primary on the brand hook; never alias it to --memori-primary-hover. */
         --memori-primary-hover: color-mix(in oklch, var(--memori-primary), white 12%);
         --memori-primary-active: color-mix(in oklch, var(--memori-primary), white 22%);
         --memori-primary-disabled: color-mix(in oklch, var(--memori-primary), transparent 55%);
@@ -188,7 +177,6 @@
         --memori-secondary-content-active: oklch(16% 0.04 240deg);
         --memori-border-secondary: color-mix(in oklch, var(--memori-secondary), transparent 45%);
         --memori-border-secondary-hover: color-mix(in oklch, var(--memori-secondary), transparent 30%);
-        --memori-shadow-secondary: 0 8px 16px -4px color-mix(in oklch, var(--memori-secondary), transparent 55%);
         --memori-focus-ring-secondary-color: color-mix(in oklch, var(--memori-secondary), transparent 40%);
 
         /* Surfaces & text */
@@ -228,21 +216,12 @@
         --memori-shadow-lg:
             0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 40%, transparent),
             0 2px 4px -2px color-mix(in oklch, oklch(0% 0 0deg) 30%, transparent);
-        --memori-shadow-xl:
-            0 20px 25px -5px color-mix(in oklch, var(--memori-surface-contrast) 40%, transparent),
-            0 8px 10px -6px color-mix(in oklch, var(--memori-surface-contrast) 34%, transparent);
         --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 48%, transparent);
 
         /* Effects */
         --memori-primary-alpha: color-mix(in oklch, var(--memori-primary) 22%, transparent);
-        --memori-overlay-backdrop: color-mix(
-            in oklch,
-            color-mix(in oklch, var(--memori-surface-contrast) 30%, transparent) 85%,
-            var(--memori-primary-alpha) 15%
-        );
         --memori-skeleton-base: color-mix(in oklch, var(--memori-primary), black 78%);
         --memori-skeleton-highlight: color-mix(in oklch, var(--memori-primary), black 68%);
-        --memori-noise: 0.28;
         --memori-button-box-shadow: var(--memori-shadow-xs);
 
         /* Tooltip: elevated surface on dark canvas */

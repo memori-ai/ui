@@ -11,6 +11,7 @@ import {
 
 import { useMemoriTheme } from '../../theme/MemoriUIProvider'
 import type { Theme } from '../../theme/useTheme'
+import { useTranslation } from 'react-i18next'
 import './styles.css'
 
 /**
@@ -41,6 +42,8 @@ export interface AlertData {
   showIcon?: boolean
   /** Whether the alert can be closed by the user */
   closable?: boolean
+  /** Accessible label for the close button */
+  closeLabel?: string
   /** Custom action element to display */
   action?: React.ReactNode
   /** Callback fired when the alert is closed */
@@ -129,11 +132,14 @@ const getDefaultIcon = (severity: AlertSeverity): React.ReactNode => {
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   function Alert(props, forwardedRef) {
     const { toast, className, style } = props
+    const { t } = useTranslation()
 
     const data = toast.data ?? {}
     const severity = data.severity ?? 'info'
     const showIcon = data.showIcon ?? true
     const closable = data.closable ?? true
+    const closeLabel =
+      data.closeLabel ?? t('alert.close', { defaultValue: 'Close alert' })
     const displayIcon =
       data.icon ?? (showIcon ? getDefaultIcon(severity) : null)
     const action = data.action
@@ -181,7 +187,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             {closable && (
               <Toast.Close
                 className="memori-alert__close"
-                aria-label="Close alert"
+                aria-label={closeLabel}
                 onClick={handleClose}
               >
                 <CloseIcon
@@ -314,6 +320,8 @@ export interface AddAlertOptions {
   showIcon?: boolean
   /** Whether the alert can be closed */
   closable?: boolean
+  /** Accessible label for the close button */
+  closeLabel?: string
   /** Custom action element */
   action?: React.ReactNode
   /** Callback when closed */
@@ -332,6 +340,7 @@ const createAlertOptions = (options: AddAlertOptions) => ({
     icon: options.icon,
     showIcon: options.showIcon,
     closable: options.closable,
+    closeLabel: options.closeLabel,
     action: options.action,
     onClose: options.onClose,
   } satisfies AlertData,

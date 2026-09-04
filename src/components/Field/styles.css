@@ -1,77 +1,79 @@
-/**
+@layer memori.components {
+    /**
  * Field component styles.
  * Uses design tokens from theme/variables.css only.
  * Built on @base-ui/react Field. WCAG 2.1 AA+.
  */
 
-.memori-field {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--memori-font-family);
-    gap: var(--memori-spacing-xs);
-}
+    .memori-field {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--memori-font-family);
+        gap: var(--memori-spacing-xs);
+    }
 
-.memori-field__label {
-    color: var(--memori-text-color);
-    font-size: var(--memori-text-size-small);
-    font-weight: var(--memori-text-weight-medium);
-    line-height: var(--memori-text-line-normal);
-    transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
-}
-
-.memori-field__label:focus-visible {
-    border-radius: var(--memori-radius-field);
-    outline: var(--memori-focus-ring);
-    outline-offset: var(--memori-focus-ring-offset);
-}
-
-.memori-field:focus-within .memori-field__label {
-    color: var(--memori-text-color);
-}
-
-.memori-field[data-disabled] .memori-field__label {
-    color: var(--memori-neutral);
-    cursor: not-allowed;
-}
-
-.memori-field__required-indicator {
-    margin-left: var(--memori-spacing-xs);
-    color: var(--memori-error-text, var(--memori-error));
-    font-weight: var(--memori-text-weight-normal);
-}
-
-.memori-field__description {
-    color: var(--memori-neutral);
-    font-size: var(--memori-text-size-sm);
-    font-weight: var(--memori-text-weight-normal);
-    line-height: var(--memori-text-line-normal);
-}
-
-.memori-field[data-disabled] .memori-field__description {
-    color: var(--memori-neutral);
-}
-
-.memori-field__error {
-    color: var(--memori-error-text, var(--memori-error));
-    font-size: var(--memori-text-size-sm);
-    font-weight: var(--memori-text-weight-normal);
-    line-height: var(--memori-text-line-normal);
-}
-
-.memori-field__error:focus-visible {
-    border-radius: var(--memori-radius-field);
-    outline: var(--memori-focus-ring);
-    outline-offset: var(--memori-focus-ring-offset);
-}
-
-.memori-field__control-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--memori-spacing-xs);
-}
-
-@media (prefers-reduced-motion: reduce) {
     .memori-field__label {
-        transition: none;
+        color: var(--memori-text-color);
+        font-size: var(--memori-text-size-small);
+        font-weight: var(--memori-text-weight-medium);
+        line-height: var(--memori-text-line-normal);
+        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    }
+
+    .memori-field__label:focus-visible {
+        border-radius: var(--memori-radius-field);
+        outline: var(--memori-focus-ring);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
+
+    .memori-field:focus-within .memori-field__label {
+        color: var(--memori-text-color);
+    }
+
+    .memori-field[data-disabled] .memori-field__label {
+        color: var(--memori-neutral);
+        cursor: not-allowed;
+    }
+
+    .memori-field__required-indicator {
+        margin-left: var(--memori-spacing-xs);
+        color: var(--memori-error-text, var(--memori-error));
+        font-weight: var(--memori-text-weight-normal);
+    }
+
+    .memori-field__description {
+        color: var(--memori-neutral);
+        font-size: var(--memori-text-size-sm);
+        font-weight: var(--memori-text-weight-normal);
+        line-height: var(--memori-text-line-normal);
+    }
+
+    .memori-field[data-disabled] .memori-field__description {
+        color: var(--memori-neutral);
+    }
+
+    .memori-field__error {
+        color: var(--memori-error-text, var(--memori-error));
+        font-size: var(--memori-text-size-sm);
+        font-weight: var(--memori-text-weight-normal);
+        line-height: var(--memori-text-line-normal);
+    }
+
+    .memori-field__error:focus-visible {
+        border-radius: var(--memori-radius-field);
+        outline: var(--memori-focus-ring);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
+
+    .memori-field__control-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--memori-spacing-xs);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .memori-field__label {
+            transition: none;
+        }
     }
 }

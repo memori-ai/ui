@@ -85,6 +85,14 @@ export interface ModalProps extends Omit<
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
   /**
+   * Stacking variant for overlays above Drawer / default Modal.
+   * - `default`: z-index 1500
+   * - `stacked` / `nested`: z-index 1600 (e.g. confirm over a drawer)
+   * @default 'default'
+   */
+  stacking?: 'default' | 'stacked' | 'nested'
+
+  /**
    * Custom width (overrides size)
    * Applied on mobile and up
    */
@@ -270,6 +278,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       closeOnOverlayClick = true,
       closeOnEsc = true,
       size = 'md',
+      stacking = 'default',
       width,
       widthMd,
       widthLg,
@@ -383,6 +392,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       sizeClass,
       contentClassName,
     )
+    const isStacked = stacking === 'stacked' || stacking === 'nested'
+    const stackingClass = isStacked ? 'memori-modal--stacked' : undefined
     const hasTitle = title != null
     const hasDescription = description != null
     const effectiveAriaLabelledBy =
@@ -402,7 +413,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         <Dialog.Portal container={portalContainer ?? undefined}>
           {animated && (
             <Dialog.Backdrop
-              className={cx('memori-modal__backdrop', backdropClassName)}
+              className={cx(
+                'memori-modal__backdrop',
+                stackingClass,
+                backdropClassName,
+              )}
               data-theme={resolvedTheme}
             />
           )}
@@ -410,6 +425,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             data-theme={resolvedTheme}
             className={cx(
               'memori-modal__viewport',
+              stackingClass,
               centered && 'memori-modal__viewport--centered',
               className,
             )}

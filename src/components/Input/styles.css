@@ -1,158 +1,160 @@
-.memori-input {
-    position: relative;
-    display: inline-flex;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--memori-border-color);
-    border-radius: var(--memori-radius-field);
-    background-color: var(--memori-secondary-background);
-    color: var(--memori-text-color);
-    font-family: var(--memori-font-family);
-    font-weight: var(--memori-text-weight-normal);
-    isolation: isolate;
-    line-height: var(--memori-text-line-normal);
-    outline: none;
-    transition:
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
-}
+@layer memori.components {
+    .memori-input {
+        position: relative;
+        display: inline-flex;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        border: 1px solid var(--memori-border-color);
+        border-radius: var(--memori-radius-field);
+        background-color: var(--memori-secondary-background);
+        color: var(--memori-text-color);
+        font-family: var(--memori-font-family);
+        font-weight: var(--memori-text-weight-normal);
+        isolation: isolate;
+        line-height: var(--memori-text-line-normal);
+        outline: none;
+        transition:
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
 
-/* microinteraction: focus ring on pseudo so ring opacity can fade in without changing token colors */
-.memori-input::before {
-    position: absolute;
-    z-index: -1;
-    border-radius: inherit;
-    box-shadow: var(--memori-focus-ring);
-    content: '';
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
-}
+    /* microinteraction: focus ring on pseudo so ring opacity can fade in without changing token colors */
+    .memori-input::before {
+        position: absolute;
+        z-index: -1;
+        border-radius: inherit;
+        box-shadow: var(--memori-focus-ring);
+        content: '';
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
 
-.memori-input--default::before {
-    box-shadow: var(--memori-focus-ring);
-}
+    .memori-input--default::before {
+        box-shadow: var(--memori-focus-ring);
+    }
 
-.memori-input--error::before {
-    box-shadow: 0 0 0 2px oklch(from var(--memori-error) l c h / 10%);
-}
+    .memori-input--error::before {
+        box-shadow: 0 0 0 2px oklch(from var(--memori-error) l c h / 10%);
+    }
 
-.memori-input--success::before {
-    box-shadow: 0 0 0 2px oklch(from var(--memori-success) l c h / 10%);
-}
+    .memori-input--success::before {
+        box-shadow: 0 0 0 2px oklch(from var(--memori-success) l c h / 10%);
+    }
 
-.memori-input:focus::before,
-.memori-input:focus-within::before {
-    opacity: 1;
-}
+    .memori-input:focus::before,
+    .memori-input:focus-within::before {
+        opacity: 1;
+    }
 
-.memori-input:focus,
-.memori-input:focus-within {
-    border-color: var(--memori-border-primary);
-    box-shadow: var(--memori-focus-ring);
-    isolation: isolate;
-    outline-offset: var(--memori-focus-ring-offset);
-}
+    .memori-input:focus,
+    .memori-input:focus-within {
+        border-color: var(--memori-border-primary);
+        box-shadow: var(--memori-focus-ring);
+        isolation: isolate;
+        outline-offset: var(--memori-focus-ring-offset);
+    }
 
-.memori-input::placeholder {
-    color: var(--memori-neutral);
-}
+    .memori-input::placeholder {
+        color: var(--memori-neutral);
+    }
 
-.memori-input--disabled,
-.memori-input:disabled {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-neutral-content);
-    color: var(--memori-neutral);
-    cursor: not-allowed;
-    opacity: 0.6;
-    transition: none;
-}
+    .memori-input--disabled,
+    .memori-input:disabled {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-neutral-content);
+        color: var(--memori-neutral);
+        cursor: not-allowed;
+        opacity: 0.6;
+        transition: none;
+    }
 
-.memori-input--disabled::placeholder,
-.memori-input:disabled::placeholder {
-    color: var(--memori-neutral);
-}
+    .memori-input--disabled::placeholder,
+    .memori-input:disabled::placeholder {
+        color: var(--memori-neutral);
+    }
 
-.memori-input:hover:not(:disabled, .memori-input--disabled) {
-    border-color: var(--memori-border-primary-hover);
-}
+    .memori-input:hover:not(:disabled, .memori-input--disabled) {
+        border-color: var(--memori-border-primary-hover);
+    }
 
-/* ============================================
+    /* ============================================
    VARIANTS
    ============================================ */
 
-/* Default Variant */
-.memori-input--default {
-    border-color: var(--memori-border-color);
-}
-
-.memori-input--default:hover:not(:disabled, .memori-input--disabled) {
-    border-color: var(--memori-border-color);
-}
-
-/* Error Variant */
-.memori-input--error {
-    border-color: var(--memori-error);
-    background-color: oklch(from var(--memori-error) l c h / 10%);
-}
-
-.memori-input--error:focus,
-.memori-input--error:focus-within {
-    border-color: var(--memori-error);
-}
-
-.memori-input--error::placeholder {
-    color: var(--memori-error);
-}
-
-/* microinteraction: one-shot shake when error variant is shown; re-shake needs class toggle in app code */
-@media (prefers-reduced-motion: no-preference) {
-    .memori-input--error {
-        animation: memori-shake var(--memori-motion-duration-slow) var(--memori-motion-ease-in-out) 1;
+    /* Default Variant */
+    .memori-input--default {
+        border-color: var(--memori-border-color);
     }
-}
 
-/* Success Variant */
-.memori-input--success {
-    border-color: var(--memori-success);
-    background-color: oklch(from var(--memori-success) l c h / 10%);
-}
+    .memori-input--default:hover:not(:disabled, .memori-input--disabled) {
+        border-color: var(--memori-border-color);
+    }
 
-.memori-input--success:focus,
-.memori-input--success:focus-within {
-    border-color: var(--memori-success);
-}
+    /* Error Variant */
+    .memori-input--error {
+        border-color: var(--memori-error);
+        background-color: oklch(from var(--memori-error) l c h / 10%);
+    }
 
-/* ============================================
+    .memori-input--error:focus,
+    .memori-input--error:focus-within {
+        border-color: var(--memori-error);
+    }
+
+    .memori-input--error::placeholder {
+        color: var(--memori-error);
+    }
+
+    /* microinteraction: one-shot shake when error variant is shown; re-shake needs class toggle in app code */
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-input--error {
+            animation: memori-shake var(--memori-motion-duration-slow) var(--memori-motion-ease-in-out) 1;
+        }
+    }
+
+    /* Success Variant */
+    .memori-input--success {
+        border-color: var(--memori-success);
+        background-color: oklch(from var(--memori-success) l c h / 10%);
+    }
+
+    .memori-input--success:focus,
+    .memori-input--success:focus-within {
+        border-color: var(--memori-success);
+    }
+
+    /* ============================================
    SIZES
    ============================================ */
 
-.memori-input--sm {
-    min-height: 32px;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
-    font-size: var(--memori-text-size-small);
-}
+    .memori-input--sm {
+        min-height: 32px;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
+        font-size: var(--memori-text-size-small);
+    }
 
-.memori-input--md {
-    min-height: 42px;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    font-size: var(--memori-text-size-base);
-}
+    .memori-input--md {
+        min-height: 42px;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        font-size: var(--memori-text-size-base);
+    }
 
-.memori-input--lg {
-    min-height: 48px;
-    padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    font-size: var(--memori-text-size-large);
-}
+    .memori-input--lg {
+        min-height: 48px;
+        padding: var(--memori-spacing-md) var(--memori-spacing-lg);
+        font-size: var(--memori-text-size-large);
+    }
 
-/* ============================================
+    /* ============================================
    STATES
    ============================================ */
 
-.memori-input--full-width {
-    width: 100%;
+    .memori-input--full-width {
+        width: 100%;
+    }
 }

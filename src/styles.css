@@ -1,3 +1,16 @@
+/*
+ * Cascade layer contract for hosts and this library:
+ *   @layer memori.theme, memori.components, memori.overrides;
+ *
+ * - memori.theme: design tokens (variables.css)
+ * - memori.components: component styles shipped by @memori.ai/ui
+ * - memori.overrides: host/widget overrides (declare in consumer CSS)
+ *
+ * Hosts that inject overrides should declare the same layer order before
+ * importing this stylesheet, then put their rules in @layer memori.overrides.
+ */
+@layer memori.theme, memori.components, memori.overrides;
+
 @import url('./theme/variables.css');
 @import url('./theme/keyframes.css');
 @import url('./styles/animations.css');

@@ -1,499 +1,500 @@
-.memori-button {
-    position: relative;
-    display: inline-flex;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    border-radius: var(--memori-radius-field);
-    box-shadow: var(--memori-button-box-shadow);
-    cursor: pointer;
-    font-family: var(--memori-font-family);
-    font-weight: var(--memori-text-weight-medium);
-    gap: var(--memori-spacing-sm);
-    isolation: isolate;
-    line-height: var(--memori-text-line-normal);
-    outline: none;
-    transition:
-        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
-}
-
-/* microinteraction: focus ring on a pseudo so opacity can animate 0→1 without changing ring tokens */
-.memori-button::before {
-    position: absolute;
-    z-index: 0;
-    border-radius: inherit;
-    box-shadow: var(--memori-focus-ring);
-    content: '';
-
-    /* Align ring to outer border (1px) so outline-offset reads as gap from the visible edge */
-    inset: -1px;
-    opacity: 0;
-    outline: 2px solid var(--memori-primary);
-    outline-offset: var(--memori-focus-ring-offset);
-    pointer-events: none;
-    transition: opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
-}
-
-.memori-button > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* microinteraction: show focus ring when keyboard-focused */
-.memori-button:focus-visible::before {
-    opacity: 1;
-}
-
-/* Disabled state - must come before :hover:not(:disabled) for specificity */
-.memori-button:disabled,
-.memori-button--disabled {
-    transition: none;
-}
-
-.memori-button:disabled {
-    border-color: var(--memori-border-color);
-
-    /* background-color: var(--memori-primary-disabled); */
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-/* Soft variants — :disabled before :hover (no-descending-specificity) */
-.memori-button--soft {
-    border-color: var(--memori-border-primary);
-    background-color: var(--memori-primary-subtle);
-    box-shadow: none;
-    color: var(--memori-primary);
-}
-
-.memori-button--soft:disabled,
-.memori-button--soft.memori-button--disabled {
-    border-color: var(--memori-border-primary);
-    background-color: var(--memori-primary-subtle);
-    color: var(--memori-primary-disabled);
-    opacity: 0.65;
-}
-
-.memori-button--soft:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-border-primary-hover);
-    background-color: var(--memori-primary-subtle-hover);
-    box-shadow: var(--memori-shadow-sm);
-    color: var(--memori-primary);
-}
-
-.memori-button--soft:active:not(:disabled, .memori-button--disabled),
-.memori-button--soft.memori-button--active {
-    border-color: var(--memori-border-primary-hover);
-    background-color: var(--memori-primary-subtle-hover);
-    color: var(--memori-primary-active);
-}
-
-.memori-button--softSecondary {
-    border-color: var(--memori-border-secondary);
-    background-color: var(--memori-secondary-subtle);
-    box-shadow: none;
-    color: var(--memori-text-color);
-}
-
-.memori-button--softSecondary:disabled,
-.memori-button--softSecondary.memori-button--disabled {
-    border-color: var(--memori-border-secondary);
-    background-color: var(--memori-secondary-subtle);
-    color: var(--memori-secondary-disabled);
-    opacity: 0.65;
-}
-
-.memori-button--softSecondary:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-border-secondary-hover);
-    background-color: var(--memori-secondary-subtle-hover);
-    box-shadow: var(--memori-shadow-sm);
-    color: var(--memori-text-color);
-}
-
-.memori-button--softSecondary:active:not(:disabled, .memori-button--disabled),
-.memori-button--softSecondary.memori-button--active {
-    border-color: var(--memori-border-secondary-hover);
-    background-color: var(--memori-secondary-subtle-hover);
-    color: var(--memori-secondary-active);
-}
-
-/* microinteraction: hover uses scale + existing shadow; transform uses fast + ease-out */
-.memori-button:hover:not(:disabled, .memori-button--disabled) {
-    transform: scale(1.015);
-}
-
-/* microinteraction: press uses scale + ease-in on transform */
-.memori-button:active:not(:disabled, .memori-button--disabled) {
-    box-shadow: none;
-    transform: scale(0.98);
-    transition:
-        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
-}
-
-/* ============================================
-   BUTTON CONTENT & ICON
-   ============================================ */
-
-.memori-button__content {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--memori-spacing-xs);
-}
-
-.memori-button__icon {
-    display: inline-flex;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-}
-
-.memori-button__icon svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* Spinner for loading state */
-.memori-button__spinner {
-    width: 1em;
-    height: 1em;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .memori-button__spinner {
-        animation: memori-button-spin 1s linear infinite;
-    }
-}
-
-/* microinteraction: reduced motion — keep color/opacity feedback, no transform */
-@media (prefers-reduced-motion: reduce) {
+@layer memori.components {
     .memori-button {
+        position: relative;
+        display: inline-flex;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: var(--memori-radius-field);
+        box-shadow: var(--memori-button-box-shadow);
+        cursor: pointer;
+        font-family: var(--memori-font-family);
+        font-weight: var(--memori-text-weight-medium);
+        gap: var(--memori-spacing-sm);
+        isolation: isolate;
+        line-height: var(--memori-text-line-normal);
+        outline: none;
         transition:
             background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
             border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
             color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            opacity var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
     }
 
-    .memori-button:hover:not(:disabled, .memori-button--disabled),
+    /* microinteraction: focus ring on a pseudo so opacity can animate 0→1 without changing ring tokens */
+    .memori-button::before {
+        position: absolute;
+        z-index: 0;
+        border-radius: inherit;
+        box-shadow: var(--memori-focus-ring);
+        content: '';
+
+        /* Align ring to outer border (1px) so outline-offset reads as gap from the visible edge */
+        inset: -1px;
+        opacity: 0;
+        outline: 2px solid var(--memori-primary);
+        outline-offset: var(--memori-focus-ring-offset);
+        pointer-events: none;
+        transition: opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+
+    .memori-button > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* microinteraction: show focus ring when keyboard-focused */
+    .memori-button:focus-visible::before {
+        opacity: 1;
+    }
+
+    /* Disabled state - must come before :hover:not(:disabled) for specificity */
+    .memori-button:disabled,
+    .memori-button--disabled {
+        transition: none;
+    }
+
+    .memori-button:disabled {
+        border-color: var(--memori-border-color);
+
+        /* background-color: var(--memori-primary-disabled); */
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    /* Soft variants — :disabled before :hover (no-descending-specificity) */
+    .memori-button--soft {
+        border-color: var(--memori-border-primary);
+        background-color: var(--memori-primary-subtle);
+        box-shadow: none;
+        color: var(--memori-primary);
+    }
+
+    .memori-button--soft:disabled,
+    .memori-button--soft.memori-button--disabled {
+        border-color: var(--memori-border-primary);
+        background-color: var(--memori-primary-subtle);
+        color: var(--memori-primary-disabled);
+        opacity: 0.65;
+    }
+
+    .memori-button--soft:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-border-primary-hover);
+        background-color: var(--memori-primary-subtle-hover);
+        box-shadow: var(--memori-shadow-sm);
+        color: var(--memori-primary);
+    }
+
+    .memori-button--soft:active:not(:disabled, .memori-button--disabled),
+    .memori-button--soft.memori-button--active {
+        border-color: var(--memori-border-primary-hover);
+        background-color: var(--memori-primary-subtle-hover);
+        color: var(--memori-primary-active);
+    }
+
+    .memori-button--softSecondary {
+        border-color: var(--memori-border-secondary);
+        background-color: var(--memori-secondary-subtle);
+        box-shadow: none;
+        color: var(--memori-text-color);
+    }
+
+    .memori-button--softSecondary:disabled,
+    .memori-button--softSecondary.memori-button--disabled {
+        border-color: var(--memori-border-secondary);
+        background-color: var(--memori-secondary-subtle);
+        color: var(--memori-secondary-disabled);
+        opacity: 0.65;
+    }
+
+    .memori-button--softSecondary:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-border-secondary-hover);
+        background-color: var(--memori-secondary-subtle-hover);
+        box-shadow: var(--memori-shadow-sm);
+        color: var(--memori-text-color);
+    }
+
+    .memori-button--softSecondary:active:not(:disabled, .memori-button--disabled),
+    .memori-button--softSecondary.memori-button--active {
+        border-color: var(--memori-border-secondary-hover);
+        background-color: var(--memori-secondary-subtle-hover);
+        color: var(--memori-secondary-active);
+    }
+
+    /* microinteraction: hover uses scale + existing shadow; transform uses fast + ease-out */
+    .memori-button:hover:not(:disabled, .memori-button--disabled) {
+        transform: scale(1.015);
+    }
+
+    /* microinteraction: press uses scale + ease-in on transform */
     .memori-button:active:not(:disabled, .memori-button--disabled) {
-        transform: none;
+        box-shadow: none;
+        transform: scale(0.98);
+        transition:
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
     }
 
+    /* ============================================
+   BUTTON CONTENT & ICON
+   ============================================ */
+
+    .memori-button__content {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--memori-spacing-xs);
+    }
+
+    .memori-button__icon {
+        display: inline-flex;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .memori-button__icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Spinner for loading state */
     .memori-button__spinner {
-        animation: none;
+        width: 1em;
+        height: 1em;
     }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-    @keyframes memori-button-spin {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-button__spinner {
+            animation: memori-button-spin 1s linear infinite;
         }
     }
-}
 
-/* ============================================
+    /* microinteraction: reduced motion — keep color/opacity feedback, no transform */
+    @media (prefers-reduced-motion: reduce) {
+        .memori-button {
+            transition:
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+                opacity var(--memori-motion-duration-normal) var(--memori-motion-ease),
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        }
+
+        .memori-button:hover:not(:disabled, .memori-button--disabled),
+        .memori-button:active:not(:disabled, .memori-button--disabled) {
+            transform: none;
+        }
+
+        .memori-button__spinner {
+            animation: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        @keyframes memori-button-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    /* ============================================
    VARIANTS
    ============================================ */
 
-/* Primary Variant */
-.memori-button--primary {
-    border-color: var(--memori-primary);
-    background-color: var(--memori-primary);
-    color: var(--memori-primary-content);
-}
+    /* Primary Variant */
+    .memori-button--primary {
+        border-color: var(--memori-primary);
+        background-color: var(--memori-primary);
+        color: var(--memori-primary-content);
+    }
 
-.memori-button--primary:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-primary-hover);
-}
+    .memori-button--primary:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-primary-hover);
+    }
 
-.memori-button--primary:active:not(:disabled, .memori-button--disabled),
-.memori-button--primary.memori-button--active {
-    border-color: var(--memori-primary-active);
-    background-color: var(--memori-primary-active);
-}
+    .memori-button--primary:active:not(:disabled, .memori-button--disabled),
+    .memori-button--primary.memori-button--active {
+        border-color: var(--memori-primary-active);
+        background-color: var(--memori-primary-active);
+    }
 
-/* Secondary Variant */
-.memori-button--secondary {
-    border-color: var(--memori-secondary);
-    background-color: var(--memori-secondary);
-    color: var(--memori-secondary-content);
-}
+    /* Secondary Variant */
+    .memori-button--secondary {
+        border-color: var(--memori-secondary);
+        background-color: var(--memori-secondary);
+        color: var(--memori-secondary-content);
+    }
 
-.memori-button--secondary:disabled {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-secondary-disabled);
-}
+    .memori-button--secondary:disabled {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-secondary-disabled);
+    }
 
-.memori-button--secondary:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-secondary-hover);
-}
+    .memori-button--secondary:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-secondary-hover);
+    }
 
-.memori-button--secondary:active:not(:disabled, .memori-button--disabled),
-.memori-button--secondary.memori-button--active {
-    border-color: var(--memori-secondary-active);
-    background-color: var(--memori-secondary-active);
-    color: var(--memori-secondary-content-active, var(--memori-secondary-content));
-}
+    .memori-button--secondary:active:not(:disabled, .memori-button--disabled),
+    .memori-button--secondary.memori-button--active {
+        border-color: var(--memori-secondary-active);
+        background-color: var(--memori-secondary-active);
+        color: var(--memori-secondary-content-active, var(--memori-secondary-content));
+    }
 
-.memori-button--secondary:focus-visible::before {
-    box-shadow: var(--memori-focus-ring-secondary);
-    outline-color: var(--memori-secondary);
-}
+    .memori-button--secondary:focus-visible::before {
+        box-shadow: var(--memori-focus-ring-secondary);
+        outline-color: var(--memori-secondary);
+    }
 
-/* Outline Variant */
-.memori-button--outline {
-    border-color: var(--memori-primary);
-    background-color: transparent;
-    box-shadow: none;
-    color: var(--memori-primary);
-}
+    /* Outline Variant */
+    .memori-button--outline {
+        border-color: var(--memori-primary);
+        background-color: transparent;
+        box-shadow: none;
+        color: var(--memori-primary);
+    }
 
-/* Outline variant disabled state */
-.memori-button--outline.memori-button--disabled,
-.memori-button--outline:disabled {
-    border-color: var(--memori-border-color);
-    background-color: transparent;
-}
+    /* Outline variant disabled state */
+    .memori-button--outline.memori-button--disabled,
+    .memori-button--outline:disabled {
+        border-color: var(--memori-border-color);
+        background-color: transparent;
+    }
 
-.memori-button--outline.memori-button--disabled:hover,
-.memori-button--outline:disabled:hover {
-    border-color: var(--memori-border-color);
-    background-color: transparent;
-}
+    .memori-button--outline.memori-button--disabled:hover,
+    .memori-button--outline:disabled:hover {
+        border-color: var(--memori-border-color);
+        background-color: transparent;
+    }
 
-.memori-button--outline:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-primary-hover);
-    background-color: var(--memori-primary-hover);
-    box-shadow: var(--memori-shadow-primary);
-    color: var(--memori-primary-content);
-}
+    .memori-button--outline:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-primary-hover);
+        background-color: var(--memori-primary-hover);
+        box-shadow: var(--memori-shadow-primary);
+        color: var(--memori-primary-content);
+    }
 
-.memori-button--outline:active:not(:disabled, .memori-button--disabled),
-.memori-button--outline.memori-button--active {
-    border-color: var(--memori-primary-active);
-    background-color: var(--memori-primary-active);
-    color: var(--memori-primary-content);
-}
+    .memori-button--outline:active:not(:disabled, .memori-button--disabled),
+    .memori-button--outline.memori-button--active {
+        border-color: var(--memori-primary-active);
+        background-color: var(--memori-primary-active);
+        color: var(--memori-primary-content);
+    }
 
-:is([data-theme='dark'], .dark, :root.dark) .memori-button--outline {
-    color: var(--memori-text-color);
-}
+    :is([data-theme='dark'], .dark, :root.dark) .memori-button--outline {
+        color: var(--memori-text-color);
+    }
 
-/* Toolbar variant — field-style control (table toolbars, filter popover trigger, etc.) */
-.memori-button--toolbar {
-    border: var(--memori-border) solid var(--memori-border-color);
-    background-color: var(--memori-secondary-background);
-    box-shadow: none; /* overrides --memori-button-box-shadow */
-    color: var(--memori-text-color);
-    font-weight: var(--memori-text-weight-normal);
-    transform: none;
-    transition:
-        background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
-        color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
-}
+    /* Toolbar variant — field-style control (table toolbars, filter popover trigger, etc.) */
+    .memori-button--toolbar {
+        border: var(--memori-border) solid var(--memori-border-color);
+        background-color: var(--memori-secondary-background);
+        box-shadow: none; /* overrides --memori-button-box-shadow */
+        color: var(--memori-text-color);
+        font-weight: var(--memori-text-weight-normal);
+        transform: none;
+        transition:
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
+    }
 
-.memori-button--toolbar:focus-visible::before {
-    opacity: 0;
-}
+    .memori-button--toolbar:focus-visible::before {
+        opacity: 0;
+    }
 
-.memori-button--toolbar:focus-visible {
-    border-color: var(--memori-border-primary);
-    box-shadow: var(--memori-focus-ring);
-    outline: 2px solid var(--memori-primary);
-    outline-offset: var(--memori-focus-ring-offset);
-}
+    .memori-button--toolbar:focus-visible {
+        border-color: var(--memori-border-primary);
+        box-shadow: var(--memori-focus-ring);
+        outline: 2px solid var(--memori-primary);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
 
-.memori-button--toolbar.memori-button--active {
-    border-color: var(--memori-border-primary);
-    background-color: var(--memori-main-background);
-    color: var(--memori-text-color);
-}
+    .memori-button--toolbar.memori-button--active {
+        border-color: var(--memori-border-primary);
+        background-color: var(--memori-main-background);
+        color: var(--memori-text-color);
+    }
 
-.memori-button--toolbar.memori-button--disabled,
-.memori-button--toolbar:disabled {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-main-background);
-    color: var(--memori-text-color);
-    cursor: not-allowed;
-    opacity: 0.6;
-    transform: none;
-}
+    .memori-button--toolbar.memori-button--disabled,
+    .memori-button--toolbar:disabled {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-main-background);
+        color: var(--memori-text-color);
+        cursor: not-allowed;
+        opacity: 0.6;
+        transform: none;
+    }
 
-.memori-button--toolbar.memori-button--disabled:hover,
-.memori-button--toolbar:disabled:hover {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-main-background);
-    transform: none;
-}
+    .memori-button--toolbar.memori-button--disabled:hover,
+    .memori-button--toolbar:disabled:hover {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-main-background);
+        transform: none;
+    }
 
-.memori-button--toolbar:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-border-primary-hover);
-    box-shadow: none;
-    color: var(--memori-text-color);
-    transform: none;
-}
+    .memori-button--toolbar:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-border-primary-hover);
+        box-shadow: none;
+        color: var(--memori-text-color);
+        transform: none;
+    }
 
-.memori-button--toolbar:active:not(:disabled, .memori-button--disabled) {
-    box-shadow: none;
-    transform: none;
-}
+    .memori-button--toolbar:active:not(:disabled, .memori-button--disabled) {
+        box-shadow: none;
+        transform: none;
+    }
 
-.memori-button--toolbar.memori-button--shadow,
-.memori-button--toolbar.memori-button--shadow:hover:not(:disabled, .memori-button--disabled),
-.memori-button--toolbar.memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
-    transform: none;
-}
+    .memori-button--toolbar.memori-button--shadow,
+    .memori-button--toolbar.memori-button--shadow:hover:not(:disabled, .memori-button--disabled),
+    .memori-button--toolbar.memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
+        transform: none;
+    }
 
-.memori-button--toolbar.memori-button--xs {
-    min-height: unset;
-    padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
-    font-size: var(--memori-text-size-xs);
-}
+    .memori-button--toolbar.memori-button--xs {
+        min-height: unset;
+        padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
+        font-size: var(--memori-text-size-xs);
+    }
 
-.memori-button--toolbar.memori-button--sm {
-    min-height: unset;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    font-size: var(--memori-text-size-small);
-}
+    .memori-button--toolbar.memori-button--sm {
+        min-height: unset;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        font-size: var(--memori-text-size-small);
+    }
 
-.memori-button--toolbar.memori-button--md {
-    min-height: unset;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    font-size: var(--memori-text-size-base);
-}
+    .memori-button--toolbar.memori-button--md {
+        min-height: unset;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        font-size: var(--memori-text-size-base);
+    }
 
-.memori-button--toolbar.memori-button--lg {
-    min-height: unset;
-    padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    font-size: var(--memori-text-size-large);
-}
+    .memori-button--toolbar.memori-button--lg {
+        min-height: unset;
+        padding: var(--memori-spacing-md) var(--memori-spacing-lg);
+        font-size: var(--memori-text-size-large);
+    }
 
-/* Ghost Variant */
-.memori-button--ghost {
-    border-color: transparent;
-    background-color: transparent;
-    box-shadow: none;
-    color: var(--memori-text-color);
-}
+    /* Ghost Variant */
+    .memori-button--ghost {
+        border-color: transparent;
+        background-color: transparent;
+        box-shadow: none;
+        color: var(--memori-text-color);
+    }
 
-/* Ghost variant disabled state — before :hover (no-descending-specificity) */
-.memori-button--ghost.memori-button--disabled,
-.memori-button--ghost:disabled {
-    border-color: transparent;
-    background-color: transparent;
-}
+    /* Ghost variant disabled state — before :hover (no-descending-specificity) */
+    .memori-button--ghost.memori-button--disabled,
+    .memori-button--ghost:disabled {
+        border-color: transparent;
+        background-color: transparent;
+    }
 
-.memori-button--ghost.memori-button--disabled:hover,
-.memori-button--ghost:disabled:hover {
-    border-color: transparent;
-    background-color: transparent;
-}
+    .memori-button--ghost.memori-button--disabled:hover,
+    .memori-button--ghost:disabled:hover {
+        border-color: transparent;
+        background-color: transparent;
+    }
 
-.memori-button--ghost:hover:not(:disabled, .memori-button--disabled) {
-    background-color: transparent;
-    box-shadow: none;
-}
+    .memori-button--ghost:hover:not(:disabled, .memori-button--disabled) {
+        background-color: transparent;
+        box-shadow: none;
+    }
 
-/* Link Variant — text link appearance (still a `<button>` for actions) */
-.memori-button--link {
-    border-color: transparent;
-    background-color: transparent;
-    box-shadow: none;
-    color: var(--memori-primary);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-}
+    /* Link Variant — text link appearance (still a `<button>` for actions) */
+    .memori-button--link {
+        border-color: transparent;
+        background-color: transparent;
+        box-shadow: none;
+        color: var(--memori-primary);
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+    }
 
-.memori-button--link.memori-button--disabled,
-.memori-button--link:disabled {
-    border-color: transparent;
-    background-color: transparent;
-    color: var(--memori-primary-disabled);
-}
+    .memori-button--link.memori-button--disabled,
+    .memori-button--link:disabled {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--memori-primary-disabled);
+    }
 
-.memori-button--link.memori-button--disabled:hover,
-.memori-button--link:disabled:hover {
-    border-color: transparent;
-    background-color: transparent;
-}
+    .memori-button--link.memori-button--disabled:hover,
+    .memori-button--link:disabled:hover {
+        border-color: transparent;
+        background-color: transparent;
+    }
 
-.memori-button--link:hover:not(:disabled, .memori-button--disabled) {
-    box-shadow: none;
-    color: var(--memori-primary-hover);
-    text-decoration: underline;
-    transform: none;
-}
+    .memori-button--link:hover:not(:disabled, .memori-button--disabled) {
+        box-shadow: none;
+        color: var(--memori-primary-hover);
+        text-decoration: underline;
+        transform: none;
+    }
 
-.memori-button--link:active:not(:disabled, .memori-button--disabled),
-.memori-button--link.memori-button--active {
-    box-shadow: none;
-    color: var(--memori-primary-active);
-    transform: none;
-}
+    .memori-button--link:active:not(:disabled, .memori-button--disabled),
+    .memori-button--link.memori-button--active {
+        box-shadow: none;
+        color: var(--memori-primary-active);
+        transform: none;
+    }
 
-.memori-button--link.memori-button--shadow,
-.memori-button--link.memori-button--shadow:hover:not(:disabled, .memori-button--disabled),
-.memori-button--link.memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
-    box-shadow: none;
-}
+    .memori-button--link.memori-button--shadow,
+    .memori-button--link.memori-button--shadow:hover:not(:disabled, .memori-button--disabled),
+    .memori-button--link.memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
+        box-shadow: none;
+    }
 
-/* Danger Variant */
-.memori-button--danger {
-    border-color: var(--memori-error);
-    background-color: var(--memori-error);
-    color: var(--memori-error-content);
-}
+    /* Danger Variant */
+    .memori-button--danger {
+        border-color: var(--memori-error);
+        background-color: var(--memori-error);
+        color: var(--memori-error-content);
+    }
 
-.memori-button--danger:focus-visible::before {
-    outline-color: var(--memori-error);
-}
+    .memori-button--danger:focus-visible::before {
+        outline-color: var(--memori-error);
+    }
 
-/* Danger variant disabled state — keep semantic error background */
-.memori-button--danger.memori-button--disabled,
-.memori-button--danger:disabled {
-    border-color: var(--memori-error);
-    background-color: var(--memori-error);
-    color: var(--memori-error-content);
-}
+    /* Danger variant disabled state — keep semantic error background */
+    .memori-button--danger.memori-button--disabled,
+    .memori-button--danger:disabled {
+        border-color: var(--memori-error);
+        background-color: var(--memori-error);
+        color: var(--memori-error-content);
+    }
 
-.memori-button--danger.memori-button--disabled:hover,
-.memori-button--danger:disabled:hover {
-    border-color: var(--memori-error);
-    background-color: var(--memori-error);
-    color: var(--memori-error-content);
-}
+    .memori-button--danger.memori-button--disabled:hover,
+    .memori-button--danger:disabled:hover {
+        border-color: var(--memori-error);
+        background-color: var(--memori-error);
+        color: var(--memori-error-content);
+    }
 
-.memori-button.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-error-hover);
-    background-color: var(--memori-error-hover);
-}
+    .memori-button.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-error-hover);
+        background-color: var(--memori-error-hover);
+    }
 
-.memori-button.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button.memori-button--danger.memori-button--active {
-    border-color: var(--memori-error-active);
-    background-color: var(--memori-error-active);
-}
+    .memori-button.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+    .memori-button.memori-button--danger.memori-button--active {
+        border-color: var(--memori-error-active);
+        background-color: var(--memori-error-active);
+    }
 
-/* ============================================
+    /* ============================================
    DANGER MODIFIER ON SUBTLE VARIANTS
    When `danger` is combined with a subtle variant (outline/ghost/link/soft),
    the variant keeps its structure and only its accent color is re-tinted to
@@ -501,276 +502,277 @@
    they beat the standalone `.memori-button--danger` solid styles above.
    ============================================ */
 
-/* Outline + danger */
-.memori-button.memori-button--outline.memori-button--danger {
-    border-color: var(--memori-error);
-    background-color: transparent;
-    color: var(--memori-error);
-}
+    /* Outline + danger */
+    .memori-button.memori-button--outline.memori-button--danger {
+        border-color: var(--memori-error);
+        background-color: transparent;
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--outline.memori-button--danger.memori-button--disabled,
-.memori-button.memori-button--outline.memori-button--danger:disabled {
-    border-color: var(--memori-border-color);
-    background-color: transparent;
-    color: var(--memori-error);
-}
+    .memori-button.memori-button--outline.memori-button--danger.memori-button--disabled,
+    .memori-button.memori-button--outline.memori-button--danger:disabled {
+        border-color: var(--memori-border-color);
+        background-color: transparent;
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--outline.memori-button--danger.memori-button--disabled:hover,
-.memori-button.memori-button--outline.memori-button--danger:disabled:hover {
-    border-color: var(--memori-border-color);
-    background-color: transparent;
-    color: var(--memori-error);
-}
+    .memori-button.memori-button--outline.memori-button--danger.memori-button--disabled:hover,
+    .memori-button.memori-button--outline.memori-button--danger:disabled:hover {
+        border-color: var(--memori-border-color);
+        background-color: transparent;
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--outline.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-error-hover);
-    background-color: var(--memori-error-hover);
-    color: var(--memori-error-content);
-}
+    .memori-button.memori-button--outline.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-error-hover);
+        background-color: var(--memori-error-hover);
+        color: var(--memori-error-content);
+    }
 
-.memori-button.memori-button--outline.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button.memori-button--outline.memori-button--danger.memori-button--active {
-    border-color: var(--memori-error-active);
-    background-color: var(--memori-error-active);
-    color: var(--memori-error-content);
-}
+    .memori-button.memori-button--outline.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+    .memori-button.memori-button--outline.memori-button--danger.memori-button--active {
+        border-color: var(--memori-error-active);
+        background-color: var(--memori-error-active);
+        color: var(--memori-error-content);
+    }
 
-/* Dark theme: outline normally promotes text to text-color — keep danger tint instead */
-:is([data-theme='dark'], .dark, :root.dark) .memori-button--outline.memori-button--danger {
-    color: var(--memori-error-text);
-}
+    /* Dark theme: outline normally promotes text to text-color — keep danger tint instead */
+    :is([data-theme='dark'], .dark, :root.dark) .memori-button--outline.memori-button--danger {
+        color: var(--memori-error-text);
+    }
 
-/* Ghost + danger — red text, subtle red wash on hover */
-.memori-button.memori-button--ghost.memori-button--danger {
-    border-color: transparent;
-    background-color: transparent;
-    color: var(--memori-error);
-}
+    /* Ghost + danger — red text, subtle red wash on hover */
+    .memori-button.memori-button--ghost.memori-button--danger {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--ghost.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: transparent;
-    background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
-    color: var(--memori-error-hover);
-}
+    .memori-button.memori-button--ghost.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+        border-color: transparent;
+        background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
+        color: var(--memori-error-hover);
+    }
 
-.memori-button.memori-button--ghost.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button.memori-button--ghost.memori-button--danger.memori-button--active {
-    border-color: transparent;
-    background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
-    color: var(--memori-error-active);
-}
+    .memori-button.memori-button--ghost.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+    .memori-button.memori-button--ghost.memori-button--danger.memori-button--active {
+        border-color: transparent;
+        background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
+        color: var(--memori-error-active);
+    }
 
-/* Link + danger — red underlined text */
-.memori-button.memori-button--link.memori-button--danger {
-    border-color: transparent;
-    background-color: transparent;
-    color: var(--memori-error);
-}
+    /* Link + danger — red underlined text */
+    .memori-button.memori-button--link.memori-button--danger {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--link.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: transparent;
-    background-color: transparent;
-    color: var(--memori-error-hover);
-}
+    .memori-button.memori-button--link.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--memori-error-hover);
+    }
 
-.memori-button.memori-button--link.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button.memori-button--link.memori-button--danger.memori-button--active {
-    border-color: transparent;
-    background-color: transparent;
-    color: var(--memori-error-active);
-}
+    .memori-button.memori-button--link.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+    .memori-button.memori-button--link.memori-button--danger.memori-button--active {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--memori-error-active);
+    }
 
-/* Soft + danger — subtle red surface with red text */
-.memori-button.memori-button--soft.memori-button--danger {
-    border-color: var(--memori-error);
-    background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
-    color: var(--memori-error);
-}
+    /* Soft + danger — subtle red surface with red text */
+    .memori-button.memori-button--soft.memori-button--danger {
+        border-color: var(--memori-error);
+        background-color: color-mix(in oklch, var(--memori-error), transparent 88%);
+        color: var(--memori-error);
+    }
 
-.memori-button.memori-button--soft.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
-    border-color: var(--memori-error-hover);
-    background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
-    color: var(--memori-error-hover);
-}
+    .memori-button.memori-button--soft.memori-button--danger:hover:not(:disabled, .memori-button--disabled) {
+        border-color: var(--memori-error-hover);
+        background-color: color-mix(in oklch, var(--memori-error), transparent 80%);
+        color: var(--memori-error-hover);
+    }
 
-.memori-button.memori-button--soft.memori-button--danger:active:not(:disabled, .memori-button--disabled),
-.memori-button.memori-button--soft.memori-button--danger.memori-button--active {
-    border-color: var(--memori-error-active);
-    background-color: color-mix(in oklch, var(--memori-error), transparent 75%);
-    color: var(--memori-error-active);
-}
+    .memori-button.memori-button--soft.memori-button--danger:active:not(:disabled, .memori-button--disabled),
+    .memori-button.memori-button--soft.memori-button--danger.memori-button--active {
+        border-color: var(--memori-error-active);
+        background-color: color-mix(in oklch, var(--memori-error), transparent 75%);
+        color: var(--memori-error-active);
+    }
 
-/* Focus ring uses the danger accent for all subtle danger combos */
-.memori-button--outline.memori-button--danger:focus-visible::before,
-.memori-button--ghost.memori-button--danger:focus-visible::before,
-.memori-button--link.memori-button--danger:focus-visible::before,
-.memori-button--soft.memori-button--danger:focus-visible::before {
-    outline-color: var(--memori-error);
-}
+    /* Focus ring uses the danger accent for all subtle danger combos */
+    .memori-button--outline.memori-button--danger:focus-visible::before,
+    .memori-button--ghost.memori-button--danger:focus-visible::before,
+    .memori-button--link.memori-button--danger:focus-visible::before,
+    .memori-button--soft.memori-button--danger:focus-visible::before {
+        outline-color: var(--memori-error);
+    }
 
-/* ============================================
+    /* ============================================
    SIZES
    ============================================ */
 
-.memori-button--xs {
-    min-height: 24px;
-    padding: var(--memori-spacing-xs) var(--memori-spacing-xs);
-    font-size: var(--memori-text-size-xs);
-}
+    .memori-button--xs {
+        min-height: 24px;
+        padding: var(--memori-spacing-xs) var(--memori-spacing-xs);
+        font-size: var(--memori-text-size-xs);
+    }
 
-.memori-button--sm {
-    min-height: 32px;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
-    font-size: var(--memori-text-size-small);
-}
+    .memori-button--sm {
+        min-height: 32px;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
+        font-size: var(--memori-text-size-small);
+    }
 
-.memori-button--md {
-    min-height: 40px;
-    padding: var(--memori-button-padding);
-    font-size: var(--memori-text-size-base);
-}
+    .memori-button--md {
+        min-height: 40px;
+        padding: var(--memori-button-padding);
+        font-size: var(--memori-text-size-base);
+    }
 
-.memori-button--lg {
-    min-height: 48px;
-    padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-    font-size: var(--memori-text-size-large);
-}
+    .memori-button--lg {
+        min-height: 48px;
+        padding: var(--memori-spacing-md) var(--memori-spacing-lg);
+        font-size: var(--memori-text-size-large);
+    }
 
-/* Link variant — compact hit target, inline with copy */
-.memori-button--link.memori-button--xs {
-    min-height: unset;
-    padding: 2px var(--memori-spacing-xs);
-}
+    /* Link variant — compact hit target, inline with copy */
+    .memori-button--link.memori-button--xs {
+        min-height: unset;
+        padding: 2px var(--memori-spacing-xs);
+    }
 
-.memori-button--link.memori-button--sm {
-    min-height: unset;
-    padding: 0.125rem var(--memori-spacing-sm);
-}
+    .memori-button--link.memori-button--sm {
+        min-height: unset;
+        padding: 0.125rem var(--memori-spacing-sm);
+    }
 
-.memori-button--link.memori-button--md {
-    min-height: unset;
-    padding: 0.1875rem var(--memori-spacing-sm);
-}
+    .memori-button--link.memori-button--md {
+        min-height: unset;
+        padding: 0.1875rem var(--memori-spacing-sm);
+    }
 
-.memori-button--link.memori-button--lg {
-    min-height: unset;
-    padding: 0.25rem var(--memori-spacing-md);
-}
+    .memori-button--link.memori-button--lg {
+        min-height: unset;
+        padding: 0.25rem var(--memori-spacing-md);
+    }
 
-/* ============================================
+    /* ============================================
    SHAPES
    ============================================ */
 
-.memori-button--round {
-    border-radius: var(--memori-radius-pill);
-}
+    .memori-button--round {
+        border-radius: var(--memori-radius-pill);
+    }
 
-.memori-button--circle {
-    padding: 0;
-    border-radius: 50%;
-    aspect-ratio: 1;
-}
+    .memori-button--circle {
+        padding: 0;
+        border-radius: 50%;
+        aspect-ratio: 1;
+    }
 
-.memori-button--circle.memori-button--sm {
-    width: 32px;
-    min-height: 32px;
-}
+    .memori-button--circle.memori-button--sm {
+        width: 32px;
+        min-height: 32px;
+    }
 
-.memori-button--circle.memori-button--md {
-    width: 40px;
-    min-height: 40px;
-}
+    .memori-button--circle.memori-button--md {
+        width: 40px;
+        min-height: 40px;
+    }
 
-.memori-button--circle.memori-button--lg {
-    width: 48px;
-    min-height: 48px;
-}
+    .memori-button--circle.memori-button--lg {
+        width: 48px;
+        min-height: 48px;
+    }
 
-/* Icon-only buttons (no children) */
-.memori-button--icon-only {
-    padding: 0;
-    aspect-ratio: 1;
-}
+    /* Icon-only buttons (no children) */
+    .memori-button--icon-only {
+        padding: 0;
+        aspect-ratio: 1;
+    }
 
-.memori-button--icon-only.memori-button--sm {
-    width: 32px;
-    min-height: 32px;
-}
+    .memori-button--icon-only.memori-button--sm {
+        width: 32px;
+        min-height: 32px;
+    }
 
-.memori-button--icon-only.memori-button--md {
-    width: 40px;
-    min-height: 40px;
-}
+    .memori-button--icon-only.memori-button--md {
+        width: 40px;
+        min-height: 40px;
+    }
 
-.memori-button--icon-only.memori-button--lg {
-    width: 48px;
-    min-height: 48px;
-}
+    .memori-button--icon-only.memori-button--lg {
+        width: 48px;
+        min-height: 48px;
+    }
 
-/* ============================================
+    /* ============================================
    STATES
    ============================================ */
 
-.memori-button--shadow {
-    box-shadow: var(--memori-shadow-sm);
-}
+    .memori-button--shadow {
+        box-shadow: var(--memori-shadow-sm);
+    }
 
-.memori-button--shadow:hover:not(:disabled, .memori-button--disabled) {
-    box-shadow: var(--memori-shadow-md);
-}
+    .memori-button--shadow:hover:not(:disabled, .memori-button--disabled) {
+        box-shadow: var(--memori-shadow-md);
+    }
 
-.memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
-    box-shadow: var(--memori-shadow-xs);
-}
+    .memori-button--shadow:active:not(:disabled, .memori-button--disabled) {
+        box-shadow: var(--memori-shadow-xs);
+    }
 
-.memori-button--full-width {
-    width: 100%;
-}
+    .memori-button--full-width {
+        width: 100%;
+    }
 
-.memori-button--loading {
-    position: relative;
-    pointer-events: none;
-}
+    .memori-button--loading {
+        position: relative;
+        pointer-events: none;
+    }
 
-.memori-button--disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
+    .memori-button--disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
 
-/* Primary-tinted disabled surface — never apply to danger (semantic error fill)
+    /* Primary-tinted disabled surface — never apply to danger (semantic error fill)
    or ghost (which is intentionally chrome-less). */
-.memori-button--disabled:not(.memori-button--danger, .memori-button--ghost) {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
-}
-
-.memori-button--disabled:hover:not(.memori-button--danger, .memori-button--ghost) {
-    border-color: var(--memori-border-color);
-    background-color: var(--memori-primary-disabled);
-}
-
-/* Touch / coarse pointers: meet ~44px minimum target (WCAG 2.5.5 AAA-style) */
-@media (pointer: coarse) {
-    .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--xs {
-        min-width: 44px;
-        min-height: 44px;
-        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    .memori-button--disabled:not(.memori-button--danger, .memori-button--ghost) {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-primary-disabled);
     }
 
-    .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--sm {
-        min-height: 44px;
-        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    .memori-button--disabled:hover:not(.memori-button--danger, .memori-button--ghost) {
+        border-color: var(--memori-border-color);
+        background-color: var(--memori-primary-disabled);
     }
 
-    .memori-button--circle.memori-button--sm,
-    .memori-button--icon-only.memori-button--sm {
-        width: 44px;
-        min-height: 44px;
-    }
+    /* Touch / coarse pointers: meet ~44px minimum target (WCAG 2.5.5 AAA-style) */
+    @media (pointer: coarse) {
+        .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--xs {
+            min-width: 44px;
+            min-height: 44px;
+            padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        }
 
-    .memori-button--circle.memori-button--md,
-    .memori-button--icon-only.memori-button--md {
-        width: 44px;
-        min-height: 44px;
+        .memori-button:not(.memori-button--link, .memori-button--toolbar).memori-button--sm {
+            min-height: 44px;
+            padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        }
+
+        .memori-button--circle.memori-button--sm,
+        .memori-button--icon-only.memori-button--sm {
+            width: 44px;
+            min-height: 44px;
+        }
+
+        .memori-button--circle.memori-button--md,
+        .memori-button--icon-only.memori-button--md {
+            width: 44px;
+            min-height: 44px;
+        }
     }
 }

@@ -47,7 +47,6 @@
     "test:ai": "AGENT=1 vitest run --passWithNoTests",
     "test:husky": "CI=true vitest related --run --project=unit --passWithNoTests",
     "release": "bunx release-it",
-    "release:version": "bun scripts/release.ts",
     "prepare": "husky || true",
     "storybook": "storybook dev -p 6006",
     "sb": "storybook dev -p 6006",
@@ -108,6 +107,12 @@
       "optional": true
     },
     "@types/react-dom": {
+      "optional": true
+    },
+    "i18next": {
+      "optional": true
+    },
+    "react-i18next": {
       "optional": true
     },
     "typescript": {

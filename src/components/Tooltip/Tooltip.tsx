@@ -114,6 +114,20 @@ export interface TooltipProps {
    * the nearest `ThemeProvider` / `MemoriUIProvider` value.
    */
   theme?: Theme
+  /**
+   * Collision boundary for Floating UI positioning (maps to Positioner).
+   * Prefer this over `slotProps.positioner.collisionBoundary`.
+   */
+  collisionBoundary?: React.ComponentProps<
+    typeof BaseTooltip.Positioner
+  >['collisionBoundary']
+  /**
+   * Collision padding for Floating UI positioning (maps to Positioner).
+   * @default 8
+   */
+  collisionPadding?: React.ComponentProps<
+    typeof BaseTooltip.Positioner
+  >['collisionPadding']
   className?: string
   style?: React.CSSProperties
   slotProps?: {
@@ -232,6 +246,8 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       arrow = true,
       container,
       theme,
+      collisionBoundary,
+      collisionPadding,
       className,
       style,
       slotProps,
@@ -263,6 +279,8 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
     const {
       className: positionerSlotClassName,
       style: positionerSlotStyle,
+      collisionBoundary: positionerCollisionBoundary,
+      collisionPadding: positionerCollisionPadding,
       ...positionerRest
     } = slotProps?.positioner ?? {}
 
@@ -333,7 +351,12 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
                 'memori-tooltip__positioner',
                 positionerSlotClassName,
               )}
-              collisionPadding={positionerRest.collisionPadding ?? 8}
+              collisionBoundary={
+                collisionBoundary ?? positionerCollisionBoundary
+              }
+              collisionPadding={
+                collisionPadding ?? positionerCollisionPadding ?? 8
+              }
               data-theme={resolvedTheme}
               side={side}
               sideOffset={positionerRest.sideOffset ?? sideOffset}

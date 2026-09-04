@@ -1,197 +1,199 @@
-/**
+@layer memori.components {
+    /**
  * Popover styles
  * Uses design tokens from theme/variables.css only.
  * Built on @base-ui/react Popover. WCAG 2.1 AA+.
  */
 
-/* ============================================
+    /* ============================================
    ROOT
    ============================================ */
 
-.memori-popover {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-    max-width: 100%;
-    vertical-align: middle;
-}
+    .memori-popover {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        max-width: 100%;
+        vertical-align: middle;
+    }
 
-/* ============================================
+    /* ============================================
    TRIGGER
    ============================================ */
 
-.memori-popover__trigger {
-    display: inline-flex;
-    min-width: 0;
-    align-items: center;
-    justify-content: center;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-field);
-    background: var(--memori-secondary-background);
-    box-shadow: var(--memori-shadow-xs);
-    color: var(--memori-text-color);
-    cursor: pointer;
-    font-family: var(--memori-font-family);
-    font-size: var(--memori-text-size-small);
-    font-weight: var(--memori-text-weight-medium);
-    gap: var(--memori-spacing-xs);
-    line-height: var(--memori-text-line-normal);
-    text-align: start;
-}
-
-@media (prefers-reduced-motion: no-preference) {
     .memori-popover__trigger {
-        transition:
-            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+        display: inline-flex;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+        border: var(--memori-border) solid var(--memori-border-color);
+        border-radius: var(--memori-radius-field);
+        background: var(--memori-secondary-background);
+        box-shadow: var(--memori-shadow-xs);
+        color: var(--memori-text-color);
+        cursor: pointer;
+        font-family: var(--memori-font-family);
+        font-size: var(--memori-text-size-small);
+        font-weight: var(--memori-text-weight-medium);
+        gap: var(--memori-spacing-xs);
+        line-height: var(--memori-text-line-normal);
+        text-align: start;
     }
-}
 
-.memori-popover__trigger:focus-visible {
-    box-shadow: var(--memori-focus-ring);
-    outline: none;
-}
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-popover__trigger {
+            transition:
+                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+        }
+    }
 
-.memori-popover__trigger:disabled {
-    border-color: var(--memori-border-color);
-    background: var(--memori-main-background);
-    color: var(--memori-neutral);
-    cursor: not-allowed;
-}
+    .memori-popover__trigger:focus-visible {
+        box-shadow: var(--memori-focus-ring);
+        outline: none;
+    }
 
-.memori-popover__trigger:hover:not(:disabled) {
-    border-color: var(--memori-border-primary-hover);
-    background: var(--memori-primary-subtle-hover);
-}
+    .memori-popover__trigger:disabled {
+        border-color: var(--memori-border-color);
+        background: var(--memori-main-background);
+        color: var(--memori-neutral);
+        cursor: not-allowed;
+    }
 
-.memori-popover__trigger--active:not(:disabled) {
-    border-color: var(--memori-border-primary-hover);
-    background: var(--memori-primary-subtle);
-}
+    .memori-popover__trigger:hover:not(:disabled) {
+        border-color: var(--memori-border-primary-hover);
+        background: var(--memori-primary-subtle-hover);
+    }
 
-/* ============================================
+    .memori-popover__trigger--active:not(:disabled) {
+        border-color: var(--memori-border-primary-hover);
+        background: var(--memori-primary-subtle);
+    }
+
+    /* ============================================
    POSITIONER
    ============================================ */
 
-.memori-popover__positioner {
-    z-index: 1300;
-}
+    .memori-popover__positioner {
+        z-index: 1300;
+    }
 
-/* ============================================
+    /* ============================================
    POPUP
    ============================================ */
 
-.memori-popover__popup {
-    box-sizing: border-box;
-    padding: var(--memori-spacing-md);
-    border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-box);
-    background: var(--memori-secondary-background);
-    box-shadow: var(--memori-shadow-lg);
-    color: var(--memori-text-color);
-    font-family: var(--memori-font-family);
-    inline-size: min(var(--memori-modal-size-sm), calc(100vw - (2 * var(--memori-spacing-md))));
-    max-inline-size: calc(100vw - (2 * var(--memori-spacing-md)));
-}
-
-@media (prefers-reduced-motion: no-preference) {
     .memori-popover__popup {
-        transition:
-            opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-            transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+        box-sizing: border-box;
+        padding: var(--memori-spacing-md);
+        border: var(--memori-border) solid var(--memori-border-color);
+        border-radius: var(--memori-radius-box);
+        background: var(--memori-secondary-background);
+        box-shadow: var(--memori-shadow-lg);
+        color: var(--memori-text-color);
+        font-family: var(--memori-font-family);
+        inline-size: min(var(--memori-modal-size-sm), calc(100vw - (2 * var(--memori-spacing-md))));
+        max-inline-size: calc(100vw - (2 * var(--memori-spacing-md)));
     }
-}
 
-/* ============================================
+    @media (prefers-reduced-motion: no-preference) {
+        .memori-popover__popup {
+            transition:
+                opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+        }
+    }
+
+    /* ============================================
    HEADER
    ============================================ */
 
-.memori-popover__header {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    margin-bottom: var(--memori-spacing-sm);
-    gap: var(--memori-spacing-sm);
-}
+    .memori-popover__header {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: var(--memori-spacing-sm);
+        gap: var(--memori-spacing-sm);
+    }
 
-.memori-popover__title {
-    margin: 0;
-    color: var(--memori-text-color);
-    font-size: var(--memori-text-size-large);
-    font-weight: var(--memori-text-weight-semibold);
-    line-height: var(--memori-text-line-tight);
-}
+    .memori-popover__title {
+        margin: 0;
+        color: var(--memori-text-color);
+        font-size: var(--memori-text-size-large);
+        font-weight: var(--memori-text-weight-semibold);
+        line-height: var(--memori-text-line-tight);
+    }
 
-.memori-popover__description {
-    margin: 0;
-    margin-bottom: var(--memori-spacing-sm);
-    color: var(--memori-neutral);
-    font-size: var(--memori-text-size-small);
-    font-weight: var(--memori-text-weight-normal);
-    line-height: var(--memori-text-line-normal);
-}
+    .memori-popover__description {
+        margin: 0;
+        margin-bottom: var(--memori-spacing-sm);
+        color: var(--memori-neutral);
+        font-size: var(--memori-text-size-small);
+        font-weight: var(--memori-text-weight-normal);
+        line-height: var(--memori-text-line-normal);
+    }
 
-.memori-popover__content {
-    color: var(--memori-text-color);
-    font-size: var(--memori-text-size-base);
-    font-weight: var(--memori-text-weight-normal);
-    line-height: var(--memori-text-line-normal);
-}
+    .memori-popover__content {
+        color: var(--memori-text-color);
+        font-size: var(--memori-text-size-base);
+        font-weight: var(--memori-text-weight-normal);
+        line-height: var(--memori-text-line-normal);
+    }
 
-/* ============================================
+    /* ============================================
    CLOSE
    ============================================ */
 
-.memori-popover__close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: var(--memori-border) solid transparent;
-    border-radius: var(--memori-radius-selector);
-    background: transparent;
-    block-size: calc(var(--memori-spacing-md) + var(--memori-spacing-sm));
-    color: var(--memori-neutral);
-    cursor: pointer;
-    inline-size: calc(var(--memori-spacing-md) + var(--memori-spacing-sm));
-}
+    .memori-popover__close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: var(--memori-border) solid transparent;
+        border-radius: var(--memori-radius-selector);
+        background: transparent;
+        block-size: calc(var(--memori-spacing-md) + var(--memori-spacing-sm));
+        color: var(--memori-neutral);
+        cursor: pointer;
+        inline-size: calc(var(--memori-spacing-md) + var(--memori-spacing-sm));
+    }
 
-.memori-popover__close:hover {
-    background: var(--memori-main-background);
-    color: var(--memori-text-color);
-}
+    .memori-popover__close:hover {
+        background: var(--memori-main-background);
+        color: var(--memori-text-color);
+    }
 
-.memori-popover__close:focus-visible {
-    box-shadow: var(--memori-focus-ring);
-    outline: none;
-}
+    .memori-popover__close:focus-visible {
+        box-shadow: var(--memori-focus-ring);
+        outline: none;
+    }
 
-.memori-popover__close-glyph {
-    font-size: var(--memori-text-size-heading);
-    font-weight: var(--memori-text-weight-medium);
-    line-height: 1;
-}
+    .memori-popover__close-glyph {
+        font-size: var(--memori-text-size-heading);
+        font-weight: var(--memori-text-weight-medium);
+        line-height: 1;
+    }
 
-/* ============================================
+    /* ============================================
    ARROW
    ============================================ */
 
-.memori-popover__arrow {
-    background-color: var(--memori-secondary-background);
-    fill: var(--memori-secondary-background);
-    stroke: var(--memori-border-color);
-    stroke-width: 1px;
-}
+    .memori-popover__arrow {
+        background-color: var(--memori-secondary-background);
+        fill: var(--memori-secondary-background);
+        stroke: var(--memori-border-color);
+        stroke-width: 1px;
+    }
 
-/* ============================================
+    /* ============================================
    REDUCED MOTION
    ============================================ */
 
-@media (prefers-reduced-motion: reduce) {
-    .memori-popover__trigger,
-    .memori-popover__popup {
-        transition: none;
+    @media (prefers-reduced-motion: reduce) {
+        .memori-popover__trigger,
+        .memori-popover__popup {
+            transition: none;
+        }
     }
 }

@@ -1,27 +1,29 @@
-.memori-expandable {
-    line-height: 1;
-}
+@layer memori.components {
+    .memori-expandable {
+        line-height: 1;
+    }
 
-/* JS toggles max-height for clamping — do not transition max-height (layout) */
-.memori-expandable__inner {
-    overflow: hidden;
-    max-height: 9999px;
-}
+    /* JS toggles max-height for clamping — do not transition max-height (layout) */
+    .memori-expandable__inner {
+        overflow: hidden;
+        max-height: 9999px;
+    }
 
-.memori-expandable > button {
-    color: var(--memori-primary);
-    font-size: var(--memori-text-size-small);
-    text-decoration: underline;
-    transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
-}
-
-.memori-expandable > button:hover {
-    text-decoration: underline;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .memori-expandable__inner,
     .memori-expandable > button {
-        transition: none;
+        color: var(--memori-primary);
+        font-size: var(--memori-text-size-small);
+        text-decoration: underline;
+        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+    }
+
+    .memori-expandable > button:hover {
+        text-decoration: underline;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .memori-expandable__inner,
+        .memori-expandable > button {
+            transition: none;
+        }
     }
 }

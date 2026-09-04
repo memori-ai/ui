@@ -1,9 +1,11 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import React, { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, userEvent, within } from 'storybook/test'
+import { FixedSurface } from '../../../.storybook/decorators'
 import { Dropdown, type DropdownProps } from './Dropdown'
 
 const meta: Meta<typeof Dropdown> = {
-  title: 'Components/Dropdown',
+  title: 'Azioni e navigazione/Dropdown',
   component: Dropdown,
   tags: ['autodocs'],
   parameters: {
@@ -196,4 +198,77 @@ export const TriggerWithoutChevron: Story = {
       </Dropdown.Menu>
     </Dropdown>
   ),
+}
+
+export const PlacementLeftRight: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+      <Dropdown>
+        <Dropdown.Trigger>Left</Dropdown.Trigger>
+        <Dropdown.Menu
+          placement="left"
+          align="start"
+        >
+          <Dropdown.Item onClick={() => {}}>Item 1</Dropdown.Item>
+          <Dropdown.Item onClick={() => {}}>Item 2</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+      <Dropdown>
+        <Dropdown.Trigger>Right</Dropdown.Trigger>
+        <Dropdown.Menu
+          placement="right"
+          align="start"
+        >
+          <Dropdown.Item onClick={() => {}}>Item 1</Dropdown.Item>
+          <Dropdown.Item onClick={() => {}}>Item 2</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  ),
+}
+
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  render: () => {
+    const [open, setOpen] = useState(false)
+    return (
+      <FixedSurface>
+        {surface => (
+          <Dropdown
+            open={open}
+            onOpenChange={setOpen}
+          >
+            <Dropdown.Trigger>Open in surface</Dropdown.Trigger>
+            <Dropdown.Menu container={surface}>
+              <Dropdown.Item onClick={() => {}}>Edit</Dropdown.Item>
+              <Dropdown.Item onClick={() => {}}>Delete</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  parameters: {
+    // Base UI menu focus guards trip axe aria-hidden-focus while open / closing.
+    a11y: { test: 'todo' },
+  },
+  render: (args: DropdownProps) => (
+    <Dropdown {...args}>
+      <Dropdown.Trigger>Actions</Dropdown.Trigger>
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={() => {}}>Edit</Dropdown.Item>
+        <Dropdown.Item onClick={() => {}}>Delete</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    await userEvent.click(canvas.getByRole('button', { name: /actions/i }))
+    await expect(await body.findByRole('menu')).toBeInTheDocument()
+    await userEvent.keyboard('{Escape}')
+  },
 }

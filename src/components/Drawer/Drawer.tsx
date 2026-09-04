@@ -166,11 +166,15 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
             {(title || description || shouldShowCloseButton) && (
               <div className="memori-drawer__header">
                 <div>
-                  {title && <div className="memori-drawer__title">{title}</div>}
+                  {title && (
+                    <Dialog.Title className="memori-drawer__title">
+                      {title}
+                    </Dialog.Title>
+                  )}
                   {description && (
-                    <div className="memori-drawer__description">
+                    <Dialog.Description className="memori-drawer__description">
                       {description}
-                    </div>
+                    </Dialog.Description>
                   )}
                 </div>
                 {shouldShowCloseButton && (

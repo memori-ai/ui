@@ -1,12 +1,14 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, userEvent, within } from 'storybook/test'
 import Modal, { type ModalProps } from './Modal'
 import Button from '../Button'
+import { FixedSurface } from '../../../.storybook/decorators'
 
 const meta = {
-  title: 'Components/Modal',
+  title: 'Overlay/Modal',
   component: Modal,
-  tags: [],
+  tags: ['autodocs'],
   argTypes: {
     title: {
       control: {
@@ -266,5 +268,47 @@ export const LifecycleCallbacks: Story = {
     onAfterClose: () => {
       console.log('Modal closed!')
     },
+  },
+}
+
+/** Portal clipped to a fixed-height surface (widget embed). */
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  render: () => {
+    const [open, setOpen] = React.useState(true)
+    return (
+      <FixedSurface>
+        {surface => (
+          <>
+            <Button onClick={() => setOpen(true)}>Open in surface</Button>
+            <Modal
+              open={open}
+              onOpenChange={setOpen}
+              container={surface}
+              title="Clipped modal"
+              size="sm"
+            >
+              <p>Portal mounts inside the fixed surface, not document.body.</p>
+            </Modal>
+          </>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  args: {
+    open: false,
+    closable: true,
+    title: 'Interactive modal',
+    children: <p>Opened via play function.</p>,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    await userEvent.click(canvas.getByRole('button', { name: /open modal/i }))
+    await expect(await body.findByRole('dialog')).toBeInTheDocument()
+    await userEvent.keyboard('{Escape}')
   },
 }

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import React from 'react'
-import { fn } from 'storybook/test'
+import React, { useState } from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
+import { FixedSurface } from '../../../.storybook/decorators'
 import { Popover } from './Popover'
 
 const canvasStyle = {
@@ -12,7 +13,7 @@ const canvasStyle = {
 } as const
 
 const meta = {
-  title: 'UI/Popover',
+  title: 'Overlay/Popover',
   component: Popover,
   tags: ['autodocs'],
   parameters: {
@@ -104,5 +105,52 @@ export const TopEndPlacement: Story = {
     content: 'Placement is mapped to Base UI side + align.',
     placement: 'top-end',
     open: true,
+  },
+}
+
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  args: {
+    children: 'Open popover',
+    title: 'Clipped popover',
+    content: 'Portal mounts inside the fixed surface.',
+    placement: 'bottom-start',
+  },
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <FixedSurface>
+        {surface => (
+          <Popover
+            open={open}
+            onOpenChange={setOpen}
+            container={surface}
+            title="Clipped popover"
+            content="Portal mounts inside the fixed surface."
+            placement="bottom-start"
+          >
+            Open popover
+          </Popover>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  args: {
+    children: 'Open popover',
+    title: 'Interactive',
+    content: 'Opened via play function.',
+    placement: 'bottom-start',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    await userEvent.click(canvas.getByRole('button', { name: /open popover/i }))
+    await expect(
+      await body.findByText('Opened via play function.'),
+    ).toBeInTheDocument()
+    await userEvent.keyboard('{Escape}')
   },
 }

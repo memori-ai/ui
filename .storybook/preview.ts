@@ -1,59 +1,155 @@
-import type { Preview } from '@storybook/react-vite'
-import type { Decorator } from '@storybook/react'
-import React from 'react'
+import type { Preview, Decorator } from '@storybook/react-vite'
+import React, { useEffect, type CSSProperties } from 'react'
 
 import { MemoriI18nProvider } from '../src/i18n/MemoriI18nProvider'
+import { memoriI18n } from '../src/i18n/i18n'
+import { MemoriUIProvider } from '../src/theme/MemoriUIProvider'
+import type { Theme } from '../src/theme/useTheme'
 import '../src/styles.css'
 
-// Decorator to sync Storybook background control with component theme
-const withTheme: Decorator = (Story, context) => {
-  // Apply theme based on Storybook background control
+type BrandPreset = 'default' | 'purple' | 'teal' | 'coral'
+
+const BRAND_PRESETS: Record<
+  BrandPreset,
+  Partial<Record<'--memori-primary-color' | '--memori-secondary-color', string>>
+> = {
+  default: {},
+  purple: {
+    '--memori-primary-color': 'oklch(51.55% 0.1653 307.99deg)',
+    '--memori-secondary-color': 'oklch(65% 0.12 280deg)',
+  },
+  teal: {
+    '--memori-primary-color': 'oklch(55% 0.12 185deg)',
+    '--memori-secondary-color': 'oklch(70% 0.08 200deg)',
+  },
+  coral: {
+    '--memori-primary-color': 'oklch(62% 0.18 35deg)',
+    '--memori-secondary-color': 'oklch(72% 0.1 50deg)',
+  },
+}
+
+function resolveThemeFromContext(context: {
+  globals?: Record<string, unknown>
+  parameters?: Record<string, unknown>
+}): Theme {
+  const backgrounds = context.globals?.backgrounds as
+    | { value?: string }
+    | string
+    | undefined
   const background =
-    context.globals.backgrounds?.value ||
-    context.parameters.backgrounds?.default ||
+    (typeof backgrounds === 'string' ? backgrounds : backgrounds?.value) ||
+    (context.parameters?.backgrounds as { default?: string } | undefined)
+      ?.default ||
     'light'
+  return background === 'dark' ? 'dark' : 'light'
+}
+
+const withThemeAndProviders: Decorator = (Story, context) => {
+  const theme = resolveThemeFromContext(context)
   const root = document.documentElement
 
-  // Remove both theme attributes/classes
   root.removeAttribute('data-theme')
   root.classList.remove('dark')
-
-  // Apply dark theme if background is dark
-  if (background === 'dark') {
+  if (theme === 'dark') {
     root.setAttribute('data-theme', 'dark')
     root.classList.add('dark')
   }
 
-  return React.createElement(Story)
+  const locale =
+    typeof context.globals?.locale === 'string' ? context.globals.locale : 'en'
+  const brand = (
+    typeof context.globals?.brand === 'string'
+      ? context.globals.brand
+      : 'default'
+  ) as BrandPreset
+  const brandVars = BRAND_PRESETS[brand] ?? BRAND_PRESETS.default
+
+  return React.createElement(StorybookProviders, {
+    theme,
+    locale,
+    brandStyle: brandVars as CSSProperties,
+    children: React.createElement(Story),
+  })
 }
 
-/** Same provider as consuming apps: bundled `memoriI18n` with all `table.*` locales. */
-const withI18n: Decorator = Story => {
+function StorybookProviders({
+  theme,
+  locale,
+  brandStyle,
+  children,
+}: {
+  theme: Theme
+  locale: string
+  brandStyle: CSSProperties
+  children: React.ReactNode
+}) {
+  useEffect(() => {
+    void memoriI18n.changeLanguage(locale)
+  }, [locale])
+
   return React.createElement(
     MemoriI18nProvider,
-    null,
-    React.createElement(Story),
+    { i18n: memoriI18n },
+    React.createElement(
+      MemoriUIProvider,
+      { theme },
+      React.createElement(
+        'div',
+        {
+          style: {
+            ...brandStyle,
+            color: 'var(--memori-text-color)',
+            minHeight: '100%',
+          },
+        },
+        children,
+      ),
+    ),
   )
 }
 
-const style = document.createElement('style')
-style.textContent = `
-  body {
-    color: var(--memori-text-color);
-  }
-`
-document.head.appendChild(style)
-
 const preview: Preview = {
+  globalTypes: {
+    locale: {
+      description: 'i18n locale for Memori UI strings',
+      toolbar: {
+        title: 'Locale',
+        icon: 'globe',
+        items: [
+          { value: 'en', title: 'English' },
+          { value: 'it', title: 'Italiano' },
+          { value: 'fr', title: 'Français' },
+          { value: 'es', title: 'Español' },
+          { value: 'de', title: 'Deutsch' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    brand: {
+      description: 'Override --memori-primary-color / --memori-secondary-color',
+      toolbar: {
+        title: 'Brand',
+        icon: 'paintbrush',
+        items: [
+          { value: 'default', title: 'Default tokens' },
+          { value: 'purple', title: 'Purple' },
+          { value: 'teal', title: 'Teal' },
+          { value: 'coral', title: 'Coral' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   initialGlobals: {
     backgrounds: {
       value: 'light',
     },
+    locale: 'en',
+    brand: 'default',
   },
   parameters: {
     backgrounds: {
       options: {
-        // 👇 Default options
         dark: { name: 'Dark', value: 'oklch(32.1% 0 0deg)' },
         light: { name: 'Light', value: 'oklch(97.1% 0 0deg)' },
       },
@@ -65,15 +161,28 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
     a11y: {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: 'error',
     },
+    options: {
+      storySort: {
+        order: [
+          'Azioni e navigazione',
+          'Overlay',
+          'Form',
+          'Feedback',
+          'Contenuto',
+          'Infrastruttura',
+          'Esempi',
+          '*',
+        ],
+      },
+    },
   },
-  decorators: [withI18n, withTheme],
+  decorators: [withThemeAndProviders],
 }
 
 export default preview

@@ -1,171 +1,243 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, fn, userEvent, within } from 'storybook/test'
 import React, { useState } from 'react'
-import { Drawer } from './Drawer'
-import Button from '../Button'
 
-const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+import { FixedSurface } from '../../../.storybook/decorators'
+import { Button } from '../Button'
+import { Drawer } from './Drawer'
+
+const meta = {
+  title: 'Overlay/Drawer',
   component: Drawer,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Side panel with portal. Pass `container` to clip inside a widget surface (see InFixedSurface).',
+      },
+    },
   },
-  tags: ['autodocs'],
   argTypes: {
     open: {
       control: 'boolean',
-      description: 'If true, the drawer is open',
+      description: 'Controlled open state',
     },
     anchor: {
       control: 'select',
       options: ['left', 'right', 'top', 'bottom'],
-      description: 'Side from which the drawer will appear',
+      description: 'Edge the drawer emerges from',
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description:
-        'Size of the drawer (width for left/right, height for top/bottom)',
+      description: 'Width (left/right) or height (top/bottom)',
     },
+    loading: {
+      control: 'boolean',
+      description: 'Shows a loading state in the drawer body',
+    },
+    closable: {
+      control: 'boolean',
+      description: 'Whether the drawer can be closed via the close control',
+    },
+    title: { control: 'text' },
+    description: { control: 'text' },
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
+      description: 'Theme stamped on the portal popup',
+    },
+    onOpenChange: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    container: { table: { disable: true } },
+    children: { control: false },
+    footer: { control: false },
   },
-}
+  args: {
+    title: 'Drawer title',
+    description: 'Optional subtitle',
+    anchor: 'right',
+    size: 'md',
+    closable: true,
+    loading: false,
+    onOpenChange: fn(),
+    onClose: fn(),
+    children: <p>Drawer body content.</p>,
+  },
+} satisfies Meta<typeof Drawer>
 
 export default meta
-type Story = StoryObj<typeof Drawer>
+type Story = StoryObj<typeof meta>
 
-const DrawerDemo = (args: React.ComponentProps<typeof Drawer>) => {
+function DrawerPlayground(args: React.ComponentProps<typeof Drawer>) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
       <Button
+        variant="primary"
         onClick={() => setOpen(true)}
-        style={{
-          padding: '8px 16px',
-          cursor: 'pointer',
-          backgroundColor: '#8246af',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-        }}
       >
-        Open Drawer
+        Open drawer
       </Button>
       <Drawer
         {...args}
         open={open}
-        onOpenChange={newOpen => setOpen(newOpen)}
+        onOpenChange={(next, detail) => {
+          args.onOpenChange?.(next, detail)
+          setOpen(next)
+        }}
       />
     </>
   )
 }
 
-export const Basic: Story = {
-  render: args => <DrawerDemo {...args} />,
-  args: {
-    title: 'Basic Drawer',
-    children: (
-      <div>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </div>
-    ),
-  },
+/** Happy path + controls. */
+export const Default: Story = {
+  render: args => <DrawerPlayground {...args} />,
 }
 
-export const WithFooter: Story = {
-  render: args => <DrawerDemo {...args} />,
-  args: {
-    title: 'Drawer with Footer',
-    anchor: 'right',
-    footer: (
-      <>
-        <Button variant="outline">Cancel</Button>
-        <Button variant="primary">Submit</Button>
-      </>
-    ),
-    children: <p>This drawer has a footer action area.</p>,
-  },
+/** Size matrix (no one-story-per-value). */
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      {(['sm', 'md', 'lg'] as const).map(size => (
+        <DrawerPlayground
+          key={size}
+          title={`Size ${size}`}
+          size={size}
+          anchor="right"
+        >
+          <p>Size {size}</p>
+        </DrawerPlayground>
+      ))}
+    </div>
+  ),
 }
 
-export const Anchors: Story = {
+/** Loading, not closable, long content, anchors. */
+export const States: Story = {
   render: () => {
     const [openRight, setOpenRight] = useState(false)
     const [openLeft, setOpenLeft] = useState(false)
     const [openTop, setOpenTop] = useState(false)
     const [openBottom, setOpenBottom] = useState(false)
 
-    const btnStyle = {
-      padding: '8px 16px',
-      margin: '8px',
-      cursor: 'pointer',
-      borderRadius: '4px',
-      border: '1px solid #ccc',
-    }
-
     return (
-      <div>
-        <Button
-          onClick={() => setOpenLeft(true)}
-          style={btnStyle}
-        >
-          Left
-        </Button>
-        <Button
-          onClick={() => setOpenRight(true)}
-          style={btnStyle}
-        >
-          Right
-        </Button>
-        <Button
-          onClick={() => setOpenTop(true)}
-          style={btnStyle}
-        >
-          Top
-        </Button>
-        <Button
-          onClick={() => setOpenBottom(true)}
-          style={btnStyle}
-        >
-          Bottom
-        </Button>
-
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <DrawerPlayground
+            title="Loading"
+            loading
+          >
+            <p>Spinner in body</p>
+          </DrawerPlayground>
+          <DrawerPlayground
+            title="Not closable"
+            closable={false}
+          >
+            <p>Close control hidden</p>
+          </DrawerPlayground>
+          <DrawerPlayground title="Long content">
+            {Array.from({ length: 40 }, (_, i) => (
+              <p key={i}>Row {i + 1}</p>
+            ))}
+          </DrawerPlayground>
+        </div>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <Button onClick={() => setOpenLeft(true)}>Left</Button>
+          <Button onClick={() => setOpenRight(true)}>Right</Button>
+          <Button onClick={() => setOpenTop(true)}>Top</Button>
+          <Button onClick={() => setOpenBottom(true)}>Bottom</Button>
+        </div>
         <Drawer
           open={openLeft}
           onOpenChange={setOpenLeft}
           anchor="left"
           title="Left Drawer"
         >
-          Left Content
+          Left content
         </Drawer>
-
         <Drawer
           open={openRight}
           onOpenChange={setOpenRight}
           anchor="right"
           title="Right Drawer"
         >
-          Right Content
+          Right content
         </Drawer>
-
         <Drawer
           open={openTop}
           onOpenChange={setOpenTop}
           anchor="top"
           title="Top Drawer"
         >
-          Top Content
+          Top content
         </Drawer>
-
         <Drawer
           open={openBottom}
           onOpenChange={setOpenBottom}
           anchor="bottom"
           title="Bottom Drawer"
         >
-          Bottom Content
+          Bottom content
         </Drawer>
       </div>
     )
+  },
+}
+
+export const Playground: Story = {
+  render: args => <DrawerPlayground {...args} />,
+  args: {
+    footer: (
+      <>
+        <Button variant="outline">Cancel</Button>
+        <Button variant="primary">Submit</Button>
+      </>
+    ),
+  },
+}
+
+/**
+ * Production-like clip surface — reproduces widget portal positioning bugs.
+ */
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  render: args => {
+    const [open, setOpen] = useState(true)
+    return (
+      <FixedSurface>
+        {surface => (
+          <>
+            <Button onClick={() => setOpen(true)}>Open in surface</Button>
+            <Drawer
+              {...args}
+              open={open}
+              onOpenChange={setOpen}
+              container={surface}
+              title="Clipped drawer"
+            >
+              <p>
+                Portal target is the fixed-height surface, not document.body.
+              </p>
+            </Drawer>
+          </>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  render: args => <DrawerPlayground {...args} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    await userEvent.click(canvas.getByRole('button', { name: /open drawer/i }))
+    await expect(await body.findByRole('dialog')).toBeInTheDocument()
+    await userEvent.keyboard('{Escape}')
   },
 }

@@ -53,6 +53,7 @@
     "build-storybook": "storybook build",
     "test:a11y": "vitest run --project=storybook",
     "test:a11y:ci": "CI=true vitest run --project=storybook",
+    "check:storybook": "bun run scripts/check-storybook-coverage.ts",
     "prepublishOnly": "bun run build"
   },
   "devDependencies": {
@@ -63,7 +64,6 @@
     "@release-it/conventional-changelog": "^7.0.2",
     "@storybook/addon-a11y": "^10.0.8",
     "@storybook/addon-docs": "^10.0.8",
-    "@storybook/addon-onboarding": "^10.0.8",
     "@storybook/addon-vitest": "^10.0.8",
     "@storybook/react-vite": "^10.0.8",
     "@testing-library/jest-dom": "^6.9.1",

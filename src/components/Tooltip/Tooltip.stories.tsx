@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { fn } from 'storybook/test'
+import { expect, fn, userEvent, within } from 'storybook/test'
 import { HelpCircle } from 'lucide-react'
 
+import { FixedSurface } from '../../../.storybook/decorators'
 import { Tooltip } from './Tooltip'
 
 const demoPadding = {
@@ -10,7 +11,7 @@ const demoPadding = {
 } as const
 
 const meta = {
-  title: 'UI/Tooltip',
+  title: 'Overlay/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   argTypes: {
@@ -220,5 +221,53 @@ export const CustomDelays: Story = {
     children: <span>Hover me</span>,
     enterDelay: 200,
     leaveDelay: 150,
+  },
+}
+
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  args: {
+    title: 'Clipped tooltip — check wrap and collision inside the surface',
+    children: <span tabIndex={0}>Focus or hover me</span>,
+    enterDelay: 0,
+    leaveDelay: 0,
+  },
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <FixedSurface>
+        {surface => (
+          <Tooltip
+            open={open}
+            onOpenChange={setOpen}
+            container={surface}
+            title="Clipped tooltip — check wrap and collision inside the surface"
+            enterDelay={0}
+            leaveDelay={0}
+          >
+            <span tabIndex={0}>Focus or hover me</span>
+          </Tooltip>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  args: {
+    title: 'Interactive tooltip',
+    children: <span tabIndex={0}>Focus me</span>,
+    enterDelay: 0,
+    leaveDelay: 0,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    const trigger = canvas.getByText('Focus me')
+    trigger.focus()
+    await userEvent.hover(trigger)
+    await expect(
+      await body.findByText('Interactive tooltip'),
+    ).toBeInTheDocument()
   },
 }

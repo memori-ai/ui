@@ -39,3 +39,9 @@ jobs:
 
       - name: 🧪 Test
         run: bun test:ci
+
+      - name: 📖 Storybook coverage
+        run: bun run check:storybook
+
+      - name: ♿ Storybook a11y
+        run: bun run test:a11y:ci

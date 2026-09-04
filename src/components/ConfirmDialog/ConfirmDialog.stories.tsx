@@ -1,12 +1,14 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, userEvent, within } from 'storybook/test'
 import ConfirmDialog, {
   type ConfirmDialogProps as Props,
 } from './ConfirmDialog'
 import Button from '../Button'
+import { FixedSurface } from '../../../.storybook/decorators'
 
 const meta = {
-  title: 'Components/ConfirmDialog',
+  title: 'Overlay/ConfirmDialog',
   component: ConfirmDialog,
   tags: ['autodocs'],
   argTypes: {
@@ -34,6 +36,15 @@ const meta = {
       control: {
         type: 'text',
       },
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Disables actions and shows loading on confirm',
+    },
+    container: { table: { disable: true } },
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
     },
   },
   parameters: {
@@ -234,4 +245,72 @@ export const UnsavedChanges: Story = {
     cancelText: 'Stay',
   },
   render: args => <SaveTemplate {...args} />,
+}
+
+export const Loading: Story = {
+  args: {
+    isOpen: true,
+    onClose: () => {},
+    onConfirm: () => {},
+    title: 'Deleting…',
+    message: 'Please wait while the item is removed.',
+    confirmText: 'Delete',
+    cancelText: 'Cancel',
+    loading: true,
+  },
+}
+
+export const InFixedSurface: Story = {
+  parameters: { layout: 'fullscreen' },
+  args: {
+    isOpen: true,
+    onClose: () => {},
+    onConfirm: () => {},
+    title: 'Clipped confirm',
+    message: 'Dialog portal targets the fixed surface.',
+    confirmText: 'Confirm',
+    cancelText: 'Cancel',
+  },
+  render: () => {
+    const [isOpen, setIsOpen] = React.useState(true)
+    return (
+      <FixedSurface>
+        {surface => (
+          <>
+            <Button onClick={() => setIsOpen(true)}>Open confirm</Button>
+            <ConfirmDialog
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              onConfirm={() => setIsOpen(false)}
+              container={surface}
+              title="Clipped confirm"
+              message="Dialog portal targets the fixed surface."
+              confirmText="Confirm"
+              cancelText="Cancel"
+            />
+          </>
+        )}
+      </FixedSurface>
+    )
+  },
+}
+
+export const OpenInteraction: Story = {
+  render: args => <DeleteTemplate {...args} />,
+  args: {
+    isOpen: false,
+    onClose: () => {},
+    onConfirm: () => {},
+    title: 'Delete Item',
+    message: 'Are you sure you want to delete this item?',
+    confirmText: 'Delete',
+    cancelText: 'Cancel',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    await userEvent.click(canvas.getByRole('button', { name: /delete item/i }))
+    await expect(await body.findByRole('dialog')).toBeInTheDocument()
+    await userEvent.keyboard('{Escape}')
+  },
 }

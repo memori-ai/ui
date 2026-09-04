@@ -1,5 +1,12 @@
 
 
+## [1.17.0](https://github.com/memori-ai/ui/compare/v1.16.3...v1.17.0) (2026-09-04)
+
+
+### Features
+
+* wave 0-1 overlay, layers, and i18n hardening for 1.17 ([2240641](https://github.com/memori-ai/ui/commit/224064180fe2c417819c16120e0c0382718fec9a))
+
 ## [1.16.3](https://github.com/memori-ai/ui/compare/v1.16.2...v1.16.3) (2026-06-10)
 
 ## [1.16.2](https://github.com/memori-ai/ui/compare/v1.16.1...v1.16.2) (2026-05-28)

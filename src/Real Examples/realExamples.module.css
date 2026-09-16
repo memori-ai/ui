@@ -320,11 +320,11 @@
 
 .pillGroup {
     display: flex;
+    min-width: 0;
+    max-width: 100%;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--memori-spacing-xs);
-    min-width: 0;
-    max-width: 100%;
 }
 
 .headerWithHint {

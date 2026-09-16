@@ -135,8 +135,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   ) => {
     const { t } = useTranslation()
     const resolvedCloseLabel =
-      closeLabel ??
-      t('overlay.closeDrawer', { defaultValue: 'Close drawer' })
+      closeLabel ?? t('overlay.closeDrawer', { defaultValue: 'Close drawer' })
     const handleOpenChange = (
       newOpen: boolean,
       event?: DialogRootChangeEventDetails,

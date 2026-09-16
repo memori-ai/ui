@@ -322,8 +322,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ) => {
     const { t } = useTranslation()
     const resolvedCloseLabel =
-      closeLabel ??
-      t('overlay.closeModal', { defaultValue: 'Close modal' })
+      closeLabel ?? t('overlay.closeModal', { defaultValue: 'Close modal' })
     const popupId = useStableId('memori-modal')
     const titleId = useStableId('memori-modal-title')
     const descriptionId = useStableId('memori-modal-description')

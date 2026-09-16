@@ -375,6 +375,7 @@
         position: absolute;
         z-index: 50;
         top: calc(100% + var(--memori-spacing-xs));
+
         /* Anchor to the trigger’s end edge: the Filtri control sits on the right of
            the toolbar; `left: 0` would grow past `.memori-table-wrapper` (overflow: hidden). */
         right: 0;
@@ -711,8 +712,8 @@
 
     .memori-table__badge {
         display: inline-flex;
-        max-width: 100%;
         min-width: 0;
+        max-width: 100%;
         box-sizing: border-box;
         align-items: center;
         padding: 2px var(--memori-spacing-sm);
@@ -720,9 +721,9 @@
         font-size: var(--memori-text-size-xs);
         font-weight: var(--memori-text-weight-medium);
         line-height: 1.3;
+
         /* Long tokens (UUIDs, paths) must wrap inside the pill, not spill past the border */
         overflow-wrap: anywhere;
-        word-break: break-word;
     }
 
     .memori-table__badge--neutral {

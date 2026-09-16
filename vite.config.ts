@@ -1,8 +1,8 @@
 /**
- * @memori.ai/ui - Vite Configuration for Library Build
+ * memori.ai/ui - Vite Configuration for Library Build
  *
  * This configuration properly bundles React components with CSS extraction.
- * Copy this file to your @memori.ai/ui repository as vite.config.ts
+ * Copy this file to your memori.ai/ui repository as vite.config.ts
  */
 
 import { defineConfig } from 'vite'

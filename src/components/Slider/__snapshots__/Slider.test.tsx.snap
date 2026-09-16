@@ -16,7 +16,13 @@ exports[`Slider > renders Slider unchanged 1`] = `
       </div>
     </div>
     <div
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
       class="memori-slider__track-container"
+      role="slider"
+      tabindex="0"
     >
       <div
         class="memori-slider__track"
@@ -94,13 +100,8 @@ exports[`Slider > renders Slider unchanged 1`] = `
         </div>
       </div>
       <div
-        aria-label="Slider"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="50"
+        aria-hidden="true"
         class="memori-slider__thumb"
-        role="slider"
-        tabindex="0"
       />
     </div>
   </div>
@@ -123,7 +124,13 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
       </div>
     </div>
     <div
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
       class="memori-slider__track-container"
+      role="slider"
+      tabindex="0"
     >
       <div
         class="memori-slider__track"
@@ -201,13 +208,8 @@ exports[`Slider > renders Slider with different step unchanged 1`] = `
         </div>
       </div>
       <div
-        aria-label="Slider"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="50"
+        aria-hidden="true"
         class="memori-slider__thumb"
-        role="slider"
-        tabindex="0"
       />
     </div>
   </div>
@@ -230,7 +232,13 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
       </div>
     </div>
     <div
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
       class="memori-slider__track-container"
+      role="slider"
+      tabindex="-1"
     >
       <div
         class="memori-slider__track"
@@ -308,13 +316,8 @@ exports[`Slider > renders Slider with disabled prop unchanged 1`] = `
         </div>
       </div>
       <div
-        aria-label="Slider"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="50"
+        aria-hidden="true"
         class="memori-slider__thumb"
-        role="slider"
-        tabindex="-1"
       />
     </div>
   </div>
@@ -342,7 +345,13 @@ exports[`Slider > renders Slider with label prop unchanged 1`] = `
       </div>
     </div>
     <div
+      aria-label="Test"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
       class="memori-slider__track-container"
+      role="slider"
+      tabindex="0"
     >
       <div
         class="memori-slider__track"
@@ -420,13 +429,8 @@ exports[`Slider > renders Slider with label prop unchanged 1`] = `
         </div>
       </div>
       <div
-        aria-label="Test"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="50"
+        aria-hidden="true"
         class="memori-slider__thumb"
-        role="slider"
-        tabindex="0"
       />
     </div>
   </div>

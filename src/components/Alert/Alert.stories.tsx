@@ -9,10 +9,10 @@ import {
   type AlertSeverity,
   type AlertPlacement,
 } from './Alert'
-import { Undo2, RefreshCw, Bell, Mail, Trash2, Download } from 'lucide-react'
+import { Undo2, Bell, Mail, Trash2, Download } from 'lucide-react'
 
 /**
- * Alert component built on @base-ui Toast.
+ * Alert component built on Base UI Toast.
  *
  * Alerts display brief, temporary notifications to users about app processes,
  * such as confirming actions, reporting errors, or providing status updates.

@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { describe, expect, it } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import {
-  MemoriUIProvider,
-  usePortalContainer,
-} from './MemoriUIProvider'
+import { MemoriUIProvider, usePortalContainer } from './MemoriUIProvider'
 import Modal from '../components/Modal/Modal'
 import Tooltip from '../components/Tooltip/Tooltip'
 import Button from '../components/Button'
@@ -17,11 +14,7 @@ function PortalProbe({
   label: string
 }) {
   const container = usePortalContainer(undefined, kind)
-  return (
-    <span data-testid={label}>
-      {container?.id ?? 'none'}
-    </span>
-  )
+  return <span data-testid={label}>{container?.id ?? 'none'}</span>
 }
 
 describe('MemoriUIProvider portal targets', () => {
@@ -58,9 +51,7 @@ describe('MemoriUIProvider portal targets', () => {
 
     render(<Harness />)
     expect(screen.getByTestId('escape-target').textContent).toBe('widget-root')
-    expect(screen.getByTestId('clip-target').textContent).toBe(
-      'widget-surface',
-    )
+    expect(screen.getByTestId('clip-target').textContent).toBe('widget-surface')
   })
 
   it('falls back clip to container when clipContainer is null', () => {
@@ -152,9 +143,9 @@ describe('MemoriUIProvider portal targets', () => {
       const surface = document.getElementById('widget-surface')
       expect(surface?.querySelector('.memori-modal__popup')).toBeTruthy()
       expect(
-        document.getElementById('widget-root')?.querySelector(
-          '.memori-modal__popup',
-        ),
+        document
+          .getElementById('widget-root')
+          ?.querySelector('.memori-modal__popup'),
       ).toBeNull()
     })
   })

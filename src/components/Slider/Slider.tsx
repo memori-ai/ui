@@ -137,6 +137,12 @@ const CustomSlider = ({
       <div
         ref={sliderRef}
         className="memori-slider__track-container"
+        role="slider"
+        aria-label={labelText}
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={value}
+        tabIndex={disabled ? -1 : 0}
         onMouseDown={e => handleInteractionStart(e.clientX)}
         onTouchStart={e => handleInteractionStart(e.touches[0]?.clientX ?? 0)}
       >
@@ -160,12 +166,7 @@ const CustomSlider = ({
 
         <div
           className="memori-slider__thumb"
-          role="slider"
-          aria-label={labelText}
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={value}
-          tabIndex={disabled ? -1 : 0}
+          aria-hidden="true"
         />
       </div>
     </div>

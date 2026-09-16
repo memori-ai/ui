@@ -93,17 +93,26 @@ const FormRoot = React.forwardRef<HTMLFormElement, FormProps>(
         ? (state: FormState) => ({ ...style(state) })
         : style
 
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
+      if (disabled) {
+        e.preventDefault()
+        return
+      }
+      onSubmit?.(e)
+    }
+
     return (
       <BaseForm
         ref={ref}
         className={mergedClassName}
         style={mergedStyle}
         errors={errors}
-        onFormSubmit={onFormSubmit}
+        onFormSubmit={disabled ? undefined : onFormSubmit}
         validationMode={validationMode}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         action={action}
         method={method}
+        aria-disabled={disabled || undefined}
         {...rest}
       >
         {children}

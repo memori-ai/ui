@@ -232,6 +232,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               >
                 <div style={{ width: '100%', minWidth: 0 }}>
                   <label
+                    htmlFor="showcase-text-input"
                     style={{
                       display: 'block',
                       fontSize: 'var(--memori-text-size-small)',
@@ -242,6 +243,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     Text Input
                   </label>
                   <Input
+                    id="showcase-text-input"
                     placeholder="Enter text here"
                     value={inputValue}
                     onValueChange={setInputValue}
@@ -250,6 +252,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 </div>
                 <div style={{ width: '100%', minWidth: 0 }}>
                   <label
+                    htmlFor="showcase-disabled-input"
                     style={{
                       display: 'block',
                       fontSize: 'var(--memori-text-size-small)',
@@ -260,6 +263,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     Disabled Input
                   </label>
                   <Input
+                    id="showcase-disabled-input"
                     placeholder="This is disabled"
                     disabled
                     fullWidth
@@ -267,6 +271,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 </div>
                 <div style={{ width: '100%', minWidth: 0 }}>
                   <label
+                    htmlFor="showcase-error-input"
                     style={{
                       display: 'block',
                       fontSize: 'var(--memori-text-size-small)',
@@ -277,6 +282,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     Error Input
                   </label>
                   <Input
+                    id="showcase-error-input"
                     placeholder="This has an error"
                     variant="error"
                     fullWidth
@@ -334,14 +340,14 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     gap: 'var(--memori-spacing-sm)',
                   }}
                 >
-                  <label
+                  <div
                     style={{
                       fontSize: 'var(--memori-text-size-small)',
                       fontWeight: 'var(--memori-text-weight-semibold)',
                     }}
                   >
                     Checkboxes
-                  </label>
+                  </div>
                   <div
                     style={{
                       display: 'flex',
@@ -773,6 +779,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               />
               <div style={{ width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <label
+                  htmlFor="showcase-drawer-input"
                   style={{
                     display: 'block',
                     fontSize: 'var(--memori-text-size-small)',
@@ -783,6 +790,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   Drawer Input
                 </label>
                 <Input
+                  id="showcase-drawer-input"
                   placeholder="Enter value in drawer"
                   fullWidth
                 />

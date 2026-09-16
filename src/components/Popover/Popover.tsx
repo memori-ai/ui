@@ -340,9 +340,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
                               closeSlotClassName,
                             )}
                             style={closeSlotStyle}
-                            ariaLabel={
-                              closeRest['aria-label'] ?? closeLabel
-                            }
+                            ariaLabel={closeRest['aria-label'] ?? closeLabel}
                             icon={<X size={20} />}
                           />
                         }

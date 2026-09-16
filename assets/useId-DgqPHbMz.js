@@ -1,0 +1,1 @@
+import{d,r as u}from"./iframe-Bo1cJqrf.js";const l={...d};let a=0;function f(s,t="mui"){const[e,c]=u.useState(s),o=s||e;return u.useEffect(()=>{e==null&&(a+=1,c(`${t}-${a}`))},[e,t]),o}const n=l.useId;function r(s,t){if(n!==void 0){const e=n();return s??(t?`${t}-${e}`:e)}return f(s,t)}export{r as u};

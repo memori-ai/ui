@@ -22,8 +22,15 @@ export {
   alertFr,
   alertDe,
   MEMORI_ALERT_LOCALES,
+  overlayEn,
+  overlayIt,
+  overlayEs,
+  overlayFr,
+  overlayDe,
+  MEMORI_OVERLAY_LOCALES,
   type MemoriExpandableTranslations,
   type MemoriAlertTranslations,
+  type MemoriOverlayTranslations,
 } from './uiLocales'
 
 export { memoriI18n } from './i18n'

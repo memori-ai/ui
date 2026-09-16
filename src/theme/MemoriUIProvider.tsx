@@ -1,20 +1,29 @@
-import { createContext, useContext, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  type CSSProperties,
+  type ReactNode,
+} from 'react'
 import type { Theme } from './useTheme'
 
 /* -----------------------------------------------------------------------------
  * Portal container context
  *
- * Lets consumers configure where portal-based components (Drawer, Modal,
- * Popover, Tooltip, Dropdown, Alert) mount their popups. Useful for scoping
- * the library inside a specific DOM subtree (e.g. an embedded widget) so
- * CSS variables, themes, fonts and styles inherit through the cascade.
+ * Two targets:
+ * - `container` (escape): Tooltip, Dropdown, Popover, Alert, Select menus —
+ *   mount outside clip/`contain` so Floating UI can escape.
+ * - `clipContainer`: Drawer / Modal — stay clipped to the embed surface.
  *
- * `undefined` (no provider) means components fall back to the Base UI default
- * (typically `document.body`). `null` is treated as an explicit "use the
- * default" — useful while a `ref.current` is still being attached.
+ * `undefined` (no provider) → Base UI default (typically `document.body`).
+ * `null` → explicit "still attaching ref; use default for now".
  * -------------------------------------------------------------------------- */
 
 const PortalContainerContext = createContext<HTMLElement | null | undefined>(
+  undefined,
+)
+
+const ClipContainerContext = createContext<HTMLElement | null | undefined>(
   undefined,
 )
 
@@ -39,29 +48,36 @@ export function PortalContainerProvider({
   )
 }
 
+export type PortalContainerKind = 'escape' | 'clip'
+
 /**
  * Resolve the portal container for a portaled component.
  *
- * - If the component received an explicit `container` prop (including `null`),
- *   that value wins.
- * - Otherwise, the nearest {@link PortalContainerProvider} value is returned.
- * - When no provider is mounted and no prop is passed, the result is
- *   `undefined`, signalling the Base UI default (document.body).
+ * - Explicit `container` prop (including `null`) always wins.
+ * - `kind: 'clip'` (Drawer/Modal): `clipContainer` → `container` → undefined
+ * - `kind: 'escape'` (default): `container` → undefined
  */
 export function usePortalContainer(
   override?: HTMLElement | null,
+  kind: PortalContainerKind = 'escape',
 ): HTMLElement | null | undefined {
-  const ctx = useContext(PortalContainerContext)
-  return override !== undefined ? override : ctx
+  const escapeContainer = useContext(PortalContainerContext)
+  const clipContainer = useContext(ClipContainerContext)
+
+  if (override !== undefined) {
+    return override
+  }
+
+  if (kind === 'clip') {
+    // Prefer a real clip element; while null/unset, fall back to escape container.
+    return clipContainer || escapeContainer
+  }
+
+  return escapeContainer
 }
 
 /* -----------------------------------------------------------------------------
  * Theme context
- *
- * Distinct from the DOM-mutating `useTheme()` hook. This context only carries
- * the theme value down the React tree so portaled popups can stamp
- * `data-theme="…"` on themselves — making sure tokens resolve regardless of
- * where the portal node lives in the DOM.
  * -------------------------------------------------------------------------- */
 
 const MemoriThemeContext = createContext<Theme | undefined>(undefined)
@@ -96,9 +112,6 @@ export function useMemoriTheme(override?: Theme): Theme | undefined {
 
 /* -----------------------------------------------------------------------------
  * Combined provider
- *
- * The ergonomic one-stop shop for library consumers: configure `container`
- * and `theme` in a single wrapper around your app (or the embedded widget).
  * -------------------------------------------------------------------------- */
 
 export interface MemoriUIProviderProps {
@@ -109,22 +122,80 @@ export interface MemoriUIProviderProps {
    */
   theme?: Theme
   /**
-   * Container element used as the portal root for descendant portaled
-   * components. Pass `null` while waiting for a ref to attach.
+   * Escape portal root (Tooltip, Dropdown, Popover, Alert, select menus).
+   * Pass `null` while waiting for a ref to attach.
    */
   container?: HTMLElement | null
+  /**
+   * Clip portal root for Drawer / Modal (e.g. `.memori-widget__surface`).
+   * When omitted, Drawer/Modal fall back to `container`.
+   */
+  clipContainer?: HTMLElement | null
+  /**
+   * Offset added to the overlay z-index scale (1100…1700).
+   * Applied as `--memori-z-index-base` on the portal target elements.
+   * @default 0
+   */
+  zIndexBase?: number
   children: ReactNode
+}
+
+function applyZIndexBase(
+  el: HTMLElement | null | undefined,
+  zIndexBase: number | undefined,
+): (() => void) | undefined {
+  if (!el || zIndexBase === undefined) return undefined
+  const prev = el.style.getPropertyValue('--memori-z-index-base')
+  el.style.setProperty('--memori-z-index-base', String(zIndexBase))
+  return () => {
+    if (prev) {
+      el.style.setProperty('--memori-z-index-base', prev)
+    } else {
+      el.style.removeProperty('--memori-z-index-base')
+    }
+  }
 }
 
 export function MemoriUIProvider({
   theme,
   container,
+  clipContainer,
+  zIndexBase = 0,
   children,
 }: MemoriUIProviderProps) {
+  useEffect(() => {
+    const cleanups = [
+      applyZIndexBase(container, zIndexBase),
+      applyZIndexBase(clipContainer, zIndexBase),
+    ].filter(Boolean) as Array<() => void>
+    return () => {
+      for (const cleanup of cleanups) cleanup()
+    }
+  }, [container, clipContainer, zIndexBase])
+
+  const style =
+    zIndexBase !== 0
+      ? ({
+          ['--memori-z-index-base' as string]: String(zIndexBase),
+        } as CSSProperties)
+      : undefined
+
   return (
     <MemoriThemeContext.Provider value={theme}>
       <PortalContainerContext.Provider value={container ?? null}>
-        {children}
+        <ClipContainerContext.Provider value={clipContainer ?? null}>
+          {style ? (
+            <div
+              className="memori-ui-provider"
+              style={style}
+              data-memori-ui-provider=""
+            >
+              {children}
+            </div>
+          ) : (
+            children
+          )}
+        </ClipContainerContext.Provider>
       </PortalContainerContext.Provider>
     </MemoriThemeContext.Provider>
   )

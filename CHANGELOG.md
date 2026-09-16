@@ -1,5 +1,14 @@
 
 
+## [1.18.0](https://github.com/memori-ai/ui/compare/v1.17.0...v1.18.0) (2026-09-16)
+
+
+### Features
+
+* add clipContainer support for the MemoriUIProvider component ([4330be0](https://github.com/memori-ai/ui/commit/4330be0323595a99404dbae0c0e144e97aa27fa0))
+* enhance accessibility and styling for overlays and components ([80d74ee](https://github.com/memori-ai/ui/commit/80d74ee02011f3dc7ea7f3247de19049e1722c56))
+* enhance i18n support by adding overlay translations and updating dependencies ([7b13f67](https://github.com/memori-ai/ui/commit/7b13f67cc4809a065288fa92b8410b24c640d199))
+
 ## [1.17.0](https://github.com/memori-ai/ui/compare/v1.16.3...v1.17.0) (2026-09-04)
 
 

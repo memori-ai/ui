@@ -34,7 +34,7 @@ Source of truth for new/migrated stories. Full audit/plan: workspace `storybook-
 
 ## Preview vs story
 
-**Preview provides:** CSS, `MemoriI18nProvider`, `MemoriUIProvider`, theme sync (`data-theme`), locale toolbar, brand toolbar (`--memori-primary-color` / `--memori-secondary-color`), a11y `test: 'error'`.
+**Preview provides:** CSS, `MemoriI18nProvider`, `MemoriUIProvider`, theme sync (`data-theme`), brand toolbar (`--memori-primary-color` / `--memori-secondary-color`), a11y `test: 'error'`.
 
 **Story provides:** controlled open state, fixtures, `container` for `InFixedSurface`, targeted `play`.
 

@@ -48,8 +48,8 @@ The host application must provide these compatible packages:
 | ------------------ | -------------- | ------------------------------------------ |
 | `react`            | `^17 \|\| ^18` | Required peer dependency, React 17 and 18+ |
 | `react-dom`        | `^17 \|\| ^18` | Required peer dependency, React 17 and 18+ |
-| `i18next`          | `^25.5.0`      | Required for translated components         |
-| `react-i18next`    | `^16.3.5`      | Required for translated components         |
+| `i18next`          | `>=21`         | Required for translated components         |
+| `react-i18next`    | `>=11`         | Required for translated components         |
 | `typescript`       | `>=5.0`        | Optional peer for TypeScript consumers     |
 | `@types/react`     | `^17 \|\| ^18` | Optional peer                              |
 | `@types/react-dom` | `^17 \|\| ^18` | Optional peer                              |
@@ -102,14 +102,33 @@ Dark mode is enabled with `data-theme="dark"` or a `dark` class on the document 
 ```tsx
 import { MemoriUIProvider, useMemoriTheme } from '@memori.ai/ui'
 
-function EmbedShell({ theme }: { theme: 'light' | 'dark' }) {
+function EmbedShell({
+  theme,
+  rootEl,
+  surfaceEl,
+}: {
+  theme: 'light' | 'dark'
+  rootEl: HTMLElement | null
+  /** Clipped surface for Drawer/Modal (e.g. `.memori-widget__surface`) */
+  surfaceEl: HTMLElement | null
+}) {
   return (
-    <MemoriUIProvider theme={theme}>
+    <MemoriUIProvider
+      theme={theme}
+      container={rootEl}
+      clipContainer={surfaceEl}
+      /* Optional: shift overlay scale (1100…1700) above a hostile host */
+      zIndexBase={0}
+    >
       <div data-theme={theme}>{/* widget */}</div>
     </MemoriUIProvider>
   )
 }
 ```
+
+- `container` — escape portals (Tooltip, Dropdown, Popover, Alert, select menus)
+- `clipContainer` — Drawer / Modal (falls back to `container` when unset)
+- `zIndexBase` — offset for `--memori-z-index-base` on those portal targets
 
 `useTheme()` is **deprecated for embeds**: it writes `data-theme` / `.dark` on `document.documentElement` and persists to `localStorage`. Use it only in full-page app shells, or prefer `data-theme` + context.
 The most common integrator tokens are:

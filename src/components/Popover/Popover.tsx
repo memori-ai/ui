@@ -1,7 +1,10 @@
 import { Popover as BasePopover } from '@base-ui/react/popover'
 import cx from 'classnames'
+import { X } from 'lucide-react'
 import React, { forwardRef, useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import Button from '../Button'
 import {
   useMemoriTheme,
   usePortalContainer,
@@ -75,7 +78,7 @@ export interface PopoverProps extends Omit<
   closable?: boolean
   /**
    * Label for the close button.
-   * @default 'Close popover'
+   * Falls back to i18n `overlay.closePopover`.
    */
   closeLabel?: string
   /**
@@ -169,7 +172,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       alignOffset = 0,
       arrow = true,
       closable = true,
-      closeLabel = 'Close popover',
+      closeLabel: closeLabelProp,
       disabled = false,
       open,
       defaultOpen,
@@ -183,6 +186,11 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
       slotProps,
       ...rootProps
     } = props
+
+    const { t } = useTranslation()
+    const closeLabel =
+      closeLabelProp ??
+      t('overlay.closePopover', { defaultValue: 'Close popover' })
 
     const { side, align } = useMemo(
       () => parsePlacement(placement),
@@ -324,20 +332,21 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>(
                     {closable ? (
                       <BasePopover.Close
                         {...closeRest}
-                        aria-label={closeRest['aria-label'] ?? closeLabel}
-                        className={cx(
-                          'memori-popover__close',
-                          closeSlotClassName,
-                        )}
-                        style={closeSlotStyle}
-                      >
-                        <span
-                          aria-hidden
-                          className="memori-popover__close-glyph"
-                        >
-                          ×
-                        </span>
-                      </BasePopover.Close>
+                        render={
+                          <Button
+                            variant="toolbar"
+                            className={cx(
+                              'memori-popover__close',
+                              closeSlotClassName,
+                            )}
+                            style={closeSlotStyle}
+                            ariaLabel={
+                              closeRest['aria-label'] ?? closeLabel
+                            }
+                            icon={<X size={20} />}
+                          />
+                        }
+                      />
                     ) : null}
                   </div>
                 )}

@@ -56,12 +56,12 @@
 
     /* Above Drawer/Modal/Dropdown (z-index 1001) so dropdown appears on top when inside overlays */
     .memori-select__portal {
-        z-index: 1100;
+        z-index: calc(var(--memori-z-index-base, 0) + 1100);
     }
 
     /* The positioner is the element with position:fixed and coordinates – it must have z-index */
     .memori-select__positioner {
-        z-index: 1100;
+        z-index: calc(var(--memori-z-index-base, 0) + 1100);
     }
 
     /* microinteraction: trigger press — transform gated for reduced-motion users */

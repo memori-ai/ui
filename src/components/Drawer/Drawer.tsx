@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Dialog, type DialogRootChangeEventDetails } from '@base-ui/react'
 import cx from 'classnames'
 import { X, Loader2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import Button from '../Button'
 import {
   useMemoriTheme,
   usePortalContainer,
@@ -87,6 +89,12 @@ export interface DrawerProps {
   closable?: boolean
 
   /**
+   * Accessible label for the close button.
+   * Falls back to i18n `overlay.closeDrawer`.
+   */
+  closeLabel?: string
+
+  /**
    * Container element used as the portal root. Defaults to the nearest
    * `PortalContainerProvider` value, then to `document.body`.
    * Pass `null` to keep falling back to the provider/default.
@@ -118,12 +126,17 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       style,
       showCloseButton = true,
       closable = true,
+      closeLabel,
       container,
       theme,
       ...rest
     },
     ref,
   ) => {
+    const { t } = useTranslation()
+    const resolvedCloseLabel =
+      closeLabel ??
+      t('overlay.closeDrawer', { defaultValue: 'Close drawer' })
     const handleOpenChange = (
       newOpen: boolean,
       event?: DialogRootChangeEventDetails,
@@ -138,7 +151,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const shouldShowCloseButton =
       closable !== undefined ? closable : showCloseButton
 
-    const portalContainer = usePortalContainer(container)
+    const portalContainer = usePortalContainer(container, 'clip')
     const resolvedTheme = useMemoriTheme(theme)
 
     return (
@@ -179,11 +192,15 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
                 </div>
                 {shouldShowCloseButton && (
                   <Dialog.Close
-                    className="memori-drawer__close"
-                    aria-label="Close"
-                  >
-                    <X size={20} />
-                  </Dialog.Close>
+                    render={
+                      <Button
+                        variant="toolbar"
+                        className="memori-drawer__close"
+                        ariaLabel={resolvedCloseLabel}
+                        icon={<X size={20} />}
+                      />
+                    }
+                  />
                 )}
               </div>
             )}

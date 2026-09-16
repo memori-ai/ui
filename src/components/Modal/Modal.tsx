@@ -3,7 +3,9 @@ import { Dialog } from '@base-ui/react/dialog'
 import type { DialogRootProps } from '@base-ui/react/dialog'
 import type { InteractionType } from '@base-ui/utils/useEnhancedClickHandler'
 import cx from 'classnames'
+import { useTranslation } from 'react-i18next'
 import Spin from '../Spin/Spin'
+import Button from '../Button'
 import { X as Close } from 'lucide-react'
 import { useStableId } from '../../hooks/useStableId'
 import {
@@ -250,6 +252,12 @@ export interface ModalProps extends Omit<
   closeIcon?: React.ReactNode
 
   /**
+   * Accessible label for the default close button.
+   * Falls back to i18n `overlay.closeModal`.
+   */
+  closeLabel?: string
+
+  /**
    * Container element used as the portal root. Defaults to the nearest
    * `PortalContainerProvider` value, then to `document.body`.
    */
@@ -305,16 +313,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       animated = true,
       closeButton,
       closeIcon,
+      closeLabel,
       container,
       theme,
       ...restProps
     },
     ref,
   ) => {
+    const { t } = useTranslation()
+    const resolvedCloseLabel =
+      closeLabel ??
+      t('overlay.closeModal', { defaultValue: 'Close modal' })
     const popupId = useStableId('memori-modal')
     const titleId = useStableId('memori-modal-title')
     const descriptionId = useStableId('memori-modal-description')
-    const portalContainer = usePortalContainer(container)
+    const portalContainer = usePortalContainer(container, 'clip')
     const resolvedTheme = useMemoriTheme(theme)
 
     // Handle open change with escape key support
@@ -447,14 +460,18 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             >
               {closable &&
                 (closeButton ? (
-                  <div className="memori-modal__close">{closeButton}</div>
+                  <div className="memori-modal__close-slot">{closeButton}</div>
                 ) : (
                   <Dialog.Close
-                    className="memori-modal__close"
-                    aria-label="Close modal"
-                  >
-                    {closeIcon || <Close />}
-                  </Dialog.Close>
+                    render={
+                      <Button
+                        variant="toolbar"
+                        className="memori-modal__close"
+                        ariaLabel={resolvedCloseLabel}
+                        icon={closeIcon || <Close size={20} />}
+                      />
+                    }
+                  />
                 ))}
               <Spin spinning={loading}>
                 {title && (

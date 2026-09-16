@@ -6,7 +6,7 @@
     /* microinteraction: backdrop fade (keyframes in theme/keyframes.css) */
     .memori-drawer__backdrop {
         position: fixed;
-        z-index: 1400;
+        z-index: calc(var(--memori-z-index-base, 0) + 1400);
         animation: memori-drawer-fade-in var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         backdrop-filter: blur(var(--memori-blur-background));
         inset: 0;
@@ -18,7 +18,7 @@
 
     .memori-drawer {
         position: fixed;
-        z-index: 1400;
+        z-index: calc(var(--memori-z-index-base, 0) + 1400);
         display: flex;
         box-sizing: border-box;
         flex-direction: column;
@@ -182,31 +182,45 @@
         line-height: var(--memori-text-line-normal);
     }
 
-    .memori-drawer__close {
-        display: flex;
+    .memori-drawer__close.memori-button {
+        display: inline-flex;
+        width: var(--memori-icon-button-size);
+        min-width: var(--memori-icon-button-size);
+        height: var(--memori-icon-button-size);
+        min-height: var(--memori-icon-button-size);
+        box-sizing: border-box;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
-        padding: var(--memori-spacing-sm);
-        border: none;
-        border-radius: var(--memori-radius-field);
-        margin-right: calc(var(--memori-spacing-sm) * -1);
+        padding: 0;
+        border: var(--memori-border) solid color-mix(in oklch, var(--memori-text-color) 18%, transparent);
+        border-radius: var(--memori-radius-box);
+        margin: 0;
         background: transparent;
-        color: var(--memori-neutral);
-        cursor: pointer;
-        transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
+        transform: none;
     }
 
-    .memori-drawer__close:hover {
-        background-color: var(--memori-main-background);
+    .memori-drawer__close.memori-button:hover:not(:disabled, .memori-button--disabled) {
+        border-color: color-mix(in oklch, var(--memori-text-color) 28%, transparent);
+        background: color-mix(in oklch, var(--memori-text-color) 6%, transparent);
+        box-shadow: none;
         color: var(--memori-text-color);
+        transform: none;
     }
 
-    .memori-drawer__close:focus-visible {
+    .memori-drawer__close.memori-button:focus-visible {
+        border-color: var(--memori-primary);
+        box-shadow: var(--memori-focus-ring);
         outline: 2px solid var(--memori-primary);
         outline-offset: var(--memori-focus-ring-offset);
+    }
+
+    .memori-drawer__close.memori-button svg,
+    .memori-drawer__close.memori-button .memori-button__icon {
+        width: var(--memori-icon-button-icon-size);
+        height: var(--memori-icon-button-icon-size);
     }
 
     .memori-drawer__body {

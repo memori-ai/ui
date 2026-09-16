@@ -127,3 +127,16 @@ it('renders Modal with custom widths unchanged', () => {
   )
   expect(container).toMatchSnapshot()
 })
+
+it('default close button exposes accessible label', () => {
+  const { getByRole } = render(
+    <Modal
+      open={true}
+      onOpenChange={vi.fn()}
+      title="Title"
+    >
+      {content}
+    </Modal>,
+  )
+  expect(getByRole('button', { name: /close modal/i })).toBeTruthy()
+})

@@ -1,5 +1,5 @@
 import type { Preview, Decorator } from '@storybook/react-vite'
-import React, { useEffect, type CSSProperties } from 'react'
+import React from 'react'
 
 import { MemoriI18nProvider } from '../src/i18n/MemoriI18nProvider'
 import { memoriI18n } from '../src/i18n/i18n'
@@ -8,11 +8,14 @@ import type { Theme } from '../src/theme/useTheme'
 import '../src/styles.css'
 
 type BrandPreset = 'default' | 'purple' | 'teal' | 'coral'
+type BrandHook = '--memori-primary-color' | '--memori-secondary-color'
 
-const BRAND_PRESETS: Record<
-  BrandPreset,
-  Partial<Record<'--memori-primary-color' | '--memori-secondary-color', string>>
-> = {
+const BRAND_HOOK_KEYS = [
+  '--memori-primary-color',
+  '--memori-secondary-color',
+] as const satisfies readonly BrandHook[]
+
+const BRAND_PRESETS: Record<BrandPreset, Partial<Record<BrandHook, string>>> = {
   default: {},
   purple: {
     '--memori-primary-color': 'oklch(51.55% 0.1653 307.99deg)',
@@ -26,6 +29,23 @@ const BRAND_PRESETS: Record<
     '--memori-primary-color': 'oklch(62% 0.18 35deg)',
     '--memori-secondary-color': 'oklch(72% 0.1 50deg)',
   },
+}
+
+/**
+ * Brand hooks must be set on `:root` / `documentElement` — the same selector
+ * that defines `--memori-primary` / `--memori-secondary`. Setting them only on a
+ * nested wrapper does not re-resolve those aliases (inherited computed values).
+ */
+function applyBrandHooks(vars: Partial<Record<BrandHook, string>>) {
+  const root = document.documentElement
+  for (const key of BRAND_HOOK_KEYS) {
+    const value = vars[key]
+    if (value) {
+      root.style.setProperty(key, value)
+    } else {
+      root.style.removeProperty(key)
+    }
+  }
 }
 
 function resolveThemeFromContext(context: {
@@ -55,38 +75,26 @@ const withThemeAndProviders: Decorator = (Story, context) => {
     root.classList.add('dark')
   }
 
-  const locale =
-    typeof context.globals?.locale === 'string' ? context.globals.locale : 'en'
   const brand = (
     typeof context.globals?.brand === 'string'
       ? context.globals.brand
       : 'default'
   ) as BrandPreset
-  const brandVars = BRAND_PRESETS[brand] ?? BRAND_PRESETS.default
+  applyBrandHooks(BRAND_PRESETS[brand] ?? BRAND_PRESETS.default)
 
   return React.createElement(StorybookProviders, {
     theme,
-    locale,
-    brandStyle: brandVars as CSSProperties,
     children: React.createElement(Story),
   })
 }
 
 function StorybookProviders({
   theme,
-  locale,
-  brandStyle,
   children,
 }: {
   theme: Theme
-  locale: string
-  brandStyle: CSSProperties
   children: React.ReactNode
 }) {
-  useEffect(() => {
-    void memoriI18n.changeLanguage(locale)
-  }, [locale])
-
   return React.createElement(
     MemoriI18nProvider,
     { i18n: memoriI18n },
@@ -97,7 +105,6 @@ function StorybookProviders({
         'div',
         {
           style: {
-            ...brandStyle,
             color: 'var(--memori-text-color)',
             minHeight: '100%',
           },
@@ -110,21 +117,6 @@ function StorybookProviders({
 
 const preview: Preview = {
   globalTypes: {
-    locale: {
-      description: 'i18n locale for Memori UI strings',
-      toolbar: {
-        title: 'Locale',
-        icon: 'globe',
-        items: [
-          { value: 'en', title: 'English' },
-          { value: 'it', title: 'Italiano' },
-          { value: 'fr', title: 'Français' },
-          { value: 'es', title: 'Español' },
-          { value: 'de', title: 'Deutsch' },
-        ],
-        dynamicTitle: true,
-      },
-    },
     brand: {
       description: 'Override --memori-primary-color / --memori-secondary-color',
       toolbar: {
@@ -144,7 +136,6 @@ const preview: Preview = {
     backgrounds: {
       value: 'light',
     },
-    locale: 'en',
     brand: 'default',
   },
   parameters: {

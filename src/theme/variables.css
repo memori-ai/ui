@@ -146,6 +146,16 @@
         --memori-tooltip-background: color-mix(in oklch, var(--memori-surface-contrast) 82%, transparent);
         --memori-tooltip-foreground: var(--memori-secondary-background);
         --memori-tooltip-caret: var(--memori-tooltip-background);
+
+        /* Icon / overlay close chrome (Modal, Drawer, Popover, toolbar icon tools) */
+        --memori-icon-button-size: 40px;
+        --memori-icon-button-icon-size: 20px;
+        --memori-icon-button-icon: color-mix(in oklch, var(--memori-text-color) 72%, transparent);
+        --memori-icon-active-bg: color-mix(in oklch, var(--memori-primary) 12%, transparent);
+        --memori-icon-recording-bg: color-mix(in oklch, var(--memori-error) 12%, transparent);
+
+        /* Overlay stacking offset — set via MemoriUIProvider zIndexBase */
+        --memori-z-index-base: 0;
     }
 
     /* ─── 12. Dark theme overrides ──────────── */

@@ -7,7 +7,7 @@
    → drawer 1400 → modal 1500 → stacked 1600 → alert 1700 */
     .memori-modal__backdrop {
         position: fixed;
-        z-index: 1500;
+        z-index: calc(var(--memori-z-index-base, 0) + 1500);
         top: 0;
         left: 0;
         width: 100%;
@@ -26,7 +26,7 @@
 
     .memori-modal__viewport {
         position: fixed;
-        z-index: 1500;
+        z-index: calc(var(--memori-z-index-base, 0) + 1500);
         padding: var(--memori-spacing-md);
         inset: 0;
         overflow-y: auto;
@@ -41,7 +41,7 @@
 
     .memori-modal__backdrop.memori-modal--stacked,
     .memori-modal__viewport.memori-modal--stacked {
-        z-index: 1600;
+        z-index: calc(var(--memori-z-index-base, 0) + 1600);
     }
 
     /* ============================================
@@ -134,41 +134,54 @@
    CLOSE BUTTON
    ============================================ */
 
-    .memori-modal__close {
+    .memori-modal__close-slot {
+        position: absolute;
+        z-index: 1;
+        top: var(--memori-spacing-sm);
+        right: var(--memori-spacing-sm);
+    }
+
+    .memori-modal__close.memori-button {
         position: absolute;
         z-index: 1;
         top: var(--memori-spacing-sm);
         right: var(--memori-spacing-sm);
         display: inline-flex;
-        width: 32px;
-        height: 32px;
+        width: var(--memori-icon-button-size);
+        min-width: var(--memori-icon-button-size);
+        height: var(--memori-icon-button-size);
+        min-height: var(--memori-icon-button-size);
+        box-sizing: border-box;
         align-items: center;
         justify-content: center;
         padding: 0;
-        border: none;
-        border-radius: 50%;
-        background-color: transparent;
-        color: var(--memori-text-color);
-        cursor: pointer;
-        transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        border: var(--memori-border) solid color-mix(in oklch, var(--memori-text-color) 18%, transparent);
+        border-radius: var(--memori-radius-box);
+        background: transparent;
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
+        transform: none;
     }
 
-    .memori-modal__close:hover {
-        background-color: var(--memori-main-background);
+    .memori-modal__close.memori-button:hover:not(:disabled, .memori-button--disabled) {
+        border-color: color-mix(in oklch, var(--memori-text-color) 28%, transparent);
+        background: color-mix(in oklch, var(--memori-text-color) 6%, transparent);
+        box-shadow: none;
         color: var(--memori-text-color);
+        transform: none;
     }
 
-    .memori-modal__close:focus-visible {
+    .memori-modal__close.memori-button:focus-visible {
+        border-color: var(--memori-primary);
+        box-shadow: var(--memori-focus-ring);
         outline: 2px solid var(--memori-primary);
         outline-offset: var(--memori-focus-ring-offset);
     }
 
-    .memori-modal__close svg {
-        width: 16px;
-        height: 16px;
+    .memori-modal__close.memori-button svg,
+    .memori-modal__close.memori-button .memori-button__icon {
+        width: var(--memori-icon-button-icon-size);
+        height: var(--memori-icon-button-icon-size);
     }
 
     /* ============================================

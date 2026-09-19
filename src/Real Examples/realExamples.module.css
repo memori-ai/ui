@@ -18,7 +18,7 @@
 .title {
     margin: 0;
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-heading-large);
+    font-size: var(--memori-text-size-2xl);
     font-weight: var(--memori-text-weight-bold);
     line-height: var(--memori-text-line-tight);
 }
@@ -26,7 +26,7 @@
 .subtitle {
     margin: var(--memori-spacing-sm) 0 0;
     color: var(--memori-neutral);
-    font-size: var(--memori-text-size-base);
+    font-size: var(--memori-text-size-md);
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
 }
@@ -46,7 +46,7 @@
 .sectionTitle {
     margin: 0 0 var(--memori-spacing-md);
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-base);
+    font-size: var(--memori-text-size-md);
     font-weight: var(--memori-text-weight-bold);
 }
 
@@ -80,7 +80,7 @@
     display: inline-flex;
     align-items: center;
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-small);
+    font-size: var(--memori-text-size-sm);
     font-weight: var(--memori-text-weight-medium);
     gap: var(--memori-spacing-xs);
 }
@@ -89,7 +89,7 @@
     display: inline-flex;
     padding: 0;
     border: none;
-    border-radius: var(--memori-radius-field);
+    border-radius: var(--memori-radius-control);
     background: none;
     color: var(--memori-neutral);
     cursor: help;
@@ -137,7 +137,7 @@
     display: inline-flex;
     align-items: center;
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-base);
+    font-size: var(--memori-text-size-md);
     font-weight: var(--memori-text-weight-medium);
     gap: var(--memori-spacing-xs);
 }
@@ -177,7 +177,7 @@
 .tabPlaceholder {
     margin: 0;
     color: var(--memori-neutral);
-    font-size: var(--memori-text-size-base);
+    font-size: var(--memori-text-size-md);
 }
 
 .dashboardToolbar {
@@ -204,7 +204,7 @@
     flex: 1 1 16rem;
     align-items: stretch;
     border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-field);
+    border-radius: var(--memori-radius-control);
     background-color: var(--memori-secondary-background);
     transition:
         border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
@@ -252,7 +252,7 @@
     flex: 0 1 280px;
     align-items: stretch;
     border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-field);
+    border-radius: var(--memori-radius-control);
     background-color: var(--memori-secondary-background);
     gap: 0;
 }
@@ -268,7 +268,7 @@
     min-width: 0;
     flex: 1;
     border: none;
-    border-radius: var(--memori-radius-field);
+    border-radius: var(--memori-radius-control);
     background: transparent;
 }
 
@@ -337,7 +337,7 @@
     display: inline-flex;
     padding: 2px;
     border: none;
-    border-radius: var(--memori-radius-field);
+    border-radius: var(--memori-radius-control);
     background: none;
     color: var(--memori-neutral);
     cursor: help;

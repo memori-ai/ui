@@ -11,9 +11,9 @@
 
     .memori-expandable > button {
         color: var(--memori-primary);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         text-decoration: underline;
-        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-expandable > button:hover {

@@ -81,7 +81,8 @@ export interface TooltipProps {
   onOpenChange?: TooltipRootChangeHandler
   /**
    * Delay before showing (ms). MUI: `enterDelay`.
-   * @default 600
+   * Matches `--memori-motion-delay-short` (0.4s).
+   * @default 400
    */
   enterDelay?: number
   /**
@@ -239,8 +240,8 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       visible,
       defaultOpen,
       onOpenChange,
-      enterDelay,
-      leaveDelay,
+      enterDelay = 400,
+      leaveDelay = 0,
       sideOffset = 8,
       disableHoverablePopup = false,
       arrow = true,

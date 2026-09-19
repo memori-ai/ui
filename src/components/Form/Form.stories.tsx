@@ -253,7 +253,7 @@ export const CustomStyling: Story = {
       style={{
         padding: 'var(--memori-spacing-lg)',
         border: '1px solid var(--memori-border-color)',
-        borderRadius: 'var(--memori-radius-box)',
+        borderRadius: 'var(--memori-radius-surface)',
       }}
     >
       <FieldGroup label="Name">

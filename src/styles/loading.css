@@ -1,7 +1,7 @@
 @layer memori.components {
     .memori-loading-icon {
         display: inline-block;
-        animation: memori-loading 1s infinite linear;
+        animation: memori-loading var(--memori-motion-duration-loop) var(--memori-motion-ease-linear) infinite;
     }
 
     @keyframes memori-loading {

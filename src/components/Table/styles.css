@@ -7,7 +7,7 @@
         box-sizing: border-box;
         padding-bottom: env(safe-area-inset-bottom, 0);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-box);
+        border-radius: var(--memori-radius-surface);
         background-color: var(--memori-secondary-background);
         box-shadow: var(--memori-shadow-sm);
         color: var(--memori-text-color);
@@ -41,7 +41,7 @@
         margin: 0;
         background-color: var(--memori-secondary-background);
         border-collapse: collapse;
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         line-height: var(--memori-text-line-normal);
         table-layout: fixed;
     }
@@ -81,7 +81,7 @@
         /* border-right: var(--memori-border) solid var(--memori-border-color); */
         background-color: var(--memori-main-background);
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-semibold);
         text-align: left;
         vertical-align: middle;
@@ -120,15 +120,15 @@
         justify-content: center;
         padding: var(--memori-spacing-xs);
         border: none;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         margin: 0;
         background-color: transparent;
         color: var(--memori-neutral);
         cursor: pointer;
         outline: none;
         transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-table__sort-button:hover {
@@ -191,7 +191,7 @@
         background-color: var(--memori-border-color);
         content: '';
         opacity: 0.8;
-        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     .memori-table__resize-handle:hover::after,
@@ -205,7 +205,7 @@
 
     .memori-table__row {
         border-bottom: var(--memori-border) solid var(--memori-border-color);
-        transition: background-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        transition: background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-table__row:last-child {
@@ -339,13 +339,13 @@
         display: flex;
         align-items: center;
         padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         cursor: pointer;
         gap: var(--memori-spacing-sm);
     }
 
     .memori-table-controls__column-label {
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     /* --------------------------------------------------------------------------
@@ -363,7 +363,7 @@
         align-items: center;
         justify-content: center;
         padding: var(--memori-spacing-xs);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-primary);
         color: var(--memori-primary-content);
         font-size: var(--memori-text-size-xs);
@@ -386,7 +386,7 @@
         flex-direction: column;
         padding: 0;
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-surface);
         background-color: var(--memori-main-background);
     }
 
@@ -424,17 +424,17 @@
         align-items: center;
         padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         line-height: var(--memori-text-line-normal);
         outline: none;
         transition:
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     .memori-table__filter-option:hover {
@@ -476,11 +476,11 @@
         box-sizing: border-box;
         padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-table__filter-date-error {
@@ -498,7 +498,7 @@
 
     .memori-table__filter-boolean-label {
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-table__filter-toggle {
@@ -508,13 +508,13 @@
         flex-shrink: 0;
         padding: 0;
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         cursor: pointer;
         outline: none;
         transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-table__filter-toggle::after {
@@ -527,7 +527,7 @@
         background-color: var(--memori-main-background);
         box-shadow: var(--memori-shadow-sm);
         content: '';
-        transition: transform var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        transition: transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-table__filter-toggle--on {
@@ -560,7 +560,7 @@
         color: var(--memori-primary);
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         outline: none;
         text-decoration: underline;
         text-underline-offset: 2px;
@@ -571,7 +571,7 @@
     }
 
     .memori-table__filter-clear-all:focus-visible {
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         box-shadow: var(--memori-focus-ring);
     }
 
@@ -587,7 +587,7 @@
     .memori-table__filter-chips-muted {
         flex-shrink: 0;
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-table__filter-chips-list {
@@ -605,7 +605,7 @@
         align-items: center;
         padding: 2px var(--memori-spacing-xs) 2px var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         font-size: var(--memori-text-size-xs);
         gap: 2px;
@@ -625,12 +625,12 @@
         justify-content: center;
         padding: 0 var(--memori-spacing-xs);
         border: none;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         margin: 0;
         background: transparent;
         color: var(--memori-neutral);
         cursor: pointer;
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         line-height: 1;
         outline: none;
     }
@@ -653,7 +653,7 @@
         color: var(--memori-primary);
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         outline: none;
         text-decoration: underline;
         text-underline-offset: 2px;
@@ -664,7 +664,7 @@
     }
 
     .memori-table__filter-chips-clear-all:focus-visible {
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         box-shadow: var(--memori-focus-ring);
     }
 
@@ -691,11 +691,11 @@
         min-height: 40px;
         padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-table__header-cell--pinned-left,
@@ -717,7 +717,7 @@
         box-sizing: border-box;
         align-items: center;
         padding: 2px var(--memori-spacing-sm);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         font-size: var(--memori-text-size-xs);
         font-weight: var(--memori-text-weight-medium);
         line-height: 1.3;
@@ -813,7 +813,7 @@
         min-width: 1.125rem;
         align-items: center;
         justify-content: center;
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-semibold);
         line-height: 1;
     }
@@ -834,7 +834,7 @@
         justify-content: center;
         padding: var(--memori-spacing-xs);
         border: var(--memori-border) solid transparent;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         margin: 0;
         background: transparent;
         color: var(--memori-neutral);
@@ -864,7 +864,7 @@
 
     .memori-table__empty {
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-table__sr-only {
@@ -900,7 +900,7 @@
         width: 100%;
         max-width: 100%;
         height: 0.65rem;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         animation: memori-table-skeleton-shimmer 1.2s ease-in-out infinite;
         background: linear-gradient(
             90deg,
@@ -919,6 +919,7 @@
 
     @media (prefers-reduced-motion: no-preference) {
         .memori-table__body--loading .memori-table__skeleton-bar {
+            /* --memori-skeleton-row-index is a per-row index from TableBody, not a theme token */
             animation-delay: calc(var(--memori-skeleton-row-index, 0) * 40ms);
         }
     }
@@ -973,7 +974,7 @@
 
     .memori-table-pagination__jump-label {
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         white-space: nowrap;
     }
 
@@ -1003,7 +1004,7 @@
     }
 
     .memori-table-toolbar__count {
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-medium);
     }
 
@@ -1013,7 +1014,7 @@
         align-items: center;
         justify-content: space-between;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         gap: var(--memori-spacing-md);
     }
 
@@ -1105,7 +1106,7 @@
         align-items: center;
         justify-content: center;
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         user-select: none;
     }
 
@@ -1158,7 +1159,7 @@
     .memori-table-pagination__page-badge {
         min-width: 5.5rem;
         padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
-        border-radius: var(--memori-radius-selector);
+        border-radius: var(--memori-radius-control);
         color: var(--memori-neutral);
         font-variant-numeric: tabular-nums;
         line-height: var(--memori-text-line-normal);
@@ -1168,8 +1169,8 @@
     @media (prefers-reduced-motion: no-preference) {
         .memori-table-wrapper {
             transition:
-                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
     }
 
@@ -1180,7 +1181,7 @@
 
             padding-right: max(env(safe-area-inset-right, 0px), var(--memori-spacing-xs));
             padding-left: max(env(safe-area-inset-left, 0px), var(--memori-spacing-xs));
-            border-radius: max(var(--memori-spacing-sm), calc(var(--memori-radius-box) - 2px));
+            border-radius: max(var(--memori-spacing-sm), calc(var(--memori-radius-surface) - 2px));
             box-shadow: var(--memori-shadow-md);
         }
 
@@ -1220,14 +1221,14 @@
         }
 
         .memori-table {
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
             line-height: var(--memori-text-line-relaxed);
         }
 
         .memori-table__header-cell {
             padding: var(--memori-spacing-sm) var(--memori-spacing-md);
             box-shadow: var(--memori-shadow-sm);
-            font-size: var(--memori-text-size-small);
+            font-size: var(--memori-text-size-sm);
         }
 
         .memori-table__cell {
@@ -1265,7 +1266,7 @@
         }
 
         .memori-table-toolbar__count {
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
             text-align: center;
         }
 
@@ -1273,7 +1274,7 @@
             flex-direction: column;
             align-items: stretch;
             padding: var(--memori-spacing-lg) var(--memori-spacing-sm);
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
             gap: var(--memori-spacing-md);
         }
 
@@ -1315,7 +1316,7 @@
         .memori-table-pagination__page-badge {
             min-width: 5.5rem;
             padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
             font-weight: var(--memori-text-weight-semibold);
         }
 
@@ -1338,14 +1339,14 @@
 
         .memori-table-pagination__page-size .memori-select__label {
             color: var(--memori-text-color);
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
             font-weight: var(--memori-text-weight-medium);
             text-align: center;
         }
 
         .memori-table-pagination__page-size .memori-select__trigger {
             min-height: 3rem;
-            font-size: var(--memori-text-size-base);
+            font-size: var(--memori-text-size-md);
         }
 
         .memori-table-pagination__select {

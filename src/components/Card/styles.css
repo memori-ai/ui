@@ -12,7 +12,7 @@
         box-sizing: border-box;
         flex-direction: column;
         padding: var(--memori-spacing-lg);
-        border-radius: var(--memori-radius-box);
+        border-radius: var(--memori-radius-surface);
         margin: 0;
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
@@ -52,7 +52,7 @@
     .memori-card__title {
         margin: 0 0 var(--memori-spacing-sm) 0;
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-large);
+        font-size: var(--memori-text-size-lg);
         font-weight: var(--memori-text-weight-semibold);
         line-height: var(--memori-text-line-tight);
     }
@@ -60,7 +60,7 @@
     .memori-card__description {
         margin: 0 0 var(--memori-spacing-md) 0;
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         line-height: var(--memori-text-line-normal);
     }
 
@@ -145,9 +145,9 @@
     @media (prefers-reduced-motion: reduce) {
         .memori-card {
             transition:
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-card--interactive:hover {

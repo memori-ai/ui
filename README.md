@@ -133,18 +133,20 @@ function EmbedShell({
 `useTheme()` is **deprecated for embeds**: it writes `data-theme` / `.dark` on `document.documentElement` and persists to `localStorage`. Use it only in full-page app shells, or prefer `data-theme` + context.
 The most common integrator tokens are:
 
-| Token family      | Examples                                                                                                                                 |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Brand             | `--memori-primary-color`, `--memori-secondary-color`, `--memori-primary-content`                                                         |
-| Surface and text  | `--memori-main-background`, `--memori-secondary-background`, `--memori-inset-background`, `--memori-text-color`, `--memori-border-color` |
-| Typography        | `--memori-font-family`, `--memori-text-size-base`, `--memori-text-weight-medium`, `--memori-text-line-normal`                            |
-| Spacing           | `--memori-spacing-xs` through `--memori-spacing-5xl`                                                                                     |
-| Radius and border | `--memori-radius-field`, `--memori-radius-selector`, `--memori-radius-box`, `--memori-border`                                            |
-| Shadows           | `--memori-shadow-xs` through `--memori-shadow-2xl`, `--memori-shadow-primary`                                                            |
-| Motion            | `--memori-motion-duration-fast`, `--memori-motion-duration-normal`, `--memori-motion-ease`                                               |
-| Feedback          | `--memori-success`, `--memori-warning`, `--memori-error`, `--memori-info`                                                                |
+| Token family      | Examples                                                                                                                                     |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Brand             | `--memori-primary-color`, `--memori-secondary-color`, `--memori-primary-content`                                                             |
+| Surface and text  | `--memori-main-background`, `--memori-secondary-background`, `--memori-text-color`, `--memori-border-color`                                  |
+| Typography        | `--memori-font-family`, `--memori-text-size-sm` through `--memori-text-size-3xl`, `--memori-text-weight-medium`, `--memori-text-line-normal` |
+| Spacing           | `--memori-spacing-xs` through `--memori-spacing-5xl`                                                                                         |
+| Radius and border | Semantic `--memori-radius-control`, `--memori-radius-surface`, `--memori-radius-overlay`, `--memori-radius-composer`, `--memori-border`      |
+| Shadows           | `--memori-shadow-xs` through `--memori-shadow-2xl`, `--memori-shadow-primary`                                                                |
+| Motion            | `--memori-motion-duration-fast`, `--memori-motion-duration-normal`, `--memori-motion-ease-out`                                               |
+| Feedback          | `--memori-success`, `--memori-warning`, `--memori-error`, `--memori-info`                                                                    |
 
 The full token source is `src/theme/variables.css`, and visual examples are available in Storybook.
+
+`--memori-skeleton-row-index` is a per-row CSS custom property set by `Table` while rendering skeleton rows. It is an animation index, not a design token — do not override it as part of a theme.
 
 ## Public API
 

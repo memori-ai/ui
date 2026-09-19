@@ -26,7 +26,7 @@ const storyShell = (children: React.ReactNode) => (
       width: 'min(100%, var(--memori-modal-size-md))',
       padding: 'var(--memori-spacing-md)',
       backgroundColor: 'var(--memori-secondary-background)',
-      borderRadius: 'var(--memori-radius-box)',
+      borderRadius: 'var(--memori-radius-surface)',
       boxShadow: 'var(--memori-shadow-sm)',
     }}
   >
@@ -88,7 +88,7 @@ export const WithBreadcrumb: Story = {
           <span
             style={{
               fontFamily: 'var(--memori-font-family)',
-              fontSize: 'var(--memori-text-size-small)',
+              fontSize: 'var(--memori-text-size-sm)',
               color: 'var(--memori-neutral)',
             }}
           >
@@ -146,7 +146,7 @@ export const DarkMode: Story = {
         width: 'min(100%, var(--memori-modal-size-md))',
         padding: 'var(--memori-spacing-md)',
         backgroundColor: 'var(--memori-secondary-background)',
-        borderRadius: 'var(--memori-radius-box)',
+        borderRadius: 'var(--memori-radius-surface)',
         boxShadow: 'var(--memori-shadow-sm)',
       }}
     >

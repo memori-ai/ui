@@ -100,7 +100,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
           >
             <h1
               style={{
-                fontSize: 'var(--memori-text-size-heading-xlarge)',
+                fontSize: 'var(--memori-text-size-3xl)',
                 fontWeight: 'var(--memori-text-weight-bold)',
                 marginBottom: 'var(--memori-spacing-md)',
                 color: 'var(--memori-text-color)',
@@ -110,7 +110,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             </h1>
             <p
               style={{
-                fontSize: 'var(--memori-text-size-base)',
+                fontSize: 'var(--memori-text-size-md)',
                 color: 'var(--memori-text-color)',
                 marginBottom: 'var(--memori-spacing-lg)',
               }}
@@ -235,7 +235,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     htmlFor="showcase-text-input"
                     style={{
                       display: 'block',
-                      fontSize: 'var(--memori-text-size-small)',
+                      fontSize: 'var(--memori-text-size-sm)',
                       fontWeight: 'var(--memori-text-weight-semibold)',
                       marginBottom: 'var(--memori-spacing-xs)',
                     }}
@@ -255,7 +255,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     htmlFor="showcase-disabled-input"
                     style={{
                       display: 'block',
-                      fontSize: 'var(--memori-text-size-small)',
+                      fontSize: 'var(--memori-text-size-sm)',
                       fontWeight: 'var(--memori-text-weight-semibold)',
                       marginBottom: 'var(--memori-spacing-xs)',
                     }}
@@ -274,7 +274,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                     htmlFor="showcase-error-input"
                     style={{
                       display: 'block',
-                      fontSize: 'var(--memori-text-size-small)',
+                      fontSize: 'var(--memori-text-size-sm)',
                       fontWeight: 'var(--memori-text-weight-semibold)',
                       marginBottom: 'var(--memori-spacing-xs)',
                     }}
@@ -342,7 +342,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 >
                   <div
                     style={{
-                      fontSize: 'var(--memori-text-size-small)',
+                      fontSize: 'var(--memori-text-size-sm)',
                       fontWeight: 'var(--memori-text-weight-semibold)',
                     }}
                   >
@@ -488,7 +488,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             >
               <p
                 style={{
-                  fontSize: 'var(--memori-text-size-base)',
+                  fontSize: 'var(--memori-text-size-md)',
                   lineHeight: 'var(--memori-text-line-normal)',
                 }}
               >
@@ -503,7 +503,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             >
               <p
                 style={{
-                  fontSize: 'var(--memori-text-size-base)',
+                  fontSize: 'var(--memori-text-size-md)',
                   lineHeight: 'var(--memori-text-line-normal)',
                 }}
               >
@@ -518,7 +518,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             >
               <p
                 style={{
-                  fontSize: 'var(--memori-text-size-base)',
+                  fontSize: 'var(--memori-text-size-md)',
                   lineHeight: 'var(--memori-text-line-normal)',
                   marginBottom: 'var(--memori-spacing-md)',
                 }}
@@ -564,7 +564,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 <div
                   style={{
                     padding: 'var(--memori-spacing-md)',
-                    fontSize: 'var(--memori-text-size-base)',
+                    fontSize: 'var(--memori-text-size-md)',
                   }}
                 >
                   This is the content inside the details component. You can put
@@ -581,7 +581,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               >
                 <p
                   style={{
-                    fontSize: 'var(--memori-text-size-base)',
+                    fontSize: 'var(--memori-text-size-md)',
                     lineHeight: 'var(--memori-text-line-relaxed)',
                   }}
                 >
@@ -618,7 +618,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                 <Spin />
                 <span
                   style={{
-                    fontSize: 'var(--memori-text-size-small)',
+                    fontSize: 'var(--memori-text-size-sm)',
                   }}
                 >
                   Loading spinner
@@ -748,7 +748,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
             >
               <p
                 style={{
-                  fontSize: 'var(--memori-text-size-base)',
+                  fontSize: 'var(--memori-text-size-md)',
                   lineHeight: 'var(--memori-text-line-normal)',
                   marginBottom: 'var(--memori-spacing-md)',
                 }}
@@ -782,7 +782,7 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
                   htmlFor="showcase-drawer-input"
                   style={{
                     display: 'block',
-                    fontSize: 'var(--memori-text-size-small)',
+                    fontSize: 'var(--memori-text-size-sm)',
                     fontWeight: 'var(--memori-text-weight-semibold)',
                     marginBottom: 'var(--memori-spacing-xs)',
                   }}

@@ -6,7 +6,7 @@
         align-items: center;
         justify-content: center;
         border: 1px solid transparent;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         box-shadow: var(--memori-button-box-shadow);
         cursor: pointer;
         font-family: var(--memori-font-family);
@@ -16,11 +16,11 @@
         line-height: var(--memori-text-line-normal);
         outline: none;
         transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     /* microinteraction: focus ring on a pseudo so opacity can animate 0→1 without changing ring tokens */
@@ -133,11 +133,11 @@
         box-shadow: none;
         transform: scale(0.98);
         transition:
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            color var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     /* ============================================
@@ -172,7 +172,7 @@
 
     @media (prefers-reduced-motion: no-preference) {
         .memori-button__spinner {
-            animation: memori-button-spin 1s linear infinite;
+            animation: memori-button-spin var(--memori-motion-duration-loop) var(--memori-motion-ease-linear) infinite;
         }
     }
 
@@ -180,11 +180,11 @@
     @media (prefers-reduced-motion: reduce) {
         .memori-button {
             transition:
-                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                opacity var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-button:hover:not(:disabled, .memori-button--disabled),
@@ -308,7 +308,7 @@
         transition:
             background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
             border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
     }
 
@@ -373,19 +373,19 @@
     .memori-button--toolbar.memori-button--sm {
         min-height: unset;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-button--toolbar.memori-button--md {
         min-height: unset;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
     }
 
     .memori-button--toolbar.memori-button--lg {
         min-height: unset;
         padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-        font-size: var(--memori-text-size-large);
+        font-size: var(--memori-text-size-lg);
     }
 
     /* Ghost Variant */
@@ -622,19 +622,19 @@
     .memori-button--sm {
         min-height: 32px;
         padding: var(--memori-spacing-sm) var(--memori-spacing-sm);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
     }
 
     .memori-button--md {
         min-height: 40px;
         padding: var(--memori-button-padding);
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
     }
 
     .memori-button--lg {
         min-height: 48px;
         padding: var(--memori-spacing-md) var(--memori-spacing-lg);
-        font-size: var(--memori-text-size-large);
+        font-size: var(--memori-text-size-lg);
     }
 
     /* Link variant — compact hit target, inline with copy */
@@ -663,7 +663,7 @@
    ============================================ */
 
     .memori-button--round {
-        border-radius: var(--memori-radius-pill);
+        border-radius: var(--memori-radius-full);
     }
 
     .memori-button--circle {

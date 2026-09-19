@@ -17,7 +17,7 @@
 
     .memori-autocomplete__label {
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-medium);
         line-height: var(--memori-text-line-normal);
     }
@@ -38,17 +38,17 @@
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         padding-right: var(--memori-spacing-2xl);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         line-height: var(--memori-text-line-normal);
         outline: none;
         transition:
-            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
     .memori-autocomplete__input::placeholder {
@@ -88,14 +88,14 @@
         justify-content: center;
         padding: var(--memori-spacing-xs);
         border: 0;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background: transparent;
         color: var(--memori-neutral);
         cursor: pointer;
         transform: translateY(-50%);
         transition:
-            color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+            color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     .memori-autocomplete__clear:focus-visible {
@@ -137,7 +137,7 @@
         box-sizing: border-box;
         padding: var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-box);
+        border-radius: var(--memori-radius-surface);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
@@ -166,14 +166,14 @@
     .memori-autocomplete__status {
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         line-height: var(--memori-text-line-normal);
     }
 
     .memori-autocomplete__empty {
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         line-height: var(--memori-text-line-normal);
     }
 
@@ -190,7 +190,7 @@
     .memori-autocomplete__group-label {
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-semibold);
         line-height: var(--memori-text-line-normal);
     }
@@ -203,17 +203,17 @@
         justify-content: space-between;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         border: 0;
-        border-radius: calc(var(--memori-radius-field) - 1px);
+        border-radius: calc(var(--memori-radius-control) - 1px);
         background: none;
         color: var(--memori-text-color);
         cursor: pointer;
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         font-weight: var(--memori-text-weight-normal);
         gap: var(--memori-spacing-sm);
         line-height: var(--memori-text-line-normal);
         outline: none;
         text-align: left;
-        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     .memori-autocomplete__item:focus-visible {
@@ -256,10 +256,10 @@
         .memori-autocomplete__input,
         .memori-autocomplete__item {
             transition:
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-autocomplete__input-chevron {

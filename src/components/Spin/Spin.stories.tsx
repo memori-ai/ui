@@ -50,7 +50,7 @@ const meta = {
           style={{
             padding: '2rem',
             border: '1px solid var(--memori-primary-subtle)',
-            borderRadius: 'var(--memori-radius-box)',
+            borderRadius: 'var(--memori-radius-surface)',
           }}
         >
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -144,7 +144,8 @@ export const WithCustomIndicator: Story = {
           border: '4px solid var(--memori-primary)',
           borderTopColor: 'transparent',
           borderRadius: '50%',
-          animation: 'memori-spin-rotate 1s linear infinite',
+          animation:
+            'memori-spin-rotate var(--memori-motion-duration-loop) var(--memori-motion-ease-linear) infinite',
         }}
         aria-hidden="true"
       />
@@ -172,7 +173,7 @@ export const Controlled: Story = {
             style={{
               padding: '2rem',
               border: '1px solid var(--memori-primary-subtle)',
-              borderRadius: 'var(--memori-radius-box)',
+              borderRadius: 'var(--memori-radius-surface)',
             }}
           >
             <p>This content is being loaded.</p>

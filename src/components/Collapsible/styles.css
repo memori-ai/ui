@@ -16,12 +16,12 @@
         justify-content: space-between;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         border: var(--memori-border) solid transparent;
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background: transparent;
         color: var(--memori-text-color);
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-large);
+        font-size: var(--memori-text-size-lg);
         font-weight: var(--memori-text-weight-medium);
         line-height: var(--memori-text-line-normal);
         list-style-type: none;
@@ -81,7 +81,7 @@
         padding: 0;
         margin: 0;
         color: var(--memori-text-color);
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         grid-template-rows: 0fr;
         line-height: var(--memori-text-line-normal);
         transition: grid-template-rows var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
@@ -135,9 +135,9 @@
     @media (prefers-reduced-motion: reduce) {
         .memori-collapsible__trigger {
             transition:
-                color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-collapsible__panel {
@@ -149,7 +149,7 @@
         }
 
         .memori-collapsible__icon {
-            transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+            transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-collapsible__icon--open,

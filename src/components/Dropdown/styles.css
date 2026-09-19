@@ -24,11 +24,11 @@
         justify-content: center;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         cursor: pointer;
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         font-weight: var(--memori-text-weight-normal);
         gap: var(--memori-spacing-sm);
         line-height: var(--memori-text-line-normal);
@@ -36,7 +36,7 @@
         transition:
             background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
             border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
     }
 
@@ -93,7 +93,7 @@
         min-width: var(--anchor-width, 0);
         padding: var(--memori-spacing-sm);
         border: var(--memori-border) solid var(--memori-border-color);
-        border-radius: var(--memori-radius-box);
+        border-radius: var(--memori-radius-surface);
         background-color: var(--memori-secondary-background);
         box-shadow: var(--memori-shadow-lg);
         color: var(--memori-text-color);
@@ -129,17 +129,17 @@
         align-items: center;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         border: 0;
-        border-radius: calc(var(--memori-radius-field) - 1px);
+        border-radius: calc(var(--memori-radius-control) - 1px);
         background: none;
         color: var(--memori-text-color);
         cursor: pointer;
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         font-weight: var(--memori-text-weight-normal);
         gap: var(--memori-spacing-sm);
         line-height: var(--memori-text-line-normal);
         outline: none;
         text-align: left;
-        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease);
+        transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     .memori-dropdown__item:focus-visible {
@@ -189,7 +189,7 @@
     .memori-dropdown__group-label {
         padding: var(--memori-spacing-sm) var(--memori-spacing-md) var(--memori-spacing-sm);
         color: var(--memori-neutral);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-semibold);
         line-height: var(--memori-text-line-normal);
     }
@@ -202,10 +202,10 @@
         .memori-dropdown__trigger,
         .memori-dropdown__item {
             transition:
-                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease),
-                color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-dropdown__trigger-icon {

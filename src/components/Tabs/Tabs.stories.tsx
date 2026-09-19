@@ -38,7 +38,7 @@ export const Underline: Story = {
       style={{
         maxWidth: 'var(--memori-modal-size-md)',
         padding: 'var(--memori-spacing-md)',
-        borderRadius: 'var(--memori-radius-box)',
+        borderRadius: 'var(--memori-radius-surface)',
         backgroundColor: 'var(--memori-secondary-background)',
         boxShadow: 'var(--memori-shadow-sm)',
       }}

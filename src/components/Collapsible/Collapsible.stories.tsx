@@ -154,7 +154,7 @@ export const WithCustomStyling: Story = {
     panelClassName: 'custom-panel',
     style: {
       border: '1px solid var(--memori-neutral)',
-      borderRadius: 'var(--memori-radius-box)',
+      borderRadius: 'var(--memori-radius-surface)',
       padding: 'var(--memori-spacing-sm)',
     },
     children: (

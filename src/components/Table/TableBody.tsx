@@ -33,6 +33,7 @@ export function TableBody<TData>({
             className="memori-table__row memori-table__row--skeleton"
             style={
               {
+                // Runtime index for CSS stagger — not a theme token.
                 '--memori-skeleton-row-index': i,
               } as React.CSSProperties
             }

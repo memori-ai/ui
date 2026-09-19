@@ -23,7 +23,7 @@ const ColorSwatch = ({
         gap: '8px',
         padding: '16px',
         border: '1px solid var(--memori-primary-subtle)',
-        borderRadius: 'var(--memori-radius-box)',
+        borderRadius: 'var(--memori-radius-surface)',
         backgroundColor: 'var(--memori-main-background)',
       }}
     >
@@ -32,7 +32,7 @@ const ColorSwatch = ({
           width: '100%',
           height: '80px',
           backgroundColor: `var(${variable})`,
-          borderRadius: 'var(--memori-radius-field)',
+          borderRadius: 'var(--memori-radius-control)',
           border: '1px solid var(--memori-primary-subtle)',
           boxShadow: 'var(--memori-shadow-sm)',
         }}
@@ -40,7 +40,7 @@ const ColorSwatch = ({
       <div>
         <div
           style={{
-            fontSize: 'var(--memori-text-size-small)',
+            fontSize: 'var(--memori-text-size-sm)',
             fontWeight: 'var(--memori-text-weight-semibold)',
             color: 'var(--memori-text-color)',
             marginBottom: '4px',
@@ -50,7 +50,7 @@ const ColorSwatch = ({
         </div>
         <div
           style={{
-            fontSize: 'var(--memori-text-size-small)',
+            fontSize: 'var(--memori-text-size-sm)',
             fontFamily: 'monospace',
             color: 'var(--memori-text-color)',
             marginBottom: '2px',
@@ -60,7 +60,7 @@ const ColorSwatch = ({
         </div>
         <div
           style={{
-            fontSize: 'var(--memori-text-size-small)',
+            fontSize: 'var(--memori-text-size-sm)',
             color: 'var(--memori-text-color)',
           }}
         >
@@ -69,7 +69,7 @@ const ColorSwatch = ({
         {description && (
           <div
             style={{
-              fontSize: 'var(--memori-text-size-small)',
+              fontSize: 'var(--memori-text-size-sm)',
               color: 'var(--memori-text-color)',
               marginTop: '4px',
               fontStyle: 'italic',
@@ -97,7 +97,7 @@ const Section = ({
   >
     <h2
       style={{
-        fontSize: 'var(--memori-text-size-heading-large)',
+        fontSize: 'var(--memori-text-size-2xl)',
         fontWeight: 'var(--memori-text-weight-bold)',
         color: 'var(--memori-text-color)',
         marginBottom: 'var(--memori-spacing-lg)',
@@ -125,7 +125,7 @@ const Subsection = ({
   >
     <h3
       style={{
-        fontSize: 'var(--memori-text-size-heading)',
+        fontSize: 'var(--memori-text-size-xl)',
         fontWeight: 'var(--memori-text-weight-semibold)',
         color: 'var(--memori-text-color)',
         marginBottom: 'var(--memori-spacing-md)',
@@ -155,7 +155,7 @@ const ThemeVariables = () => {
       >
         <h1
           style={{
-            fontSize: 'var(--memori-text-size-heading-xlarge)',
+            fontSize: 'var(--memori-text-size-3xl)',
             fontWeight: 'var(--memori-text-weight-bold)',
             color: 'var(--memori-text-color)',
             marginBottom: 'var(--memori-spacing-2xl)',

@@ -96,7 +96,7 @@ const AlertTrigger: React.FC<AlertTriggerProps> = ({
         color: 'white',
         backgroundColor: 'var(--memori-primary)',
         border: 'none',
-        borderRadius: 'var(--memori-radius-selector)',
+        borderRadius: 'var(--memori-radius-control)',
         cursor: 'pointer',
       }}
     >
@@ -209,7 +209,7 @@ export const WithAction: Story = {
               color: 'var(--memori-primary)',
               backgroundColor: 'transparent',
               border: '1px solid var(--memori-primary)',
-              borderRadius: 'var(--memori-radius-selector)',
+              borderRadius: 'var(--memori-radius-control)',
               cursor: 'pointer',
             }}
           >
@@ -415,7 +415,7 @@ export const MultipleAlerts: Story = {
             color: 'white',
             backgroundColor: 'var(--memori-primary)',
             border: 'none',
-            borderRadius: 'var(--memori-radius-selector)',
+            borderRadius: 'var(--memori-radius-control)',
             cursor: 'pointer',
           }}
         >
@@ -520,7 +520,7 @@ export const DeleteWithUndo: Story = {
                   alignItems: 'center',
                   padding: '8px 12px',
                   backgroundColor: 'var(--memori-primary-subtle)',
-                  borderRadius: 'var(--memori-radius-box)',
+                  borderRadius: 'var(--memori-radius-surface)',
                 }}
               >
                 {item}
@@ -535,7 +535,7 @@ export const DeleteWithUndo: Story = {
                     padding: 0,
                     backgroundColor: 'transparent',
                     border: 'none',
-                    borderRadius: 'var(--memori-radius-box)',
+                    borderRadius: 'var(--memori-radius-surface)',
                     color: 'var(--memori-error)',
                     cursor: 'pointer',
                   }}

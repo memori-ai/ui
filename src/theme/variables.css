@@ -88,14 +88,13 @@
         --memori-modal-size-full: 100%;
 
         /* ─── 7. Typography ──────────────────────── */
-        --memori-text-size-xs: 0.625rem;
-        --memori-text-size-sm: 0.75rem;
-        --memori-text-size-small: 0.875rem;
-        --memori-text-size-base: 1rem;
-        --memori-text-size-large: 1.125rem;
-        --memori-text-size-heading: 1.25rem;
-        --memori-text-size-heading-large: 1.5rem;
-        --memori-text-size-heading-xlarge: 1.75rem;
+        --memori-text-size-xs: 0.625rem; /* 10 */
+        --memori-text-size-sm: 0.875rem; /* 14 */
+        --memori-text-size-md: 1rem; /* 16 */
+        --memori-text-size-lg: 1.125rem; /* 18 */
+        --memori-text-size-xl: 1.25rem; /* 20 */
+        --memori-text-size-2xl: 1.5rem; /* 24 */
+        --memori-text-size-3xl: 1.75rem; /* 28 */
         --memori-text-weight-normal: 400;
         --memori-text-weight-medium: 500;
         --memori-text-weight-semibold: 600;
@@ -105,9 +104,21 @@
         --memori-text-line-relaxed: 1.75;
 
         /* ─── 8. Radius & borders ───────────────── */
-        --memori-radius-field: 0.75rem;
-        --memori-radius-selector: 0.75rem;
-        --memori-radius-box: 0.75rem;
+
+        /* Primitive scale — components use the semantic aliases below. */
+        --memori-radius-xs: 0.5rem; /* 8px */
+        --memori-radius-sm: 0.75rem; /* 12px */
+        --memori-radius-md: 1.25rem; /* 20px */
+        --memori-radius-lg: 1.75rem; /* 28px */
+        --memori-radius-full: 9999px;
+
+        /* Semantic aliases — pick by role, not by size. */
+        --memori-radius-control: var(--memori-radius-full); /* fixed-height pills */
+        --memori-radius-surface: var(--memori-radius-md); /* cards, menus, tables */
+        --memori-radius-overlay: var(--memori-radius-lg); /* modals, drawers */
+        --memori-radius-composer: var(--memori-radius-lg); /* growing compose field; not a pill */
+        --memori-radius-tooltip: var(--memori-radius-xs);
+        --memori-radius-tail: 0.375rem; /* 6px, bubble tail corner */
         --memori-border: 1px;
 
         /* ─── 9. Shadows ──────────────────────────── */
@@ -127,12 +138,18 @@
         --memori-motion-duration-fast: 150ms;
         --memori-motion-duration-normal: 200ms;
         --memori-motion-duration-slow: 280ms;
+        --memori-motion-duration-loop: 1s;
+
+        /* Delays */
+        --memori-motion-delay-none: 0s;
+        --memori-motion-delay-short: 0.4s; /* tooltip enter */
+        --memori-motion-delay-long: 0.7s;
 
         /* Default UI easing: decelerate out (not generic `ease`) */
-        --memori-motion-ease: cubic-bezier(0.33, 1, 0.68, 1);
-        --memori-motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
         --memori-motion-ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+        --memori-motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
         --memori-motion-ease-in: cubic-bezier(0.32, 0.72, 0, 1);
+        --memori-motion-ease-linear: linear;
 
         /* ─── 11. Effects ─────────────────────────── */
         --memori-primary-alpha: color-mix(in oklch, var(--memori-primary) 15%, transparent);
@@ -148,7 +165,7 @@
         --memori-tooltip-caret: var(--memori-tooltip-background);
 
         /* Icon / overlay close chrome (Modal, Drawer, Popover, toolbar icon tools) */
-        --memori-icon-button-size: 40px;
+        --memori-icon-button-size: 44px;
         --memori-icon-button-icon-size: 20px;
         --memori-icon-button-icon: color-mix(in oklch, var(--memori-text-color) 72%, transparent);
         --memori-icon-active-bg: color-mix(in oklch, var(--memori-primary) 12%, transparent);
@@ -240,7 +257,10 @@
         --memori-tooltip-caret: var(--memori-tooltip-background);
 
         /* Theme-invariant (inherits from :root): spacing scale, motion, typography scale, font-family,
-           modal size tokens, --memori-border, --memori-layout-max-width, --memori-blur-background px value */
+           modal size tokens, radius scale, --memori-border, --memori-layout-max-width,
+           --memori-blur-background px value.
+           --memori-skeleton-row-index is not a design token: TableBody sets it per skeleton
+           row so the shimmer stagger can be computed in CSS. */
     }
 
     /* Integration root: override --memori-integration-text-color to theme embedded UI copy */

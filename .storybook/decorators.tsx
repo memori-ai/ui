@@ -8,7 +8,7 @@ const FIXED_SURFACE_STYLE: CSSProperties = {
   margin: '24px auto',
   overflow: 'hidden',
   border: '1px solid var(--memori-border-color)',
-  borderRadius: 'var(--memori-radius-md, 8px)',
+  borderRadius: 'var(--memori-radius-surface)',
   contain: 'layout',
   padding: 'var(--memori-spacing-md, 16px)',
   background:

@@ -36,7 +36,7 @@
     /* microinteraction: rotate when motion is allowed; pulse when reduced (keyframes in theme/keyframes.css) */
     @media (prefers-reduced-motion: no-preference) {
         .memori-spin__icon {
-            animation: memori-spin-rotate 1s linear infinite;
+            animation: memori-spin-rotate var(--memori-motion-duration-loop) var(--memori-motion-ease-linear) infinite;
         }
     }
 
@@ -62,7 +62,7 @@
     .memori-spin__tip {
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-normal);
         line-height: var(--memori-text-line-normal);
         text-align: center;

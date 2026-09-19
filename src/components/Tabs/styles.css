@@ -40,7 +40,7 @@
         flex-direction: row;
         align-items: stretch;
         padding: var(--memori-spacing-xs);
-        border-radius: var(--memori-radius-selector);
+        border-radius: var(--memori-radius-control);
         background-color: color-mix(in oklch, var(--memori-neutral) 14%, var(--memori-main-background));
         gap: var(--memori-spacing-xs);
     }
@@ -50,7 +50,7 @@
         flex-direction: column;
         align-items: stretch;
         padding: var(--memori-spacing-xs);
-        border-radius: var(--memori-radius-selector);
+        border-radius: var(--memori-radius-control);
         background-color: color-mix(in oklch, var(--memori-neutral) 14%, var(--memori-main-background));
         gap: var(--memori-spacing-xs);
     }
@@ -58,7 +58,7 @@
     .memori-tabs[data-memori-variant='segmented'] .memori-tabs__indicator {
         position: absolute;
         z-index: 0;
-        border-radius: max(0px, calc(var(--memori-radius-selector) - var(--memori-spacing-xs)));
+        border-radius: max(0px, calc(var(--memori-radius-control) - var(--memori-spacing-xs)));
         background-color: var(--memori-secondary-background);
         box-shadow: var(--memori-shadow-sm);
         pointer-events: none;
@@ -69,7 +69,7 @@
             top var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             left var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease);
+            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
     /* ─── Underline: baseline + thick sliding marker (Base UI sets indicator box to tab size) ─── */
@@ -153,17 +153,17 @@
         color: color-mix(in oklch, var(--memori-text-color) 82%, var(--memori-main-background));
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-medium);
         isolation: isolate;
         line-height: var(--memori-text-line-normal);
         outline: none;
         transform: translate3d(0, 0, 0);
         transition:
-            color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            opacity var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
+            color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            opacity var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
@@ -218,7 +218,7 @@
 
     .memori-tabs[data-memori-variant='segmented'] .memori-tabs__tab {
         flex: 1 1 0;
-        border-radius: max(0px, calc(var(--memori-radius-selector) - var(--memori-spacing-xs)));
+        border-radius: max(0px, calc(var(--memori-radius-control) - var(--memori-spacing-xs)));
     }
 
     .memori-tabs[data-memori-variant='underline'] .memori-tabs__tab {
@@ -306,7 +306,7 @@
         padding: var(--memori-spacing-md) 0 0;
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-base);
+        font-size: var(--memori-text-size-md);
         line-height: var(--memori-text-line-relaxed);
         text-wrap: pretty;
     }
@@ -328,7 +328,7 @@
     }
 
     .memori-tabs__panel:focus-visible {
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-surface);
         box-shadow: var(--memori-focus-ring);
     }
 

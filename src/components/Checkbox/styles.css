@@ -12,11 +12,11 @@
         color: var(--memori-text-color);
         cursor: pointer;
         font-family: var(--memori-font-family);
-        font-size: var(--memori-text-size-small);
+        font-size: var(--memori-text-size-sm);
         font-weight: var(--memori-text-weight-normal);
         gap: var(--memori-spacing-sm);
         line-height: var(--memori-text-line-normal);
-        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         user-select: none;
     }
 
@@ -34,14 +34,14 @@
         align-items: center;
         justify-content: center;
         border: 1px solid var(--memori-border-color);
-        border-radius: var(--memori-radius-field);
+        border-radius: var(--memori-radius-control);
         background-color: var(--memori-secondary-background);
 
         /* microinteraction: returning to unchecked uses ease-in */
         transition:
             background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
             border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-in),
-            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-in);
     }
 
@@ -51,7 +51,7 @@
         transition:
             background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
-            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
+            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
             transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
     }
 
@@ -162,18 +162,18 @@
         .memori-checkbox,
         .memori-checkbox__indicator {
             transition:
-                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease),
-                color var(--memori-motion-duration-normal) var(--memori-motion-ease);
+                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-checkbox__indicator--checked,
         .memori-checkbox__indicator--indeterminate {
             transition:
-                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease),
-                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease);
+                background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+                box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
         }
 
         .memori-checkbox__icon {

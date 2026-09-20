@@ -1,5 +1,34 @@
 
 
+## [2.0.0](https://github.com/memori-ai/ui/compare/v1.17.0...v1.18.0) (2026-09-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* point control and composer radius aliases at sm and md
+* replace design tokens with a semantic 2.0 scale
+
+### Features
+
+* add Playwright Chromium installation to CI workflow ([b15feff](https://github.com/memori-ai/ui/commit/b15feff1399a49239c3c7a541d4c6f62e0a48907))
+* optimize Vite configuration for JSX runtimes in Storybook ([03392cf](https://github.com/memori-ai/ui/commit/03392cfee504afbeee73b5a16265f005474f7aba))
+* replace design tokens with a semantic 2.0 scale ([25050fe](https://github.com/memori-ai/ui/commit/25050fea9621d273ec7fa85edafa3c6f11b4ace5))
+
+
+### Bug Fixes
+
+* linting and test errors ([5f10bde](https://github.com/memori-ai/ui/commit/5f10bdeac2b8813a70bf78c0ab4f73fb23192f8f))
+* point control and composer radius aliases at sm and md ([6e48be1](https://github.com/memori-ai/ui/commit/6e48be1fcc131e4819ca9168acf903a6d4ac26df))
+
+## [1.18.0](https://github.com/memori-ai/ui/compare/v1.17.0...v1.18.0) (2026-09-16)
+
+
+### Features
+
+* add clipContainer support for the MemoriUIProvider component ([4330be0](https://github.com/memori-ai/ui/commit/4330be0323595a99404dbae0c0e144e97aa27fa0))
+* enhance accessibility and styling for overlays and components ([80d74ee](https://github.com/memori-ai/ui/commit/80d74ee02011f3dc7ea7f3247de19049e1722c56))
+* enhance i18n support by adding overlay translations and updating dependencies ([7b13f67](https://github.com/memori-ai/ui/commit/7b13f67cc4809a065288fa92b8410b24c640d199))
+
 ## [2.0.0](https://github.com/memori-ai/ui/compare/v1.18.0...v2.0.0) (2026-09-19)
 
 

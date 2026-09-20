@@ -102,6 +102,7 @@
         right: 0;
         left: 0;
         height: auto;
+        border-radius: 0 0 var(--memori-radius-overlay) var(--memori-radius-overlay);
         border-bottom: 1px solid var(--memori-border-color);
     }
 
@@ -131,6 +132,7 @@
         bottom: 0;
         left: 0;
         height: auto;
+        border-radius: var(--memori-radius-overlay) var(--memori-radius-overlay) 0 0;
         border-top: 1px solid var(--memori-border-color);
     }
 

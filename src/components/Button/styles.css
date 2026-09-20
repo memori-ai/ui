@@ -616,6 +616,7 @@
     .memori-button--xs {
         min-height: 24px;
         padding: var(--memori-spacing-xs) var(--memori-spacing-xs);
+        border-radius: var(--memori-radius-xs);
         font-size: var(--memori-text-size-xs);
     }
 

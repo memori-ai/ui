@@ -59,7 +59,7 @@
         width: 100%;
         height: 16px;
         max-height: 16px;
-        border-radius: var(--memori-radius-control);
+        border-radius: var(--memori-radius-xs);
         background-color: var(--memori-main-background);
         transform: translateY(-50%);
     }
@@ -81,7 +81,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        border-radius: var(--memori-radius-control);
+        border-radius: var(--memori-radius-xs);
         background-color: var(--memori-primary);
         transform: scaleX(calc(var(--percentage-number, 0) / 100));
         transform-origin: left center;
@@ -189,7 +189,7 @@
 
         .memori-slider__track {
             height: 16px;
-            border-radius: 10px;
+            border-radius: var(--memori-radius-xs);
         }
 
         .memori-slider__thumb {

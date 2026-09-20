@@ -113,10 +113,10 @@
         --memori-radius-full: 9999px;
 
         /* Semantic aliases — pick by role, not by size. */
-        --memori-radius-control: var(--memori-radius-full); /* fixed-height pills */
+        --memori-radius-control: var(--memori-radius-sm); /* 28–56px controls */
         --memori-radius-surface: var(--memori-radius-md); /* cards, menus, tables */
         --memori-radius-overlay: var(--memori-radius-lg); /* modals, drawers */
-        --memori-radius-composer: var(--memori-radius-lg); /* growing compose field; not a pill */
+        --memori-radius-composer: var(--memori-radius-md); /* growing compose field */
         --memori-radius-tooltip: var(--memori-radius-xs);
         --memori-radius-tail: 0.375rem; /* 6px, bubble tail corner */
         --memori-border: 1px;

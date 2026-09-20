@@ -7,7 +7,7 @@
 
 * Redesign radius, type, motion, and icon-button tokens with no compatibility aliases. External CSS that still references the 1.x names will fall back to the browser default.
 
-**Radius.** Removed `--memori-radius-field`, `--memori-radius-selector`, and `--memori-radius-box` (all 0.75rem). Components now use a primitive scale (`xs` 8px, `sm` 12px, `md` 20px, `lg` 28px, `full`) plus semantic aliases: `--memori-radius-control` (pill, fixed-height controls), `--memori-radius-surface` (cards, menus, tables), `--memori-radius-overlay` (modals, drawers), `--memori-radius-composer` (growing compose field), `--memori-radius-tooltip`, `--memori-radius-tail`.
+**Radius.** Removed `--memori-radius-field`, `--memori-radius-selector`, and `--memori-radius-box` (all 0.75rem). Components now use a primitive scale (`xs` 8px, `sm` 12px, `md` 20px, `lg` 28px, `full`) plus semantic aliases: `--memori-radius-control` (12px, 28–56px controls), `--memori-radius-surface` (20px, cards, menus, tables), `--memori-radius-overlay` (28px, modals, drawers), `--memori-radius-composer` (20px, growing compose field), `--memori-radius-tooltip`, `--memori-radius-tail`. Elements under 28px use `--memori-radius-xs`. Inner radius = outer radius minus container padding.
 
 **Typography.** Removed `--memori-text-size-small`, `--memori-text-size-base`, `--memori-text-size-large`, `--memori-text-size-heading`, `--memori-text-size-heading-large`, and `--memori-text-size-heading-xlarge`. `--memori-text-size-sm` is now 0.875rem (14px), not 0.75rem. Scale: `xs` 10, `sm` 14, `md` 16, `lg` 18, `xl` 20, `2xl` 24, `3xl` 28.
 

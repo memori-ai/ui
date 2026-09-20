@@ -25,6 +25,9 @@ export default defineConfig({
             storybookScript: 'bun run storybook -- --ci --no-open',
           }),
         ],
+        optimizeDeps: {
+          include: ['react/jsx-dev-runtime', 'react/jsx-runtime'],
+        },
         test: {
           name: 'storybook',
           browser: {

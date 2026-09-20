@@ -31,6 +31,17 @@ const config: StorybookConfig = {
       )
     }
 
+    // Pre-bundle JSX runtimes so Vite does not optimize them mid-test and
+    // reload the browser (which makes Vitest drop the runner).
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [
+        ...(config.optimizeDeps?.include ?? []),
+        'react/jsx-dev-runtime',
+        'react/jsx-runtime',
+      ],
+    }
+
     return config
   },
 }

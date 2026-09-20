@@ -43,5 +43,8 @@ jobs:
       - name: 📖 Storybook coverage
         run: bun run check:storybook
 
+      - name: 🎭 Install Playwright Chromium
+        run: bunx playwright install chromium --with-deps
+
       - name: ♿ Storybook a11y
         run: bun run test:a11y:ci

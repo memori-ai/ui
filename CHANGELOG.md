@@ -1,5 +1,12 @@
 
 
+## [2.0.1](https://github.com/memori-ai/ui/compare/v2.0.0...v2.0.1) (2026-09-21)
+
+
+### Bug Fixes
+
+* update border-radius styles for modal components to use control radius ([fb1ecff](https://github.com/memori-ai/ui/commit/fb1ecff51896929001280190b32876d43f538a24))
+
 ## [2.0.0](https://github.com/memori-ai/ui/compare/v1.17.0...v1.18.0) (2026-09-20)
 
 

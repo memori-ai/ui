@@ -1,5 +1,12 @@
 
 
+## [2.0.2](https://github.com/memori-ai/ui/compare/v2.0.1...v2.0.2) (2026-09-21)
+
+
+### Bug Fixes
+
+* update modal border-radius to use composer radius for consistency ([7feff0a](https://github.com/memori-ai/ui/commit/7feff0ab1d8de54362dbfab958526ab43748cad7))
+
 ## [2.0.1](https://github.com/memori-ai/ui/compare/v2.0.0...v2.0.1) (2026-09-21)
 
 

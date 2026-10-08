@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Combobox as BaseCombobox } from '@base-ui/react/combobox'
 import { Check, ChevronDown, Search } from 'lucide-react'
 import cx from 'classnames'
@@ -72,7 +73,9 @@ export interface ComboboxProps {
   onChange?: (value: string | null) => void
   /** Flat list or grouped list of options */
   options: ComboboxOption[] | ComboboxGroupOption[]
-  /** Placeholder when no value selected (trigger) */
+  /**
+   * Placeholder when no value is selected. Falls back to i18n `overlay.selectPlaceholder`.
+   */
   placeholder?: string
   /** Placeholder for the search input inside the popup */
   searchPlaceholder?: string
@@ -114,7 +117,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
       defaultValue,
       onChange,
       options,
-      placeholder = 'Select an option',
+      placeholder,
       searchPlaceholder = 'Search…',
       disabled = false,
       required = false,
@@ -128,6 +131,10 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
     },
     ref,
   ) => {
+    const { t } = useTranslation()
+    const resolvedPlaceholder =
+      placeholder ??
+      t('overlay.selectPlaceholder', { defaultValue: 'Select an option' })
     const normalizedItems = useMemo(() => normalizeItems(options), [options])
     const flatOptions = useMemo(() => flattenOptions(options), [options])
     const portalContainer = usePortalContainer(container)
@@ -148,7 +155,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
     const accessibleName =
       label ??
       (selectedOption != null ? getOptionLabel(selectedOption) : undefined) ??
-      placeholder
+      resolvedPlaceholder
 
     return (
       <div
@@ -191,13 +198,13 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
               label != null && label !== '' ? `${triggerId}-label` : undefined
             }
           >
-            <BaseCombobox.Value data-placeholder={placeholder}>
+            <BaseCombobox.Value data-placeholder={resolvedPlaceholder}>
               {selectedValue => {
                 if (selectedValue == null)
                   return (
                     <span
                       className="memori-combobox__value"
-                      data-placeholder={placeholder}
+                      data-placeholder={resolvedPlaceholder}
                     />
                   )
                 const opt = flatOptions.find(

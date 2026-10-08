@@ -255,19 +255,6 @@
         color: var(--memori-primary);
     }
 
-    /* Outline variant disabled state */
-    .memori-button--outline.memori-button--disabled,
-    .memori-button--outline:disabled {
-        border-color: var(--memori-border-color);
-        background-color: transparent;
-    }
-
-    .memori-button--outline.memori-button--disabled:hover,
-    .memori-button--outline:disabled:hover {
-        border-color: var(--memori-border-color);
-        background-color: transparent;
-    }
-
     .memori-button--outline:hover:not(:disabled, .memori-button--disabled) {
         border-color: var(--memori-primary-hover);
         background-color: var(--memori-primary-hover);
@@ -318,11 +305,14 @@
         color: var(--memori-primary);
     }
 
+    /* Recording stop is a neutral gray chip. Red stays off this control. */
     .memori-button--toolbar.memori-button--recording {
-        border-color: var(--memori-error);
-        background-color: var(--memori-icon-recording-bg);
+        border-color: transparent;
+        border-radius: 50%;
+        background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background));
         box-shadow: none;
-        color: var(--memori-error);
+        color: var(--memori-text-color);
+        opacity: 1;
         transform: none;
     }
 
@@ -335,22 +325,33 @@
     .memori-button--toolbar.memori-button--disabled,
     .memori-button--toolbar:disabled {
         border-color: var(--memori-border-color);
-        background-color: var(--memori-main-background);
-        color: var(--memori-text-color);
+        background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background));
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
         cursor: not-allowed;
-        opacity: 0.6;
+        opacity: 1;
         transform: none;
     }
 
     .memori-button--toolbar.memori-button--disabled:hover,
     .memori-button--toolbar:disabled:hover {
         border-color: var(--memori-border-color);
-        background-color: var(--memori-main-background);
+        background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background));
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
         transform: none;
     }
 
     .memori-button--toolbar:hover:not(:disabled, .memori-button--disabled) {
         border-color: var(--memori-border-primary-hover);
+        box-shadow: none;
+        color: var(--memori-text-color);
+        transform: none;
+    }
+
+    .memori-button--toolbar.memori-button--recording:hover:not(:disabled, .memori-button--disabled) {
+        border-color: transparent;
+        background-color: color-mix(in oklch, var(--memori-text-color) 12%, var(--memori-secondary-background));
         box-shadow: none;
         color: var(--memori-text-color);
         transform: none;
@@ -841,17 +842,67 @@
     }
 
     /* Primary-tinted disabled surface — never apply to danger (semantic error fill),
-   ghost (chrome-less), or inverse (light chrome on a dark surface). */
-    .memori-button:disabled:not(.memori-button--danger, .memori-button--ghost, .memori-button--inverse),
-    .memori-button--disabled:not(.memori-button--danger, .memori-button--ghost, .memori-button--inverse) {
+   ghost (chrome-less), inverse (contrast ink), or the gray toolbar / primary / outline chips. */
+    .memori-button:disabled:not(
+            .memori-button--danger,
+            .memori-button--ghost,
+            .memori-button--inverse,
+            .memori-button--toolbar,
+            .memori-button--primary,
+            .memori-button--outline
+        ),
+    .memori-button--disabled:not(
+        .memori-button--danger,
+        .memori-button--ghost,
+        .memori-button--inverse,
+        .memori-button--toolbar,
+        .memori-button--primary,
+        .memori-button--outline
+    ) {
         border-color: var(--memori-border-color);
         background-color: var(--memori-primary-disabled);
     }
 
-    .memori-button:disabled:hover:not(.memori-button--danger, .memori-button--ghost, .memori-button--inverse),
-    .memori-button--disabled:hover:not(.memori-button--danger, .memori-button--ghost, .memori-button--inverse) {
+    .memori-button:disabled:hover:not(
+            .memori-button--danger,
+            .memori-button--ghost,
+            .memori-button--inverse,
+            .memori-button--toolbar,
+            .memori-button--primary,
+            .memori-button--outline
+        ),
+    .memori-button--disabled:hover:not(
+            .memori-button--danger,
+            .memori-button--ghost,
+            .memori-button--inverse,
+            .memori-button--toolbar,
+            .memori-button--primary,
+            .memori-button--outline
+        ) {
         border-color: var(--memori-border-color);
         background-color: var(--memori-primary-disabled);
+    }
+
+    /* Disabled primary and outline: solid gray chip, muted icon, no shadow. */
+    .memori-button.memori-button--primary:disabled,
+    .memori-button.memori-button--primary.memori-button--disabled,
+    .memori-button.memori-button--outline:disabled,
+    .memori-button.memori-button--outline.memori-button--disabled {
+        border-color: transparent;
+        background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background));
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
+        opacity: 1;
+    }
+
+    .memori-button.memori-button--primary:disabled:hover,
+    .memori-button.memori-button--primary.memori-button--disabled:hover,
+    .memori-button.memori-button--outline:disabled:hover,
+    .memori-button.memori-button--outline.memori-button--disabled:hover {
+        border-color: transparent;
+        background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background));
+        box-shadow: none;
+        color: var(--memori-icon-button-icon);
     }
 
     /* Touch / coarse pointers: meet ~44px minimum target (WCAG 2.5.5 AAA-style) */

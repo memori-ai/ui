@@ -213,7 +213,7 @@ export const PrimaryHover: Story = {
 }
 
 /**
- * Disabled is one treatment: `:disabled` and `.memori-button--disabled` share opacity 0.6 and the same surface.
+ * Disabled primary is a solid gray chip: muted icon, no shadow. `:disabled` and `.memori-button--disabled` share it.
  */
 export const Disabled: Story = {
   args: {
@@ -224,7 +224,7 @@ export const Disabled: Story = {
 }
 
 /**
- * Disabled outline button.
+ * Disabled outline matches disabled primary: solid gray chip, muted icon, no shadow.
  */
 export const DisabledOutline: Story = {
   args: {
@@ -567,7 +567,7 @@ export const ToolbarActive: Story = {
 }
 
 /**
- * Toolbar recording. Fill is `--memori-icon-recording-bg`.
+ * Toolbar recording stop. Neutral gray fill and dark icon; send stays the only primary.
  */
 export const ToolbarRecording: Story = {
   args: {

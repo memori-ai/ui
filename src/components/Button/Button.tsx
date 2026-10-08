@@ -72,7 +72,7 @@ export interface ButtonProps
    */
   active?: boolean
   /**
-   * Toolbar recording state. Soft error chrome via `--memori-icon-recording-bg`.
+   * Toolbar recording stop. Neutral gray chip; the send button stays the only primary.
    */
   recording?: boolean
   /**

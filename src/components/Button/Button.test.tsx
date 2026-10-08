@@ -96,7 +96,7 @@ describe('Button states', () => {
     expect(active).not.toContain('--memori-main-background')
   })
 
-  it('paints toolbar recording with --memori-icon-recording-bg', () => {
+  it('paints toolbar recording as a neutral gray stop', () => {
     render(
       <Button
         variant="toolbar"
@@ -113,8 +113,38 @@ describe('Button states', () => {
       '.memori-button--toolbar.memori-button--recording',
     )
     expect(recording).toContain(
-      'background-color: var(--memori-icon-recording-bg)',
+      'background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background))',
     )
+    expect(recording).toContain('color: var(--memori-text-color)')
+    expect(recording).not.toContain('--memori-error')
+    expect(recording).not.toContain('--memori-icon-recording-bg')
+  })
+
+  it('paints disabled toolbar, primary, and outline as solid gray chips without a shadow', () => {
+    const toolbar = ruleBody(
+      '.memori-button--toolbar.memori-button--disabled',
+      'list',
+    )
+    const primary = ruleBody(
+      '.memori-button.memori-button--primary:disabled',
+      'list',
+    )
+    const outline = ruleBody(
+      '.memori-button.memori-button--outline:disabled',
+      'list',
+    )
+    const gray =
+      'background-color: color-mix(in oklch, var(--memori-text-color) 8%, var(--memori-secondary-background))'
+
+    expect(toolbar).toContain(gray)
+    expect(toolbar).toContain('opacity: 1')
+    expect(toolbar).toContain('box-shadow: none')
+    expect(toolbar).toContain('color: var(--memori-icon-button-icon)')
+    expect(primary).toContain(gray)
+    expect(primary).toContain('opacity: 1')
+    expect(primary).toContain('box-shadow: none')
+    expect(primary).toContain('color: var(--memori-icon-button-icon)')
+    expect(outline).toBe(primary)
   })
 
   it('gives inverse its own hover and active surfaces', () => {

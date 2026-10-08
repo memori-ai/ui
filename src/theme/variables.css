@@ -256,6 +256,12 @@
         --memori-tooltip-foreground: var(--memori-text-color);
         --memori-tooltip-caret: var(--memori-tooltip-background);
 
+        /* Icon chrome: re-declare so the mix resolves against the dark
+           --memori-text-color. Custom properties inherit their computed
+           value, so a [data-theme='dark'] scope inside a light :root would
+           otherwise keep the light ink and icons vanish on dark surfaces. */
+        --memori-icon-button-icon: color-mix(in oklch, var(--memori-text-color) 72%, transparent);
+
         /* Theme-invariant (inherits from :root): spacing scale, motion, typography scale, font-family,
            modal size tokens, radius scale, --memori-border, --memori-layout-max-width,
            --memori-blur-background px value.

@@ -46,11 +46,15 @@
         table-layout: fixed;
     }
 
-    .memori-table__head {
+    /* :where() shares these base styles with a plain HTML table that only has
+       class="memori-table" (for example markdown), without overriding BEM modifiers. */
+    .memori-table__head,
+    :where(table.memori-table thead) {
         background-color: var(--memori-main-background);
     }
 
-    .memori-table__header-row {
+    .memori-table__header-row,
+    :where(table.memori-table thead > tr:not(.memori-table__toolbar-row)) {
         border-bottom: var(--memori-border) solid var(--memori-border-color);
     }
 
@@ -71,7 +75,8 @@
     }
 
     /* Sticky header + opaque background so scrolling rows don’t show through */
-    .memori-table__header-cell {
+    .memori-table__header-cell,
+    :where(table.memori-table thead > tr:not(.memori-table__toolbar-row) > th) {
         position: sticky;
         z-index: 2;
         top: 0;
@@ -87,7 +92,8 @@
         vertical-align: middle;
     }
 
-    .memori-table__header-cell:last-child {
+    .memori-table__header-cell:last-child,
+    :where(table.memori-table thead > tr:not(.memori-table__toolbar-row) > th:last-child) {
         border-right: none;
     }
 
@@ -199,20 +205,24 @@
         background-color: var(--memori-primary);
     }
 
-    .memori-table__body {
+    .memori-table__body,
+    :where(table.memori-table tbody) {
         background-color: var(--memori-secondary-background);
     }
 
-    .memori-table__row {
+    .memori-table__row,
+    :where(table.memori-table tbody > tr) {
         border-bottom: var(--memori-border) solid var(--memori-border-color);
         transition: background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
-    .memori-table__row:last-child {
+    .memori-table__row:last-child,
+    :where(table.memori-table tbody > tr:last-child) {
         border-bottom: none;
     }
 
-    .memori-table__row:hover {
+    .memori-table__row:hover,
+    :where(table.memori-table tbody > tr:hover) {
         background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
     }
 
@@ -226,14 +236,16 @@
         --memori-table-row-actions-z: 5;
     }
 
-    .memori-table__cell {
+    .memori-table__cell,
+    :where(table.memori-table td) {
         min-width: 0;
         box-sizing: border-box;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
         vertical-align: middle;
     }
 
-    .memori-table__cell:last-child {
+    .memori-table__cell:last-child,
+    :where(table.memori-table td:last-child) {
         border-right: none;
     }
 
@@ -242,7 +254,8 @@
     }
 
     /* Pinned/select/actions cells set their own fill for opacity over scroll; mirror row hover on every cell */
-    .memori-table__body .memori-table__row:hover .memori-table__cell {
+    .memori-table__body .memori-table__row:hover .memori-table__cell,
+    :where(table.memori-table tbody > tr:hover > td) {
         background-color: color-mix(in oklch, var(--memori-primary), transparent 94%);
     }
 
@@ -1225,13 +1238,15 @@
             line-height: var(--memori-text-line-relaxed);
         }
 
-        .memori-table__header-cell {
+        .memori-table__header-cell,
+        :where(table.memori-table thead > tr:not(.memori-table__toolbar-row) > th) {
             padding: var(--memori-spacing-sm) var(--memori-spacing-md);
             box-shadow: var(--memori-shadow-sm);
             font-size: var(--memori-text-size-sm);
         }
 
-        .memori-table__cell {
+        .memori-table__cell,
+        :where(table.memori-table td) {
             padding: var(--memori-spacing-md) var(--memori-spacing-sm);
             overflow-wrap: anywhere;
         }
@@ -1246,7 +1261,8 @@
             padding: var(--memori-spacing-sm);
         }
 
-        .memori-table__row:nth-child(even) {
+        .memori-table__row:nth-child(even),
+        :where(table.memori-table tbody > tr:nth-child(even)) {
             background-color: color-mix(in oklch, var(--memori-main-background), transparent 60%);
         }
 
@@ -1357,11 +1373,13 @@
     }
 
     @media (hover: none) {
-        .memori-table__row:active {
+        .memori-table__row:active,
+        :where(table.memori-table tbody > tr:active) {
             background-color: color-mix(in oklch, var(--memori-primary), transparent 92%);
         }
 
-        .memori-table__body .memori-table__row:active .memori-table__cell {
+        .memori-table__body .memori-table__row:active .memori-table__cell,
+        :where(table.memori-table tbody > tr:active > td) {
             background-color: color-mix(in oklch, var(--memori-primary), transparent 92%);
         }
 

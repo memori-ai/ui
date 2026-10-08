@@ -1,5 +1,17 @@
 
 
+## [2.0.3](https://github.com/memori-ai/ui/compare/v2.0.2...v2.0.3) (2026-10-08)
+
+
+### Features
+
+* add inverse button variant and toolbar recording state with corresponding styles and tests ([6b7588e](https://github.com/memori-ai/ui/commit/6b7588ede139634d029387ab42a1247ab3af9347))
+
+
+### Bug Fixes
+
+* update Drawer and Table styles for improved responsiveness and consistency ([aae865c](https://github.com/memori-ai/ui/commit/aae865c12130e28deec4ad78faf9683e52d28056))
+
 ## [2.0.2](https://github.com/memori-ai/ui/compare/v2.0.1...v2.0.2) (2026-09-21)
 
 

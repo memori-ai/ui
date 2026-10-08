@@ -1,5 +1,12 @@
 
 
+## [2.0.4](https://github.com/memori-ai/ui/compare/v2.0.3...v2.0.4) (2026-10-08)
+
+
+### Features
+
+* enhance ConfirmDialog and SelectBox with i18n support for labels and placeholders ([fc0fc33](https://github.com/memori-ai/ui/commit/fc0fc33d95965dc796e517ff379f83967f603a2c))
+
 ## [2.0.3](https://github.com/memori-ai/ui/compare/v2.0.2...v2.0.3) (2026-10-08)
 
 

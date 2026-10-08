@@ -147,9 +147,10 @@
         outline-offset: var(--memori-focus-ring-offset);
     }
 
+    /* Popup fill is --memori-secondary-background. --memori-main-background sits too close to it in light (97% on white) to read as hover. */
     .memori-dropdown__item:hover:not([data-disabled]),
     .memori-dropdown__item[data-highlighted]:not([data-disabled]) {
-        background-color: var(--memori-main-background);
+        background-color: color-mix(in oklch, var(--memori-text-color) 10%, var(--memori-secondary-background));
     }
 
     .memori-dropdown__item[data-disabled] {

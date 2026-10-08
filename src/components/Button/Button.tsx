@@ -34,6 +34,7 @@ export interface ButtonProps
     | 'link'
     | 'danger'
     | 'toolbar'
+    | 'inverse'
   /**
    * Button size
    * @default 'md'
@@ -71,6 +72,10 @@ export interface ButtonProps
    */
   active?: boolean
   /**
+   * Toolbar recording state. Soft error chrome via `--memori-icon-recording-bg`.
+   */
+  recording?: boolean
+  /**
    * Indicates a destructive/dangerous action (alias for variant="danger")
    */
   danger?: boolean
@@ -107,6 +112,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       shape = 'default',
       shadow = false,
       active = false,
+      recording = false,
       danger = false,
       className,
       children,
@@ -136,6 +142,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       link: 'memori-button--link',
       danger: 'memori-button--danger',
       toolbar: 'memori-button--toolbar',
+      inverse: 'memori-button--inverse',
     }[effectiveVariant]
 
     const sizeClass = {
@@ -181,7 +188,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           shadow && 'memori-button--shadow',
           isDisabled && 'memori-button--disabled',
           loading && 'memori-button--loading',
-          active && 'memori-button--active',
+          active && !recording && 'memori-button--active',
+          recording && 'memori-button--recording',
           !hasChildren && displayIcon && 'memori-button--icon-only',
           className,
         )}

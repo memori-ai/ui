@@ -28,6 +28,7 @@ const meta = {
         'link',
         'danger',
         'toolbar',
+        'inverse',
       ],
       description: 'Button variant style',
     },
@@ -68,6 +69,12 @@ const meta = {
         type: 'boolean',
       },
       description: 'Whether the button is in an active/pressed state',
+    },
+    recording: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Toolbar recording state',
     },
     danger: {
       control: {
@@ -196,7 +203,17 @@ export const WithShadow: Story = {
 }
 
 /**
- * Disabled button state.
+ * Primary hover uses `--memori-primary-hover` on the background, not only the border.
+ */
+export const PrimaryHover: Story = {
+  args: {
+    children: 'Primary hover',
+    variant: 'primary',
+  },
+}
+
+/**
+ * Disabled is one treatment: `:disabled` and `.memori-button--disabled` share opacity 0.6 and the same surface.
  */
 export const Disabled: Story = {
   args: {
@@ -232,6 +249,7 @@ export const AllVariants: Story = {
       <Button variant="link">Link</Button>
       <Button variant="danger">Danger</Button>
       <Button variant="toolbar">Toolbar</Button>
+      <Button variant="inverse">Inverse</Button>
     </div>
   ),
 }
@@ -538,6 +556,51 @@ export const CircleSizes: Story = {
 }
 
 /**
+ * Toolbar toggle. Active fill is `--memori-icon-active-bg`.
+ */
+export const ToolbarActive: Story = {
+  args: {
+    children: 'Toolbar active',
+    variant: 'toolbar',
+    active: true,
+  },
+}
+
+/**
+ * Toolbar recording. Fill is `--memori-icon-recording-bg`.
+ */
+export const ToolbarRecording: Story = {
+  args: {
+    children: 'Recording',
+    variant: 'toolbar',
+    recording: true,
+  },
+}
+
+/**
+ * Contrast ink: dark on a light canvas, light when the theme is dark.
+ * Hover and active use their own washes of the same token.
+ */
+export const Inverse: Story = {
+  args: {
+    children: 'Inverse',
+    variant: 'inverse',
+  },
+}
+
+/**
+ * Circle does not scale on hover or press.
+ */
+export const CircleWithoutScale: Story = {
+  args: {
+    variant: 'primary',
+    shape: 'circle',
+    icon: <Plus />,
+    'aria-label': 'Add',
+  },
+}
+
+/**
  * Active state for toggle buttons.
  */
 export const Active: Story = {
@@ -740,6 +803,7 @@ export const AllVariantsComplete: Story = {
       <Button variant="link">Link</Button>
       <Button variant="danger">Danger</Button>
       <Button variant="toolbar">Toolbar</Button>
+      <Button variant="inverse">Inverse</Button>
     </div>
   ),
 }
@@ -760,6 +824,7 @@ export const Showcase: Story = {
           <Button variant="link">Link</Button>
           <Button variant="danger">Danger</Button>
           <Button variant="toolbar">Toolbar</Button>
+          <Button variant="inverse">Inverse</Button>
         </div>
       </div>
 

@@ -157,4 +157,55 @@
     .memori-input--full-width {
         width: 100%;
     }
+
+    /* ============================================
+   ADDONS
+   ============================================ */
+
+    .memori-input-field {
+        position: relative;
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .memori-input__prefix,
+    .memori-input__suffix {
+        position: absolute;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: color-mix(in oklch, var(--memori-text-color) 55%, transparent);
+        pointer-events: none;
+    }
+
+    .memori-input__prefix :is(button, a, input, [role='button']),
+    .memori-input__suffix :is(button, a, input, [role='button']) {
+        pointer-events: auto;
+    }
+
+    .memori-input__prefix svg,
+    .memori-input__suffix svg {
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    .memori-input__prefix {
+        left: var(--memori-spacing-md);
+    }
+
+    .memori-input__suffix {
+        right: var(--memori-spacing-md);
+    }
+
+    .memori-input--has-prefix {
+        padding-left: calc(var(--memori-spacing-md) * 2 + 0.5rem);
+    }
+
+    .memori-input--has-suffix {
+        padding-right: calc(var(--memori-spacing-md) * 2 + 0.5rem);
+    }
 }

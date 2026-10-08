@@ -36,9 +36,26 @@ export interface DrawerProps {
 
   /**
    * Size of the drawer (width for left/right, height for top/bottom).
+   * Ignored on that axis when `width` / `widthMd` / `widthLg` is set.
    * @default 'sm'
    */
   size?: 'sm' | 'md' | 'lg'
+
+  /**
+   * Explicit size along the anchor axis. Overrides `size`.
+   * Left/right: panel width (`45rem`, `55%`). Top/bottom: panel height.
+   */
+  width?: string | number
+
+  /**
+   * Explicit size from the medium breakpoint up (≥768px).
+   */
+  widthMd?: string | number
+
+  /**
+   * Explicit size from the large breakpoint up (≥1024px).
+   */
+  widthLg?: string | number
 
   /**
    * The contents of the drawer.
@@ -117,6 +134,9 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       onClose,
       anchor = 'right',
       size = 'sm',
+      width,
+      widthMd,
+      widthLg,
       children,
       title,
       description,
@@ -152,6 +172,18 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
 
     const portalContainer = usePortalContainer(container, 'clip')
     const resolvedTheme = useMemoriTheme(theme)
+    const popupStyle: React.CSSProperties = {
+      ...(width != null && {
+        '--memori-drawer-width': toCssSize(width),
+      }),
+      ...(widthMd != null && {
+        '--memori-drawer-width-md': toCssSize(widthMd),
+      }),
+      ...(widthLg != null && {
+        '--memori-drawer-width-lg': toCssSize(widthLg),
+      }),
+      ...style,
+    }
 
     return (
       <Dialog.Root
@@ -172,7 +204,10 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
               `memori-drawer--size-${size}`,
               className,
             )}
-            style={style}
+            style={popupStyle}
+            {...(width != null ? { 'data-custom-width': '' } : {})}
+            {...(widthMd != null ? { 'data-width-md': '' } : {})}
+            {...(widthLg != null ? { 'data-width-lg': '' } : {})}
             {...rest}
           >
             {(title || description || shouldShowCloseButton) && (
@@ -226,5 +261,9 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
 )
 
 Drawer.displayName = 'Drawer'
+
+function toCssSize(value: string | number) {
+  return typeof value === 'number' ? `${value}px` : value
+}
 
 export default Drawer

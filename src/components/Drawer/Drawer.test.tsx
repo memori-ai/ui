@@ -125,9 +125,23 @@ it('renders Drawer with custom widths unchanged', () => {
     <Drawer
       open={true}
       onClose={vi.fn()}
+      width="45rem"
+      widthMd="55%"
+      widthLg={720}
     >
       {content}
     </Drawer>,
+  )
+  const popup = document.querySelector('.memori-drawer')
+  expect(popup).toHaveAttribute('data-custom-width', '')
+  expect(popup).toHaveAttribute('data-width-md', '')
+  expect(popup).toHaveAttribute('data-width-lg', '')
+  expect(popup?.getAttribute('style')).toContain('--memori-drawer-width: 45rem')
+  expect(popup?.getAttribute('style')).toContain(
+    '--memori-drawer-width-md: 55%',
+  )
+  expect(popup?.getAttribute('style')).toContain(
+    '--memori-drawer-width-lg: 720px',
   )
   expect(container).toMatchSnapshot()
 })

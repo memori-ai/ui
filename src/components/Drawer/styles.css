@@ -156,6 +156,44 @@
         transform: translateY(100%);
     }
 
+    /* Explicit size overrides the sm/md/lg preset on the anchor axis. */
+    .memori-drawer--left[data-custom-width],
+    .memori-drawer--right[data-custom-width] {
+        width: var(--memori-drawer-width);
+    }
+
+    .memori-drawer--top[data-custom-width],
+    .memori-drawer--bottom[data-custom-width] {
+        height: var(--memori-drawer-width);
+        max-height: var(--memori-drawer-width);
+    }
+
+    @media (width >= 768px) {
+        .memori-drawer--left[data-width-md],
+        .memori-drawer--right[data-width-md] {
+            width: var(--memori-drawer-width-md);
+        }
+
+        .memori-drawer--top[data-width-md],
+        .memori-drawer--bottom[data-width-md] {
+            height: var(--memori-drawer-width-md);
+            max-height: var(--memori-drawer-width-md);
+        }
+    }
+
+    @media (1024px <= width) {
+        .memori-drawer--left[data-width-lg],
+        .memori-drawer--right[data-width-lg] {
+            width: var(--memori-drawer-width-lg);
+        }
+
+        .memori-drawer--top[data-width-lg],
+        .memori-drawer--bottom[data-width-lg] {
+            height: var(--memori-drawer-width-lg);
+            max-height: var(--memori-drawer-width-lg);
+        }
+    }
+
     /* ============================================
    CONTENT SECTIONS
    ============================================ */

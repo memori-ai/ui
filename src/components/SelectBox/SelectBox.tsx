@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Select } from '@base-ui/react'
 import { ChevronDown, Check } from 'lucide-react'
 import cx from 'classnames'
@@ -20,6 +21,9 @@ export interface SelectBoxProps {
   value?: string | null
   defaultValue?: string | null
   onChange?: (value: string | null) => void
+  /**
+   * Shown when nothing is selected. Falls back to i18n `overlay.selectPlaceholder`.
+   */
   placeholder?: string
   displayValue?: React.ReactNode
   label?: string
@@ -49,7 +53,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
       value,
       defaultValue,
       onChange,
-      placeholder = 'Select an option',
+      placeholder,
       displayValue,
       label,
       disabled,
@@ -63,6 +67,10 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
     },
     ref,
   ) => {
+    const { t } = useTranslation()
+    const resolvedPlaceholder =
+      placeholder ??
+      t('overlay.selectPlaceholder', { defaultValue: 'Select an option' })
     const selectedOption = options.find(option => option.value === value)
     const portalContainer = usePortalContainer(container)
     const resolvedTheme = useMemoriTheme(theme)
@@ -74,7 +82,7 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
       label ??
       selectedLabelText ??
       (value != null ? String(value) : undefined) ??
-      placeholder
+      resolvedPlaceholder
 
     return (
       <div
@@ -98,11 +106,14 @@ export const SelectBox = forwardRef<HTMLButtonElement, SelectBoxProps>(
             )}
             aria-label={accessibleName}
           >
-            <Select.Value
-              className="memori-select__value"
-              data-placeholder={placeholder}
-            >
-              {displayValue ?? selectedOption?.label}
+            <Select.Value className="memori-select__value">
+              {current => {
+                if (displayValue != null) return displayValue
+                if (current == null || current === '')
+                  return resolvedPlaceholder
+                const match = options.find(option => option.value === current)
+                return match?.label ?? String(current)
+              }}
             </Select.Value>
             <Select.Icon className="memori-select__icon">
               <ChevronDown size={16} />

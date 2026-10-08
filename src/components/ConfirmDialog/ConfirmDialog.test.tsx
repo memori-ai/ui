@@ -103,6 +103,21 @@ it('calls onClose when cancel button is clicked', () => {
   }
 })
 
+it('uses overlay i18n for the default confirm and cancel labels', () => {
+  render(
+    <ConfirmDialog
+      isOpen={true}
+      onClose={vi.fn()}
+      onConfirm={vi.fn()}
+      title="Test Title"
+      message="Test Message"
+    />,
+  )
+
+  expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument()
+})
+
 it('calls onConfirm when confirm button is clicked', () => {
   const onConfirmMock = vi.fn()
   render(

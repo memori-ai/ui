@@ -576,8 +576,6 @@ const ComponentShowcaseContent = ({ theme }: { theme: 'light' | 'dark' }) => {
               <Expandable
                 rows={3}
                 defaultExpanded={false}
-                expandSymbol={() => 'Show more'}
-                collapseSymbol={() => 'Show less'}
               >
                 <p
                   style={{

@@ -2,27 +2,27 @@
 
 export const expandableEn = {
   expand: 'Expand',
-  collapse: 'Show less',
+  collapse: 'Collapse',
 } as const
 
 export const expandableIt = {
   expand: 'Espandi',
-  collapse: 'Mostra meno',
+  collapse: 'Riduci',
 } as const
 
 export const expandableEs = {
   expand: 'Expandir',
-  collapse: 'Mostrar menos',
+  collapse: 'Contraer',
 } as const
 
 export const expandableFr = {
   expand: 'Développer',
-  collapse: 'Afficher moins',
+  collapse: 'Réduire',
 } as const
 
 export const expandableDe = {
-  expand: 'Erweitern',
-  collapse: 'Weniger anzeigen',
+  expand: 'Expandieren',
+  collapse: 'Einklappen',
 } as const
 
 export const MEMORI_EXPANDABLE_LOCALES = {
@@ -65,30 +65,45 @@ export const overlayEn = {
   closeModal: 'Close modal',
   closeDrawer: 'Close drawer',
   closePopover: 'Close popover',
+  confirm: 'Confirm',
+  cancel: 'Cancel',
+  selectPlaceholder: 'Select an option',
 } as const
 
 export const overlayIt = {
   closeModal: 'Chiudi finestra',
   closeDrawer: 'Chiudi pannello',
   closePopover: 'Chiudi popover',
+  confirm: 'Conferma',
+  cancel: 'Annulla',
+  selectPlaceholder: "Seleziona un'opzione",
 } as const
 
 export const overlayEs = {
   closeModal: 'Cerrar modal',
   closeDrawer: 'Cerrar panel',
   closePopover: 'Cerrar popover',
+  confirm: 'Confirmar',
+  cancel: 'Cancelar',
+  selectPlaceholder: 'Selecciona una opción',
 } as const
 
 export const overlayFr = {
   closeModal: 'Fermer la fenêtre',
   closeDrawer: 'Fermer le panneau',
   closePopover: 'Fermer le popover',
+  confirm: 'Confirmer',
+  cancel: 'Annuler',
+  selectPlaceholder: 'Sélectionner une option',
 } as const
 
 export const overlayDe = {
   closeModal: 'Dialog schließen',
   closeDrawer: 'Schublade schließen',
   closePopover: 'Popover schließen',
+  confirm: 'Bestätigen',
+  cancel: 'Abbrechen',
+  selectPlaceholder: 'Option auswählen',
 } as const
 
 export const MEMORI_OVERLAY_LOCALES = {

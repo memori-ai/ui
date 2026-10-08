@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Modal } from '../Modal/Modal'
 import Button from '../Button'
 import type { Theme } from '../../theme/useTheme'
@@ -9,7 +10,13 @@ export interface ConfirmDialogProps {
   onConfirm: () => void
   title: string
   message: React.ReactNode
+  /**
+   * Confirm action label. Falls back to i18n `overlay.confirm`.
+   */
   confirmText?: string
+  /**
+   * Cancel action label. Falls back to i18n `overlay.cancel`.
+   */
   cancelText?: string
   loading?: boolean
   /**
@@ -31,12 +38,17 @@ const ConfirmDialog = ({
   onConfirm,
   title,
   message,
-  confirmText = 'Confirm',
-  cancelText = 'Cancel',
+  confirmText,
+  cancelText,
   loading = false,
   container,
   theme,
 }: ConfirmDialogProps) => {
+  const { t } = useTranslation()
+  const resolvedConfirmText =
+    confirmText ?? t('overlay.confirm', { defaultValue: 'Confirm' })
+  const resolvedCancelText =
+    cancelText ?? t('overlay.cancel', { defaultValue: 'Cancel' })
   const handleOpenChange = (open: boolean) => {
     if (!open) onClose()
   }
@@ -48,14 +60,14 @@ const ConfirmDialog = ({
         onClick={onClose}
         disabled={loading}
       >
-        {cancelText}
+        {resolvedCancelText}
       </Button>
       <Button
         variant="primary"
         onClick={onConfirm}
         loading={loading}
       >
-        {confirmText}
+        {resolvedConfirmText}
       </Button>
     </>
   )

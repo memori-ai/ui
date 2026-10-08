@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Search } from 'lucide-react'
 import { Input } from './Input'
 import { fn } from 'storybook/test'
 
@@ -227,6 +228,17 @@ export const AllVariants: Story = {
       />
     </div>
   ),
+}
+
+/**
+ * Search icon in the prefix slot. The field owns the inset; callers do not pad the input.
+ */
+export const WithPrefix: Story = {
+  args: {
+    placeholder: 'Search',
+    prefix: <Search aria-hidden />,
+    fullWidth: true,
+  },
 }
 
 /**

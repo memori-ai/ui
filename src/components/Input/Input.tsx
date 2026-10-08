@@ -4,7 +4,10 @@ import type { InputProps as BaseInputProps } from '@base-ui/react/input'
 import cx from 'classnames'
 import './styles.css'
 
-export interface InputProps extends Omit<BaseInputProps, 'className' | 'size'> {
+export interface InputProps extends Omit<
+  BaseInputProps,
+  'className' | 'size' | 'prefix'
+> {
   /**
    * Input variant
    * @default 'default'
@@ -48,6 +51,14 @@ export interface InputProps extends Omit<BaseInputProps, 'className' | 'size'> {
    * @default 'text'
    */
   type?: string
+  /**
+   * Content rendered inside the field, before the text (search icon, and so on).
+   */
+  prefix?: React.ReactNode
+  /**
+   * Content rendered inside the field, after the text (visibility toggle, and so on).
+   */
+  suffix?: React.ReactNode
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -58,6 +69,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       fullWidth = false,
       className,
       disabled,
+      prefix,
+      suffix,
       ...props
     },
     ref,
@@ -82,8 +95,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const fullWidthClass = fullWidth ? 'memori-input--full-width' : undefined
     const disabledClass = isDisabled ? 'memori-input--disabled' : undefined
+    const prefixClass = prefix != null ? 'memori-input--has-prefix' : undefined
+    const suffixClass = suffix != null ? 'memori-input--has-suffix' : undefined
 
-    return (
+    const control = (
       <BaseInput
         ref={ref}
         disabled={isDisabled}
@@ -93,10 +108,26 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           sizeClass,
           fullWidthClass,
           disabledClass,
+          prefixClass,
+          suffixClass,
           className,
         )}
         {...props}
       />
+    )
+
+    if (prefix == null && suffix == null) return control
+
+    return (
+      <span className="memori-input-field">
+        {prefix != null && (
+          <span className="memori-input__prefix">{prefix}</span>
+        )}
+        {control}
+        {suffix != null && (
+          <span className="memori-input__suffix">{suffix}</span>
+        )}
+      </span>
     )
   },
 )

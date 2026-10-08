@@ -9,20 +9,74 @@
         max-height: 9999px;
     }
 
-    .memori-expandable > button {
-        color: var(--memori-primary);
-        font-size: var(--memori-text-size-sm);
-        text-decoration: underline;
-        transition: color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    .memori-expandable__button.memori-button {
+        width: auto;
+        min-width: 0;
+        min-height: 0;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2px 0;
+        border: none;
+        margin-top: var(--memori-spacing-xs);
+        background: transparent;
+        box-shadow: none;
+        color: inherit;
+        font-size: 0.8rem;
+        font-weight: var(--memori-text-weight-semibold);
+        gap: 4px;
+        line-height: 1.2;
+        opacity: 0.85;
+        text-decoration: none;
+        transform: none;
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
     }
 
-    .memori-expandable > button:hover {
+    .memori-expandable__button.memori-button::before {
+        content: none;
+    }
+
+    .memori-expandable__button.memori-button:is(:hover, :active, :focus-visible) {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        color: inherit;
+        opacity: 1;
         text-decoration: underline;
+        text-underline-offset: 3px;
+        transform: none;
+    }
+
+    .memori-expandable__button.memori-button:focus-visible {
+        border-radius: 4px;
+        outline: 2px solid currentcolor;
+        outline-offset: 2px;
+    }
+
+    .memori-expandable__button .memori-button__icon {
+        width: 0.9rem;
+        height: 0.9rem;
+    }
+
+    .memori-expandable__chevron {
+        transition: transform 0.2s ease;
+    }
+
+    .memori-expandable__chevron--up {
+        transform: rotate(180deg);
+    }
+
+    @media (pointer: coarse) {
+        .memori-expandable__button.memori-button.memori-button--xs {
+            min-width: 0;
+            min-height: 0;
+            padding: 2px 0;
+        }
     }
 
     @media (prefers-reduced-motion: reduce) {
         .memori-expandable__inner,
-        .memori-expandable > button {
+        .memori-expandable__button.memori-button,
+        .memori-expandable__chevron {
             transition: none;
         }
     }

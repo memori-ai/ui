@@ -34,6 +34,13 @@ const meta = {
       options: ['sm', 'md', 'lg'],
       description: 'Width (left/right) or height (top/bottom)',
     },
+    width: {
+      control: 'text',
+      description:
+        'Explicit size on the anchor axis. Overrides size. Example: 45rem or 55%',
+    },
+    widthMd: { control: 'text' },
+    widthLg: { control: 'text' },
     loading: {
       control: 'boolean',
       description: 'Shows a loading state in the drawer body',
@@ -228,6 +235,13 @@ export const InFixedSurface: Story = {
         )}
       </FixedSurface>
     )
+  },
+}
+
+export const CustomWidth: Story = {
+  args: {
+    open: true,
+    width: '45rem',
   },
 }
 

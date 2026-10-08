@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import Button from '../Button'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -32,13 +33,8 @@ const Expandable = ({
   children,
   mode = 'rows',
 }: Props) => {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   const lang = i18n.language
-  const { t } = useTranslation()
-  const collapseSymbolText =
-    collapseSymbol?.(lang) ??
-    t('expandable.collapse', { defaultValue: 'Show less' })
-  const expandSymbolText = expandSymbol?.(lang) ?? '...'
   const [expanded, setExpanded] = useState(defaultExpanded)
   const [needsExpanding, setNeedsExpanding] = useState(false)
   const [rowHeight, setRowHeight] = useState(16)
@@ -84,8 +80,59 @@ const Expandable = ({
     return children
   }
 
+  const renderToggle = (isExpanded: boolean) => {
+    const customSymbol = isExpanded
+      ? collapseSymbol?.(lang)
+      : expandSymbol?.(lang)
+    const label =
+      customSymbol ??
+      (isExpanded
+        ? t('expandable.collapse', { defaultValue: 'Collapse' })
+        : t('expandable.expand', { defaultValue: 'Expand' }))
+
+    const button = (
+      <Button
+        variant="ghost"
+        size="xs"
+        className={cx('memori-expandable__button', btnClassName)}
+        icon={
+          customSymbol == null ? (
+            <ChevronDown
+              className={cx('memori-expandable__chevron', {
+                'memori-expandable__chevron--up': isExpanded,
+              })}
+              aria-hidden
+            />
+          ) : undefined
+        }
+        iconPosition="right"
+        aria-expanded={isExpanded}
+        onClick={() => setExpanded(!isExpanded)}
+      >
+        {label}
+      </Button>
+    )
+
+    if (isExpanded) return button
+
+    return (
+      <Tooltip content={t('expandable.expand', { defaultValue: 'Expand' })}>
+        {button}
+      </Tooltip>
+    )
+  }
+
   return (
-    <div className={cx('memori-expandable', className)}>
+    <div
+      className={cx(
+        'memori-expandable',
+        needsExpanding &&
+          (expanded
+            ? 'memori-expandable--expanded'
+            : 'memori-expandable--collapsed'),
+        className,
+      )}
+    >
       <div
         ref={ref}
         className={cx('memori-expandable__inner', innerClassName)}
@@ -98,26 +145,7 @@ const Expandable = ({
       >
         {renderContent()}
       </div>
-      {needsExpanding && !expanded && (
-        <Tooltip content={t('expandable.expand')}>
-          <Button
-            variant="ghost"
-            className={btnClassName}
-            onClick={() => setExpanded(true)}
-          >
-            {expandSymbolText}
-          </Button>
-        </Tooltip>
-      )}
-      {needsExpanding && expanded && (
-        <Button
-          variant="ghost"
-          className={btnClassName}
-          onClick={() => setExpanded(false)}
-        >
-          {collapseSymbolText}
-        </Button>
-      )}
+      {needsExpanding && renderToggle(expanded)}
     </div>
   )
 }

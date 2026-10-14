@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Skeleton circle unchanged 1`] = `
+<div>
+  <span
+    aria-hidden="true"
+    class="memori-skeleton memori-skeleton__shape memori-skeleton--circle"
+  />
+</div>
+`;
+
+exports[`renders Skeleton rect unchanged 1`] = `
+<div>
+  <span
+    aria-hidden="true"
+    class="memori-skeleton memori-skeleton__shape memori-skeleton--rect"
+  />
+</div>
+`;
+
+exports[`renders Skeleton unchanged 1`] = `
+<div>
+  <span
+    aria-hidden="true"
+    class="memori-skeleton memori-skeleton--text"
+  >
+    <span
+      class="memori-skeleton__shape memori-skeleton__line"
+    />
+  </span>
+</div>
+`;

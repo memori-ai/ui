@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders List unchanged 1`] = `
+<div>
+  <ul
+    class="memori-list"
+    role="list"
+  >
+    <li
+      class="memori-list__item"
+    >
+      <div
+        class="memori-list__item-content"
+      >
+        One
+      </div>
+    </li>
+    <li
+      class="memori-list__item"
+    >
+      <div
+        class="memori-list__item-content"
+      >
+        Two
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`renders List.Item with slots unchanged 1`] = `
+<div>
+  <ul
+    class="memori-list memori-list--bordered"
+    role="list"
+  >
+    <li
+      class="memori-list__item"
+    >
+      <div
+        class="memori-list__item-prefix"
+      >
+        <span>
+          P
+        </span>
+      </div>
+      <div
+        class="memori-list__item-content"
+      >
+        Content
+      </div>
+      <div
+        class="memori-list__item-suffix"
+      >
+        <span>
+          S
+        </span>
+      </div>
+      <div
+        class="memori-list__item-actions"
+      >
+        <button
+          type="button"
+        >
+          Act
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

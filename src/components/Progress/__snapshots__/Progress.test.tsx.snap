@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Progress > renders Progress circle unchanged 1`] = `
+<div>
+  <div
+    aria-label="Upload"
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="42"
+    aria-valuetext="42%"
+    class="memori-progress memori-progress--circle memori-progress--md memori-progress--default"
+    role="progressbar"
+  >
+    <svg
+      aria-hidden="true"
+      class="memori-progress__svg"
+      focusable="false"
+      viewBox="0 0 100 100"
+    >
+      <circle
+        class="memori-progress__circle-track"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="46"
+        stroke-width="8"
+      />
+      <circle
+        class="memori-progress__circle-indicator"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="46"
+        stroke-dasharray="289.02652413026095"
+        stroke-dashoffset="167.63538399555136"
+        stroke-width="8"
+      />
+    </svg>
+    <span
+      class="memori-progress__value"
+    >
+      42%
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Progress > renders Progress unchanged 1`] = `
+<div>
+  <div
+    aria-label="Upload"
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="42"
+    aria-valuetext="42%"
+    class="memori-progress memori-progress--line memori-progress--md memori-progress--default"
+    data-progressing=""
+    role="progressbar"
+  >
+    <div
+      class="memori-progress__track"
+      data-progressing=""
+    >
+      <div
+        class="memori-progress__indicator"
+        data-progressing=""
+        style="inset-inline-start: 0; height: inherit; width: 42%;"
+      />
+    </div>
+  </div>
+</div>
+`;

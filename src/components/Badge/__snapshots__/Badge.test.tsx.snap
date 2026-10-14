@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Badge status unchanged 1`] = `
+<div>
+  <span
+    class="memori-badge memori-badge--status memori-badge--status-success"
+  >
+    <span
+      aria-hidden="true"
+      class="memori-badge__status-dot"
+    />
+    <span
+      class="memori-badge__status-text"
+    >
+      Online
+    </span>
+  </span>
+</div>
+`;
+
+exports[`renders Badge unchanged 1`] = `
+<div>
+  <span
+    class="memori-badge memori-badge--anchored"
+  >
+    <span>
+      Inbox
+    </span>
+    <span
+      class="memori-badge__count"
+    >
+      5
+    </span>
+  </span>
+</div>
+`;

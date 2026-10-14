@@ -1,0 +1,112 @@
+@layer memori.components {
+    /**
+ * Switch Component Styles
+ * Uses design tokens from variables.css
+ */
+
+    .memori-switch {
+        display: inline-flex;
+        align-items: center;
+        color: var(--memori-text-color);
+        font-family: var(--memori-font-family);
+        font-size: var(--memori-text-size-sm);
+        font-weight: var(--memori-text-weight-normal);
+        gap: var(--memori-spacing-sm);
+        line-height: var(--memori-text-line-normal);
+        user-select: none;
+    }
+
+    .memori-switch--sm {
+        font-size: var(--memori-text-size-xs);
+    }
+
+    /* Track */
+    .memori-switch__control {
+        position: relative;
+        display: inline-flex;
+        width: 36px;
+        height: 20px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        align-items: center;
+        padding: 2px;
+        border-radius: var(--memori-radius-full);
+        background-color: color-mix(in oklch, var(--memori-neutral) 45%, transparent);
+        cursor: pointer;
+        outline: none;
+        transition:
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            box-shadow var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+
+    .memori-switch__control[data-checked] {
+        background-color: var(--memori-primary);
+    }
+
+    /* Thumb */
+    .memori-switch__thumb {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: var(--memori-radius-full);
+        background-color: var(--memori-primary-content);
+        box-shadow: var(--memori-shadow-xs);
+        transition: transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+
+    .memori-switch__thumb[data-checked] {
+        transform: translateX(16px);
+    }
+
+    .memori-switch--sm .memori-switch__control {
+        width: 28px;
+        height: 16px;
+    }
+
+    .memori-switch--sm .memori-switch__thumb {
+        width: 12px;
+        height: 12px;
+    }
+
+    .memori-switch--sm .memori-switch__thumb[data-checked] {
+        transform: translateX(12px);
+    }
+
+    .memori-switch__label {
+        cursor: pointer;
+    }
+
+    /* Focus-visible */
+    .memori-switch__control:focus-visible {
+        box-shadow: var(--memori-focus-ring);
+        outline: 2px solid var(--memori-primary);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
+
+    /* Disabled */
+    .memori-switch--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .memori-switch--disabled .memori-switch__control,
+    .memori-switch--disabled .memori-switch__label {
+        cursor: not-allowed;
+    }
+
+    /* Hover */
+    .memori-switch:not(.memori-switch--disabled) .memori-switch__control:hover {
+        background-color: color-mix(in oklch, var(--memori-neutral) 60%, transparent);
+    }
+
+    .memori-switch:not(.memori-switch--disabled) .memori-switch__control[data-checked]:hover {
+        background-color: var(--memori-primary-hover);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .memori-switch__control,
+        .memori-switch__thumb {
+            transition: none;
+        }
+    }
+}

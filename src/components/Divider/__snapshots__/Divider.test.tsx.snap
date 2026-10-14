@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Divider > renders Divider unchanged 1`] = `
+<div>
+  <div
+    aria-orientation="horizontal"
+    class="memori-divider memori-divider--horizontal"
+    role="separator"
+  />
+</div>
+`;
+
+exports[`Divider > renders Divider with label unchanged 1`] = `
+<div>
+  <div
+    aria-label="or"
+    aria-orientation="horizontal"
+    class="memori-divider memori-divider--horizontal memori-divider--with-label"
+    role="separator"
+  >
+    <span
+      class="memori-divider__label"
+    >
+      or
+    </span>
+  </div>
+</div>
+`;

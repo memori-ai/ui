@@ -1,0 +1,102 @@
+@layer memori.components {
+    .memori-heading,
+    .memori-text {
+        margin: 0;
+        color: var(--memori-text-color);
+        font-family: var(--memori-font-family);
+    }
+
+    .memori-heading {
+        line-height: var(--memori-text-line-tight);
+    }
+
+    .memori-text {
+        line-height: var(--memori-text-line-normal);
+    }
+
+    /* Size */
+    .memori-heading--size-xs,
+    .memori-text--size-xs {
+        font-size: var(--memori-text-size-xs);
+    }
+
+    .memori-heading--size-sm,
+    .memori-text--size-sm {
+        font-size: var(--memori-text-size-sm);
+    }
+
+    .memori-heading--size-md,
+    .memori-text--size-md {
+        font-size: var(--memori-text-size-md);
+    }
+
+    .memori-heading--size-lg,
+    .memori-text--size-lg {
+        font-size: var(--memori-text-size-lg);
+    }
+
+    .memori-heading--size-xl,
+    .memori-text--size-xl {
+        font-size: var(--memori-text-size-xl);
+    }
+
+    .memori-heading--size-2xl,
+    .memori-text--size-2xl {
+        font-size: var(--memori-text-size-2xl);
+    }
+
+    .memori-heading--size-3xl,
+    .memori-text--size-3xl {
+        font-size: var(--memori-text-size-3xl);
+    }
+
+    /* Weight */
+    .memori-heading--weight-normal,
+    .memori-text--weight-normal {
+        font-weight: var(--memori-text-weight-normal);
+    }
+
+    .memori-heading--weight-medium,
+    .memori-text--weight-medium {
+        font-weight: var(--memori-text-weight-medium);
+    }
+
+    .memori-heading--weight-semibold,
+    .memori-text--weight-semibold {
+        font-weight: var(--memori-text-weight-semibold);
+    }
+
+    .memori-heading--weight-bold,
+    .memori-text--weight-bold {
+        font-weight: var(--memori-text-weight-bold);
+    }
+
+    /* Color — muted mirrors .memori-section__description */
+    .memori-heading--color-muted,
+    .memori-text--color-muted {
+        color: var(--memori-neutral);
+    }
+
+    .memori-heading--color-danger,
+    .memori-text--color-danger {
+        color: var(--memori-error-text);
+    }
+
+    /* Ellipsis */
+    .memori-heading--ellipsis,
+    .memori-text--ellipsis {
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* inline tags need a box for text-overflow to apply */
+    span.memori-text--ellipsis,
+    strong.memori-text--ellipsis,
+    small.memori-text--ellipsis,
+    label.memori-text--ellipsis {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+}

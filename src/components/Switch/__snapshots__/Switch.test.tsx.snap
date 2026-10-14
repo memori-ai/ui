@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Switch unchanged 1`] = `
+<div>
+  <span
+    class="memori-switch memori-switch--md"
+  >
+    <span
+      aria-checked="false"
+      aria-labelledby="memori-switch-label-1"
+      class="memori-switch__control"
+      data-unchecked=""
+      id="base-ui-_r_0_"
+      role="switch"
+      tabindex="0"
+    >
+      <span
+        class="memori-switch__thumb"
+        data-unchecked=""
+      />
+    </span>
+    <input
+      aria-hidden="true"
+      id="memori-switch-2"
+      style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      tabindex="-1"
+      type="checkbox"
+    />
+    <label
+      class="memori-switch__label"
+      for="memori-switch-2"
+      id="memori-switch-label-1"
+    >
+      Notifications
+    </label>
+  </span>
+</div>
+`;

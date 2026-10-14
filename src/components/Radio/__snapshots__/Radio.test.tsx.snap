@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders RadioGroup unchanged 1`] = `
+<div>
+  <div
+    aria-label="Plan"
+    aria-orientation="vertical"
+    class="memori-radio-group memori-radio-group--vertical"
+    role="radiogroup"
+  >
+    <span
+      class="memori-radio"
+    >
+      <span
+        aria-checked="true"
+        aria-labelledby="memori-radio-label-1"
+        class="memori-radio__control"
+        data-checked=""
+        data-composite-item-active=""
+        id="base-ui-_r_1_"
+        role="radio"
+        tabindex="0"
+      >
+        <span
+          class="memori-radio__indicator"
+          data-checked=""
+        />
+      </span>
+      <input
+        aria-hidden="true"
+        checked=""
+        id="memori-radio-2"
+        style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+        tabindex="-1"
+        type="radio"
+      />
+      <label
+        class="memori-radio__label"
+        for="memori-radio-2"
+        id="memori-radio-label-1"
+      >
+        Free
+      </label>
+    </span>
+    <span
+      class="memori-radio"
+    >
+      <span
+        aria-checked="false"
+        aria-labelledby="memori-radio-label-3"
+        class="memori-radio__control"
+        data-unchecked=""
+        id="base-ui-_r_3_"
+        role="radio"
+        tabindex="-1"
+      />
+      <input
+        aria-hidden="true"
+        id="memori-radio-4"
+        style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+        tabindex="-1"
+        type="radio"
+      />
+      <label
+        class="memori-radio__label"
+        for="memori-radio-4"
+        id="memori-radio-label-3"
+      >
+        Pro
+      </label>
+    </span>
+  </div>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_0_"
+    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+    tabindex="-1"
+    value="free"
+  />
+</div>
+`;

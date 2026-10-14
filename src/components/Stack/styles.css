@@ -1,0 +1,85 @@
+@layer memori.components {
+    .memori-stack {
+        display: flex;
+        min-width: 0;
+    }
+
+    .memori-stack--row {
+        flex-direction: row;
+    }
+
+    .memori-stack--column {
+        flex-direction: column;
+    }
+
+    .memori-stack--wrap {
+        flex-wrap: wrap;
+    }
+
+    /* Gap: mapped to spacing tokens */
+    .memori-stack--gap-none {
+        gap: 0;
+    }
+
+    .memori-stack--gap-xs {
+        gap: var(--memori-spacing-xs);
+    }
+
+    .memori-stack--gap-sm {
+        gap: var(--memori-spacing-sm);
+    }
+
+    .memori-stack--gap-md {
+        gap: var(--memori-spacing-md);
+    }
+
+    .memori-stack--gap-lg {
+        gap: var(--memori-spacing-lg);
+    }
+
+    .memori-stack--gap-xl {
+        gap: var(--memori-spacing-xl);
+    }
+
+    /* Cross-axis alignment */
+    .memori-stack--align-start {
+        align-items: flex-start;
+    }
+
+    .memori-stack--align-center {
+        align-items: center;
+    }
+
+    .memori-stack--align-end {
+        align-items: flex-end;
+    }
+
+    .memori-stack--align-stretch {
+        align-items: stretch;
+    }
+
+    .memori-stack--align-baseline {
+        align-items: baseline;
+    }
+
+    /* Main-axis distribution */
+    .memori-stack--justify-start {
+        justify-content: flex-start;
+    }
+
+    .memori-stack--justify-center {
+        justify-content: center;
+    }
+
+    .memori-stack--justify-end {
+        justify-content: flex-end;
+    }
+
+    .memori-stack--justify-between {
+        justify-content: space-between;
+    }
+
+    .memori-stack--justify-around {
+        justify-content: space-around;
+    }
+}

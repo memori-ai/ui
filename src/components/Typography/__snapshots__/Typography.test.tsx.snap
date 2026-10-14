@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Heading > renders Heading unchanged 1`] = `
+<div>
+  <h2
+    class="memori-heading memori-heading--size-lg memori-heading--weight-semibold"
+  >
+    Title
+  </h2>
+</div>
+`;
+
+exports[`Text > renders Text unchanged 1`] = `
+<div>
+  <span
+    class="memori-text memori-text--size-sm memori-text--weight-normal"
+  >
+    Body
+  </span>
+</div>
+`;

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Textarea unchanged 1`] = `
+<div>
+  <textarea
+    aria-label="Bio"
+    class="memori-textarea"
+    id="base-ui-_r_0_"
+    placeholder="Write..."
+  />
+</div>
+`;

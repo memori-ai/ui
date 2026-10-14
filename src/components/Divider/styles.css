@@ -1,0 +1,44 @@
+@layer memori.components {
+    .memori-divider {
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+
+    .memori-divider--horizontal {
+        width: 100%;
+        border-top: var(--memori-border) solid var(--memori-border-color);
+        margin: var(--memori-spacing-md) 0;
+    }
+
+    .memori-divider--vertical {
+        display: inline-block;
+        min-height: 1em;
+        align-self: stretch;
+        border-left: var(--memori-border) solid var(--memori-border-color);
+        margin: 0 var(--memori-spacing-sm);
+        vertical-align: middle;
+    }
+
+    .memori-divider--with-label {
+        display: flex;
+        align-items: center;
+        border-top: 0;
+        color: var(--memori-neutral);
+        font-family: var(--memori-font-family);
+        font-size: var(--memori-text-size-sm);
+        font-weight: var(--memori-text-weight-normal);
+        gap: var(--memori-spacing-md);
+        line-height: var(--memori-text-line-normal);
+    }
+
+    .memori-divider--with-label::before,
+    .memori-divider--with-label::after {
+        flex: 1;
+        border-top: var(--memori-border) solid var(--memori-border-color);
+        content: '';
+    }
+
+    .memori-divider__label {
+        flex-shrink: 0;
+    }
+}

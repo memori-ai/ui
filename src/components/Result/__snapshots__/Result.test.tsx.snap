@@ -1,0 +1,100 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Result > renders Result unchanged 1`] = `
+<div>
+  <div
+    class="memori-result memori-result--status-info"
+  >
+    <div
+      aria-hidden="true"
+      class="memori-result__icon"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-info memori-result__icon-svg"
+        fill="none"
+        height="64"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        width="64"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+        />
+        <path
+          d="M12 16v-4"
+        />
+        <path
+          d="M12 8h.01"
+        />
+      </svg>
+    </div>
+    <h2
+      class="memori-result__title"
+    >
+      Done
+    </h2>
+  </div>
+</div>
+`;
+
+exports[`Result > renders Result with description and extra unchanged 1`] = `
+<div>
+  <div
+    class="memori-result memori-result--status-success"
+  >
+    <div
+      aria-hidden="true"
+      class="memori-result__icon"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-circle-check memori-result__icon-svg"
+        fill="none"
+        height="64"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        width="64"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+        />
+        <path
+          d="m9 12 2 2 4-4"
+        />
+      </svg>
+    </div>
+    <h2
+      class="memori-result__title"
+    >
+      Done
+    </h2>
+    <div
+      class="memori-result__description"
+    >
+      Everything went fine
+    </div>
+    <div
+      class="memori-result__extra"
+    >
+      <button
+        type="button"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>
+`;

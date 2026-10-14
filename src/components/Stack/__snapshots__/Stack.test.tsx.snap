@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Stack unchanged 1`] = `
+<div>
+  <div
+    class="memori-stack memori-stack--column memori-stack--gap-md"
+  >
+    <span>
+      One
+    </span>
+    <span>
+      Two
+    </span>
+  </div>
+</div>
+`;

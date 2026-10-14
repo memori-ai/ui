@@ -1,17 +1,19 @@
 import * as React from 'react'
 import type { ColumnFiltersState } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
-import type { DateRangeValue, FilterDef } from './tableTypes'
+import type { DateRangeValue, FilterDef } from '../Table/tableTypes'
 import {
   getFilterValue,
   removeFilterById,
   upsertFilter,
-} from './tableFilterState'
+} from './filterBarState'
 
-export interface TableFilterChipsProps {
+export interface FilterBarChipsProps {
   filterDefs: FilterDef[]
   value: ColumnFiltersState
   onChange: (next: ColumnFiltersState) => void
+  /** BEM prefix for every class, e.g. `memori-filter-bar__` → `memori-filter-bar__chip` */
+  classPrefix?: string
 }
 
 type ChipModel = {
@@ -70,12 +72,14 @@ function buildChips(
   return chips
 }
 
-export function TableFilterChips({
+export function FilterBarChips({
   filterDefs,
   value,
   onChange,
-}: TableFilterChipsProps) {
+  classPrefix = 'memori-filter-bar__',
+}: FilterBarChipsProps) {
   const { t } = useTranslation()
+  const c = (el: string) => `${classPrefix}${el}`
   const chips = React.useMemo(
     () => buildChips(filterDefs, value, t('table.dateChipEmpty')),
     [filterDefs, value, t],
@@ -86,24 +90,22 @@ export function TableFilterChips({
   }
 
   return (
-    <div className="memori-table__filter-chips-row">
-      <span className="memori-table__filter-chips-muted">
-        {t('table.filterChipsActive')}
-      </span>
+    <div className={c('chips-row')}>
+      <span className={c('chips-muted')}>{t('table.filterChipsActive')}</span>
       <div
-        className="memori-table__filter-chips-list"
+        className={c('chips-list')}
         role="list"
       >
         {chips.map(chip => (
           <span
             key={chip.key}
-            className="memori-table__filter-chip"
+            className={c('chip')}
             role="listitem"
           >
-            <span className="memori-table__filter-chip-text">{chip.text}</span>
+            <span className={c('chip-text')}>{chip.text}</span>
             <button
               type="button"
-              className="memori-table__filter-chip-remove"
+              className={c('chip-remove')}
               aria-label={t('table.removeFilter', { label: chip.text })}
               onClick={() => onChange(chip.onRemove())}
             >
@@ -114,7 +116,7 @@ export function TableFilterChips({
       </div>
       <button
         type="button"
-        className="memori-table__filter-chips-clear-all"
+        className={c('chips-clear-all')}
         onClick={() => onChange([])}
       >
         {t('table.filterChipsClearAll')}

@@ -1,0 +1,259 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders FilterBar unchanged 1`] = `
+<div>
+  <div
+    class="memori-filter-bar"
+  >
+    <div
+      class="memori-filter-bar__controls"
+    >
+      <div
+        class="memori-filter-bar__search-wrap"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-search memori-filter-bar__search-icon"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m21 21-4.34-4.34"
+          />
+          <circle
+            cx="11"
+            cy="11"
+            r="8"
+          />
+        </svg>
+        <input
+          aria-label="table.searchPlaceholder"
+          class="memori-input memori-input--default memori-input--md memori-filter-bar__search memori-filter-bar__search-input"
+          id="base-ui-_r_0_"
+          placeholder="table.searchPlaceholder"
+          type="search"
+          value=""
+        />
+      </div>
+      <div
+        class="memori-filter-bar__popover-root"
+      >
+        <button
+          aria-expanded="false"
+          class="memori-button memori-button--toolbar memori-button--md"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="memori-button__icon"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-sliders-horizontal"
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 5H3"
+              />
+              <path
+                d="M12 19H3"
+              />
+              <path
+                d="M14 3v4"
+              />
+              <path
+                d="M16 17v4"
+              />
+              <path
+                d="M21 12h-9"
+              />
+              <path
+                d="M21 19h-5"
+              />
+              <path
+                d="M21 5h-7"
+              />
+              <path
+                d="M8 10v4"
+              />
+              <path
+                d="M8 12H3"
+              />
+            </svg>
+          </span>
+          <span
+            class="memori-button__content"
+          >
+            table.filtersButton
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders FilterBar with active filters unchanged 1`] = `
+<div>
+  <div
+    class="memori-filter-bar"
+  >
+    <div
+      class="memori-filter-bar__controls"
+    >
+      <div
+        class="memori-filter-bar__popover-root"
+      >
+        <button
+          aria-expanded="false"
+          class="memori-button memori-button--toolbar memori-button--md"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="memori-button__icon"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-sliders-horizontal"
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 5H3"
+              />
+              <path
+                d="M12 19H3"
+              />
+              <path
+                d="M14 3v4"
+              />
+              <path
+                d="M16 17v4"
+              />
+              <path
+                d="M21 12h-9"
+              />
+              <path
+                d="M21 19h-5"
+              />
+              <path
+                d="M21 5h-7"
+              />
+              <path
+                d="M8 10v4"
+              />
+              <path
+                d="M8 12H3"
+              />
+            </svg>
+          </span>
+          <span
+            class="memori-button__content"
+          >
+            table.filtersButton
+            <span
+              class="memori-filter-bar__badge"
+            >
+              3
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="memori-filter-bar__chips-row"
+    >
+      <span
+        class="memori-filter-bar__chips-muted"
+      >
+        table.filterChipsActive
+      </span>
+      <div
+        class="memori-filter-bar__chips-list"
+        role="list"
+      >
+        <span
+          class="memori-filter-bar__chip"
+          role="listitem"
+        >
+          <span
+            class="memori-filter-bar__chip-text"
+          >
+            Status: Active
+          </span>
+          <button
+            aria-label="table.removeFilter"
+            class="memori-filter-bar__chip-remove"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+        <span
+          class="memori-filter-bar__chip"
+          role="listitem"
+        >
+          <span
+            class="memori-filter-bar__chip-text"
+          >
+            Tags: AI
+          </span>
+          <button
+            aria-label="table.removeFilter"
+            class="memori-filter-bar__chip-remove"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+        <span
+          class="memori-filter-bar__chip"
+          role="listitem"
+        >
+          <span
+            class="memori-filter-bar__chip-text"
+          >
+            Tags: Docs
+          </span>
+          <button
+            aria-label="table.removeFilter"
+            class="memori-filter-bar__chip-remove"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+      </div>
+      <button
+        class="memori-filter-bar__chips-clear-all"
+        type="button"
+      >
+        table.filterChipsClearAll
+      </button>
+    </div>
+  </div>
+</div>
+`;

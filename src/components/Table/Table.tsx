@@ -20,9 +20,9 @@ import { MoreHorizontal } from 'lucide-react'
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
+import { FilterBarChips } from '../FilterBar/FilterBarChips'
 import { TableBody } from './TableBody'
 import { TableControls } from './TableControls'
-import { TableFilterChips } from './TableFilterChips'
 import { TableFilterRow } from './TableFilterRow'
 import { TableHeader } from './TableHeader'
 import { TablePagination } from './TablePagination'
@@ -619,7 +619,8 @@ export function Table<TData>({
         />
       ) : null}
       {filterDefs && filterDefs.length > 0 ? (
-        <TableFilterChips
+        <FilterBarChips
+          classPrefix="memori-table__filter-"
           filterDefs={filterDefs}
           value={columnFilters}
           onChange={handleColumnFiltersCommit}

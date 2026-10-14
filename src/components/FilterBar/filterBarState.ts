@@ -1,5 +1,5 @@
 import type { ColumnFiltersState } from '@tanstack/react-table'
-import type { DateRangeValue, FilterDef } from './tableTypes'
+import type { DateRangeValue, FilterDef } from '../Table/tableTypes'
 
 export function getFilterValue(state: ColumnFiltersState, id: string): unknown {
   return state.find(f => f.id === id)?.value

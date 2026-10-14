@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { SlidersHorizontal } from 'lucide-react'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 import { Button } from '../Button'
-import type { DateRangeValue, FilterDef } from './tableTypes'
+import type { DateRangeValue, FilterDef } from '../Table/tableTypes'
 import {
   cloneColumnFilters,
   draftHasInvalidDateRange,
@@ -14,21 +14,32 @@ import {
   removeFilterById,
   upsertFilter,
   countCommittedFilters,
-} from './tableFilterState'
+} from './filterBarState'
 
-export interface TableFilterPopoverProps {
+export interface FilterBarPopoverProps {
   filterDefs: FilterDef[]
   /** Current committed filters (ColumnFiltersState shape: { id, value }[]) */
   value: ColumnFiltersState
   onChange: (next: ColumnFiltersState) => void
+  /** BEM prefix for every class, e.g. `memori-filter-bar__` → `memori-filter-bar__popover` */
+  classPrefix?: string
 }
 
-export function TableFilterPopover({
+type SectionProps<TDef extends FilterDef = FilterDef> = {
+  def: TDef
+  draft: ColumnFiltersState
+  setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
+  c: (el: string) => string
+}
+
+export function FilterBarPopover({
   filterDefs,
   value,
   onChange,
-}: TableFilterPopoverProps) {
+  classPrefix = 'memori-filter-bar__',
+}: FilterBarPopoverProps) {
   const { t } = useTranslation()
+  const c = (el: string) => `${classPrefix}${el}`
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false)
   const [draft, setDraft] = React.useState<ColumnFiltersState>(() =>
@@ -70,7 +81,7 @@ export function TableFilterPopover({
   return (
     <div
       ref={containerRef}
-      className="memori-table__filter-popover-root"
+      className={c('popover-root')}
     >
       <Button
         type="button"
@@ -87,29 +98,30 @@ export function TableFilterPopover({
       >
         {t('table.filtersButton')}
         {activeCount > 0 ? (
-          <span className="memori-table__filter-badge">{activeCount}</span>
+          <span className={c('badge')}>{activeCount}</span>
         ) : null}
       </Button>
       {open ? (
         <div
-          className="memori-table__filter-popover"
+          className={c('popover')}
           role="dialog"
           aria-label={t('table.filtersDialogAria')}
         >
-          <div className="memori-table__filter-popover-body">
+          <div className={c('popover-body')}>
             {filterDefs.map(def => (
               <FilterSection
                 key={def.id}
                 def={def}
                 draft={draft}
                 setDraft={setDraft}
+                c={c}
               />
             ))}
           </div>
-          <div className="memori-table__filter-popover-footer">
+          <div className={c('popover-footer')}>
             <Button
               variant="link"
-              className="memori-table__filter-clear-all"
+              className={c('clear-all')}
               onClick={handleClearDraft}
             >
               {t('table.clearAll')}
@@ -130,20 +142,12 @@ export function TableFilterPopover({
   )
 }
 
-function FilterSection({
-  def,
-  draft,
-  setDraft,
-}: {
-  def: FilterDef
-  draft: ColumnFiltersState
-  setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
-}) {
+function FilterSection({ def, draft, setDraft, c }: SectionProps) {
   if (def.variant === 'select' || def.variant === 'multi-select') {
     return (
-      <div className="memori-table__filter-section">
-        <div className="memori-table__filter-section-label">{def.label}</div>
-        <div className="memori-table__filter-options">
+      <div className={c('section')}>
+        <div className={c('section-label')}>{def.label}</div>
+        <div className={c('options')}>
           {def.options.map(opt => (
             <OptionPill
               key={opt.value}
@@ -151,6 +155,7 @@ function FilterSection({
               opt={opt}
               draft={draft}
               setDraft={setDraft}
+              c={c}
             />
           ))}
         </div>
@@ -164,6 +169,7 @@ function FilterSection({
         def={def}
         draft={draft}
         setDraft={setDraft}
+        c={c}
       />
     )
   }
@@ -174,6 +180,7 @@ function FilterSection({
         def={def}
         draft={draft}
         setDraft={setDraft}
+        c={c}
       />
     )
   }
@@ -186,11 +193,9 @@ function OptionPill({
   opt,
   draft,
   setDraft,
-}: {
-  def: Extract<FilterDef, { variant: 'select' | 'multi-select' }>
+  c,
+}: SectionProps<Extract<FilterDef, { variant: 'select' | 'multi-select' }>> & {
   opt: { label: string; value: string }
-  draft: ColumnFiltersState
-  setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
 }) {
   const raw = getFilterValue(draft, def.id)
   const selected =
@@ -221,7 +226,7 @@ function OptionPill({
     <Button
       variant="outline"
       size="xs"
-      className="memori-table__filter-option"
+      className={c('option')}
       active={selected}
       onClick={toggle}
     >
@@ -234,11 +239,8 @@ function DateRangeSection({
   def,
   draft,
   setDraft,
-}: {
-  def: Extract<FilterDef, { variant: 'date-range' }>
-  draft: ColumnFiltersState
-  setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
-}) {
+  c,
+}: SectionProps<Extract<FilterDef, { variant: 'date-range' }>>) {
   const { t } = useTranslation()
   const raw = getFilterValue(draft, def.id) as DateRangeValue | undefined
   const from = raw?.from ?? ''
@@ -255,16 +257,14 @@ function DateRangeSection({
   }
 
   return (
-    <div className="memori-table__filter-section">
-      <div className="memori-table__filter-section-label">{def.label}</div>
-      <div className="memori-table__filter-date-range">
-        <label className="memori-table__filter-date-field">
-          <span className="memori-table__filter-date-field-label">
-            {t('table.dateFrom')}
-          </span>
+    <div className={c('section')}>
+      <div className={c('section-label')}>{def.label}</div>
+      <div className={c('date-range')}>
+        <label className={c('date-field')}>
+          <span className={c('date-field-label')}>{t('table.dateFrom')}</span>
           <input
             type="date"
-            className="memori-table__filter-date-input"
+            className={c('date-input')}
             value={from}
             onChange={e =>
               patch({
@@ -274,13 +274,11 @@ function DateRangeSection({
             }
           />
         </label>
-        <label className="memori-table__filter-date-field">
-          <span className="memori-table__filter-date-field-label">
-            {t('table.dateTo')}
-          </span>
+        <label className={c('date-field')}>
+          <span className={c('date-field-label')}>{t('table.dateTo')}</span>
           <input
             type="date"
-            className="memori-table__filter-date-input"
+            className={c('date-input')}
             value={to}
             onChange={e =>
               patch({
@@ -293,7 +291,7 @@ function DateRangeSection({
       </div>
       {invalid ? (
         <p
-          className="memori-table__filter-date-error"
+          className={c('date-error')}
           role="alert"
         >
           {t('table.dateRangeInvalid')}
@@ -307,11 +305,8 @@ function BooleanSection({
   def,
   draft,
   setDraft,
-}: {
-  def: Extract<FilterDef, { variant: 'boolean' }>
-  draft: ColumnFiltersState
-  setDraft: React.Dispatch<React.SetStateAction<ColumnFiltersState>>
-}) {
+  c,
+}: SectionProps<Extract<FilterDef, { variant: 'boolean' }>>) {
   const on = getFilterValue(draft, def.id) === true
 
   const toggle = () => {
@@ -324,20 +319,17 @@ function BooleanSection({
   }
 
   return (
-    <div className="memori-table__filter-section">
-      <div className="memori-table__filter-section-label">{def.label}</div>
-      <div className="memori-table__filter-boolean">
-        <span className="memori-table__filter-boolean-label">
+    <div className={c('section')}>
+      <div className={c('section-label')}>{def.label}</div>
+      <div className={c('boolean')}>
+        <span className={c('boolean-label')}>
           {on ? def.booleanLabels.on : def.booleanLabels.off}
         </span>
         <button
           type="button"
           role="switch"
           aria-checked={on}
-          className={cx(
-            'memori-table__filter-toggle',
-            on && 'memori-table__filter-toggle--on',
-          )}
+          className={cx(c('toggle'), on && c('toggle--on'))}
           onClick={toggle}
         />
       </div>

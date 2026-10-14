@@ -3,15 +3,15 @@ import type {
   ColumnFiltersState,
   Table as TanStackTable,
 } from '@tanstack/react-table'
-import { Columns3, Search } from 'lucide-react'
+import { Columns3 } from 'lucide-react'
 import cx from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Dropdown } from '../Dropdown'
-import { Input } from '../Input'
+import { FilterBarPopover } from '../FilterBar/FilterBarPopover'
+import { FilterBarSearch } from '../FilterBar/FilterBarSearch'
 import type { FilterDef } from './tableTypes'
-import { TableFilterPopover } from './TableFilterPopover'
 import './tableMeta'
 
 export interface TableControlsProps<TData> {
@@ -56,25 +56,16 @@ export function TableControls<TData>({
   return (
     <div className="memori-table-controls">
       {showSearch ? (
-        <div className="memori-table-controls__search-wrap">
-          <Search
-            className="memori-table-controls__search-icon"
-            size={18}
-            strokeWidth={2}
-            aria-hidden
-          />
-          <Input
-            type="search"
-            className="memori-table-controls__search memori-table-controls__search-input"
-            placeholder={searchPlaceholder}
-            value={search}
-            onChange={e => onSearchInputChange(e.target.value)}
-            aria-label={searchPlaceholder}
-          />
-        </div>
+        <FilterBarSearch
+          classPrefix="memori-table-controls__"
+          value={search}
+          onChange={onSearchInputChange}
+          placeholder={searchPlaceholder}
+        />
       ) : null}
       {filterDefs && filterDefs.length > 0 ? (
-        <TableFilterPopover
+        <FilterBarPopover
+          classPrefix="memori-table__filter-"
           filterDefs={filterDefs}
           value={columnFilters}
           onChange={onColumnFiltersChange}

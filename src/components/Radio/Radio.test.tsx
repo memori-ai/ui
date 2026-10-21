@@ -110,3 +110,38 @@ it('disables a single radio', () => {
   fireEvent.click(pro)
   expect(onValueChange).not.toHaveBeenCalled()
 })
+
+it('links the description and renders the card variant', () => {
+  render(
+    <RadioGroup aria-label="Mode">
+      <Radio
+        value="public"
+        label="Public"
+        description="Anyone can chat"
+        variant="card"
+      />
+    </RadioGroup>,
+  )
+  const radio = screen.getByRole('radio', { name: 'Public' })
+  expect(radio).toHaveAccessibleDescription('Anyone can chat')
+  expect(radio.parentElement).toHaveClass('memori-radio--card')
+})
+
+it('selects a card when its description is clicked', () => {
+  const onValueChange = vi.fn()
+  render(
+    <RadioGroup
+      aria-label="Mode"
+      onValueChange={onValueChange}
+    >
+      <Radio
+        value="password"
+        label="Password"
+        variant="card"
+      />
+    </RadioGroup>,
+  )
+  fireEvent.click(screen.getByText('Password'))
+  expect(onValueChange).toHaveBeenCalled()
+  expect(onValueChange.mock.calls[0]?.[0]).toBe('password')
+})

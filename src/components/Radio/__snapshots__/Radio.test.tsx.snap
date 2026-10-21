@@ -29,25 +29,29 @@ exports[`renders RadioGroup unchanged 1`] = `
       <input
         aria-hidden="true"
         checked=""
-        id="memori-radio-2"
+        id="memori-radio-3"
         style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
         tabindex="-1"
         type="radio"
       />
-      <label
-        class="memori-radio__label"
-        for="memori-radio-2"
-        id="memori-radio-label-1"
+      <span
+        class="memori-radio__text"
       >
-        Free
-      </label>
+        <label
+          class="memori-radio__label"
+          for="memori-radio-3"
+          id="memori-radio-label-1"
+        >
+          Free
+        </label>
+      </span>
     </span>
     <span
       class="memori-radio"
     >
       <span
         aria-checked="false"
-        aria-labelledby="memori-radio-label-3"
+        aria-labelledby="memori-radio-label-4"
         class="memori-radio__control"
         data-unchecked=""
         id="base-ui-_r_3_"
@@ -56,18 +60,22 @@ exports[`renders RadioGroup unchanged 1`] = `
       />
       <input
         aria-hidden="true"
-        id="memori-radio-4"
+        id="memori-radio-6"
         style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
         tabindex="-1"
         type="radio"
       />
-      <label
-        class="memori-radio__label"
-        for="memori-radio-4"
-        id="memori-radio-label-3"
+      <span
+        class="memori-radio__text"
       >
-        Pro
-      </label>
+        <label
+          class="memori-radio__label"
+          for="memori-radio-6"
+          id="memori-radio-label-4"
+        >
+          Pro
+        </label>
+      </span>
     </span>
   </div>
   <input

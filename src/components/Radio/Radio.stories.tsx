@@ -192,3 +192,34 @@ export const InField: Story = {
     </Field.Root>
   ),
 }
+
+export const Cards: Story = {
+  render: args => (
+    <RadioGroup
+      {...args}
+      aria-label="Chi può chattare"
+      defaultValue="public"
+      orientation="horizontal"
+    >
+      <Radio
+        variant="card"
+        value="public"
+        label="Pubblico"
+        description="Chiunque trovi il bot può scrivergli."
+      />
+      <Radio
+        variant="card"
+        value="password"
+        label="Richiedi una password"
+        description="Il bot chiede una password prima di rispondere."
+      />
+      <Radio
+        variant="card"
+        value="whitelist"
+        label="Lista consentiti"
+        description="Solo gli utenti in elenco possono scrivere."
+        disabled
+      />
+    </RadioGroup>
+  ),
+}

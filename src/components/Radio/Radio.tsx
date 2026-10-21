@@ -16,6 +16,18 @@ export interface RadioProps {
   label?: React.ReactNode
 
   /**
+   * Secondary text under the label. Linked to the radio via `aria-describedby`.
+   */
+  description?: React.ReactNode
+
+  /**
+   * `card` renders the option as a bordered, fully clickable tile: use it for
+   * a few mutually exclusive choices that each need a short explanation.
+   * @default 'default'
+   */
+  variant?: 'default' | 'card'
+
+  /**
    * If `true`, this radio is disabled.
    */
   disabled?: boolean
@@ -27,15 +39,28 @@ export interface RadioProps {
 }
 
 export const Radio = React.forwardRef<HTMLSpanElement, RadioProps>(
-  ({ value, label, disabled = false, className }, ref) => {
+  (
+    {
+      value,
+      label,
+      description,
+      variant = 'default',
+      disabled = false,
+      className,
+    },
+    ref,
+  ) => {
     const labelId = useStableId('memori-radio-label')
+    const descriptionId = useStableId('memori-radio-description')
     const inputId = useStableId('memori-radio')
     const hasLabel = label != null && label !== false
+    const hasDescription = description != null && description !== false
 
     return (
       <span
         className={cx(
           'memori-radio',
+          variant === 'card' && 'memori-radio--card',
           disabled && 'memori-radio--disabled',
           className,
         )}
@@ -46,18 +71,31 @@ export const Radio = React.forwardRef<HTMLSpanElement, RadioProps>(
           disabled={disabled}
           className="memori-radio__control"
           {...(hasLabel && { id: inputId, 'aria-labelledby': labelId })}
+          {...(hasDescription && { 'aria-describedby': descriptionId })}
         >
           <BaseRadio.Indicator className="memori-radio__indicator" />
         </BaseRadio.Root>
 
-        {hasLabel && (
-          <label
-            id={labelId}
-            htmlFor={inputId}
-            className="memori-radio__label"
-          >
-            {label}
-          </label>
+        {(hasLabel || hasDescription) && (
+          <span className="memori-radio__text">
+            {hasLabel && (
+              <label
+                id={labelId}
+                htmlFor={inputId}
+                className="memori-radio__label"
+              >
+                {label}
+              </label>
+            )}
+            {hasDescription && (
+              <span
+                id={descriptionId}
+                className="memori-radio__description"
+              >
+                {description}
+              </span>
+            )}
+          </span>
         )}
       </span>
     )

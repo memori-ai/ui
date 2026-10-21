@@ -73,6 +73,71 @@
         cursor: pointer;
     }
 
+    .memori-radio__text {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .memori-radio__description {
+        color: var(--memori-neutral);
+        font-size: var(--memori-text-size-xs);
+    }
+
+    /* Card variant: whole tile is the hit area (label ::after covers it) */
+    .memori-radio--card {
+        position: relative;
+        box-sizing: border-box;
+        align-items: flex-start;
+        padding: var(--memori-spacing-md);
+        border: var(--memori-border) solid var(--memori-border-color);
+        border-radius: var(--memori-radius-surface);
+        background-color: var(--memori-secondary-background);
+        transition:
+            background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+            border-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+    }
+
+    /* Horizontal group of cards: equal-width tiles that wrap */
+    .memori-radio-group--horizontal:has(> .memori-radio--card) {
+        display: grid;
+        gap: var(--memori-spacing-sm);
+        grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+    }
+
+    .memori-radio-group--vertical > .memori-radio--card {
+        display: flex;
+    }
+
+    .memori-radio--card .memori-radio__control {
+        margin-top: 1px;
+    }
+
+    .memori-radio--card .memori-radio__label {
+        font-weight: var(--memori-text-weight-medium);
+    }
+
+    .memori-radio--card .memori-radio__label::after {
+        position: absolute;
+        content: '';
+        inset: 0;
+    }
+
+    .memori-radio--card:hover:not(:has([data-disabled])) {
+        border-color: var(--memori-border-primary-hover);
+    }
+
+    .memori-radio--card:has(.memori-radio__control[data-checked]) {
+        border-color: var(--memori-primary);
+        background-color: var(--memori-primary-subtle);
+    }
+
+    .memori-radio--card:has(.memori-radio__control:focus-visible) {
+        outline: 2px solid var(--memori-primary);
+        outline-offset: var(--memori-focus-ring-offset);
+    }
+
     /* Focus-visible */
     .memori-radio__control:focus-visible {
         outline: 2px solid var(--memori-primary);

@@ -5,6 +5,7 @@ import type {
   PaginationState,
 } from '@tanstack/react-table'
 import {
+  FileText,
   Info,
   Link as LinkIcon,
   Pencil,
@@ -170,7 +171,7 @@ export function ContentListDashboard() {
       {
         accessorKey: 'domanda',
         header: 'Domanda / Titolo',
-        minSize: 200,
+        minSize: 180,
         cell: ({ row }) => (
           <div className={styles.contentCell}>
             <span className={styles.contentCellText}>
@@ -206,7 +207,7 @@ export function ContentListDashboard() {
             </button>
           </span>
         ),
-        size: 110,
+        size: 100,
         cell: ({ getValue }) => {
           const v = getValue() as number | null
           return v != null ? (
@@ -219,7 +220,7 @@ export function ContentListDashboard() {
       {
         accessorKey: 'risposta',
         header: 'Risposta',
-        minSize: 180,
+        minSize: 170,
         cell: ({ row }) => (
           <div className={styles.contentCell}>
             <span className={styles.contentCellText}>
@@ -241,25 +242,30 @@ export function ContentListDashboard() {
       {
         id: 'argNecessari',
         header: 'Argomenti necessari',
-        minSize: 160,
+        minSize: 150,
         accessorFn: row => row.argNecessari.join(' '),
         cell: ({ row }) => pillsCell(row.original.argNecessari),
       },
       {
         id: 'argImpostati',
         header: 'Argomenti impostati',
-        minSize: 140,
+        minSize: 130,
         accessorFn: row => row.argImpostati.join(' '),
         cell: ({ row }) => pillsCell(row.original.argImpostati),
       },
       {
         accessorKey: 'tag',
         header: 'Tag',
-        size: 140,
+        size: 120,
         cell: ({ getValue }) => {
           const t = getValue() as string
           return t ? (
-            <span className={styles.tableCellText}>{t}</span>
+            <span
+              className={styles.clampCell}
+              title={t}
+            >
+              {t}
+            </span>
           ) : (
             <span className={styles.tableMutedCell}>—</span>
           )
@@ -268,7 +274,7 @@ export function ContentListDashboard() {
       {
         id: 'proprieta',
         header: 'Proprietà',
-        size: 88,
+        size: 80,
         enableSorting: false,
         cell: ({ row }) =>
           row.original.hasLink ? (
@@ -284,7 +290,8 @@ export function ContentListDashboard() {
       {
         accessorKey: 'creatoIl',
         header: 'Creato il',
-        size: 160,
+        size: 170,
+        minSize: 170,
         cell: ({ row }) => (
           <span className={styles.cellWithIcon}>
             <User
@@ -349,6 +356,13 @@ export function ContentListDashboard() {
       <Section
         title="Contenuti"
         description="Cerca, filtra e gestisci domande, risposte e metadati dell’agente."
+        icon={
+          <FileText
+            size={24}
+            strokeWidth={1.75}
+            aria-hidden
+          />
+        }
         className={styles.contentSection}
       />
       <Tabs.Root

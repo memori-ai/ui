@@ -111,7 +111,7 @@ export function AgentAISettings() {
                     </button>
                   </Tooltip>
                 </span>
-                <span className={styles.radioSub}>( NLP + GenAI )</span>
+                <span className={styles.radioSub}>NLP + GenAI</span>
               </span>
             </label>
 
@@ -143,7 +143,7 @@ export function AgentAISettings() {
                     </button>
                   </Tooltip>
                 </span>
-                <span className={styles.radioSub}>( GenAI )</span>
+                <span className={styles.radioSub}>GenAI</span>
               </span>
             </label>
 
@@ -175,7 +175,7 @@ export function AgentAISettings() {
                     </button>
                   </Tooltip>
                 </span>
-                <span className={styles.radioSub}>( NLP )</span>
+                <span className={styles.radioSub}>NLP</span>
               </span>
             </label>
           </div>

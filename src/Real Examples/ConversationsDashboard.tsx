@@ -8,11 +8,9 @@ import {
   ExternalLink,
   Image as ImageIcon,
   Link as LinkIcon,
-  Menu,
   MessageCircle,
   Trash2,
 } from 'lucide-react'
-import { Button } from '../components/Button'
 import { Section } from '../components/Section'
 import { Table, type FilterDef } from '../components/Table'
 import '../components/Input/styles.css'
@@ -242,20 +240,6 @@ export function ConversationsDashboard() {
             size={24}
             strokeWidth={1.75}
             aria-hidden
-          />
-        }
-        actions={
-          <Button
-            type="button"
-            variant="ghost"
-            size="md"
-            ariaLabel="Menu"
-            icon={
-              <Menu
-                size={22}
-                aria-hidden
-              />
-            }
           />
         }
         className={styles.conversationsSection}

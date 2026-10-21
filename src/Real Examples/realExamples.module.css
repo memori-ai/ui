@@ -39,6 +39,7 @@
 
 .formStack {
     display: flex;
+    max-width: 44rem;
     flex-direction: column;
     gap: var(--memori-spacing-lg);
 }
@@ -102,16 +103,15 @@
 
 /* Horizontal radio group (no Radio component in library) */
 .radioRow {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     align-items: flex-start;
     gap: var(--memori-spacing-lg) var(--memori-spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
 
 .radioOption {
     display: flex;
-    max-width: 280px;
-    flex: 1 1 200px;
+    min-width: 0;
     align-items: flex-start;
     cursor: pointer;
     gap: var(--memori-spacing-sm);
@@ -237,7 +237,7 @@
     flex-shrink: 0;
 }
 
-.searchField .memori-input {
+.searchField [class~='memori-input'] {
     min-width: 0;
     flex: 1;
     border: none;
@@ -264,7 +264,7 @@
     color: var(--memori-neutral);
 }
 
-.dateRangeField .memori-input {
+.dateRangeField [class~='memori-input'] {
     min-width: 0;
     flex: 1;
     border: none;
@@ -272,15 +272,15 @@
     background: transparent;
 }
 
-.searchField .memori-input:focus,
-.searchField .memori-input:focus-visible {
+.searchField [class~='memori-input']:focus,
+.searchField [class~='memori-input']:focus-visible {
     box-shadow: none;
     outline: none;
 }
 
 /* Avoid double focus ring: shell uses :focus-within above */
-.searchField .memori-input:focus::before,
-.searchField .memori-input:focus-within::before {
+.searchField [class~='memori-input']:focus::before,
+.searchField [class~='memori-input']:focus-within::before {
     opacity: 0;
 }
 
@@ -362,4 +362,335 @@
 
 .cellIcon {
     color: var(--memori-neutral);
+}
+
+/* Nested settings form inside Dashboard tabs (avoid double page chrome) */
+.settingsEmbed .page {
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.settingsEmbed .title {
+    display: none;
+}
+
+.settingsEmbed .subtitle {
+    display: none;
+}
+
+.settingsEmbed .divider:first-of-type {
+    display: none;
+}
+
+/* Card grids (MCP, Functions, Integrations) */
+.cardGrid {
+    display: grid;
+    gap: var(--memori-spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.toolbarRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--memori-spacing-md);
+    gap: var(--memori-spacing-md);
+}
+
+.statsGrid {
+    display: grid;
+    gap: var(--memori-spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.statCardValue {
+    margin: 0;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-2xl);
+    font-weight: var(--memori-text-weight-bold);
+    line-height: var(--memori-text-line-tight);
+}
+
+.statCardLabel {
+    margin: var(--memori-spacing-xs) 0 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.chipRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--memori-spacing-md);
+    gap: var(--memori-spacing-xs);
+}
+
+.codeBlock {
+    padding: var(--memori-spacing-md);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    margin: 0;
+    background-color: var(--memori-secondary-background);
+    color: var(--memori-text-color);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--memori-text-size-sm);
+    line-height: var(--memori-text-line-normal);
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.avatarCell {
+    display: inline-flex;
+    overflow: hidden;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--memori-primary) 18%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-primary) 60%, var(--memori-text-color));
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-bold);
+}
+
+.progressCell {
+    display: flex;
+    min-width: 8rem;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.docDropZone {
+    display: flex;
+    min-height: 12rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--memori-spacing-xl);
+    border: 2px dashed var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background-color: var(--memori-secondary-background);
+    color: var(--memori-neutral);
+    gap: var(--memori-spacing-sm);
+    text-align: center;
+}
+
+.chartPlaceholder {
+    display: flex;
+    height: 14rem;
+    box-sizing: border-box;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: var(--memori-spacing-lg);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-sm);
+}
+
+.chartBar {
+    max-width: 2.5rem;
+    flex: 1;
+    border-radius: var(--memori-radius-control) var(--memori-radius-control) 0 0;
+    background: color-mix(in oklch, var(--memori-primary) 70%, transparent);
+}
+
+/* Count next to a tab label: informative, not an alert */
+.tabCount {
+    margin-inline-start: var(--memori-spacing-xs);
+    vertical-align: middle;
+}
+
+.tabCount > span {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    background-color: color-mix(in oklch, var(--memori-primary) 14%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-primary) 60%, var(--memori-text-color));
+    font-size: var(--memori-text-size-sm);
+}
+
+/* Small non-interactive label next to a tab ("Nuovo") */
+.tabLabel {
+    display: inline-block;
+    padding: 0 var(--memori-spacing-sm);
+    border-radius: var(--memori-radius-full);
+    background-color: color-mix(in oklch, var(--memori-primary) 14%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-primary) 60%, var(--memori-text-color));
+    font-size: var(--memori-text-size-xs);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: 1.25rem;
+    margin-inline-start: var(--memori-spacing-xs);
+    text-transform: uppercase;
+}
+
+/* Intro line below the page header */
+.sectionIntro {
+    margin: 0 0 var(--memori-spacing-lg);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-md);
+    line-height: var(--memori-text-line-normal);
+}
+
+.statCardDelta {
+    margin: var(--memori-spacing-xs) 0 0;
+    color: color-mix(in srgb, var(--memori-success) 50%, var(--memori-text-color));
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.statCardDeltaNegative {
+    color: color-mix(in srgb, var(--memori-error) 60%, var(--memori-text-color));
+}
+
+/* Cards: push the action to the bottom so rows of cards line up */
+.cardGrid > * {
+    height: 100%;
+}
+
+/* Input + inline action (copy / reveal) */
+.inputWithActions {
+    display: flex;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.inputWithActions > :first-child {
+    min-width: 0;
+    flex: 1;
+}
+
+/* Long identifiers (tags): cap at two lines, full value in the title tooltip */
+.clampCell {
+    display: -webkit-box;
+    overflow: hidden;
+    min-width: 0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    line-height: var(--memori-text-line-normal);
+    overflow-wrap: anywhere;
+}
+
+/* Single primary action under a form: natural width, left aligned */
+.formStack > button {
+    align-self: flex-start;
+}
+
+/* Heading that follows another block in the same page */
+.sectionTitleSpaced {
+    margin-top: var(--memori-spacing-xl);
+}
+
+/* Locked / unavailable item: visibly secondary */
+.lockedCard {
+    opacity: 0.72;
+}
+
+.entryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-md);
+}
+
+.entryMeta {
+    margin: 0 0 var(--memori-spacing-xs);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.monoCell {
+    display: inline-flex;
+    align-items: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    gap: var(--memori-spacing-sm);
+}
+
+/* Unified Real Examples shell */
+.dashboardShell {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+    background-color: var(--memori-main-background);
+    color: var(--memori-text-color);
+    font-family: var(--memori-font-family);
+}
+
+.dashboardSideNav {
+    display: flex;
+    width: min(17rem, 34vw);
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: var(--memori-spacing-lg) var(--memori-spacing-md);
+    border-right: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-lg);
+    overflow-y: auto;
+}
+
+.dashboardNavGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-xs);
+}
+
+.dashboardNavGroupLabel {
+    padding: 0 var(--memori-spacing-sm);
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+    font-weight: var(--memori-text-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.dashboardNavList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 2px;
+    list-style: none;
+}
+
+.dashboardNavItem {
+    display: block;
+    width: 100%;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    border: none;
+    border-radius: var(--memori-radius-control);
+    background: transparent;
+    color: var(--memori-text-color);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--memori-text-size-sm);
+    text-align: left;
+}
+
+.dashboardNavItem:hover {
+    background-color: color-mix(in oklch, var(--memori-primary) 10%, var(--memori-secondary-background));
+}
+
+.dashboardNavItem:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.dashboardNavItemActive {
+    background-color: color-mix(in oklch, var(--memori-primary) 16%, var(--memori-secondary-background));
+    color: var(--memori-primary);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.dashboardMain {
+    overflow: auto;
+    min-width: 0;
+    flex: 1;
+}
+
+.dashboardMain .page {
+    max-width: none;
+    min-height: 100%;
+    margin: 0;
 }

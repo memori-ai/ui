@@ -60,7 +60,7 @@ export function AgentGeneralSettings() {
         <FieldGroup
           label="Lingua"
           required
-          helperText="Configurazione per la creazione di un Memori aziendale in lingua italiana."
+          helperText="La lingua è definita alla creazione del Memori aziendale e non può essere modificata."
         >
           <SelectBox
             options={languageOptions}

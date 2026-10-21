@@ -57,7 +57,7 @@
     .memori-tag--error {
         --tag-accent: var(--memori-error);
 
-        color: var(--memori-error-text);
+        color: color-mix(in srgb, var(--memori-error-text) 65%, var(--memori-text-color));
     }
 
     .memori-tag--info {

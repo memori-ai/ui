@@ -413,7 +413,9 @@ export function Table<TData>({
       meta: { disableHiding: true },
       header: () => <span className="memori-table__actions-header" />,
       cell: ({ row }) => {
-        const actions = rowActionsRef.current
+        const actions = rowActionsRef.current?.filter(
+          action => !action.hidden?.(row),
+        )
         if (!actions?.length) {
           return null
         }

@@ -14,6 +14,8 @@ export type RowAction<TData> = {
   label: string
   icon?: ReactNode
   variant?: 'default' | 'danger'
+  /** Return `true` to omit this action for the given row */
+  hidden?: (row: Row<TData>) => boolean
   onClick: (row: Row<TData>) => void
 }
 

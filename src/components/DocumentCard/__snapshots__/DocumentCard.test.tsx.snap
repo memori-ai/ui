@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders DocumentCard snapshot 1`] = `
+<div>
+  <div
+    class="memori-document-card"
+  >
+    <div
+      class="memori-document-card__header"
+    >
+      <div
+        class="memori-document-card__text"
+      >
+        <div
+          class="memori-document-card__title"
+        >
+          Spreadsheet
+        </div>
+        <div
+          class="memori-document-card__meta"
+        >
+          256 KB
+        </div>
+      </div>
+    </div>
+    <span
+      class="memori-document-card__badge"
+    >
+      XLSX
+    </span>
+  </div>
+</div>
+`;

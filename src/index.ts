@@ -60,6 +60,8 @@ export type {
 export { Combobox } from './components/Combobox'
 export { Collapsible } from './components/Collapsible'
 export { Card } from './components/Card'
+export { DocumentCard } from './components/DocumentCard'
+export type { DocumentCardProps } from './components/DocumentCard'
 export { Checkbox } from './components/Checkbox'
 export { ConfirmDialog } from './components/ConfirmDialog'
 export type { ConfirmDialogProps } from './components/ConfirmDialog'

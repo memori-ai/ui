@@ -65,3 +65,8 @@ it('renders Card hoverable unchanged', () => {
   )
   expect(container).toMatchSnapshot()
 })
+
+it('applies interactive class when hoverable', () => {
+  const { container } = render(<Card hoverable />)
+  expect(container.firstChild).toHaveClass('memori-card--interactive')
+})

@@ -67,7 +67,7 @@ export interface CardProps extends Omit<
   loading?: boolean
 
   /**
-   * Use hover styles (lift effect)
+   * Use hover styles (primary border + light shadow)
    */
   hoverable?: boolean
 }

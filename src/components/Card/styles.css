@@ -5,21 +5,18 @@
 
     .memori-card {
         position: relative;
-        display: block;
         display: flex;
         overflow: hidden;
         width: 100%;
         box-sizing: border-box;
         flex-direction: column;
-        padding: var(--memori-spacing-lg);
+        padding: 0;
         border-radius: var(--memori-radius-surface);
         margin: 0;
         background-color: var(--memori-secondary-background);
         color: var(--memori-text-color);
         font-family: var(--memori-font-family);
         text-align: left;
-
-        /* microinteraction: interactive cards lift on hover */
         transition:
             border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
             box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
@@ -123,17 +120,8 @@
     }
 
     .memori-card--interactive:hover {
-        border-color: var(--memori-border-primary-hover);
-        background-color: var(--memori-primary-subtle-hover);
-
-        /* box-shadow: 0 4px 16px rgb(109 40 217 / 12%); */
-
-        /* transform: translateY(-2px);
-    transition:
-        border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        box-shadow var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-        outline-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out); */
+        border-color: var(--memori-primary);
+        box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
     }
 
     /* Focus visible styles for accessibility */

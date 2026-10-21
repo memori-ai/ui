@@ -11,7 +11,7 @@ const meta: Meta<typeof Card> = {
   argTypes: {
     variant: {
       control: 'radio',
-      options: ['elevated', 'outlined'],
+      options: ['elevated', 'outlined', 'flat'],
       description: 'Visual style of the card',
     },
     padding: {

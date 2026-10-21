@@ -118,14 +118,6 @@ export { Section } from './components/Section'
 export type { SectionProps } from './components/Section'
 export { Heading, Text } from './components/Typography'
 export type { HeadingProps, TextProps } from './components/Typography'
-export { Stack } from './components/Stack'
-export type {
-  StackProps,
-  StackDirection,
-  StackGap,
-  StackAlign,
-  StackJustify,
-} from './components/Stack'
 export { List, ListItem } from './components/List'
 export type { ListProps, ListItemProps } from './components/List'
 export { Tag } from './components/Tag'

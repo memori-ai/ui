@@ -12,7 +12,7 @@
 
     .memori-section__body {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         align-items: flex-start;
         gap: var(--memori-spacing-md);
     }
@@ -41,7 +41,9 @@
     .memori-section__content {
         display: flex;
         min-width: 0;
-        flex: 1;
+
+        /* Below ~16rem of text the actions drop to their own row instead */
+        flex: 1 1 16rem;
         flex-direction: column;
         gap: var(--memori-spacing-xs);
     }

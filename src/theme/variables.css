@@ -43,8 +43,8 @@
 
         /* ─── 4. Semantic surface & text ─────────── */
         --memori-font-family: 'Lexend Deca Variable', 'Lexend Deca', sans-serif;
-        --memori-main-background: oklch(97.1% 0 0deg);
-        --memori-secondary-background: oklch(100% 0 0deg);
+        --memori-main-background: oklch(97.1% 0 none);
+        --memori-secondary-background: oklch(100% 0 none);
         --memori-text-color: oklch(20% 0.05 240deg);
         --memori-border-color: color-mix(in oklch, oklch(45% 0.05 240deg), transparent 84%);
         --memori-surface-contrast: #000;
@@ -130,8 +130,8 @@
             0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent),
             0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 10%, transparent);
         --memori-shadow-lg:
-            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 8%, transparent),
-            0 10px 15px -3px color-mix(in oklch, oklch(0% 0 0deg) 6%, transparent);
+            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 none) 8%, transparent),
+            0 10px 15px -3px color-mix(in oklch, oklch(0% 0 none) 6%, transparent);
         --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 25%, transparent);
 
         /* ─── 10. Motion ────────────────────────── */
@@ -207,8 +207,8 @@
         --memori-focus-ring-secondary-color: color-mix(in oklch, var(--memori-secondary), transparent 40%);
 
         /* Surfaces & text */
-        --memori-main-background: oklch(32.1% 0 0deg);
-        --memori-secondary-background: oklch(21.2% 0 0deg);
+        --memori-main-background: oklch(32.1% 0 none);
+        --memori-secondary-background: oklch(21.2% 0 none);
         --memori-text-color: oklch(99% 0.01 240deg);
         --memori-border-color: color-mix(in oklch, oklch(75% 0.04 240deg), transparent 55%);
         --memori-surface-contrast: #fff;
@@ -241,8 +241,8 @@
             0 4px 6px -1px color-mix(in oklch, var(--memori-surface-contrast) 28%, transparent),
             0 2px 4px -2px color-mix(in oklch, var(--memori-surface-contrast) 22%, transparent);
         --memori-shadow-lg:
-            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 0deg) 40%, transparent),
-            0 2px 4px -2px color-mix(in oklch, oklch(0% 0 0deg) 30%, transparent);
+            0 4px 6px -2px color-mix(in oklch, oklch(0% 0 none) 40%, transparent),
+            0 2px 4px -2px color-mix(in oklch, oklch(0% 0 none) 30%, transparent);
         --memori-shadow-2xl: 0 25px 50px -12px color-mix(in oklch, var(--memori-surface-contrast) 48%, transparent);
 
         /* Effects */

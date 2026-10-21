@@ -975,7 +975,13 @@
         }
 
         .memori-table-pagination--detailed .memori-table-pagination__nav--pages {
+            flex-wrap: nowrap;
             justify-content: center;
+        }
+
+        /* The desktop slot reservation (7 × 2.25rem) plus prev/next overflows a phone row */
+        .memori-table-pagination__page-window {
+            min-width: 0;
         }
 
         .memori-table-pagination--detailed .memori-table-pagination__page-size {

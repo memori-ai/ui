@@ -1,8 +1,14 @@
 @layer memori.components {
     .memori-collapsible {
         display: block;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: var(--memori-border) solid var(--memori-border-color);
+        border-radius: var(--memori-radius-surface);
         margin-top: var(--memori-spacing-sm);
         margin-bottom: var(--memori-spacing-lg);
+        background-color: var(--memori-secondary-background);
+        color: var(--memori-text-color);
     }
 
     .memori-collapsible + .memori-collapsible {
@@ -15,8 +21,8 @@
         align-items: center;
         justify-content: space-between;
         padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-        border: var(--memori-border) solid transparent;
-        border-radius: var(--memori-radius-control);
+        border: none;
+        border-radius: 0;
         background: transparent;
         color: var(--memori-text-color);
         cursor: pointer;
@@ -28,8 +34,7 @@
         text-align: left;
         transition:
             color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out),
-            border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
+            background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-in-out);
     }
 
     .memori-collapsible__trigger:focus {
@@ -37,9 +42,8 @@
     }
 
     .memori-collapsible__trigger:focus-visible {
-        border-color: var(--memori-primary);
-        outline: var(--memori-border) solid var(--memori-primary);
-        outline-offset: var(--memori-spacing-sm);
+        outline: var(--memori-focus-ring);
+        outline-offset: calc(-1 * var(--memori-focus-ring-offset));
     }
 
     .memori-collapsible__trigger:disabled {
@@ -88,7 +92,6 @@
     }
 
     .memori-collapsible__panel[data-open] {
-        margin-top: var(--memori-spacing-md);
         grid-template-rows: 1fr;
     }
 
@@ -103,12 +106,12 @@
 
     .memori-collapsible__panel-inner {
         padding: var(--memori-spacing-md);
-        padding-top: var(--memori-spacing-md);
         opacity: 0;
         transition: opacity var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
     }
 
     .memori-collapsible__panel[data-open] .memori-collapsible__panel-inner {
+        border-top: var(--memori-border) solid var(--memori-border-color);
         opacity: 1;
     }
 
@@ -116,28 +119,16 @@
         transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-in);
     }
 
-    /* Dark mode support */
-    [data-theme='dark'] .memori-collapsible__trigger,
-    :root.dark .memori-collapsible__trigger {
-        color: var(--memori-text-color);
-    }
-
     .memori-collapsible__trigger:hover:not(:disabled) {
-        background-color: var(--memori-main-background);
+        background-color: color-mix(in oklch, var(--memori-text-color) 6%, var(--memori-secondary-background));
         color: var(--memori-primary);
-    }
-
-    [data-theme='dark'] .memori-collapsible__trigger:hover:not(:disabled),
-    :root.dark .memori-collapsible__trigger:hover:not(:disabled) {
-        background-color: var(--memori-main-background);
     }
 
     @media (prefers-reduced-motion: reduce) {
         .memori-collapsible__trigger {
             transition:
                 color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
-                border-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+                background-color var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
         }
 
         .memori-collapsible__panel {

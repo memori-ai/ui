@@ -81,6 +81,12 @@
         border-bottom: var(--memori-border) solid var(--memori-border-color);
         background-color: transparent;
         gap: var(--memori-spacing-lg);
+
+        /* Too many tabs for the width: scroll the row instead of wrapping it */
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        white-space: nowrap;
     }
 
     .memori-tabs[data-memori-variant='underline'] .memori-tabs__list--vertical {
@@ -222,7 +228,7 @@
     }
 
     .memori-tabs[data-memori-variant='underline'] .memori-tabs__tab {
-        flex: 0 1 auto;
+        flex: 0 0 auto;
         border-radius: 0;
     }
 
@@ -361,5 +367,15 @@
         .memori-tabs__panel:not([hidden]) {
             animation: none;
         }
+    }
+
+    .memori-tabs[data-memori-variant='underline'] .memori-tabs__list--horizontal::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* The scrolling row would clip an outset ring: draw it inside the tab */
+    .memori-tabs[data-memori-variant='underline'] .memori-tabs__list--horizontal .memori-tabs__tab::before {
+        box-shadow: none;
+        outline-offset: calc(-2 * var(--memori-border));
     }
 }

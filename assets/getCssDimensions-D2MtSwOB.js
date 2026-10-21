@@ -1,0 +1,1 @@
+import{r as h}from"./DirectionContext-FcQt2kqv.js";import{d as r,i as c}from"./floating-ui.utils.dom-CHHzM94Q.js";function g(t){const i=r(t);let s=parseFloat(i.width)||0,o=parseFloat(i.height)||0;const f=c(t),a=f?t.offsetWidth:s,e=f?t.offsetHeight:o;return(h(s)!==a||h(o)!==e)&&(s=a,o=e),{width:s,height:o}}export{g};

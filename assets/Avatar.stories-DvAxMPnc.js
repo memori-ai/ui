@@ -1,0 +1,35 @@
+import{r as i,j as a}from"./iframe-DjI3B0i0.js";import{c as R}from"./index-BGPjpOUk.js";import{U as j,B as M}from"./user-DGPgbnMM.js";import{f as N,u as h,a as w,N as k}from"./useRenderElement-CVx4SfIX.js";import{u as C}from"./useStableCallback-DU3AnZUs.js";import{u as q}from"./useTimeout-BPL9ux8o.js";import"./preload-helper-Ct5FWWRu.js";import"./createLucideIcon-BaObivHf.js";import"./useOnMount-BoL-krPK.js";const b=i.createContext(void 0);function I(){const s=i.useContext(b);if(s===void 0)throw new Error(N(13));return s}const A={imageLoadingStatus:()=>null},_=i.forwardRef(function(e,c){const{className:g,render:l,...n}=e,[t,o]=i.useState("idle"),m=i.useMemo(()=>({imageLoadingStatus:t}),[t]),u=i.useMemo(()=>({imageLoadingStatus:t,setImageLoadingStatus:o}),[t,o]),r=h("span",e,{state:m,ref:c,props:n,stateAttributesMapping:A});return a.jsx(b.Provider,{value:u,children:r})});function T(s,{referrerPolicy:e,crossOrigin:c}){const[g,l]=i.useState("idle");return w(()=>{if(!s)return l("error"),k;let n=!0;const t=new window.Image,o=m=>()=>{n&&l(m)};return l("loading"),t.onload=o("loaded"),t.onerror=o("error"),e&&(t.referrerPolicy=e),t.crossOrigin=c??null,t.src=s,()=>{n=!1}},[s,c,e]),g}const B=i.forwardRef(function(e,c){const{className:g,render:l,onLoadingStatusChange:n,referrerPolicy:t,crossOrigin:o,...m}=e,u=I(),r=T(e.src,{referrerPolicy:t,crossOrigin:o}),p=C(S=>{n?.(S),u.setImageLoadingStatus(S)});w(()=>{r!=="idle"&&p(r)},[r,p]);const y=i.useMemo(()=>({imageLoadingStatus:r}),[r]);return h("img",e,{state:y,ref:c,props:m,stateAttributesMapping:A,enabled:r==="loaded"})}),E=i.forwardRef(function(e,c){const{className:g,render:l,delay:n,...t}=e,{imageLoadingStatus:o}=I(),[m,u]=i.useState(n===void 0),r=q();i.useEffect(()=>(n!==void 0&&r.start(n,()=>u(!0)),r.clear),[r,n]);const p=i.useMemo(()=>({imageLoadingStatus:o}),[o]);return h("span",e,{state:p,ref:c,props:t,stateAttributesMapping:A,enabled:o!=="loaded"&&m})}),d=i.forwardRef(({src:s,alt:e,initials:c,icon:g,size:l="md",shape:n="circle",className:t,style:o},m)=>{const u=typeof l=="number",r=u?{width:l,height:l,fontSize:Math.max(10,Math.round(l*.4))}:void 0,p=c?.trim();return a.jsxs(_,{ref:m,className:R("memori-avatar",!u&&`memori-avatar--${l}`,`memori-avatar--${n}`,t),style:{...r,...o},children:[s&&a.jsx(B,{className:"memori-avatar__image",src:s,alt:e??""}),a.jsx(E,{className:"memori-avatar__fallback",...e?{role:"img","aria-label":e}:{},children:p?a.jsx("span",{className:"memori-avatar__initials",children:p}):a.jsx("span",{className:"memori-avatar__icon","aria-hidden":"true",children:g??a.jsx(j,{})})})]})});d.displayName="Avatar";d.__docgenInfo={description:"",methods:[],displayName:"Avatar",props:{src:{required:!1,tsType:{name:"string"},description:"Image URL. While loading, or if it fails, the fallback is shown."},alt:{required:!1,tsType:{name:"string"},description:"Alternative text for the image. Also used as accessible name of the fallback."},initials:{required:!1,tsType:{name:"string"},description:"Initials shown when the image is missing or fails to load."},icon:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"Icon shown when there is no image and no `initials`.\n@default <User />"},size:{required:!1,tsType:{name:"union",raw:"'sm' | 'md' | 'lg' | number",elements:[{name:"literal",value:"'sm'"},{name:"literal",value:"'md'"},{name:"literal",value:"'lg'"},{name:"number"}]},description:`Avatar size: preset or pixel value.
+@default 'md'`,defaultValue:{value:"'md'",computed:!1}},shape:{required:!1,tsType:{name:"union",raw:"'circle' | 'square'",elements:[{name:"literal",value:"'circle'"},{name:"literal",value:"'square'"}]},description:`Avatar shape.
+@default 'circle'`,defaultValue:{value:"'circle'",computed:!1}},className:{required:!1,tsType:{name:"string"},description:"Additional CSS class name for the root element."},style:{required:!1,tsType:{name:"ReactCSSProperties",raw:"React.CSSProperties"},description:"Inline styles for the root element."}}};const L="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='teal'/><circle cx='32' cy='26' r='12' fill='white'/><rect x='14' y='42' width='36' height='22' rx='11' fill='white'/></svg>",H={title:"Contenuto/Avatar",component:d,tags:["autodocs"],argTypes:{src:{control:"text",description:"Image URL"},alt:{control:"text",description:"Alternative text"},initials:{control:"text",description:"Fallback initials when the image is missing or fails"},size:{control:"select",options:["sm","md","lg",56],description:"Preset size or pixel value",table:{defaultValue:{summary:"md"}}},shape:{control:"select",options:["circle","square"],description:"Avatar shape",table:{defaultValue:{summary:"circle"}}},icon:{control:!1},className:{control:"text"}},parameters:{controls:{expanded:!0},docs:{description:{component:"User or entity picture built on @base-ui Avatar. Falls back to initials, then to an icon, while the image loads or when it fails."}}}},f={args:{src:L,alt:"Ada Lovelace",initials:"AL"}},v={render:()=>a.jsx("div",{style:{display:"flex",flexDirection:"column",gap:"16px"},children:["circle","square"].map(s=>a.jsx("div",{style:{display:"flex",gap:"12px",alignItems:"center"},children:["sm","md","lg",56].map(e=>a.jsx(d,{size:e,shape:s,initials:"AL",alt:"Ada Lovelace"},String(e)))},s))})},x={render:()=>a.jsxs("div",{style:{display:"flex",gap:"12px",alignItems:"center"},children:[a.jsx(d,{src:L,alt:"Image"}),a.jsx(d,{src:"/missing-avatar.png",alt:"Broken image falls back to initials",initials:"BI"}),a.jsx(d,{initials:"MR",alt:"Mario Rossi"}),a.jsx(d,{alt:"Default icon"}),a.jsx(d,{icon:a.jsx(M,{}),alt:"Custom icon"})]})};f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    src: sampleSrc,
+    alt: 'Ada Lovelace',
+    initials: 'AL'
+  }
+}`,...f.parameters?.docs?.source}}};v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  render: () => <div style={{
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  }}>
+      {(['circle', 'square'] as const).map(shape => <div key={shape} style={{
+      display: 'flex',
+      gap: '12px',
+      alignItems: 'center'
+    }}>
+          {(['sm', 'md', 'lg', 56] as const).map(size => <Avatar key={String(size)} size={size} shape={shape} initials="AL" alt="Ada Lovelace" />)}
+        </div>)}
+    </div>
+}`,...v.parameters?.docs?.source}}};x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  render: () => <div style={{
+    display: 'flex',
+    gap: '12px',
+    alignItems: 'center'
+  }}>
+      <Avatar src={sampleSrc} alt="Image" />
+      <Avatar src="/missing-avatar.png" alt="Broken image falls back to initials" initials="BI" />
+      <Avatar initials="MR" alt="Mario Rossi" />
+      <Avatar alt="Default icon" />
+      <Avatar icon={<Bot />} alt="Custom icon" />
+    </div>
+}`,...x.parameters?.docs?.source}}};const J=["Default","AllVariants","States"];export{v as AllVariants,f as Default,x as States,J as __namedExportsOrder,H as default};

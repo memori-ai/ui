@@ -1,1 +1,0 @@
-import{r as h}from"./floating-ui.utils-KD-aFX0i.js";import{c as r,i as c}from"./floating-ui.utils.dom-B8UkErNH.js";function g(t){const i=r(t);let s=parseFloat(i.width)||0,o=parseFloat(i.height)||0;const f=c(t),a=f?t.offsetWidth:s,e=f?t.offsetHeight:o;return(h(s)!==a||h(o)!==e)&&(s=a,o=e),{width:s,height:o}}export{g};

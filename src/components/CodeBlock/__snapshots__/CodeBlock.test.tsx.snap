@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CodeBlock > renders CodeBlock unchanged 1`] = `
+<div>
+  <div
+    class="memori-code-block"
+  >
+    <div
+      class="memori-code-block__header"
+    >
+      <span
+        class="memori-code-block__language"
+      >
+        ts
+      </span>
+      <button
+        class="memori-button memori-button--ghost memori-button--xs"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="memori-button__icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-copy"
+            fill="none"
+            height="14"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="14"
+              rx="2"
+              ry="2"
+              width="14"
+              x="8"
+              y="8"
+            />
+            <path
+              d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+            />
+          </svg>
+        </span>
+        <span
+          class="memori-button__content"
+        >
+          <span
+            aria-live="polite"
+          >
+            Copy
+          </span>
+        </span>
+      </button>
+    </div>
+    <pre
+      class="memori-code-block__pre"
+      tabindex="0"
+    >
+      <code>
+        const a = 1
+      </code>
+    </pre>
+  </div>
+</div>
+`;

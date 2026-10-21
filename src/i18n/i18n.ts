@@ -5,6 +5,7 @@ import {
 } from './tableLocales'
 import {
   MEMORI_ALERT_LOCALES,
+  MEMORI_COMMON_LOCALES,
   MEMORI_EXPANDABLE_LOCALES,
   MEMORI_OVERLAY_LOCALES,
 } from './uiLocales'
@@ -18,6 +19,7 @@ const resources = Object.fromEntries(
         expandable: MEMORI_EXPANDABLE_LOCALES[lng],
         alert: MEMORI_ALERT_LOCALES[lng],
         overlay: MEMORI_OVERLAY_LOCALES[lng],
+        common: MEMORI_COMMON_LOCALES[lng],
       },
     },
   ]),
@@ -25,7 +27,7 @@ const resources = Object.fromEntries(
 
 /**
  * Preconfigured i18next instance with Memori UI strings (`table.*`,
- * `expandable.*`, `alert.*`, `overlay.*`) for all shipped locales.
+ * `expandable.*`, `alert.*`, `overlay.*`, `common.*`) for all shipped locales.
  * Use with [`MemoriI18nProvider`](./MemoriI18nProvider.tsx) or merge into your
  * own instance via `addMemoriTableToI18n`.
  */

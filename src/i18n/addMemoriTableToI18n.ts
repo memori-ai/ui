@@ -5,6 +5,7 @@ import {
 } from './tableLocales'
 import {
   MEMORI_ALERT_LOCALES,
+  MEMORI_COMMON_LOCALES,
   MEMORI_EXPANDABLE_LOCALES,
   MEMORI_OVERLAY_LOCALES,
 } from './uiLocales'
@@ -12,13 +13,13 @@ import {
 export interface AddMemoriTableToI18nOptions {
   /**
    * i18next namespace to merge UI strings under.
-   * @default 'translation' (keys: `table.*`, `expandable.*`, `alert.*`, `overlay.*`)
+   * @default 'translation' (keys: `table.*`, `expandable.*`, `alert.*`, `overlay.*`, `common.*`)
    */
   namespace?: string
 }
 
 /**
- * Merges Memori UI `table.*`, `expandable.*`, `alert.*`, and `overlay.*` strings
+ * Merges Memori UI `table.*`, `expandable.*`, `alert.*`, `overlay.*`, and `common.*` strings
  * into an existing i18next instance for every shipped locale.
  * Call after `i18n.init()` (or use `await` if your init is async).
  *
@@ -43,10 +44,11 @@ export function addMemoriTableToI18n(
     const expandable = MEMORI_EXPANDABLE_LOCALES[lng]
     const alert = MEMORI_ALERT_LOCALES[lng]
     const overlay = MEMORI_OVERLAY_LOCALES[lng]
+    const common = MEMORI_COMMON_LOCALES[lng]
     instance.addResourceBundle(
       lng,
       namespace,
-      { table, expandable, alert, overlay },
+      { table, expandable, alert, overlay, common },
       true,
       true,
     )

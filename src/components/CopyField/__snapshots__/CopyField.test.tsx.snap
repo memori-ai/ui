@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CopyField > renders CopyField unchanged 1`] = `
+<div>
+  <div
+    class="memori-copy-field"
+  >
+    <input
+      class="memori-input memori-input--default memori-input--md memori-input--full-width memori-copy-field__input"
+      id="base-ui-_r_0_"
+      readonly=""
+      type="text"
+      value="abc-123"
+    />
+    <button
+      aria-label="Copy"
+      class="memori-button memori-button--outline memori-button--md memori-button--icon-only"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="memori-button__icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-copy"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="14"
+            rx="2"
+            ry="2"
+            width="14"
+            x="8"
+            y="8"
+          />
+          <path
+            d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+          />
+        </svg>
+      </span>
+    </button>
+    <span
+      aria-live="polite"
+      class="memori-copy-field__status"
+      role="status"
+    />
+  </div>
+</div>
+`;

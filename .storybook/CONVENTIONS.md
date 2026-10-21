@@ -10,15 +10,15 @@ Source of truth for new/migrated stories. Full audit/plan: workspace `storybook-
 
 ## Title taxonomy
 
-| Prefix                  | Components                                                              |
-| ----------------------- | ----------------------------------------------------------------------- |
-| `Azioni e navigazione/` | Button, Tabs, Dropdown, Expandable, Collapsible                         |
-| `Overlay/`              | Modal, Drawer, Popover, Tooltip, ConfirmDialog                          |
-| `Form/`                 | Form, Field, Input, Checkbox, SelectBox, Combobox, Autocomplete, Slider |
-| `Feedback/`             | Alert, Spin                                                             |
-| `Contenuto/`            | Card, Section, Table                                                    |
-| `Infrastruttura/`       | Tokens, providers, portal demos                                         |
-| `Esempi/`               | Showcase / product compositions (prefer `tags` without autodocs)        |
+| Prefix                  | Components                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| `Azioni e navigazione/` | Button, Tabs, Dropdown, Expandable, Collapsible, Breadcrumbs, NavList                            |
+| `Overlay/`              | Modal, Drawer, Popover, Tooltip, ConfirmDialog, InfoHint                                         |
+| `Form/`                 | Form, Field, Input, Checkbox, SelectBox, Combobox, Autocomplete, Slider, CopyField, FileDropzone |
+| `Feedback/`             | Alert, Spin, Callout                                                                             |
+| `Contenuto/`            | Card, Section, Table, CodeBlock, StatCard                                                        |
+| `Infrastruttura/`       | Tokens, providers, portal demos                                                                  |
+| `Esempi/`               | Showcase / product compositions (prefer `tags` without autodocs)                                 |
 
 ## Minimum stories per component
 

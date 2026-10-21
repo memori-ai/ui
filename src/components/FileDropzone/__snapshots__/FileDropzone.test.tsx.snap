@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FileDropzone > renders FileDropzone unchanged 1`] = `
+<div>
+  <div
+    class="memori-file-dropzone memori-file-dropzone--area"
+  >
+    <input
+      aria-describedby="_r_1_"
+      class="memori-file-dropzone__input"
+      id="_r_0_"
+      type="file"
+    />
+    <label
+      class="memori-file-dropzone__label"
+      for="_r_0_"
+    >
+      <span
+        aria-hidden="true"
+        class="memori-file-dropzone__icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-upload"
+          fill="none"
+          height="28"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="28"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 3v12"
+          />
+          <path
+            d="m17 8-5-5-5 5"
+          />
+          <path
+            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+          />
+        </svg>
+      </span>
+      <span
+        class="memori-file-dropzone__title"
+      >
+        Drag files here or
+         
+        <span
+          class="memori-file-dropzone__browse"
+        >
+          browse
+        </span>
+      </span>
+      <span
+        class="memori-file-dropzone__description"
+        id="_r_1_"
+      >
+        PDF, max 20 MB
+      </span>
+    </label>
+  </div>
+</div>
+`;

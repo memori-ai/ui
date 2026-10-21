@@ -114,6 +114,75 @@ export const MEMORI_OVERLAY_LOCALES = {
   de: overlayDe,
 } as const
 
+export const commonEn = {
+  copy: 'Copy',
+  copied: 'Copied',
+  show: 'Show',
+  hide: 'Hide',
+  breadcrumb: 'Breadcrumb',
+  moreInfo: 'More information',
+  dropzoneTitle: 'Drag files here or',
+  dropzoneBrowse: 'browse',
+  removeFile: 'Remove file',
+} as const
+
+export const commonIt = {
+  copy: 'Copia',
+  copied: 'Copiato',
+  show: 'Mostra',
+  hide: 'Nascondi',
+  breadcrumb: 'Percorso',
+  moreInfo: 'Maggiori informazioni',
+  dropzoneTitle: 'Trascina qui i file oppure',
+  dropzoneBrowse: 'sfoglia',
+  removeFile: 'Rimuovi file',
+} as const
+
+export const commonEs = {
+  copy: 'Copiar',
+  copied: 'Copiado',
+  show: 'Mostrar',
+  hide: 'Ocultar',
+  breadcrumb: 'Ruta de navegación',
+  moreInfo: 'Más información',
+  dropzoneTitle: 'Arrastra los archivos aquí o',
+  dropzoneBrowse: 'explora',
+  removeFile: 'Eliminar archivo',
+} as const
+
+export const commonFr = {
+  copy: 'Copier',
+  copied: 'Copié',
+  show: 'Afficher',
+  hide: 'Masquer',
+  breadcrumb: "Fil d'Ariane",
+  moreInfo: "Plus d'informations",
+  dropzoneTitle: 'Glissez les fichiers ici ou',
+  dropzoneBrowse: 'parcourez',
+  removeFile: 'Supprimer le fichier',
+} as const
+
+export const commonDe = {
+  copy: 'Kopieren',
+  copied: 'Kopiert',
+  show: 'Anzeigen',
+  hide: 'Ausblenden',
+  breadcrumb: 'Brotkrumen',
+  moreInfo: 'Weitere Informationen',
+  dropzoneTitle: 'Dateien hierher ziehen oder',
+  dropzoneBrowse: 'durchsuchen',
+  removeFile: 'Datei entfernen',
+} as const
+
+export const MEMORI_COMMON_LOCALES = {
+  en: commonEn,
+  it: commonIt,
+  es: commonEs,
+  fr: commonFr,
+  de: commonDe,
+} as const
+
 export type MemoriExpandableTranslations = typeof expandableEn
 export type MemoriAlertTranslations = typeof alertEn
 export type MemoriOverlayTranslations = typeof overlayEn
+export type MemoriCommonTranslations = typeof commonEn

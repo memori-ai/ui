@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StatCard > renders StatCard unchanged 1`] = `
+<div>
+  <dl
+    class="memori-stat-card memori-stat-card--outlined"
+  >
+    <dt
+      class="memori-stat-card__label"
+    >
+      Messages
+    </dt>
+    <dd
+      class="memori-stat-card__value"
+    >
+      12.4k
+    </dd>
+    <dd
+      class="memori-stat-card__delta memori-stat-card__delta--up"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-trending-up"
+        fill="none"
+        height="14"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="14"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 7h6v6"
+        />
+        <path
+          d="m22 7-8.5 8.5-5-5L2 17"
+        />
+      </svg>
+      +8%
+    </dd>
+  </dl>
+</div>
+`;

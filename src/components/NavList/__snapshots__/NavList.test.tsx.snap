@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavList > renders NavList unchanged 1`] = `
+<div>
+  <div
+    class="memori-nav-list"
+  >
+    <div
+      class="memori-nav-list__group"
+    >
+      <ul
+        class="memori-nav-list__items"
+      >
+        <li>
+          <a
+            aria-current="page"
+            class="memori-nav-list__item memori-nav-list__item--active"
+            href="#home"
+          >
+            <span
+              class="memori-nav-list__text"
+            >
+              Home
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+      aria-labelledby="_r_1_"
+      class="memori-nav-list__group"
+      role="group"
+    >
+      <p
+        class="memori-nav-list__group-label"
+        id="_r_1_"
+      >
+        Settings
+      </p>
+      <ul
+        class="memori-nav-list__items"
+      >
+        <li>
+          <button
+            class="memori-nav-list__item"
+            type="button"
+          >
+            <span
+              class="memori-nav-list__text"
+            >
+              General
+            </span>
+            <span
+              class="memori-nav-list__trailing"
+            >
+              3
+            </span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="memori-nav-list__item"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="memori-nav-list__text"
+            >
+              Locked
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

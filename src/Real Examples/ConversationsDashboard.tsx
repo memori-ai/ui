@@ -5,15 +5,22 @@ import type {
   PaginationState,
 } from '@tanstack/react-table'
 import {
+  Bell,
+  Download,
   ExternalLink,
   Image as ImageIcon,
   Link as LinkIcon,
+  Menu,
   MessageCircle,
   Trash2,
 } from 'lucide-react'
+import { ConfirmDialog } from '../components/ConfirmDialog'
+import { Dropdown } from '../components/Dropdown'
 import { Section } from '../components/Section'
-import { Table, type FilterDef } from '../components/Table'
+import { Table, type DateRangeValue, type FilterDef } from '../components/Table'
 import '../components/Input/styles.css'
+import { ChatLogDrawer } from './conversations/ChatLogDrawer'
+import { useNotify } from './shared/useNotify'
 import styles from './realExamples.module.css'
 
 export type ConversationRow = {
@@ -25,6 +32,10 @@ export type ConversationRow = {
   durata: string
   hasMedia: boolean
   hasLink: boolean
+  /** Receiver role (invitation tag), empty for public chats */
+  ruolo?: string
+  /** ISO day used by the date-range filter */
+  giorno: string
 }
 
 function buildConversations(): ConversationRow[] {
@@ -38,6 +49,7 @@ function buildConversations(): ConversationRow[] {
       durata: 'meno di un minuto',
       hasMedia: false,
       hasLink: false,
+      giorno: '2026-03-23',
     },
     {
       id: '2',
@@ -48,6 +60,8 @@ function buildConversations(): ConversationRow[] {
       durata: '2 min',
       hasMedia: true,
       hasLink: false,
+      giorno: '2026-03-22',
+      ruolo: 'Atleta',
     },
     {
       id: '3',
@@ -58,6 +72,7 @@ function buildConversations(): ConversationRow[] {
       durata: 'meno di un minuto',
       hasMedia: true,
       hasLink: true,
+      giorno: '2026-03-20',
     },
     {
       id: '4',
@@ -68,6 +83,7 @@ function buildConversations(): ConversationRow[] {
       durata: 'meno di un minuto',
       hasMedia: false,
       hasLink: true,
+      giorno: '2026-03-19',
     },
   ]
 
@@ -80,6 +96,8 @@ function buildConversations(): ConversationRow[] {
     durata: i % 3 === 0 ? '2 min' : 'meno di un minuto',
     hasMedia: i % 4 === 0,
     hasLink: i % 5 === 0,
+    ruolo: i % 6 === 0 ? 'Cliente' : undefined,
+    giorno: `2026-03-${String(18 - (i % 10)).padStart(2, '0')}`,
   }))
 
   return [...base, ...rest]
@@ -94,9 +112,17 @@ const conversationFilterDefs: FilterDef[] = [
     variant: 'select',
     options: [
       { value: '2', label: 'Almeno 2 messaggi' },
+      { value: '3', label: 'Almeno 3 messaggi' },
       { value: '5', label: 'Almeno 5 messaggi' },
       { value: '10', label: 'Almeno 10 messaggi' },
+      { value: '15', label: 'Almeno 15 messaggi' },
+      { value: '20', label: 'Almeno 20 messaggi' },
     ],
+  },
+  {
+    id: 'giorno',
+    label: 'Intervallo di date',
+    variant: 'date-range',
   },
   {
     id: 'hasMedia',
@@ -116,6 +142,10 @@ const conversationFilterDefs: FilterDef[] = [
  * Elenco conversazioni: intestazione con titolo e filtri, tabella con azioni Apri ed Elimina.
  */
 export function ConversationsDashboard() {
+  const notify = useNotify()
+  const [rows, setRows] = useState(ALL_CONVERSATIONS)
+  const [opened, setOpened] = useState<ConversationRow | null>(null)
+  const [deleting, setDeleting] = useState<ConversationRow[] | null>(null)
   const [search, setSearch] = useState('')
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [pagination, setPagination] = useState<PaginationState>({
@@ -166,6 +196,15 @@ export function ConversationsDashboard() {
         size: 160,
       },
       {
+        accessorKey: 'ruolo',
+        header: 'Ruolo',
+        size: 110,
+        cell: ({ getValue }) =>
+          (getValue() as string) ?? (
+            <span className={styles.tableMutedCell}>—</span>
+          ),
+      },
+      {
         id: 'media',
         header: 'Media',
         size: 72,
@@ -198,10 +237,10 @@ export function ConversationsDashboard() {
   )
 
   const filtered = useMemo(() => {
-    let rows = [...ALL_CONVERSATIONS]
+    let list = [...rows]
     if (search.trim()) {
       const q = search.toLowerCase()
-      rows = rows.filter(
+      list = list.filter(
         r =>
           r.titolo.toLowerCase().includes(q) ||
           r.mail.toLowerCase().includes(q) ||
@@ -212,18 +251,26 @@ export function ConversationsDashboard() {
       if (f.id === 'messaggiMin' && typeof f.value === 'string' && f.value) {
         const min = Number(f.value)
         if (!Number.isNaN(min)) {
-          rows = rows.filter(r => r.messaggi >= min)
+          list = list.filter(r => r.messaggi >= min)
         }
       }
       if (f.id === 'hasMedia' && f.value === true) {
-        rows = rows.filter(r => r.hasMedia)
+        list = list.filter(r => r.hasMedia)
       }
       if (f.id === 'hasLink' && f.value === true) {
-        rows = rows.filter(r => r.hasLink)
+        list = list.filter(r => r.hasLink)
+      }
+      if (f.id === 'giorno' && f.value) {
+        const { from, to } = f.value as DateRangeValue
+        list = list.filter(
+          r => (!from || r.giorno >= from) && (!to || r.giorno <= to),
+        )
       }
     }
-    return rows
-  }, [search, columnFilters])
+    return list
+  }, [rows, search, columnFilters])
+
+  const hasDateFilter = columnFilters.some(f => f.id === 'giorno' && f.value)
 
   const pageRows = useMemo(() => {
     const start = pagination.pageIndex * pagination.pageSize
@@ -241,6 +288,53 @@ export function ConversationsDashboard() {
             strokeWidth={1.75}
             aria-hidden
           />
+        }
+        actions={
+          <Dropdown>
+            <Dropdown.Trigger
+              showChevron={false}
+              aria-label="Azioni"
+            >
+              <Menu
+                size={18}
+                aria-hidden
+              />
+            </Dropdown.Trigger>
+            <Dropdown.Menu align="end">
+              <Dropdown.Item
+                icon={
+                  <Download
+                    size={16}
+                    aria-hidden
+                  />
+                }
+                disabled={!hasDateFilter}
+                onClick={() => notify('Conversazioni scaricate con successo')}
+              >
+                <span className={styles.menuItemStack}>
+                  Scarica conversazioni
+                  {!hasDateFilter ? (
+                    <span className={styles.menuItemHint}>
+                      Filtra prima per data
+                    </span>
+                  ) : null}
+                </span>
+              </Dropdown.Item>
+              <Dropdown.Item
+                icon={
+                  <Bell
+                    size={16}
+                    aria-hidden
+                  />
+                }
+                onClick={() =>
+                  notify('Apertura Impostazioni › Notifiche', 'info')
+                }
+              >
+                Notifiche
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         }
         className={styles.conversationsSection}
       />
@@ -262,6 +356,20 @@ export function ConversationsDashboard() {
         paginationVariant="simplified"
         pageSizeOptions={[10, 25, 50]}
         initialPageSize={25}
+        enableRowSelection
+        bulkActions={[
+          {
+            label: 'Elimina',
+            variant: 'danger',
+            icon: (
+              <Trash2
+                size={16}
+                aria-hidden
+              />
+            ),
+            onClick: sel => setDeleting(sel.map(r => r.original)),
+          },
+        ]}
         rowActionsVariant="inline"
         rowActions={[
           {
@@ -273,9 +381,7 @@ export function ConversationsDashboard() {
                 aria-hidden
               />
             ),
-            onClick: () => {
-              /* demo */
-            },
+            onClick: row => setOpened(row.original),
           },
           {
             id: 'delete',
@@ -287,12 +393,30 @@ export function ConversationsDashboard() {
                 aria-hidden
               />
             ),
-            onClick: () => {
-              /* demo */
-            },
+            onClick: row => setDeleting([row.original]),
           },
         ]}
         tableId="real-example-conversations"
+      />
+      <ChatLogDrawer
+        conversation={opened}
+        conversations={filtered}
+        onNavigate={setOpened}
+        onClose={() => setOpened(null)}
+      />
+      <ConfirmDialog
+        isOpen={!!deleting}
+        onClose={() => setDeleting(null)}
+        onConfirm={() => {
+          const ids = new Set(deleting?.map(d => d.id))
+          setRows(prev => prev.filter(r => !ids.has(r.id)))
+          setDeleting(null)
+          notify('Elemento/i eliminato/i con successo')
+        }}
+        title="Elimina"
+        message="Sicuro di voler eliminare gli elementi selezionati?"
+        confirmText="Conferma"
+        cancelText="Annulla"
       />
     </div>
   )

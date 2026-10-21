@@ -1,0 +1,536 @@
+/* Statistics pages (agent "Statistiche", tenant "Consumi").
+ *
+ * Series colors are the brand violet + teal, stepped per theme and run through
+ * the dataviz validator (CVD ΔE ≥ 9.6, normal-vision ΔE ≥ 23.5, ≥ 3:1 on the
+ * card surface) in both modes. Text never wears them. */
+
+.root {
+    --stats-series-1: #8246af;
+    --stats-series-2: #009ba3;
+    --stats-surface: var(--memori-secondary-background);
+    --stats-grid: color-mix(in oklch, var(--memori-text-color) 9%, var(--stats-surface));
+    --stats-axis: color-mix(in oklch, var(--memori-text-color) 22%, var(--stats-surface));
+
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--memori-spacing-lg);
+}
+
+[data-theme='dark'] .root,
+html[class~='dark'] .root {
+    --stats-series-1: #a365d4;
+    --stats-series-2: #00a0a1;
+}
+
+/* ─── Filter row ─── */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--memori-spacing-md);
+}
+
+.filtersEnd {
+    display: flex;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+    margin-inline-start: auto;
+}
+
+.periodSelect {
+    width: 13rem;
+}
+
+.dateInput {
+    width: 11rem;
+}
+
+.rangeNote {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Month stepper (tenant) */
+.monthStepper {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--memori-spacing-xs);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background: var(--memori-secondary-background);
+    gap: var(--memori-spacing-xs);
+}
+
+.monthLabel {
+    min-width: 9.5rem;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+    text-align: center;
+}
+
+.monthLabelHint {
+    display: block;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+/* ─── Panels ─── */
+
+.panel {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: var(--memori-spacing-lg);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-surface);
+    background: var(--stats-surface);
+    gap: var(--memori-spacing-md);
+}
+
+.panelHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--memori-spacing-sm) var(--memori-spacing-md);
+}
+
+.panelTitle {
+    margin: 0;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-md);
+    font-weight: var(--memori-text-weight-semibold);
+    line-height: var(--memori-text-line-tight);
+}
+
+.panelDescription {
+    margin: var(--memori-spacing-xs) 0 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    line-height: var(--memori-text-line-normal);
+}
+
+.panelGrid {
+    display: grid;
+    gap: var(--memori-spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.subTabs {
+    align-self: flex-start;
+}
+
+.footnote {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    line-height: var(--memori-text-line-normal);
+}
+
+/* KPI row: fill the width like the panels below (2-up on phones) */
+.kpis {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+}
+
+@media (width > 40rem) {
+    .kpis {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
+}
+
+/* Stat card value that is a name, not a number */
+.textValue {
+    display: block;
+    overflow: hidden;
+    font-size: var(--memori-text-size-lg);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ─── Plan usage meters (tenant) ─── */
+
+.meters {
+    display: grid;
+    margin: 0;
+    gap: var(--memori-spacing-lg) var(--memori-spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.meter {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--memori-spacing-xs);
+}
+
+.meterHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--memori-spacing-sm);
+}
+
+.meterLabel {
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.meterValue {
+    margin: 0;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.meterValue span {
+    color: var(--memori-neutral);
+}
+
+.meterNote {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.meterNoteWarn {
+    color: var(--memori-error-text);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+/* ─── Table cells ─── */
+
+.num {
+    display: block;
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    white-space: nowrap;
+}
+
+.numSub {
+    display: block;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    white-space: nowrap;
+}
+
+.cellStack {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+
+.cellSub {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.shareCell {
+    display: flex;
+    min-width: 7rem;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.shareTrack {
+    overflow: hidden;
+    height: 6px;
+    flex: 1;
+    border-radius: var(--memori-radius-full);
+    background: color-mix(in oklch, var(--stats-series-1) 16%, var(--stats-surface));
+}
+
+.shareFill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--stats-series-1);
+}
+
+.shareValue {
+    min-width: 3.25rem;
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+}
+
+/* ─── Charts ─── */
+
+.chart {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    border-radius: var(--memori-radius-xs);
+    outline: none;
+}
+
+.chart:focus-visible {
+    box-shadow: var(--memori-focus-ring);
+}
+
+.chartSvg {
+    display: block;
+    overflow: visible;
+}
+
+.gridline {
+    stroke: var(--stats-grid);
+    stroke-width: 1;
+}
+
+.baseline {
+    stroke: var(--stats-axis);
+    stroke-width: 1;
+}
+
+.tickY,
+.tickX {
+    fill: var(--memori-neutral);
+    font-family: var(--memori-font-family);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.tickY {
+    dominant-baseline: middle;
+    text-anchor: end;
+}
+
+.tickX {
+    text-anchor: middle;
+}
+
+.activeBand {
+    fill: color-mix(in oklch, var(--memori-text-color) 5%, transparent);
+}
+
+.line {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.dot {
+    stroke: var(--stats-surface);
+    stroke-width: 2;
+}
+
+.readout {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    min-width: 10rem;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-xs);
+    background: var(--memori-secondary-background);
+    box-shadow: var(--memori-shadow-md);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.readoutTitle {
+    margin-bottom: var(--memori-spacing-xs);
+    color: var(--memori-neutral);
+}
+
+.readoutRow {
+    display: flex;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+    line-height: var(--memori-text-line-normal);
+}
+
+.readoutRow strong {
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.readoutRow span:last-child {
+    color: var(--memori-neutral);
+}
+
+.readoutKey {
+    width: 0.75rem;
+    height: 2px;
+    flex-shrink: 0;
+    border-radius: 1px;
+}
+
+.readoutTotal {
+    padding-top: var(--memori-spacing-xs);
+    border-top: var(--memori-border) solid var(--memori-border-color);
+    margin-top: var(--memori-spacing-xs);
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    gap: var(--memori-spacing-xs) var(--memori-spacing-md);
+    list-style: none;
+}
+
+.legendItem {
+    display: inline-flex;
+    align-items: center;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-xs);
+}
+
+.legendKey {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+}
+
+.legendKeyLine {
+    width: 1rem;
+    height: 2px;
+    border-radius: 1px;
+}
+
+/* Bar list (ranking) */
+.barList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: var(--memori-spacing-md);
+    list-style: none;
+}
+
+.barRow {
+    display: grid;
+    align-items: center;
+    gap: var(--memori-spacing-xs) var(--memori-spacing-md);
+    grid-template-areas: 'label value' 'track track';
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.barLabel {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    gap: var(--memori-spacing-sm);
+    grid-area: label;
+}
+
+.barName {
+    overflow: hidden;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.barSub {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    white-space: nowrap;
+}
+
+.barTrack {
+    grid-area: track;
+}
+
+.barFill {
+    display: flex;
+    min-width: 2px;
+    height: 0.75rem;
+    gap: 2px;
+}
+
+.barSegment {
+    min-width: 1px;
+    flex-basis: 0;
+}
+
+.barSegment:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.barValue {
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--memori-text-weight-semibold);
+    grid-area: value;
+}
+
+/* Table view under a chart */
+.dataTableWrap {
+    overflow: auto;
+    max-height: 18rem;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--memori-text-size-sm);
+    font-variant-numeric: tabular-nums;
+}
+
+.dataTable th,
+.dataTable td {
+    padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    text-align: end;
+    white-space: nowrap;
+}
+
+.dataTable thead th {
+    position: sticky;
+    top: 0;
+    background: var(--stats-surface);
+    color: var(--memori-neutral);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.dataTable tbody th {
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.dataTable th:first-child {
+    text-align: start;
+}
+
+.visuallyHidden {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@media (width <= 40rem) {
+    .panel {
+        padding: var(--memori-spacing-md);
+    }
+
+    .filtersEnd {
+        width: 100%;
+        margin-inline-start: 0;
+    }
+
+    .periodSelect,
+    .dateInput {
+        width: 100%;
+    }
+}

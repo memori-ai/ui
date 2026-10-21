@@ -1,0 +1,611 @@
+/* Alternative shell layouts.
+ * Example 3 (rail): icon rail + area header with section links + docked test panel.
+ * Example 4 (topnav): navigation in the header + agent subnav + floating chat. */
+
+/* ─── Shared ─── */
+
+.menuGrow {
+    flex: 1;
+}
+
+.menuIcon {
+    display: inline-flex;
+    color: var(--memori-neutral);
+}
+
+.mobileOnly {
+    display: none !important;
+}
+
+@media (width <= 768px) {
+    .mobileOnly {
+        display: flex !important;
+    }
+
+    .desktopOnly {
+        display: none !important;
+    }
+}
+
+@media (width <= 640px) {
+    .hideOnPhone {
+        display: none !important;
+    }
+}
+
+/* ─── Example 3: rail ─── */
+
+.rail {
+    display: flex;
+    width: 5.25rem;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: stretch;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-xs);
+    border-right: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-sm);
+    overflow-y: auto;
+}
+
+.railList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    gap: var(--memori-spacing-xs);
+    list-style: none;
+}
+
+.railFooter {
+    margin-top: auto;
+}
+
+.railItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--memori-spacing-xs) 2px;
+    border-radius: var(--memori-radius-control);
+    color: var(--memori-neutral);
+    gap: 2px;
+    text-align: center;
+    text-decoration: none;
+    transition: color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+}
+
+.railIcon {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--memori-radius-full);
+    transition: background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+}
+
+.railLabel {
+    max-width: 100%;
+    font-size: 0.75rem;
+    font-weight: var(--memori-text-weight-medium);
+    line-height: var(--memori-text-line-tight);
+    overflow-wrap: anywhere;
+}
+
+.railItem:hover {
+    color: var(--memori-text-color);
+}
+
+.railItem:hover .railIcon {
+    background-color: color-mix(in oklch, var(--memori-text-color) 7%, transparent);
+}
+
+.railItem.railItemActive,
+.railItem.railItemActive:hover {
+    color: var(--memori-primary);
+}
+
+.railItem.railItemActive .railIcon,
+.railItem.railItemActive:hover .railIcon {
+    background-color: var(--memori-primary-subtle);
+}
+
+.railDivider {
+    height: 1px;
+    margin: var(--memori-spacing-xs) var(--memori-spacing-sm);
+    background-color: var(--memori-border-color);
+}
+
+.railAgent {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: var(--memori-radius-control);
+}
+
+.railAgent > * {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: outline-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+}
+
+.railAgent:hover > * {
+    outline-color: var(--memori-border-color);
+}
+
+.railAgent.railAgentActive > *,
+.railAgent.railAgentActive:hover > * {
+    outline-color: var(--memori-primary);
+}
+
+/* Area header (agent / admin) */
+.areaHeader {
+    display: flex;
+    flex-direction: column;
+    padding: var(--memori-spacing-md) clamp(var(--memori-spacing-md), 4vw, var(--memori-spacing-xl)) 0;
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-sm);
+}
+
+.areaIdentity {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.areaIcon {
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--memori-radius-control);
+    background: var(--memori-primary-subtle);
+    color: var(--memori-primary);
+}
+
+.areaName {
+    overflow: hidden;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-lg);
+    font-weight: var(--memori-text-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.areaSwitcher.areaSwitcher {
+    min-width: 0;
+    flex: 0 1 auto;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-sm) var(--memori-spacing-xs) var(--memori-spacing-xs);
+    border-color: transparent;
+    margin-left: calc(-1 * var(--memori-spacing-xs));
+    background: transparent;
+    gap: var(--memori-spacing-sm);
+}
+
+.areaSwitcher.areaSwitcher:hover {
+    border-color: var(--memori-border-color);
+    background: var(--memori-main-background);
+}
+
+.areaChevron {
+    flex-shrink: 0;
+    color: var(--memori-neutral);
+}
+
+.areaActions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin-left: auto;
+    gap: var(--memori-spacing-sm);
+}
+
+.sectionNav {
+    margin-inline: calc(-1 * var(--memori-spacing-sm));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+
+.sectionNav::-webkit-scrollbar {
+    display: none;
+}
+
+.sectionNavList {
+    display: flex;
+    align-items: stretch;
+    padding: 0 var(--memori-spacing-sm);
+    margin: 0;
+    gap: 2px;
+    list-style: none;
+}
+
+.sectionNavDivider {
+    width: 1px;
+    flex-shrink: 0;
+    margin: var(--memori-spacing-sm) var(--memori-spacing-sm);
+    background-color: var(--memori-border-color);
+}
+
+.sectionNavLink {
+    position: relative;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: 0 var(--memori-spacing-sm);
+    border-radius: var(--memori-radius-xs) var(--memori-radius-xs) 0 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+    gap: var(--memori-spacing-xs);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sectionNavIcon {
+    display: inline-flex;
+}
+
+.sectionNavIcon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.sectionNavLink:hover {
+    color: var(--memori-text-color);
+}
+
+.sectionNavLinkActive,
+.sectionNavLinkActive:hover {
+    color: var(--memori-text-color);
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.sectionNavLinkActive::after {
+    position: absolute;
+    height: 2px;
+    border-radius: 2px 2px 0 0;
+    background-color: var(--memori-primary);
+    content: '';
+    inset: auto var(--memori-spacing-sm) 0;
+}
+
+.sectionNavLinkActive .sectionNavIcon {
+    color: var(--memori-primary);
+}
+
+/* Docked test panel */
+.testPanel {
+    display: flex;
+    width: 24rem;
+    min-height: 0;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-left: var(--memori-border) solid var(--memori-border-color);
+    animation: panel-in var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
+    background-color: var(--memori-secondary-background);
+}
+
+@keyframes panel-in {
+    from {
+        opacity: 0;
+        transform: translateX(var(--memori-spacing-lg));
+    }
+}
+
+.testPanelHead {
+    display: flex;
+    align-items: center;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-sm) var(--memori-spacing-sm) var(--memori-spacing-md);
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    gap: var(--memori-spacing-xs);
+}
+
+.testPanelTitle {
+    overflow: hidden;
+    flex: 1;
+    margin-left: var(--memori-spacing-xs);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.testPanelMode {
+    display: flex;
+    flex-direction: column;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md) 0;
+    gap: var(--memori-spacing-xs);
+}
+
+.testPanelNote {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.testPanelLog.testPanelLog {
+    min-height: 0;
+    flex: 1;
+    padding: var(--memori-spacing-md);
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.testPanelFoot {
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md) var(--memori-spacing-md);
+    border-top: var(--memori-border) solid var(--memori-border-color);
+}
+
+@media (width <= 1100px) {
+    .testPanel {
+        width: 21rem;
+    }
+}
+
+@media (width <= 768px) {
+    .rail {
+        display: none;
+    }
+
+    .testPanel {
+        position: fixed;
+        z-index: 6;
+        width: auto;
+        border-left: 0;
+        inset: 0;
+    }
+}
+
+/* ─── Example 4: top navigation ─── */
+
+.topNav {
+    display: flex;
+    align-items: center;
+    margin-left: var(--memori-spacing-lg);
+    gap: 2px;
+}
+
+.topLink.topLink {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    padding: 0 var(--memori-spacing-sm);
+    border: 0;
+    border-radius: var(--memori-radius-control);
+    background: transparent;
+    box-shadow: none;
+    color: var(--memori-neutral);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+    gap: var(--memori-spacing-xs);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.topLink.topLink:hover {
+    background-color: color-mix(in oklch, var(--memori-text-color) 6%, transparent);
+    color: var(--memori-text-color);
+}
+
+.topLinkActive.topLinkActive,
+.topLinkActive.topLinkActive:hover {
+    background-color: var(--memori-primary-subtle);
+    color: var(--memori-primary);
+}
+
+.topLinkCurrent {
+    color: var(--memori-text-color);
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.subnav {
+    display: flex;
+    min-height: 3rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    align-items: center;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-md);
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-xs);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.subnav::-webkit-scrollbar {
+    display: none;
+}
+
+.subnavSwitcher.subnavSwitcher {
+    flex-shrink: 0;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-sm) var(--memori-spacing-xs) var(--memori-spacing-xs);
+    border-color: transparent;
+    background: transparent;
+    gap: var(--memori-spacing-sm);
+}
+
+.subnavSwitcher.subnavSwitcher:hover {
+    border-color: var(--memori-border-color);
+}
+
+.subnavAgentName {
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+    white-space: nowrap;
+}
+
+.subnavDivider {
+    width: 1px;
+    height: 1.25rem;
+    flex-shrink: 0;
+    margin: 0 var(--memori-spacing-xs);
+    background-color: var(--memori-border-color);
+}
+
+.subnavGroups {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.subnavGroup.subnavGroup {
+    flex-shrink: 0;
+}
+
+.subnavEnd {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+@media (width <= 768px) {
+    .topNav {
+        display: none;
+    }
+}
+
+/* Floating chat window + launcher */
+.mainWithLauncher {
+    /* keep the last row's actions clear of the launcher */
+    padding-bottom: 5rem;
+}
+
+.launcher {
+    position: fixed;
+    z-index: 5;
+    right: var(--memori-spacing-lg);
+    bottom: var(--memori-spacing-lg);
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-md) var(--memori-spacing-xs) var(--memori-spacing-xs);
+    border: 0;
+    border-radius: var(--memori-radius-full);
+    background: var(--memori-primary);
+    box-shadow: var(--memori-shadow-lg);
+    color: var(--memori-primary-content);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+    gap: var(--memori-spacing-sm);
+    transition:
+        transform var(--memori-motion-duration-fast) var(--memori-motion-ease-out),
+        background-color var(--memori-motion-duration-fast) var(--memori-motion-ease-out);
+}
+
+.launcher:hover {
+    background: var(--memori-primary-hover);
+    transform: translateY(-1px);
+}
+
+.launcherDot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--memori-accent);
+    box-shadow: 0 0 0 2px var(--memori-primary);
+}
+
+.chatWindow {
+    position: fixed;
+    z-index: 5;
+    right: var(--memori-spacing-lg);
+    bottom: var(--memori-spacing-lg);
+    display: flex;
+    overflow: hidden;
+    width: min(24rem, calc(100vw - 2 * var(--memori-spacing-lg)));
+    height: min(38rem, calc(100dvh - 7rem));
+    flex-direction: column;
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-overlay);
+    background: var(--memori-secondary-background);
+    box-shadow: var(--memori-shadow-2xl);
+}
+
+.chatWindow[hidden] {
+    display: none;
+}
+
+.chatWindowOpen {
+    animation: window-in var(--memori-motion-duration-slow) var(--memori-motion-ease-out);
+    transform-origin: bottom right;
+}
+
+@keyframes window-in {
+    from {
+        opacity: 0;
+        transform: translateY(var(--memori-spacing-sm)) scale(0.97);
+    }
+}
+
+.chatWindowHead {
+    display: flex;
+    align-items: center;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-xs) var(--memori-spacing-sm) var(--memori-spacing-md);
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    gap: var(--memori-spacing-xs);
+}
+
+.chatWindowTitle {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+}
+
+.chatWindowTitle .testPanelTitle {
+    margin-left: var(--memori-spacing-xs);
+}
+
+.chatWindowSub {
+    margin-left: var(--memori-spacing-xs);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+@media (width <= 640px) {
+    .chatWindow {
+        width: auto;
+        height: auto;
+        border: 0;
+        border-radius: 0;
+        inset: 0;
+    }
+
+    .launcher {
+        right: var(--memori-spacing-md);
+        bottom: var(--memori-spacing-md);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .testPanel,
+    .chatWindowOpen {
+        animation: none;
+    }
+
+    .launcher:hover {
+        transform: none;
+    }
+}
+
+/* Focus rings for the custom links/buttons above */
+.railItem:focus-visible,
+.railAgent:focus-visible,
+.sectionNavLink:focus-visible,
+.topLink:focus-visible,
+.launcher:focus-visible {
+    box-shadow: var(--memori-focus-ring);
+    outline: none;
+}

@@ -1,21 +1,19 @@
-import React from 'react'
-import {
-  CloudUpload,
-  FileSpreadsheet,
-  FileText,
-  Import,
-  Upload,
-} from 'lucide-react'
+import React, { useState } from 'react'
+import { FileSpreadsheet, FileText, Import } from 'lucide-react'
 import { Button } from '../components/Button'
 import { DocumentCard } from '../components/DocumentCard'
+import { FileDropzone } from '../components/FileDropzone'
 import { Section } from '../components/Section'
 import { Tabs } from '../components/Tabs'
+import { useNotify } from './shared/useNotify'
 import styles from './realExamples.module.css'
 
 /**
  * Import / Export: documenti, CSV, JSONL.
  */
 export function ImportExportDashboard() {
+  const notify = useNotify()
+  const [docs, setDocs] = useState<string[]>([])
   return (
     <div className={styles.page}>
       <Section
@@ -66,29 +64,28 @@ export function ImportExportDashboard() {
           value="import-doc"
           className={styles.tabPanel}
         >
-          <div className={styles.docDropZone}>
-            <Upload
-              size={32}
-              aria-hidden
-            />
-            <p className={styles.subtitle}>
-              Trascina qui PDF, DOCX o TXT, oppure seleziona i file.
-            </p>
-            <Button
-              type="button"
-              variant="primary"
-              size="md"
-              icon={
-                <CloudUpload
-                  size={18}
-                  aria-hidden
-                />
-              }
-            >
-              Carica documenti
-            </Button>
-          </div>
+          <FileDropzone
+            accept=".pdf,.docx,.txt"
+            multiple
+            description="PDF, DOCX o TXT"
+            onFilesSelected={files => {
+              setDocs(prev => [...files.map(f => f.name), ...prev])
+              notify(
+                files.length === 1
+                  ? `${files[0]!.name} caricato`
+                  : `${files.length} documenti caricati`,
+              )
+            }}
+          />
           <div className={styles.cardGrid}>
+            {docs.map(name => (
+              <DocumentCard
+                key={name}
+                title={name}
+                badge={name.split('.').pop()?.toUpperCase()}
+                meta="In elaborazione"
+              />
+            ))}
             <DocumentCard
               title="Manuale_prodotto.pdf"
               badge="PDF"
@@ -106,22 +103,13 @@ export function ImportExportDashboard() {
           value="import-csv"
           className={styles.tabPanel}
         >
-          <div className={styles.docDropZone}>
-            <FileSpreadsheet
-              size={32}
-              aria-hidden
-            />
-            <p className={styles.subtitle}>
-              Carica un CSV con colonne Domanda / Risposta.
-            </p>
-            <Button
-              type="button"
-              variant="primary"
-              size="md"
-            >
-              Seleziona CSV
-            </Button>
-          </div>
+          <FileDropzone
+            accept=".csv"
+            icon={<FileSpreadsheet size={28} />}
+            title="Trascina qui il CSV oppure sfoglia"
+            description="Colonne richieste: Domanda / Risposta"
+            onFilesSelected={files => notify(`${files[0]!.name} importato`)}
+          />
         </Tabs.Panel>
 
         <Tabs.Panel

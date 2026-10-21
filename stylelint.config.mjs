@@ -10,4 +10,15 @@ export default {
     'custom-property-pattern': null,
     'property-no-deprecated': null,
   },
+  overrides: [
+    {
+      files: ['**/*.module.css'],
+      rules: {
+        'selector-pseudo-class-no-unknown': [
+          true,
+          { ignorePseudoClasses: ['global'] },
+        ],
+      },
+    },
+  ],
 }

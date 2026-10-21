@@ -1,7 +1,7 @@
 /**
  * Layout and native control styling for Real Examples demos.
  * Library components use their own styles; this file covers page shell and
- * patterns without dedicated components (textarea, radio group).
+ * page-level patterns that are not library components.
  */
 
 .page {
@@ -18,22 +18,20 @@
 .title {
     margin: 0;
     color: var(--memori-text-color);
-    font-size: var(--memori-text-size-2xl);
-    font-weight: var(--memori-text-weight-bold);
+    font-size: var(--memori-text-size-lg);
+    font-weight: var(--memori-text-weight-semibold);
     line-height: var(--memori-text-line-tight);
 }
 
 .subtitle {
-    margin: var(--memori-spacing-sm) 0 0;
+    margin: var(--memori-spacing-xs) 0 0;
     color: var(--memori-neutral);
-    font-size: var(--memori-text-size-md);
+    font-size: var(--memori-text-size-sm);
     font-weight: var(--memori-text-weight-normal);
     line-height: var(--memori-text-line-normal);
 }
 
 .divider {
-    border: none;
-    border-top: 1px solid var(--memori-border-color);
     margin: var(--memori-spacing-lg) 0;
 }
 
@@ -52,13 +50,6 @@
 }
 
 /* Textarea: reuse Input surface tokens via memori-input classes from Input/styles.css */
-.textarea {
-    display: block;
-    width: 100%;
-    min-height: 120px;
-    box-sizing: border-box;
-    resize: vertical;
-}
 
 .textareaFooter {
     display: flex;
@@ -86,68 +77,6 @@
     gap: var(--memori-spacing-xs);
 }
 
-.infoTrigger {
-    display: inline-flex;
-    padding: 0;
-    border: none;
-    border-radius: var(--memori-radius-control);
-    background: none;
-    color: var(--memori-neutral);
-    cursor: help;
-}
-
-.infoTrigger:focus-visible {
-    outline: var(--memori-focus-ring);
-    outline-offset: var(--memori-focus-ring-offset);
-}
-
-/* Horizontal radio group (no Radio component in library) */
-.radioRow {
-    display: grid;
-    align-items: flex-start;
-    gap: var(--memori-spacing-lg) var(--memori-spacing-xl);
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-}
-
-.radioOption {
-    display: flex;
-    min-width: 0;
-    align-items: flex-start;
-    cursor: pointer;
-    gap: var(--memori-spacing-sm);
-}
-
-.radioInput {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    margin: 2px 0 0;
-    accent-color: var(--memori-primary);
-    cursor: pointer;
-}
-
-.radioBody {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.radioLabelRow {
-    display: inline-flex;
-    align-items: center;
-    color: var(--memori-text-color);
-    font-size: var(--memori-text-size-md);
-    font-weight: var(--memori-text-weight-medium);
-    gap: var(--memori-spacing-xs);
-}
-
-.radioSub {
-    color: var(--memori-neutral);
-    font-size: var(--memori-text-size-sm);
-    font-weight: var(--memori-text-weight-normal);
-}
-
 .expandButton {
     text-decoration: none;
 }
@@ -163,7 +92,6 @@
 }
 
 .tabsList {
-    flex-wrap: wrap;
     margin-bottom: var(--memori-spacing-md);
 }
 
@@ -333,24 +261,8 @@
     gap: var(--memori-spacing-xs);
 }
 
-.headerInfoIcon {
-    display: inline-flex;
-    padding: 2px;
-    border: none;
-    border-radius: var(--memori-radius-control);
-    background: none;
-    color: var(--memori-neutral);
-    cursor: help;
-    vertical-align: middle;
-}
-
 .headerInfoIcon:hover {
     color: var(--memori-text-color);
-}
-
-.headerInfoIcon:focus-visible {
-    outline: var(--memori-focus-ring);
-    outline-offset: var(--memori-focus-ring-offset);
 }
 
 .cellWithIcon {
@@ -400,45 +312,11 @@
     gap: var(--memori-spacing-md);
 }
 
-.statsGrid {
-    display: grid;
-    gap: var(--memori-spacing-md);
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-}
-
-.statCardValue {
-    margin: 0;
-    color: var(--memori-text-color);
-    font-size: var(--memori-text-size-2xl);
-    font-weight: var(--memori-text-weight-bold);
-    line-height: var(--memori-text-line-tight);
-}
-
-.statCardLabel {
-    margin: var(--memori-spacing-xs) 0 0;
-    color: var(--memori-neutral);
-    font-size: var(--memori-text-size-sm);
-}
-
 .chipRow {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: var(--memori-spacing-md);
     gap: var(--memori-spacing-xs);
-}
-
-.codeBlock {
-    padding: var(--memori-spacing-md);
-    border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-control);
-    margin: 0;
-    background-color: var(--memori-secondary-background);
-    color: var(--memori-text-color);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: var(--memori-text-size-sm);
-    line-height: var(--memori-text-line-normal);
-    overflow-x: auto;
-    white-space: pre-wrap;
 }
 
 .avatarCell {
@@ -460,41 +338,6 @@
     min-width: 8rem;
     align-items: center;
     gap: var(--memori-spacing-sm);
-}
-
-.docDropZone {
-    display: flex;
-    min-height: 12rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--memori-spacing-xl);
-    border: 2px dashed var(--memori-border-color);
-    border-radius: var(--memori-radius-control);
-    background-color: var(--memori-secondary-background);
-    color: var(--memori-neutral);
-    gap: var(--memori-spacing-sm);
-    text-align: center;
-}
-
-.chartPlaceholder {
-    display: flex;
-    height: 14rem;
-    box-sizing: border-box;
-    align-items: flex-end;
-    justify-content: space-around;
-    padding: var(--memori-spacing-lg);
-    border: var(--memori-border) solid var(--memori-border-color);
-    border-radius: var(--memori-radius-control);
-    background-color: var(--memori-secondary-background);
-    gap: var(--memori-spacing-sm);
-}
-
-.chartBar {
-    max-width: 2.5rem;
-    flex: 1;
-    border-radius: var(--memori-radius-control) var(--memori-radius-control) 0 0;
-    background: color-mix(in oklch, var(--memori-primary) 70%, transparent);
 }
 
 /* Count next to a tab label: informative, not an alert */
@@ -531,17 +374,6 @@
     color: var(--memori-neutral);
     font-size: var(--memori-text-size-md);
     line-height: var(--memori-text-line-normal);
-}
-
-.statCardDelta {
-    margin: var(--memori-spacing-xs) 0 0;
-    color: color-mix(in srgb, var(--memori-success) 50%, var(--memori-text-color));
-    font-size: var(--memori-text-size-sm);
-    font-weight: var(--memori-text-weight-medium);
-}
-
-.statCardDeltaNegative {
-    color: color-mix(in srgb, var(--memori-error) 60%, var(--memori-text-color));
 }
 
 /* Cards: push the action to the bottom so rows of cards line up */
@@ -608,79 +440,553 @@
 }
 
 /* Unified Real Examples shell */
-.dashboardShell {
+
+/* ------------------------------------------------------------------ */
+
+/* App shell: header + context-aware sidebar + main                    */
+
+/* ------------------------------------------------------------------ */
+.appShell {
     display: flex;
-    min-height: 100vh;
-    align-items: stretch;
+    height: 100vh;
+    height: 100dvh;
+    flex-direction: column;
     background-color: var(--memori-main-background);
     color: var(--memori-text-color);
     font-family: var(--memori-font-family);
 }
 
-.dashboardSideNav {
+.appHeader {
+    z-index: 3;
     display: flex;
-    width: min(17rem, 34vw);
-    flex-direction: column;
+    height: 3.5rem;
+    box-sizing: border-box;
     flex-shrink: 0;
-    padding: var(--memori-spacing-lg) var(--memori-spacing-md);
-    border-right: var(--memori-border) solid var(--memori-border-color);
-    background-color: var(--memori-secondary-background);
-    gap: var(--memori-spacing-lg);
-    overflow-y: auto;
+    align-items: center;
+    padding: 0 var(--memori-spacing-md);
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-main-background);
+    gap: var(--memori-spacing-sm);
 }
 
-.dashboardNavGroup {
+.appBrand {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--memori-spacing-xs);
+    border-radius: var(--memori-radius-control);
+    margin-left: calc(-1 * var(--memori-spacing-xs));
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-lg);
+    font-weight: var(--memori-text-weight-semibold);
+    gap: var(--memori-spacing-sm);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+}
+
+.appBrandMark {
+    flex-shrink: 0;
+    color: var(--memori-primary);
+}
+
+.appHeaderActions {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
     gap: var(--memori-spacing-xs);
 }
 
-.dashboardNavGroupLabel {
-    padding: 0 var(--memori-spacing-sm);
-    margin: 0;
-    color: var(--memori-neutral);
-    font-size: var(--memori-text-size-xs);
-    font-weight: var(--memori-text-weight-bold);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+.appHeaderDivider {
+    height: 1.5rem;
 }
 
-.dashboardNavList {
+.appMenuToggle {
+    display: none;
+    margin-left: calc(-1 * var(--memori-spacing-xs));
+}
+
+.appUserTrigger.appUserTrigger {
+    padding: 2px var(--memori-spacing-sm) 2px 2px;
+    border-color: transparent;
+    border-radius: var(--memori-radius-full);
+    background-color: transparent;
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-sm);
+}
+
+.appUserTrigger.appUserTrigger:hover {
+    border-color: var(--memori-border-color);
+    background-color: color-mix(in oklch, var(--memori-primary) 6%, var(--memori-main-background));
+}
+
+.appUserName {
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.appUserMenu {
+    min-width: 18rem;
+    max-width: 22rem;
+}
+
+.appUserMenu [role='menuitem'],
+.appAgentMenu [role='menuitem'] {
+    gap: var(--memori-spacing-sm);
+}
+
+.appUserMenuHead {
     display: flex;
     flex-direction: column;
-    padding: 0;
-    margin: 0;
-    gap: 2px;
-    list-style: none;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    gap: var(--memori-spacing-xs);
 }
 
-.dashboardNavItem {
-    display: block;
-    width: 100%;
-    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
-    border: none;
+.appUserMenuName {
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.appUserMenuEmail {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+}
+
+.appUserMenuCredits {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
+    border: var(--memori-border) solid var(--memori-border-color);
     border-radius: var(--memori-radius-control);
-    background: transparent;
+    margin-top: var(--memori-spacing-xs);
+    background: color-mix(in oklch, var(--memori-primary) 6%, var(--memori-main-background));
     color: var(--memori-text-color);
     cursor: pointer;
     font: inherit;
-    font-size: var(--memori-text-size-sm);
-    text-align: left;
+    font-size: var(--memori-text-size-xs);
+    gap: var(--memori-spacing-xs);
 }
 
-.dashboardNavItem:hover {
-    background-color: color-mix(in oklch, var(--memori-primary) 10%, var(--memori-secondary-background));
+.appUserMenuCredits:hover {
+    border-color: var(--memori-border-primary);
+    color: var(--memori-primary);
 }
 
-.dashboardNavItem:focus-visible {
+.appUserMenuCredits:focus-visible {
     outline: var(--memori-focus-ring);
     outline-offset: var(--memori-focus-ring-offset);
 }
 
-.dashboardNavItemActive {
-    background-color: color-mix(in oklch, var(--memori-primary) 16%, var(--memori-secondary-background));
+.appUserMenuBuy.appUserMenuBuy {
+    align-self: stretch;
+    margin-top: 2px;
+}
+
+.appUserMenuConsumptions {
+    display: flex;
+    flex-direction: column;
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    gap: var(--memori-spacing-sm);
+}
+
+.appUserMenuConsumptionsHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--memori-spacing-sm);
+}
+
+.appUserMenuConsumptionsTitle {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+    font-weight: var(--memori-text-weight-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.appUserMenuStatGrid {
+    --memori-stat-card-min: 7.5rem;
+
+    gap: var(--memori-spacing-xs);
+}
+
+.appUserMenuStatGrid :global(.memori-stat-card) {
+    padding: var(--memori-spacing-xs) 0;
+}
+
+.appUserMenuStatGrid :global(.memori-stat-card__value) {
+    font-size: var(--memori-text-size-md);
+}
+
+.userConsumptionsBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-lg);
+}
+
+.userCreditsPill {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--memori-spacing-xs) var(--memori-spacing-sm);
+    border-radius: var(--memori-radius-control);
+    background: color-mix(in oklch, var(--memori-primary) 8%, var(--memori-main-background));
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-xs);
+}
+
+.appBody {
+    position: relative;
+    display: flex;
+    min-height: 0;
+    flex: 1;
+}
+
+.appSidebar {
+    display: flex;
+    width: 16rem;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: var(--memori-spacing-md);
+    border-right: var(--memori-border) solid var(--memori-border-color);
+    background-color: var(--memori-secondary-background);
+    gap: var(--memori-spacing-lg);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.appSidebarFooter {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--memori-spacing-md);
+    border-top: var(--memori-border) solid var(--memori-border-color);
+    margin-top: auto;
+    gap: var(--memori-spacing-md);
+}
+
+.appBackLink {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: var(--memori-spacing-xs);
+    border-radius: var(--memori-radius-control);
+    margin: calc(-1 * var(--memori-spacing-xs)) 0 calc(-1 * var(--memori-spacing-sm));
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-xs);
+    text-decoration: none;
+}
+
+.appBackLink:hover {
     color: var(--memori-primary);
+}
+
+.appAgentSwitcher.appAgentSwitcher {
+    width: 100%;
+    justify-content: flex-start;
+    padding: var(--memori-spacing-sm);
+    border-radius: var(--memori-radius-surface);
+    background-color: var(--memori-main-background);
+    text-align: left;
+}
+
+.appAgentSwitcher.appAgentSwitcher:hover {
+    border-color: var(--memori-border-primary);
+}
+
+.appAgentSwitcherText {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+}
+
+.appAgentSwitcherHint {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+}
+
+.appAgentSwitcherName {
+    overflow: hidden;
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.appAgentSwitcherChevron {
+    flex-shrink: 0;
+    color: var(--memori-neutral);
+}
+
+.appAgentMenu {
+    min-width: 15rem;
+}
+
+.appAgentMenuName {
+    flex: 1;
+}
+
+.appAgentAvatar.appAgentAvatar {
+    flex-shrink: 0;
+    border-color: transparent;
+    color: #fff;
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.appScrim {
+    display: none;
+}
+
+/* Breadcrumbs (agent area) */
+.appCrumbBar {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    display: flex;
+    min-height: 3rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--memori-spacing-xs) clamp(var(--memori-spacing-md), 4vw, var(--memori-spacing-xl));
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    backdrop-filter: blur(8px);
+    background-color: color-mix(in oklch, var(--memori-main-background) 92%, transparent);
+    gap: var(--memori-spacing-md);
+}
+
+.appCrumbs .appAgentAvatar {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.5625rem;
+}
+
+.appCrumbActions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.appCrumbAction {
+    flex-shrink: 0;
+}
+
+.appAgentModeTabs {
+    width: auto;
+    flex-shrink: 0;
+}
+
+.appAgentModeTabs :global(.memori-tabs__list--horizontal) {
+    padding: 2px;
+    gap: 2px;
+}
+
+.appAgentModeTabs :global(.memori-tabs__tab) {
+    min-height: 2rem;
+    padding: 0.125rem var(--memori-spacing-md);
+    font-size: var(--memori-text-size-sm);
     font-weight: var(--memori-text-weight-medium);
+}
+
+.appBrand:focus-visible,
+.appBackLink:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+/* Brand-gradient chrome variants (Aisuru mark: teal → violet) */
+.appShellGradientSidebar,
+.appShellGradientHeader {
+    --app-brand-gradient: linear-gradient(160deg, #3cc8d8 0%, #2f8fc4 45%, #7b3fa6 100%);
+}
+
+.appShellGradientSidebar .appSidebar {
+    border-right-color: transparent;
+    background: var(--app-brand-gradient);
+    color: #fff;
+}
+
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__group-label) {
+    color: rgb(255 255 255 / 75%);
+}
+
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__item),
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__icon),
+.appShellGradientSidebar .appBackLink,
+.appShellGradientSidebar .appBackLink:hover {
+    color: #fff;
+}
+
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__item:hover:not(:disabled)) {
+    background-color: rgb(255 255 255 / 14%);
+}
+
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__item--active),
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__item--active:hover:not(:disabled)) {
+    background-color: rgb(255 255 255 / 24%);
+    color: #fff;
+}
+
+.appShellGradientSidebar .appSidebar :global(.memori-nav-list__item--active .memori-nav-list__icon) {
+    color: #fff;
+}
+
+.appShellGradientSidebar .appSidebarFooter {
+    border-top-color: rgb(255 255 255 / 25%);
+}
+
+.appShellGradientHeader .appHeader {
+    border-bottom-color: transparent;
+    background: var(--app-brand-gradient);
+    color: #fff;
+}
+
+.appShellGradientHeader .appHeader .appBrand,
+.appShellGradientHeader .appHeader button,
+.appShellGradientHeader .appHeader button svg {
+    color: #fff;
+}
+
+.appShellGradientHeader .appBrandMark g {
+    stroke: #fff;
+}
+
+.appShellGradientHeader .appHeader button:hover,
+.appShellGradientHeader .appUserTrigger.appUserTrigger:hover {
+    border-color: transparent;
+    background-color: rgb(255 255 255 / 16%);
+}
+
+.appShellGradientHeader .appHeaderDivider {
+    border-color: rgb(255 255 255 / 35%);
+}
+
+/* Collapsible sidebar (desktop): icons only, labels kept as accessible
+ * names and native tooltips. Phones always use the full drawer. */
+.appSidebarCollapse {
+    margin-top: calc(-1 * var(--memori-spacing-xs));
+}
+
+@media (width > 768px) {
+    .appSidebar {
+        transition:
+            width var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            padding var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
+
+    .appSidebarCollapsed {
+        width: 4.5rem;
+        overflow-x: hidden;
+        padding-inline: var(--memori-spacing-sm);
+    }
+
+    .appSidebarCollapsed :global(.memori-nav-list__text),
+    .appSidebarCollapsed :global(.memori-nav-list__trailing),
+    .appSidebarCollapsed :global(.memori-nav-list__group-label),
+    .appSidebarCollapsed .appBackLinkText,
+    .appSidebarCollapsed .appAgentSwitcherText {
+        position: absolute;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+
+    .appSidebarCollapsed :global(.memori-nav-list__item) {
+        justify-content: center;
+        padding-inline: 0;
+    }
+
+    /* Hidden group labels: a hairline keeps groups apart */
+    .appSidebarCollapsed :global(.memori-nav-list__group + .memori-nav-list__group) {
+        padding-top: var(--memori-spacing-sm);
+        border-top: var(--memori-border) solid var(--memori-border-color);
+    }
+
+    .appSidebarCollapsed .appBackLink {
+        align-self: center;
+    }
+
+    .appSidebarCollapsed .appAgentSwitcherChevron {
+        display: none;
+    }
+
+    .appSidebarCollapsed .appAgentSwitcher.appAgentSwitcher {
+        justify-content: center;
+        padding: var(--memori-spacing-xs);
+    }
+}
+
+@media (width <= 768px) {
+    .appSidebarCollapse {
+        display: none;
+    }
+}
+
+@media (width <= 768px) {
+    .appMenuToggle {
+        display: inline-flex;
+    }
+
+    .appSidebar {
+        position: absolute;
+        z-index: 4;
+        left: 0;
+        width: min(18rem, 85vw);
+        box-shadow: var(--memori-shadow-lg);
+        inset-block: 0;
+        transform: translateX(-100%);
+        transition:
+            transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out),
+            visibility 0s linear var(--memori-motion-duration-normal);
+        visibility: hidden;
+    }
+
+    .appSidebarOpen {
+        transform: none;
+        transition: transform var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+        visibility: visible;
+    }
+
+    .appScrim {
+        position: absolute;
+        z-index: 3;
+        display: block;
+        background-color: rgb(0 0 0 / 35%);
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--memori-motion-duration-normal) var(--memori-motion-ease-out);
+    }
+
+    .appScrimVisible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .appCrumbs li:has(> [class~='memori-breadcrumbs__step']) {
+        display: none;
+    }
+}
+
+@media (width <= 640px) {
+    .appUserName,
+    .appHeaderDivider,
+    .appCrumbAction {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .appSidebar,
+    .appSidebarCollapsed,
+    .appSidebarOpen,
+    .appScrim {
+        transition: none;
+    }
 }
 
 .dashboardMain {
@@ -692,5 +998,917 @@
 .dashboardMain .page {
     max-width: none;
     min-height: 100%;
+    padding-top: var(--memori-spacing-2xl);
     margin: 0;
+}
+
+/* Agent card (Home / Board of Experts) */
+.agentCard {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.agentCard > [class~='memori-card__body'] {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.agentCard [class~='memori-spin'] {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.agentCardCover {
+    position: relative;
+    height: 5.5rem;
+    margin-bottom: 2.25rem;
+}
+
+.agentCardAvatar {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    display: inline-flex;
+    width: 4.5rem;
+    height: 4.5rem;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--memori-main-background);
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--memori-primary) 18%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-primary) 60%, var(--memori-text-color));
+    font-size: var(--memori-text-size-lg);
+    font-weight: var(--memori-text-weight-bold);
+    transform: translateX(-50%);
+}
+
+.agentCardBody {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+    text-align: center;
+}
+
+.agentCardIcons {
+    display: inline-flex;
+    min-height: 1rem;
+    align-items: center;
+    color: var(--memori-neutral);
+    gap: var(--memori-spacing-xs);
+}
+
+.agentCardTitle {
+    margin: 0;
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-md);
+    font-weight: var(--memori-text-weight-bold);
+    overflow-wrap: anywhere;
+}
+
+.agentCardRole {
+    color: var(--memori-neutral);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.agentCardDescription {
+    width: 100%;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.agentCardInvite {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.agentCardMeta {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+}
+
+.agentCardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--memori-spacing-md);
+    border-top: var(--memori-border) solid var(--memori-border-color);
+    margin-top: var(--memori-spacing-md);
+    gap: var(--memori-spacing-sm);
+}
+
+.agentCardIconActions {
+    display: inline-flex;
+    gap: 2px;
+    margin-inline-start: auto;
+}
+
+.tagButton {
+    padding: 0;
+    border: none;
+    border-radius: var(--memori-radius-full);
+    background: none;
+    cursor: pointer;
+}
+
+.tagButton:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+/* "Crea" tile at the start of the agent grid */
+.createTile {
+    display: flex;
+    min-height: 16rem;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--memori-spacing-lg);
+    border: 2px dashed var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background: transparent;
+    color: var(--memori-primary);
+    cursor: pointer;
+    font: inherit;
+    font-weight: var(--memori-text-weight-bold);
+    gap: var(--memori-spacing-sm);
+    text-align: center;
+}
+
+button.createTile:hover {
+    border-color: var(--memori-primary);
+    background: color-mix(in oklch, var(--memori-primary) 6%, transparent);
+}
+
+.createTile:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.createTile[aria-disabled='true'] {
+    color: var(--memori-neutral);
+    cursor: default;
+}
+
+.createTileReason {
+    margin: 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.sectionHeading {
+    display: flex;
+    align-items: center;
+    margin: var(--memori-spacing-xl) 0 var(--memori-spacing-md);
+    color: var(--memori-text-color);
+    font-size: var(--memori-text-size-lg);
+    font-weight: var(--memori-text-weight-bold);
+    gap: var(--memori-spacing-sm);
+}
+
+.loadMoreRow {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--memori-spacing-lg);
+}
+
+.visuallyHidden {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* Form helpers */
+.optionalLabel {
+    color: var(--memori-neutral);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.inlineLink {
+    height: auto;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.menuItemStack {
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItemHint {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-normal);
+}
+
+.fieldHint {
+    margin: var(--memori-spacing-xs) 0 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+    line-height: var(--memori-text-line-normal);
+}
+
+.textareaFooterError {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: calc(-1 * var(--memori-spacing-md));
+    color: var(--memori-error);
+    font-size: var(--memori-text-size-sm);
+}
+
+.twoColumns {
+    display: grid;
+    gap: var(--memori-spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.switchList {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--memori-spacing-sm);
+    gap: var(--memori-spacing-lg);
+}
+
+.dottedTerm {
+    border-bottom: 1px dotted currentcolor;
+    cursor: help;
+}
+
+.sliderLabels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--memori-spacing-xs);
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+    gap: var(--memori-spacing-xs);
+}
+
+.sliderLabelActive {
+    color: var(--memori-primary);
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.fieldset {
+    min-width: 0;
+    padding: 0;
+    border: none;
+    margin: 0;
+}
+
+.nestedBlock {
+    padding-left: var(--memori-spacing-md);
+    border-left: 2px solid var(--memori-border-color);
+    margin-top: var(--memori-spacing-md);
+}
+
+/* Settings: appearance */
+.appearancePreview {
+    position: relative;
+    max-width: 32rem;
+    margin: var(--memori-spacing-md) 0 calc(var(--memori-spacing-xl) + 1.5rem);
+}
+
+.appearanceCover {
+    display: flex;
+    height: 8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--memori-radius-control);
+    background: linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--memori-primary) 55%, transparent),
+        color-mix(in oklch, var(--memori-info) 45%, transparent)
+    );
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.appearanceCover[data-empty] {
+    border: 2px dashed var(--memori-border-color);
+    background: var(--memori-secondary-background);
+}
+
+.appearanceAvatar {
+    position: absolute;
+    bottom: -2.5rem;
+    left: var(--memori-spacing-lg);
+    display: inline-flex;
+    width: 5rem;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--memori-main-background);
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--memori-primary) 18%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-primary) 60%, var(--memori-text-color));
+    font-weight: var(--memori-text-weight-bold);
+}
+
+.appearanceAvatar[data-empty] {
+    border-style: dashed;
+    border-color: var(--memori-border-color);
+    background: var(--memori-secondary-background);
+    color: var(--memori-neutral);
+}
+
+/* Settings: extensions */
+.extensionRow {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--memori-spacing-md);
+}
+
+.extensionIcon {
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--memori-radius-control);
+    background: color-mix(in oklch, var(--memori-primary) 12%, var(--memori-main-background));
+    color: var(--memori-primary);
+}
+
+.extensionText {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+}
+
+.extensionText .fieldHint {
+    margin: 0;
+}
+
+.extensionTitle {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-weight: var(--memori-text-weight-semibold);
+    gap: var(--memori-spacing-sm);
+}
+
+.extensionConfig {
+    padding-top: var(--memori-spacing-md);
+    border-top: var(--memori-border) solid var(--memori-border-color);
+    margin-top: var(--memori-spacing-md);
+}
+
+/* Settings: manage / danger zone */
+.dangerTitle {
+    margin: var(--memori-spacing-md) 0 0;
+    color: var(--memori-error);
+    font-size: var(--memori-text-size-md);
+    font-weight: var(--memori-text-weight-bold);
+}
+
+.dangerCard {
+    border-color: color-mix(in oklab, var(--memori-error) 45%, var(--memori-border-color));
+}
+
+.codeTextarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--memori-text-size-sm);
+}
+
+/* Settings layout (EditMemoriPanel menu + content)
+ * Desktop: grid stretch keeps the nav column as tall as content so sticky works.
+ * Mobile: flex column (not 1-col grid) so the sticky nav’s containing block
+ * spans the content and stays pinned under the crumb bar. */
+.settingsLayout {
+    display: grid;
+    gap: var(--memori-spacing-xl);
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+}
+
+@media (width <= 48rem) {
+    .settingsLayout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .settingsNav {
+        padding: var(--memori-spacing-sm) clamp(var(--memori-spacing-md), 4vw, var(--memori-spacing-xl));
+        border-bottom: var(--memori-border) solid var(--memori-border-color);
+        margin-inline: calc(-1 * clamp(var(--memori-spacing-md), 4vw, var(--memori-spacing-xl)));
+    }
+
+    .settingsNav :global(.memori-nav-list__items) {
+        flex-direction: row;
+        gap: var(--memori-spacing-xs);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+    }
+
+    .settingsNav :global(.memori-nav-list__item) {
+        width: auto;
+        flex-shrink: 0;
+    }
+}
+
+.settingsNav {
+    position: sticky;
+    z-index: 1;
+    top: 3rem;
+    align-self: start;
+    padding-block: var(--memori-spacing-xs);
+}
+
+/* Phones: the pinned row scrolls over content, so it needs a backdrop */
+@media (width <= 48rem) {
+    .settingsNav {
+        background-color: var(--memori-main-background);
+    }
+}
+
+.settingsContent {
+    min-width: 0;
+}
+
+.settingsEmbed .formStack {
+    max-width: 48rem;
+}
+
+.autosaveBar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.autosaveBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--memori-spacing-sm);
+    border-radius: var(--memori-radius-full);
+    background: color-mix(in oklch, var(--memori-success) 14%, var(--memori-main-background));
+    color: color-mix(in oklch, var(--memori-success) 55%, var(--memori-text-color));
+    font-size: var(--memori-text-size-xs);
+    font-weight: var(--memori-text-weight-medium);
+    gap: var(--memori-spacing-xs);
+}
+
+/* Home */
+.homeBanner {
+    margin-bottom: var(--memori-spacing-lg);
+}
+
+.homeFilters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: var(--memori-spacing-md);
+    gap: var(--memori-spacing-md);
+}
+
+.agentGrid {
+    display: grid;
+    gap: var(--memori-spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.drawerFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--memori-spacing-sm);
+}
+
+/* Integrations */
+.formStackWide {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--memori-spacing-lg);
+}
+
+.urlRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: var(--memori-spacing-xs) 0 0;
+    gap: var(--memori-spacing-xs);
+}
+
+.urlLink {
+    color: var(--memori-primary);
+    font-size: var(--memori-text-size-sm);
+    overflow-wrap: anywhere;
+}
+
+.iconLink {
+    display: inline-flex;
+    padding: var(--memori-spacing-xs);
+    border-radius: var(--memori-radius-control);
+    color: var(--memori-primary);
+}
+
+.iconLink:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.textError {
+    margin: var(--memori-spacing-xs) 0 0;
+    color: var(--memori-error);
+    font-size: var(--memori-text-size-sm);
+}
+
+.inlineLinks {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: var(--memori-spacing-sm) 0 0;
+    gap: var(--memori-spacing-md);
+    list-style: none;
+}
+
+.inlineLinks a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--memori-primary);
+    gap: 4px;
+}
+
+.scormCard {
+    display: grid;
+    align-items: center;
+    gap: var(--memori-spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.scormUsage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+}
+
+.layoutEditor {
+    display: grid;
+    align-items: start;
+    gap: var(--memori-spacing-xl);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (width <= 60rem) {
+    .layoutEditor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.layoutPreviewColumn {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-md);
+}
+
+.layoutPreview {
+    display: flex;
+    height: 22rem;
+    box-sizing: border-box;
+    padding: var(--memori-spacing-md);
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background: linear-gradient(
+        160deg,
+        color-mix(in oklch, var(--memori-primary) 12%, var(--memori-main-background)),
+        var(--memori-secondary-background)
+    );
+    gap: var(--memori-spacing-md);
+}
+
+.layoutPreviewAvatar {
+    flex: 1;
+    border-radius: var(--memori-radius-control);
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            color-mix(in oklch, var(--memori-primary) 40%, transparent) 0 18%,
+            transparent 19%
+        ),
+        color-mix(in oklch, var(--memori-primary) 8%, transparent);
+}
+
+.layoutPreviewChat {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--memori-spacing-md);
+    border-radius: var(--memori-radius-control);
+    background: var(--memori-main-background);
+    gap: var(--memori-spacing-sm);
+}
+
+.layoutPreviewChat span {
+    height: 1.5rem;
+    border-radius: var(--memori-radius-full);
+    background: var(--memori-secondary-background);
+}
+
+.layoutPreviewChat span:nth-child(2) {
+    width: 70%;
+    align-self: flex-end;
+    background: color-mix(in oklch, var(--memori-primary) 25%, transparent);
+}
+
+.layoutPreview[data-layout='CHAT'] .layoutPreviewAvatar,
+.layoutPreview[data-layout='HIDDEN_CHAT'] .layoutPreviewAvatar {
+    display: none;
+}
+
+.layoutPreview[data-layout='HIDDEN_CHAT'] .layoutPreviewChat {
+    max-width: 14rem;
+    margin-left: auto;
+}
+
+.layoutPreview[data-layout='TOTEM'],
+.layoutPreview[data-layout='ZOOMED_FULL_BODY'] {
+    flex-direction: column;
+}
+
+.layoutPreview[data-layout='WEBSITE_ASSISTANT'] .layoutPreviewAvatar {
+    max-width: 30%;
+}
+
+.colorRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--memori-spacing-lg);
+}
+
+.colorField {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-sm);
+}
+
+.colorField input {
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 2px;
+    border: var(--memori-border) solid var(--memori-border-color);
+    border-radius: var(--memori-radius-control);
+    background: none;
+}
+
+/* Channels */
+.channelsLayout {
+    display: grid;
+    align-items: start;
+    gap: var(--memori-spacing-lg);
+    grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+}
+
+@media (width <= 56rem) {
+    .channelsLayout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.channelCard,
+.channelCard:focus-visible {
+    outline: var(--memori-focus-ring);
+    outline-offset: var(--memori-focus-ring-offset);
+}
+
+.channelLogo {
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--memori-radius-control);
+    background: var(--memori-secondary-background);
+    font-size: 1.25rem;
+}
+
+.channelConfigHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--memori-spacing-md);
+}
+
+.channelsSubTitle {
+    margin: 0;
+    font-weight: var(--memori-text-weight-semibold);
+}
+
+.instructionsList {
+    padding-left: var(--memori-spacing-lg);
+    margin: 0;
+    font-size: var(--memori-text-size-sm);
+    line-height: 1.7;
+}
+
+.plainList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: var(--memori-spacing-xs);
+    list-style: none;
+}
+
+.plainListItem {
+    display: flex;
+    align-items: center;
+    padding: var(--memori-spacing-xs) 0;
+    border-bottom: var(--memori-border) solid var(--memori-border-color);
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-sm);
+}
+
+.plainListItem > :first-child {
+    flex: 1;
+}
+
+.onceCode {
+    display: block;
+    margin-top: var(--memori-spacing-md);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--memori-text-size-xl);
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+
+/* Contents */
+.candidateList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: var(--memori-spacing-xs);
+    list-style: none;
+}
+
+.candidateList li {
+    display: grid;
+    align-items: center;
+    gap: var(--memori-spacing-sm);
+    grid-template-columns: auto minmax(0, 1fr) 7rem auto;
+}
+
+.candidateList .progressCell {
+    min-width: 0;
+}
+
+.quotaRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--memori-spacing-lg);
+}
+
+.quotaRow p {
+    margin: 0;
+}
+
+.quotaBar {
+    min-width: 10rem;
+    flex: 1;
+}
+
+.footerStart {
+    margin-inline-end: auto;
+}
+
+/* Chat log */
+.detailList {
+    display: grid;
+    margin: 0;
+    font-size: var(--memori-text-size-sm);
+    gap: var(--memori-spacing-xs) var(--memori-spacing-lg);
+    grid-template-columns: max-content minmax(0, 1fr);
+}
+
+.detailList dt {
+    color: var(--memori-neutral);
+}
+
+.detailList dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.chatLog {
+    display: flex;
+    flex-direction: column;
+    padding: var(--memori-spacing-md);
+    border-radius: var(--memori-radius-control);
+    margin: 0;
+    background: var(--memori-secondary-background);
+    gap: var(--memori-spacing-md);
+    list-style: none;
+}
+
+.chatLine {
+    display: flex;
+    max-width: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.chatLineUser {
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+.chatBubble {
+    padding: var(--memori-spacing-sm) var(--memori-spacing-md);
+    border-radius: var(--memori-radius-control);
+    background: var(--memori-main-background);
+    font-size: var(--memori-text-size-sm);
+    line-height: var(--memori-text-line-normal);
+}
+
+.chatLineUser .chatBubble {
+    background: color-mix(in oklch, var(--memori-primary) 16%, var(--memori-main-background));
+}
+
+.chatMeta {
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-xs);
+}
+
+/* Functions */
+.macroCardOn {
+    border-color: color-mix(in oklch, var(--memori-primary) 50%, var(--memori-border-color));
+}
+
+/* MCP */
+
+.sectionSpacer {
+    margin-top: var(--memori-spacing-md);
+}
+
+/* Labelled control column (upload buttons, quota rows) */
+.uploadControl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--memori-spacing-xs);
+}
+
+.uploadControl .toolbarRow {
+    margin-bottom: 0;
+}
+
+.uploadLabel {
+    font-size: var(--memori-text-size-sm);
+    font-weight: var(--memori-text-weight-medium);
+}
+
+.periodSelect {
+    width: min(16rem, 100%);
+}
+
+/* Agent Prova / Istruiscimi chat mockup */
+.agentChatTyping {
+    color: var(--memori-neutral);
+    font-style: italic;
+}
+
+.agentChatComposer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--memori-spacing-sm);
+}
+
+.agentChatHint {
+    min-width: 0;
+    flex: 1 1 0;
+    color: var(--memori-neutral);
+    font-size: var(--memori-text-size-sm);
+}
+
+.agentChatComposerActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--memori-spacing-sm);
 }

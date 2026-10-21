@@ -5,19 +5,33 @@ import type {
   PaginationState,
 } from '@tanstack/react-table'
 import {
+  Copy,
   FileText,
-  Info,
   Link as LinkIcon,
   Pencil,
   Plus,
   Trash2,
   User,
 } from 'lucide-react'
+import { InfoHint } from '../components/InfoHint'
 import { Button } from '../components/Button'
+import { ConfirmDialog } from '../components/ConfirmDialog'
+import { Expandable } from '../components/Expandable'
 import { Section } from '../components/Section'
 import { Table, type FilterDef } from '../components/Table'
 import { Tabs } from '../components/Tabs'
+import { Tooltip } from '../components/Tooltip'
 import '../components/Input/styles.css'
+import { ContentEditDrawer } from './contents/ContentEditDrawer'
+import {
+  DefaultAnswersTab,
+  DraftsTab,
+  ExpertReferencesTab,
+  UnansweredQuestionsTab,
+  WelcomeMessageTab,
+} from './contents/ContentTabs'
+import { Callout } from '../components/Callout'
+import { useNotify } from './shared/useNotify'
 import styles from './realExamples.module.css'
 
 export type ContentRow = {
@@ -30,6 +44,9 @@ export type ContentRow = {
   tag: string
   hasLink: boolean
   creatoIl: string
+  luogo?: string
+  data?: string
+  assegnatoA?: string
   showExpandDomanda?: boolean
   showExpandRisposta?: boolean
 }
@@ -62,6 +79,8 @@ function buildContentDataset(): ContentRow[] {
       tag: '',
       hasLink: true,
       creatoIl: '25/11/24, 15:12',
+      luogo: 'Milano',
+      assegnatoA: 'Cliente',
       showExpandRisposta: true,
     },
     {
@@ -154,7 +173,22 @@ function pillsCell(values: string[]) {
 /**
  * Lista contenuti: tab di navigazione, barra ricerca e azioni, tabella con selezione e paginazione dettagliata.
  */
-export function ContentListDashboard() {
+export function ContentListDashboard({
+  boardOfExperts = false,
+  generativeAI = true,
+}: {
+  /** Shows "Risposte dagli esperti" (Board of Experts agents) */
+  boardOfExperts?: boolean
+  /** With GenAI on, unanswered questions are replaced by AI drafts */
+  generativeAI?: boolean
+}) {
+  const notify = useNotify()
+  const [rows, setRows] = useState(ALL_CONTENT_ROWS)
+  const [editing, setEditing] = useState<ContentRow | 'new' | null>(null)
+  const [deleting, setDeleting] = useState<ContentRow[] | 'filtered' | null>(
+    null,
+  )
+  const [undefinedWord, setUndefinedWord] = useState(true)
   const [search, setSearch] = useState('')
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [pagination, setPagination] = useState<PaginationState>({
@@ -173,21 +207,14 @@ export function ContentListDashboard() {
         header: 'Domanda / Titolo',
         minSize: 180,
         cell: ({ row }) => (
-          <div className={styles.contentCell}>
-            <span className={styles.contentCellText}>
-              {row.original.domanda}
-            </span>
-            {row.original.showExpandDomanda ? (
-              <Button
-                type="button"
-                variant="link"
-                size="sm"
-                className={styles.expandLink}
-              >
-                Espandi
-              </Button>
-            ) : null}
-          </div>
+          <Expandable
+            rows={2}
+            className={styles.contentCell}
+            expandSymbol={() => 'Espandi'}
+            collapseSymbol={() => 'Vedi meno'}
+          >
+            {row.original.domanda}
+          </Expandable>
         ),
       },
       {
@@ -195,16 +222,10 @@ export function ContentListDashboard() {
         header: () => (
           <span className={styles.headerWithHint}>
             Occorrenze
-            <button
-              type="button"
-              className={styles.headerInfoIcon}
-              aria-label="Informazioni su Occorrenze"
-            >
-              <Info
-                size={14}
-                aria-hidden
-              />
-            </button>
+            <InfoHint
+              content="Numero di volte che è stato chiesta questa domanda"
+              ariaLabel="Informazioni su Occorrenze"
+            />
           </span>
         ),
         size: 100,
@@ -222,21 +243,14 @@ export function ContentListDashboard() {
         header: 'Risposta',
         minSize: 170,
         cell: ({ row }) => (
-          <div className={styles.contentCell}>
-            <span className={styles.contentCellText}>
-              {row.original.risposta}
-            </span>
-            {row.original.showExpandRisposta ? (
-              <Button
-                type="button"
-                variant="link"
-                size="sm"
-                className={styles.expandLink}
-              >
-                Espandi
-              </Button>
-            ) : null}
-          </div>
+          <Expandable
+            rows={2}
+            className={styles.contentCell}
+            expandSymbol={() => 'Espandi'}
+            collapseSymbol={() => 'Vedi meno'}
+          >
+            {row.original.risposta}
+          </Expandable>
         ),
       },
       {
@@ -288,6 +302,33 @@ export function ContentListDashboard() {
           ),
       },
       {
+        accessorKey: 'luogo',
+        header: 'Luogo',
+        meta: { hiddenByDefault: true },
+        cell: ({ getValue }) =>
+          (getValue() as string) ?? (
+            <span className={styles.tableMutedCell}>—</span>
+          ),
+      },
+      {
+        accessorKey: 'data',
+        header: 'Data',
+        meta: { hiddenByDefault: true },
+        cell: ({ getValue }) =>
+          (getValue() as string) ?? (
+            <span className={styles.tableMutedCell}>—</span>
+          ),
+      },
+      {
+        accessorKey: 'assegnatoA',
+        header: 'Assegnato a',
+        meta: { hiddenByDefault: true },
+        cell: ({ getValue }) =>
+          (getValue() as string) ?? (
+            <span className={styles.tableMutedCell}>Pubblico</span>
+          ),
+      },
+      {
         accessorKey: 'creatoIl',
         header: 'Creato il',
         size: 170,
@@ -307,10 +348,10 @@ export function ContentListDashboard() {
   )
 
   const filtered = useMemo(() => {
-    let rows = [...ALL_CONTENT_ROWS]
+    let list = [...rows]
     if (search.trim()) {
       const q = search.toLowerCase()
-      rows = rows.filter(r => {
+      list = list.filter(r => {
         const args = [...r.argNecessari, ...r.argImpostati]
           .join(' ')
           .toLowerCase()
@@ -325,10 +366,10 @@ export function ContentListDashboard() {
     }
     for (const f of columnFilters) {
       if (f.id === 'hasLink' && f.value === true) {
-        rows = rows.filter(r => r.hasLink)
+        list = list.filter(r => r.hasLink)
       }
       if (f.id === 'hasTag' && f.value === true) {
-        rows = rows.filter(r => Boolean(r.tag?.trim()))
+        list = list.filter(r => Boolean(r.tag?.trim()))
       }
       if (
         f.id === 'occorrenze' &&
@@ -337,14 +378,14 @@ export function ContentListDashboard() {
         f.value !== 'any'
       ) {
         if (f.value === 'none') {
-          rows = rows.filter(r => r.occorrenze == null)
+          list = list.filter(r => r.occorrenze == null)
         } else if (f.value === 'some') {
-          rows = rows.filter(r => r.occorrenze != null)
+          list = list.filter(r => r.occorrenze != null)
         }
       }
     }
-    return rows
-  }, [search, columnFilters])
+    return list
+  }, [rows, search, columnFilters])
 
   const pageRows = useMemo(() => {
     const start = pagination.pageIndex * pagination.pageSize
@@ -374,10 +415,33 @@ export function ContentListDashboard() {
           className={styles.tabsList}
         >
           <Tabs.Tab value="contenuti">Contenuti</Tabs.Tab>
-          <Tabs.Tab value="senza-risposta">Domande senza risposta</Tabs.Tab>
-          <Tabs.Tab value="ai">Generati da AI</Tabs.Tab>
+          <Tabs.Tab
+            value="senza-risposta"
+            disabled={generativeAI}
+          >
+            <Tooltip
+              content="Le domande senza risposta sono disponibili quando l'opzione Generative AI è disabilitata"
+              disabled={!generativeAI}
+            >
+              <span>Domande senza risposta</span>
+            </Tooltip>
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="ai"
+            disabled={!generativeAI}
+          >
+            <Tooltip
+              content="La scheda Generate da AI è disponibile solo quando l'opzione Generative AI è abilitata"
+              disabled={generativeAI}
+            >
+              <span>Generate da AI</span>
+            </Tooltip>
+          </Tabs.Tab>
           <Tabs.Tab value="benvenuto">Messaggio di benvenuto</Tabs.Tab>
           <Tabs.Tab value="predefinite">Risposte predefinite</Tabs.Tab>
+          {boardOfExperts ? (
+            <Tabs.Tab value="esperti">Risposte dagli esperti</Tabs.Tab>
+          ) : null}
           <Tabs.Indicator />
         </Tabs.List>
 
@@ -385,6 +449,26 @@ export function ContentListDashboard() {
           value="contenuti"
           className={styles.tabPanel}
         >
+          {undefinedWord ? (
+            <Callout
+              severity="warning"
+              action={
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setUndefinedWord(false)
+                    notify('Apertura Dizionario › Definisci', 'info')
+                  }}
+                >
+                  Insegnamela
+                </Button>
+              }
+            >
+              Non conosco la parola &quot;blendshape&quot;
+            </Callout>
+          ) : null}
           <Table<ContentRow>
             data={pageRows}
             columns={columns}
@@ -395,19 +479,39 @@ export function ContentListDashboard() {
             pagination={pagination}
             onPaginationChange={setPagination}
             controlsAfterFilters={
-              <Button
-                type="button"
-                variant="primary"
-                size="md"
-                icon={
-                  <Plus
-                    size={18}
-                    aria-hidden
-                  />
-                }
-              >
-                Nuovo contenuto
-              </Button>
+              <div className={styles.toolbarRow}>
+                {search.trim() || columnFilters.length > 0 ? (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    danger
+                    size="md"
+                    icon={
+                      <Trash2
+                        size={16}
+                        aria-hidden
+                      />
+                    }
+                    onClick={() => setDeleting('filtered')}
+                  >
+                    Elimina tutti ({filtered.length})
+                  </Button>
+                ) : null}
+                <Button
+                  type="button"
+                  variant="primary"
+                  size="md"
+                  icon={
+                    <Plus
+                      size={18}
+                      aria-hidden
+                    />
+                  }
+                  onClick={() => setEditing('new')}
+                >
+                  Nuovo contenuto
+                </Button>
+              </div>
             }
             search={search}
             onSearchChange={setSearch}
@@ -429,9 +533,39 @@ export function ContentListDashboard() {
                     aria-hidden
                   />
                 ),
-                onClick: () => {
-                  /* demo */
+                onClick: row => setEditing(row.original),
+              },
+              {
+                id: 'duplicate',
+                label: 'Duplica',
+                icon: (
+                  <Copy
+                    size={16}
+                    aria-hidden
+                  />
+                ),
+                onClick: row => {
+                  setRows(prev => [
+                    {
+                      ...row.original,
+                      id: `${row.original.id}-copy-${Date.now()}`,
+                    },
+                    ...prev,
+                  ])
+                  notify('Contenuto duplicato')
                 },
+              },
+              {
+                id: 'delete',
+                label: 'Elimina',
+                variant: 'danger',
+                icon: (
+                  <Trash2
+                    size={16}
+                    aria-hidden
+                  />
+                ),
+                onClick: row => setDeleting([row.original]),
               },
             ]}
             bulkActions={[
@@ -444,30 +578,121 @@ export function ContentListDashboard() {
                   />
                 ),
                 variant: 'danger',
-                onClick: () => {
-                  /* demo */
-                },
+                onClick: sel => setDeleting(sel.map(r => r.original)),
               },
             ]}
             tableId="real-example-content-list"
           />
         </Tabs.Panel>
 
-        {(['senza-risposta', 'ai', 'benvenuto', 'predefinite'] as const).map(
-          id => (
-            <Tabs.Panel
-              key={id}
-              value={id}
-              className={styles.tabPanel}
-            >
-              <p className={styles.tabPlaceholder}>
-                Questa scheda è solo dimostrativa. Torna a Contenuti per vedere
-                l’esempio completo con tabella e paginazione.
-              </p>
-            </Tabs.Panel>
-          ),
-        )}
+        <Tabs.Panel
+          value="senza-risposta"
+          className={styles.tabPanel}
+        >
+          <UnansweredQuestionsTab />
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="ai"
+          className={styles.tabPanel}
+        >
+          <DraftsTab />
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="benvenuto"
+          className={styles.tabPanel}
+        >
+          <WelcomeMessageTab />
+        </Tabs.Panel>
+        <Tabs.Panel
+          value="predefinite"
+          className={styles.tabPanel}
+        >
+          <DefaultAnswersTab />
+        </Tabs.Panel>
+        {boardOfExperts ? (
+          <Tabs.Panel
+            value="esperti"
+            className={styles.tabPanel}
+          >
+            <ExpertReferencesTab />
+          </Tabs.Panel>
+        ) : null}
       </Tabs.Root>
+
+      {editing ? (
+        <ContentEditDrawer
+          open
+          title={
+            editing === 'new'
+              ? 'Aggiungi un nuovo contenuto'
+              : 'Modifica del contenuto'
+          }
+          initial={
+            editing === 'new'
+              ? undefined
+              : {
+                  question: editing.domanda,
+                  answer: editing.risposta,
+                  contextVarsToMatch: editing.argNecessari,
+                  contextVarsToSet: editing.argImpostati,
+                  tags: editing.tag ? [editing.tag] : [],
+                }
+          }
+          onClose={() => setEditing(null)}
+          onSave={draft => {
+            if (editing === 'new') {
+              setRows(prev => [
+                {
+                  id: `new-${Date.now()}`,
+                  domanda: draft.question,
+                  risposta: draft.answer,
+                  occorrenze: null,
+                  argNecessari: draft.contextVarsToMatch,
+                  argImpostati: draft.contextVarsToSet,
+                  tag: draft.tags[0] ?? '',
+                  hasLink: false,
+                  creatoIl: 'adesso',
+                },
+                ...prev,
+              ])
+            }
+            setEditing(null)
+            notify('Operazione andata a buon fine')
+          }}
+          onDelete={
+            editing === 'new'
+              ? undefined
+              : () => {
+                  setDeleting([editing])
+                  setEditing(null)
+                }
+          }
+        />
+      ) : null}
+      <ConfirmDialog
+        isOpen={deleting !== null}
+        onClose={() => setDeleting(null)}
+        onConfirm={() => {
+          const ids = new Set(
+            (deleting === 'filtered' ? filtered : (deleting ?? [])).map(
+              r => r.id,
+            ),
+          )
+          setRows(prev => prev.filter(r => !ids.has(r.id)))
+          setDeleting(null)
+          notify('Elemento/i eliminato/i con successo')
+        }}
+        title="Eliminazione domanda"
+        message={
+          deleting === 'filtered'
+            ? `Sei sicuro di voler eliminare tutti i ${filtered.length} risultati filtrati?`
+            : deleting && deleting.length > 1
+              ? `Confermi di voler eliminare le ${deleting.length} domande selezionate?`
+              : 'Confermi di voler eliminare la domanda?'
+        }
+        confirmText="Conferma"
+        cancelText="Annulla"
+      />
     </div>
   )
 }

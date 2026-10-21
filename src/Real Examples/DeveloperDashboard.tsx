@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { Code2, Copy, Download, ExternalLink, Eye, EyeOff } from 'lucide-react'
+import React from 'react'
+import { Code2, Download, ExternalLink } from 'lucide-react'
 import { Button } from '../components/Button'
+import { CodeBlock } from '../components/CodeBlock'
+import { CopyField } from '../components/CopyField'
 import { FieldGroup } from '../components/Field'
-import { Input } from '../components/Input'
 import { Section } from '../components/Section'
 import { Tabs } from '../components/Tabs'
-import '../components/Input/styles.css'
+import { useNotify } from './shared/useNotify'
 import styles from './realExamples.module.css'
 
 const SNIPPET = `import Memori from '@memori.ai/memori-react';
@@ -18,11 +19,18 @@ import '@memori.ai/memori-react/dist/styles.css';
   showShare
 />`
 
+const WEB_COMPONENT = `<memori-client
+  memoriName="Layout Storybook"
+  ownerUserName="demo"
+  tenantID="aisuru.com"
+></memori-client>`
+
 /**
  * Developer: accesso API, utility e snippet client.
  */
 export function DeveloperDashboard() {
-  const [revealed, setRevealed] = useState(false)
+  const notify = useNotify()
+  const copied = () => notify('Snippet copiato')
 
   return (
     <div className={styles.page}>
@@ -60,70 +68,22 @@ export function DeveloperDashboard() {
         >
           <div className={styles.formStack}>
             <FieldGroup label="Memori ID">
-              <div className={styles.inputWithActions}>
-                <Input
-                  fullWidth
-                  readOnly
-                  defaultValue="a1b2c3d4-e5f6-7890-abcd-ef1234567890"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="md"
-                  ariaLabel="Copia Memori ID"
-                  icon={
-                    <Copy
-                      size={18}
-                      aria-hidden
-                    />
-                  }
-                />
-              </div>
+              <CopyField
+                value="a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                copyLabel="Copia Memori ID"
+                onCopy={() => notify('Memori ID copiato')}
+              />
             </FieldGroup>
             <FieldGroup
               label="Secret token"
               helperText="Non condividere questo token in repository pubblici."
             >
-              <div className={styles.inputWithActions}>
-                <Input
-                  fullWidth
-                  readOnly
-                  type={revealed ? 'text' : 'password'}
-                  defaultValue="sk_live_demo_0123456789abcdef"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="md"
-                  ariaLabel={revealed ? 'Nascondi token' : 'Mostra token'}
-                  onClick={() => setRevealed(v => !v)}
-                  icon={
-                    revealed ? (
-                      <EyeOff
-                        size={18}
-                        aria-hidden
-                      />
-                    ) : (
-                      <Eye
-                        size={18}
-                        aria-hidden
-                      />
-                    )
-                  }
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="md"
-                  ariaLabel="Copia secret token"
-                  icon={
-                    <Copy
-                      size={18}
-                      aria-hidden
-                    />
-                  }
-                />
-              </div>
+              <CopyField
+                value="sk_live_demo_0123456789abcdef"
+                secret
+                copyLabel="Copia secret token"
+                onCopy={() => notify('Secret token copiato')}
+              />
             </FieldGroup>
             <div className={styles.toolbarRow}>
               <Button
@@ -160,47 +120,46 @@ export function DeveloperDashboard() {
           value="utility"
           className={styles.tabPanel}
         >
-          <h2 className={styles.sectionTitle}>typeMessage</h2>
-          <pre className={styles.codeBlock}>
-            {`typeMessage('Ciao mondo!', true, false)`}
-          </pre>
-          <h2 className={styles.sectionTitle}>getMemoriState</h2>
-          <pre className={styles.codeBlock}>
-            {`const state = getMemoriState();\nconsole.log(state.sessionID);`}
-          </pre>
+          <div className={styles.formStack}>
+            <section>
+              <h2 className={styles.sectionTitle}>typeMessage</h2>
+              <CodeBlock
+                language="JavaScript"
+                code="typeMessage('Ciao mondo!', true, false)"
+                onCopy={copied}
+              />
+            </section>
+            <section>
+              <h2 className={styles.sectionTitle}>getMemoriState</h2>
+              <CodeBlock
+                language="JavaScript"
+                code={`const state = getMemoriState();\nconsole.log(state.sessionID);`}
+                onCopy={copied}
+              />
+            </section>
+          </div>
         </Tabs.Panel>
 
         <Tabs.Panel
           value="react"
           className={styles.tabPanel}
         >
-          <pre className={styles.codeBlock}>{SNIPPET}</pre>
-          <Button
-            type="button"
-            variant="primary"
-            size="md"
-            icon={
-              <Copy
-                size={18}
-                aria-hidden
-              />
-            }
-          >
-            Copia snippet
-          </Button>
+          <CodeBlock
+            language="React (tsx)"
+            code={SNIPPET}
+            onCopy={copied}
+          />
         </Tabs.Panel>
 
         <Tabs.Panel
           value="webcomponent"
           className={styles.tabPanel}
         >
-          <pre className={styles.codeBlock}>
-            {`<memori-client
-  memoriName="Layout Storybook"
-  ownerUserName="demo"
-  tenantID="aisuru.com"
-></memori-client>`}
-          </pre>
+          <CodeBlock
+            language="HTML"
+            code={WEB_COMPONENT}
+            onCopy={copied}
+          />
         </Tabs.Panel>
       </Tabs.Root>
     </div>

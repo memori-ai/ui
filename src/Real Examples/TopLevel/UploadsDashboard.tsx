@@ -3,6 +3,7 @@ import type { ColumnDef, PaginationState } from '@tanstack/react-table'
 import { Download, FileUp, Plus, Trash2 } from 'lucide-react'
 import { Button } from '../../components/Button'
 import { DocumentCard } from '../../components/DocumentCard'
+import { FileDropzone } from '../../components/FileDropzone'
 import { Section } from '../../components/Section'
 import { Table } from '../../components/Table'
 import { Tabs } from '../../components/Tabs'
@@ -45,6 +46,7 @@ const UPLOADS: UploadRow[] = [
  * Uploads: asset media del tenant.
  */
 export function UploadsDashboard() {
+  const [queued, setQueued] = useState<string[]>(['pending-upload.png'])
   const [tab, setTab] = useState('list')
   const [search, setSearch] = useState('')
   const [pagination, setPagination] = useState<PaginationState>({
@@ -192,28 +194,24 @@ export function UploadsDashboard() {
           value="upload"
           className={styles.tabPanel}
         >
-          <div className={styles.docDropZone}>
-            <FileUp
-              size={32}
-              aria-hidden
-            />
-            <p className={styles.subtitle}>
-              Trascina immagini, video o documenti, oppure seleziona i file.
-            </p>
-            <Button
-              type="button"
-              variant="primary"
-              size="md"
-            >
-              Seleziona file
-            </Button>
-          </div>
+          <FileDropzone
+            multiple
+            accept="image/*,video/*,.pdf,.docx,.txt"
+            icon={<FileUp size={28} />}
+            description="Immagini, video o documenti"
+            onFilesSelected={files =>
+              setQueued(prev => [...files.map(f => f.name), ...prev])
+            }
+          />
           <div className={styles.cardGrid}>
-            <DocumentCard
-              title="pending-upload.png"
-              badge="PNG"
-              meta="In coda"
-            />
+            {queued.map(name => (
+              <DocumentCard
+                key={name}
+                title={name}
+                badge={name.split('.').pop()?.toUpperCase()}
+                meta="In coda"
+              />
+            ))}
           </div>
         </Tabs.Panel>
       </Tabs.Root>

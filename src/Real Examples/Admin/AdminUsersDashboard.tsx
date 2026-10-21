@@ -150,7 +150,7 @@ export function AdminUsersDashboard() {
         search={search}
         onSearchChange={setSearch}
         globalFilterPlaceholder="Cerca username, email o tenant"
-        paginationVariant="detailed"
+        paginationVariant="simplified"
         pageSizeOptions={[10, 25, 50]}
         initialPageSize={10}
         rowActionsVariant="inline"

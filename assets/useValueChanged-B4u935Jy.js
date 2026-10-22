@@ -1,0 +1,1 @@
+import{r as s}from"./iframe-DQnDAKDD.js";import{a as o}from"./useRenderElement-cOdDho9S.js";import{u as n}from"./useStableCallback-D88_nEGo.js";function m(r,a){const t=s.useRef(r),e=n(a);o(()=>{t.current!==r&&e(t.current)},[r,e]),o(()=>{t.current=r},[r])}export{m as u};

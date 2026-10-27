@@ -1,5 +1,31 @@
 
 
+## [2.0.5-alpha.0](https://github.com/memori-ai/ui/compare/v2.0.4...v2.0.5-alpha.0) (2026-10-27)
+
+
+### Features
+
+* add P1 primitives (Heading, Text, Stack, List, Tag, Badge, Switch, Radio, Divider, Empty, Progress, Result, Avatar, Skeleton, Textarea) ([6e2b6c6](https://github.com/memori-ai/ui/commit/6e2b6c6655ab6e989f62d51d5b00da0af9f6a864))
+* **Card:** add document variant with badge and icon support, update styles and tests ([e8a2ea8](https://github.com/memori-ai/ui/commit/e8a2ea8da50163dce67989bd41fffc12ec709493))
+* **components:** add Callout, Breadcrumbs, InfoHint, CopyField, CodeBlock, FileDropzone, NavList, StatCard ([4e42b98](https://github.com/memori-ai/ui/commit/4e42b981a9b8210988538059b58f5cf48bedb46d))
+* **DocumentCard:** introduce DocumentCard component with styles, stories, and tests ([ee431bd](https://github.com/memori-ai/ui/commit/ee431bd331d78a8062a71c1885b74534e0eeb7c8))
+* export P1 primitives and FilterBar ([f17a743](https://github.com/memori-ai/ui/commit/f17a743979e66ea41e8b7179fb33f6e9bace59a2))
+* extract FilterBar from Table toolbar and chips ([feb8da9](https://github.com/memori-ai/ui/commit/feb8da98066d77a6fd0ca79de8e04ca06a8cc465))
+* **Radio:** add description and card variant ([7c3ba04](https://github.com/memori-ai/ui/commit/7c3ba040321adab09bc55e314f27918f9e28a871))
+* **RealExamples:** add Admin dashboard stories with UI/UX fixes ([bfdf8f0](https://github.com/memori-ai/ui/commit/bfdf8f084531e2e490936171fb3dd8a82a486c86))
+* **RealExamples:** add dashboard stories and apply UI/UX fixes ([e675410](https://github.com/memori-ai/ui/commit/e6754108ee83c7af91b56193f41116266990a51e))
+* **RealExamples:** add TopLevel dashboard stories with UI/UX fixes ([d263668](https://github.com/memori-ai/ui/commit/d263668e65f7501791c85caf5617298cf6710d00))
+* **Tooltip:** add usePressTooltip hook and update Tooltip component ([f4831a4](https://github.com/memori-ai/ui/commit/f4831a4731c6b124c23e6077877b480b5b175d5e))
+* **Tooltip:** enhance tooltip functionality with openOnPress prop and update InfoHint component ([e171c3c](https://github.com/memori-ai/ui/commit/e171c3ce43aae76b420f713a208728f5e999759c))
+
+
+### Bug Fixes
+
+* **Alert:** lift toast viewport onto the overlay z-index scale ([eb98ecd](https://github.com/memori-ai/ui/commit/eb98ecdd92eb90b065584e791e5f6e32b13940f2))
+* **styles:** refine Collapsible surface and improve responsive layouts ([024b408](https://github.com/memori-ai/ui/commit/024b4086e212dea0e87168ebd96c6fbfdb61f509))
+* **Tag,Table:** improve error Tag contrast and allow hiding row actions per row ([aabd389](https://github.com/memori-ai/ui/commit/aabd3890417c68dc0726f102b83335130489990f))
+* **workflows:** pin Ubuntu version to 24.04 for Playwright compatibility ([5111c0d](https://github.com/memori-ai/ui/commit/5111c0d3295b21a4de7e4a1742650442bb55af9e))
+
 ## [2.0.4](https://github.com/memori-ai/ui/compare/v2.0.3...v2.0.4) (2026-10-08)
 
 

@@ -108,3 +108,32 @@ it('renders Tooltip aligned top right unchanged', () => {
   )
   expect(container).toMatchSnapshot()
 })
+
+it('defaults to top placement when open', () => {
+  render(
+    <Tooltip
+      content="Default placement"
+      open
+    >
+      Hover me
+    </Tooltip>,
+  )
+  const positioner = document.querySelector('.memori-tooltip__positioner')
+  expect(positioner).not.toBeNull()
+  expect(positioner).toHaveAttribute('data-side', 'top')
+})
+
+it('respects an explicit placement', () => {
+  render(
+    <Tooltip
+      content="Bottom placement"
+      open
+      placement="bottom"
+    >
+      Hover me
+    </Tooltip>,
+  )
+  const positioner = document.querySelector('.memori-tooltip__positioner')
+  expect(positioner).not.toBeNull()
+  expect(positioner).toHaveAttribute('data-side', 'bottom')
+})

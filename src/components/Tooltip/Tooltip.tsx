@@ -52,7 +52,7 @@ export interface TooltipProps {
   children: React.ReactNode
   /**
    * Preferred placement (Floating UI `side` + `align`).
-   * @default 'right'
+   * @default 'top'
    */
   placement?: TooltipPlacement | TooltipLegacyAlign
   /**
@@ -214,7 +214,7 @@ function resolveSideAlign(
   if (align) {
     return legacyAlignToSideAlign(align)
   }
-  return { side: 'right', align: 'center' }
+  return { side: 'top', align: 'center' }
 }
 
 function mergeStyle(

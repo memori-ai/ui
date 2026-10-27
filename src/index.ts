@@ -117,7 +117,7 @@ export type {
   PaginationWindowItem,
   GetPaginationWindowItemsOptions,
 } from './components/Table'
-export { Tooltip } from './components/Tooltip'
+export { Tooltip, usePressTooltip } from './components/Tooltip'
 export type {
   TooltipLegacyAlign,
   TooltipPlacement,

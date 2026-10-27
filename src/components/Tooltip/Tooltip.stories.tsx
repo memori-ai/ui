@@ -5,6 +5,7 @@ import { HelpCircle } from 'lucide-react'
 
 import { FixedSurface } from '../../../.storybook/decorators'
 import { Tooltip } from './Tooltip'
+import { usePressTooltip } from './usePressTooltip'
 
 const demoPadding = {
   paddingTop: 'calc(var(--memori-spacing-5xl) * 2)',
@@ -167,7 +168,7 @@ export const AlignLeft: Story = {
 
 export const AlignRight: Story = {
   args: {
-    title: 'Placement right (default)',
+    title: 'Placement right',
     children: <span>Hover me</span>,
     placement: 'right',
     open: true,
@@ -268,6 +269,49 @@ export const OpenInteraction: Story = {
     await userEvent.hover(trigger)
     await expect(
       await body.findByText('Interactive tooltip'),
+    ).toBeInTheDocument()
+  },
+}
+
+export const PressToToggle: Story = {
+  name: 'Press to toggle (usePressTooltip)',
+  args: {
+    title: 'Tap or click to toggle',
+    children: <span>Press me</span>,
+  },
+  render: () => {
+    const press = usePressTooltip()
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          ...demoPadding,
+        }}
+      >
+        <Tooltip
+          content="Tap or click to toggle"
+          {...press.tooltipProps}
+          slotProps={{ positioner: press.positionerProps }}
+        >
+          <button
+            ref={press.anchorRef}
+            type="button"
+            {...press.pressTriggerProps}
+          >
+            Press me
+          </button>
+        </Tooltip>
+      </div>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const body = within(canvasElement.ownerDocument.body)
+    const trigger = canvas.getByRole('button', { name: 'Press me' })
+    await userEvent.click(trigger)
+    await expect(
+      await body.findByText('Tap or click to toggle'),
     ).toBeInTheDocument()
   },
 }

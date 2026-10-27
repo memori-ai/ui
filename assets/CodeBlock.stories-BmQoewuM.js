@@ -1,0 +1,27 @@
+import{C as s}from"./CodeBlock-CDqPAvt6.js";import"./iframe-CfppFBML.js";import"./preload-helper-Ct5FWWRu.js";import"./index-DqrBYd1k.js";import"./useTranslation-LlCKG-af.js";import"./index-CvRqaRa1.js";import"./Button-CNHQXBx-.js";import"./useButton-jUNrtBih.js";import"./floating-ui.utils.dom-BsOq6spr.js";import"./useStableCallback-CS5fRckw.js";import"./useRenderElement-CwgC88KG.js";import"./loader-circle-m71gnIoa.js";import"./createLucideIcon-DljGq0Ho.js";import"./check-DLo5nvHP.js";import"./copy-B1rTyaAo.js";const{fn:n}=__STORYBOOK_MODULE_TEST__,i=`import Memori from '@memori.ai/memori-react'
+
+<Memori
+  memoriName="Layout Storybook"
+  ownerUserName="demo"
+  tenantID="aisuru.com"
+/>`,M={title:"Contenuto/CodeBlock",component:s,tags:["autodocs"],args:{code:i,language:"tsx",onCopy:n()},argTypes:{code:{control:"text"},language:{control:"text"},copyable:{control:"boolean"},wrap:{control:"boolean"},maxHeight:{control:"text"}},parameters:{controls:{expanded:!0},docs:{description:{component:"Monospace snippet with optional language label and copy button. Scrolls horizontally by default; `wrap` wraps long lines. The `<pre>` is focusable so keyboard users can scroll it."}}}},o={},e={args:{code:"typeMessage('Ciao mondo!', true, false)",language:void 0,copyable:!1}},a={args:{language:"JSON",wrap:!0,code:'{"status":"ok","sessionID":"5e1c2a6b-0f3e-4d0a-9a4e-1f2b3c4d5e6f","answer":"Ciao! Come posso aiutarti oggi con il tuo ordine?"}'}},r={args:{maxHeight:120,code:Array.from({length:20},(c,t)=>`line ${t+1}`).join(`
+`)}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:"{}",...o.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    code: "typeMessage('Ciao mondo!', true, false)",
+    language: undefined,
+    copyable: false
+  }
+}`,...e.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    language: 'JSON',
+    wrap: true,
+    code: '{"status":"ok","sessionID":"5e1c2a6b-0f3e-4d0a-9a4e-1f2b3c4d5e6f","answer":"Ciao! Come posso aiutarti oggi con il tuo ordine?"}'
+  }
+}`,...a.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    maxHeight: 120,
+    code: Array.from({
+      length: 20
+    }, (_, i) => \`line \${i + 1}\`).join('\\n')
+  }
+}`,...r.parameters?.docs?.source}}};const O=["Default","Plain","Wrapped","MaxHeight"];export{o as Default,r as MaxHeight,e as Plain,a as Wrapped,O as __namedExportsOrder,M as default};

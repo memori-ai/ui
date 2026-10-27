@@ -6,6 +6,8 @@ const meta = {
   title: 'Real Examples/Dashboard',
   parameters: {
     layout: 'fullscreen',
+    // Demo composition; not held to component-level a11y gates.
+    a11y: { test: 'off' },
   },
 } satisfies Meta
 

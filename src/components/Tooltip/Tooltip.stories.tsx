@@ -5,7 +5,6 @@ import { HelpCircle } from 'lucide-react'
 
 import { FixedSurface } from '../../../.storybook/decorators'
 import { Tooltip } from './Tooltip'
-import { usePressTooltip } from './usePressTooltip'
 
 const demoPadding = {
   paddingTop: 'calc(var(--memori-spacing-5xl) * 2)',
@@ -274,37 +273,23 @@ export const OpenInteraction: Story = {
 }
 
 export const PressToToggle: Story = {
-  name: 'Press to toggle (usePressTooltip)',
+  name: 'Press to toggle (openOnPress)',
   args: {
     title: 'Tap or click to toggle',
-    children: <span>Press me</span>,
+    openOnPress: true,
+    children: <button type="button">Press me</button>,
   },
-  render: () => {
-    const press = usePressTooltip()
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          ...demoPadding,
-        }}
-      >
-        <Tooltip
-          content="Tap or click to toggle"
-          {...press.tooltipProps}
-          slotProps={{ positioner: press.positionerProps }}
-        >
-          <button
-            ref={press.anchorRef}
-            type="button"
-            {...press.pressTriggerProps}
-          >
-            Press me
-          </button>
-        </Tooltip>
-      </div>
-    )
-  },
+  render: args => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        ...demoPadding,
+      }}
+    >
+      <Tooltip {...args} />
+    </div>
+  ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const body = within(canvasElement.ownerDocument.body)

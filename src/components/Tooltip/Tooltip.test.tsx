@@ -1,6 +1,6 @@
 import React from 'react'
 import { it, expect } from 'vitest'
-import { render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import Tooltip from './Tooltip'
 
 it('renders Tooltip unchanged', () => {
@@ -136,4 +136,23 @@ it('respects an explicit placement', () => {
   const positioner = document.querySelector('.memori-tooltip__positioner')
   expect(positioner).not.toBeNull()
   expect(positioner).toHaveAttribute('data-side', 'bottom')
+})
+
+it('openOnPress toggles the tooltip on click without manual hook wiring', () => {
+  render(
+    <Tooltip
+      content="Tap or click to toggle"
+      openOnPress
+    >
+      <button type="button">Press me</button>
+    </Tooltip>,
+  )
+
+  expect(screen.queryByText('Tap or click to toggle')).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: 'Press me' }))
+  expect(screen.getByText('Tap or click to toggle')).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: 'Press me' }))
+  expect(screen.queryByText('Tap or click to toggle')).not.toBeInTheDocument()
 })

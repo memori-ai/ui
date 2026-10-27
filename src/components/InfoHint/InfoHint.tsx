@@ -27,7 +27,7 @@ export interface InfoHintProps {
 
 /**
  * Small "i" button next to a label or column header that explains it in a
- * tooltip. Keyboard focusable; the tooltip opens on hover and focus.
+ * tooltip. Keyboard focusable; opens on hover, focus, and press (touch).
  */
 export const InfoHint = React.forwardRef<HTMLButtonElement, InfoHintProps>(
   ({ content, ariaLabel, size = 14, placement = 'top', className }, ref) => {
@@ -37,6 +37,7 @@ export const InfoHint = React.forwardRef<HTMLButtonElement, InfoHintProps>(
       <Tooltip
         title={content}
         placement={placement}
+        openOnPress
       >
         <button
           ref={ref}

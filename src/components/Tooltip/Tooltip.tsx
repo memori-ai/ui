@@ -1,12 +1,20 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import cx from 'classnames'
-import React, { forwardRef, useMemo } from 'react'
+import React, {
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useMemo,
+  type ReactElement,
+  type Ref,
+} from 'react'
 
 import {
   useMemoriTheme,
   usePortalContainer,
 } from '../../theme/MemoriUIProvider'
 import type { Theme } from '../../theme/useTheme'
+import { usePressTooltip } from './usePressTooltip'
 import './styles.css'
 
 /** Matches Base UI / Floating UI anchor positioning. */
@@ -129,6 +137,11 @@ export interface TooltipProps {
   collisionPadding?: React.ComponentProps<
     typeof BaseTooltip.Positioner
   >['collisionPadding']
+  /**
+   * Click/tap toggles the tooltip (touch-friendly). Desktop hover still works.
+   * Prefer this over wiring {@link usePressTooltip} by hand.
+   */
+  openOnPress?: boolean
   className?: string
   style?: React.CSSProperties
   slotProps?: {
@@ -227,161 +240,269 @@ function mergeStyle(
   return { ...a, ...b }
 }
 
-export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
-  function Tooltip(props, ref) {
-    const {
-      title,
-      content,
-      children,
-      placement,
-      align: alignProp,
-      disabled = false,
-      open: openProp,
-      visible,
-      defaultOpen,
-      onOpenChange,
-      enterDelay = 400,
-      leaveDelay = 0,
-      sideOffset = 8,
-      disableHoverablePopup = false,
-      arrow = true,
-      container,
-      theme,
-      collisionBoundary,
-      collisionPadding,
-      className,
-      style,
-      slotProps,
-    } = props
+function assignRef<T>(ref: Ref<T> | undefined, value: T) {
+  if (typeof ref === 'function') {
+    ref(value)
+  } else if (ref && typeof ref === 'object') {
+    ;(ref as React.MutableRefObject<T>).current = value
+  }
+}
 
-    const label = title ?? content
+function wireOpenOnPressChild(
+  children: React.ReactNode,
+  press: ReturnType<typeof usePressTooltip>,
+): React.ReactNode {
+  const element: ReactElement = isValidElement(children) ? (
+    children
+  ) : (
+    <span>{children}</span>
+  )
 
-    const portalContainer = usePortalContainer(container)
-    const resolvedTheme = useMemoriTheme(theme)
+  const elementProps = element.props as {
+    ref?: Ref<HTMLElement>
+    onClick?: (event: React.MouseEvent) => void
+    onPointerDown?: (event: React.PointerEvent) => void
+  }
+  // React 19: ref is a prop. React 18: ref lives on the element object.
+  const elementRef =
+    elementProps.ref ??
+    (element as ReactElement & { ref?: Ref<HTMLElement> }).ref
 
-    const { side, align } = useMemo(
-      () => resolveSideAlign(placement, alignProp),
-      [placement, alignProp],
-    )
+  return cloneElement(element, {
+    ...press.pressTriggerProps,
+    ref: (node: HTMLElement | null) => {
+      press.anchorRef(node)
+      assignRef(elementRef, node)
+    },
+    onPointerDown: (event: React.PointerEvent) => {
+      press.pressTriggerProps.onPointerDown(event)
+      elementProps.onPointerDown?.(event)
+    },
+    onClick: (event: React.MouseEvent) => {
+      press.pressTriggerProps.onClick(event)
+      elementProps.onClick?.(event)
+    },
+  } as React.HTMLAttributes<HTMLElement> & { ref: Ref<HTMLElement> })
+}
 
-    const open =
-      openProp !== undefined
-        ? openProp
-        : visible !== undefined
-          ? visible
+type PressController = ReturnType<typeof usePressTooltip>
+
+function TooltipView({
+  props,
+  forwardedRef,
+  press,
+}: {
+  props: TooltipProps
+  forwardedRef: Ref<HTMLSpanElement>
+  press: PressController | null
+}) {
+  const {
+    title,
+    content,
+    children,
+    placement,
+    align: alignProp,
+    disabled = false,
+    open: openProp,
+    visible,
+    defaultOpen,
+    onOpenChange,
+    enterDelay = 400,
+    leaveDelay = 0,
+    sideOffset = 8,
+    disableHoverablePopup = false,
+    arrow = true,
+    container,
+    theme,
+    collisionBoundary,
+    collisionPadding,
+    openOnPress = false,
+    className,
+    style,
+    slotProps,
+  } = props
+
+  const label = title ?? content
+  const portalContainer = usePortalContainer(container)
+  const resolvedTheme = useMemoriTheme(theme)
+
+  const { side, align } = useMemo(
+    () => resolveSideAlign(placement, alignProp),
+    [placement, alignProp],
+  )
+
+  const open =
+    openProp !== undefined
+      ? openProp
+      : visible !== undefined
+        ? visible
+        : press
+          ? press.open
           : undefined
 
-    const {
-      className: triggerSlotClassName,
-      style: triggerSlotStyle,
-      ...triggerRest
-    } = slotProps?.trigger ?? {}
-
-    const {
-      className: positionerSlotClassName,
-      style: positionerSlotStyle,
-      collisionBoundary: positionerCollisionBoundary,
-      collisionPadding: positionerCollisionPadding,
-      ...positionerRest
-    } = slotProps?.positioner ?? {}
-
-    const {
-      className: popupSlotClassName,
-      style: popupSlotStyle,
-      ...popupRest
-    } = slotProps?.popup ?? {}
-
-    const {
-      className: arrowSlotClassName,
-      style: arrowSlotStyle,
-      ...arrowRest
-    } = slotProps?.arrow ?? {}
-
-    const rootClassName = cx(
-      'memori-tooltip',
-      className,
-      slotProps?.root?.className,
-    )
-    const rootStyle = mergeStyle(style, slotProps?.root?.style)
-
-    if (label == null || label === false) {
-      return (
-        <span
-          {...slotProps?.root}
-          className={rootClassName}
-          ref={ref}
-          style={rootStyle}
-        >
-          {children}
-        </span>
-      )
+  const handleOpenChange: TooltipRootChangeHandler = (next, eventDetails) => {
+    if (press && openProp === undefined && visible === undefined) {
+      press.setOpen(next)
     }
+    onOpenChange?.(next, eventDetails)
+  }
 
+  const {
+    className: triggerSlotClassName,
+    style: triggerSlotStyle,
+    ...triggerRest
+  } = slotProps?.trigger ?? {}
+
+  const {
+    className: positionerSlotClassName,
+    style: positionerSlotStyle,
+    collisionBoundary: positionerCollisionBoundary,
+    collisionPadding: positionerCollisionPadding,
+    ...positionerRest
+  } = slotProps?.positioner ?? {}
+
+  const {
+    className: popupSlotClassName,
+    style: popupSlotStyle,
+    ...popupRest
+  } = slotProps?.popup ?? {}
+
+  const {
+    className: arrowSlotClassName,
+    style: arrowSlotStyle,
+    ...arrowRest
+  } = slotProps?.arrow ?? {}
+
+  const rootClassName = cx(
+    'memori-tooltip',
+    className,
+    slotProps?.root?.className,
+  )
+  const rootStyle = mergeStyle(style, slotProps?.root?.style)
+
+  if (label == null || label === false) {
     return (
       <span
         {...slotProps?.root}
         className={rootClassName}
+        ref={forwardedRef}
         style={rootStyle}
       >
-        <BaseTooltip.Root
-          defaultOpen={defaultOpen}
-          disabled={disabled}
-          disableHoverablePopup={disableHoverablePopup}
-          onOpenChange={onOpenChange}
-          {...(open !== undefined ? { open } : {})}
-        >
-          <BaseTooltip.Trigger
-            {...triggerRest}
-            ref={ref}
-            className={cx('memori-tooltip__trigger', triggerSlotClassName)}
-            closeDelay={leaveDelay}
-            delay={enterDelay}
-            render={<span />}
-            style={triggerSlotStyle}
-          >
-            {children}
-          </BaseTooltip.Trigger>
-          <BaseTooltip.Portal
-            container={portalContainer ?? undefined}
-            {...slotProps?.portal}
-          >
-            <BaseTooltip.Positioner
-              {...positionerRest}
-              align={align}
-              className={cx(
-                'memori-tooltip__positioner',
-                positionerSlotClassName,
-              )}
-              collisionBoundary={
-                collisionBoundary ?? positionerCollisionBoundary
-              }
-              collisionPadding={
-                collisionPadding ?? positionerCollisionPadding ?? 8
-              }
-              data-theme={resolvedTheme}
-              side={side}
-              sideOffset={positionerRest.sideOffset ?? sideOffset}
-              style={positionerSlotStyle}
-            >
-              <BaseTooltip.Popup
-                data-theme={resolvedTheme}
-                {...popupRest}
-                className={cx('memori-tooltip__popup', popupSlotClassName)}
-                style={popupSlotStyle}
-              >
-                {arrow ? (
-                  <BaseTooltip.Arrow
-                    {...arrowRest}
-                    className={cx('memori-tooltip__arrow', arrowSlotClassName)}
-                    style={arrowSlotStyle}
-                  />
-                ) : null}
-                <span className="memori-tooltip__surface">{label}</span>
-              </BaseTooltip.Popup>
-            </BaseTooltip.Positioner>
-          </BaseTooltip.Portal>
-        </BaseTooltip.Root>
+        {children}
       </span>
+    )
+  }
+
+  const triggerChild = press ? wireOpenOnPressChild(children, press) : children
+
+  return (
+    <span
+      {...slotProps?.root}
+      className={rootClassName}
+      style={rootStyle}
+    >
+      <BaseTooltip.Root
+        defaultOpen={openOnPress ? undefined : defaultOpen}
+        disabled={disabled}
+        disableHoverablePopup={disableHoverablePopup}
+        onOpenChange={handleOpenChange}
+        {...(open !== undefined ? { open } : {})}
+      >
+        <BaseTooltip.Trigger
+          {...triggerRest}
+          ref={forwardedRef}
+          className={cx('memori-tooltip__trigger', triggerSlotClassName)}
+          closeDelay={leaveDelay}
+          delay={enterDelay}
+          render={<span />}
+          style={triggerSlotStyle}
+        >
+          {triggerChild}
+        </BaseTooltip.Trigger>
+        <BaseTooltip.Portal
+          container={portalContainer ?? undefined}
+          {...slotProps?.portal}
+        >
+          <BaseTooltip.Positioner
+            {...positionerRest}
+            {...(press
+              ? {
+                  anchor: positionerRest.anchor ?? press.positionerProps.anchor,
+                  positionMethod:
+                    positionerRest.positionMethod ??
+                    press.positionerProps.positionMethod,
+                }
+              : {})}
+            align={align}
+            className={cx(
+              'memori-tooltip__positioner',
+              positionerSlotClassName,
+            )}
+            collisionBoundary={collisionBoundary ?? positionerCollisionBoundary}
+            collisionPadding={
+              collisionPadding ?? positionerCollisionPadding ?? 8
+            }
+            data-theme={resolvedTheme}
+            side={side}
+            sideOffset={positionerRest.sideOffset ?? sideOffset}
+            style={positionerSlotStyle}
+          >
+            <BaseTooltip.Popup
+              data-theme={resolvedTheme}
+              {...popupRest}
+              className={cx('memori-tooltip__popup', popupSlotClassName)}
+              style={popupSlotStyle}
+            >
+              {arrow ? (
+                <BaseTooltip.Arrow
+                  {...arrowRest}
+                  className={cx('memori-tooltip__arrow', arrowSlotClassName)}
+                  style={arrowSlotStyle}
+                />
+              ) : null}
+              <span className="memori-tooltip__surface">{label}</span>
+            </BaseTooltip.Popup>
+          </BaseTooltip.Positioner>
+        </BaseTooltip.Portal>
+      </BaseTooltip.Root>
+    </span>
+  )
+}
+
+function TooltipWithOpenOnPress({
+  props,
+  forwardedRef,
+}: {
+  props: TooltipProps
+  forwardedRef: Ref<HTMLSpanElement>
+}) {
+  const press = usePressTooltip(Boolean(props.defaultOpen))
+  return (
+    <TooltipView
+      forwardedRef={forwardedRef}
+      press={press}
+      props={props}
+    />
+  )
+}
+
+export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
+  function Tooltip(props, ref) {
+    if (props.openOnPress) {
+      return (
+        <TooltipWithOpenOnPress
+          forwardedRef={ref}
+          props={props}
+        />
+      )
+    }
+
+    return (
+      <TooltipView
+        forwardedRef={ref}
+        press={null}
+        props={props}
+      />
     )
   },
 )

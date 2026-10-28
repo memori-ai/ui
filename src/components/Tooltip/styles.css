@@ -39,6 +39,26 @@
         box-shadow: var(--memori-focus-ring);
     }
 
+    /*
+     * Firefox and Safari do not dispatch mouse events on a natively disabled
+     * control, so a tooltip wrapped around one never hears the hover.
+     * pointer-events: none moves the hit onto this trigger.
+     * Safari still drops that hit unless a block or flex box sits under the
+     * trigger. A native button is inline-block, so a disabled button, input,
+     * or select becomes inline-flex here. A textarea is already display:block.
+     */
+    .memori-tooltip__trigger:has(:disabled, .memori-button--disabled) {
+        cursor: not-allowed;
+    }
+
+    .memori-tooltip__trigger :is(:disabled, .memori-button--disabled) {
+        pointer-events: none;
+    }
+
+    .memori-tooltip__trigger :is(button, input, select):is(:disabled, .memori-button--disabled) {
+        display: inline-flex;
+    }
+
     /* ============================================
    POSITIONER
    ============================================ */

@@ -1,7 +1,15 @@
 import React from 'react'
+import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { it, expect } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import Tooltip from './Tooltip'
+
+const styles = readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), 'styles.css'),
+  'utf8',
+)
 
 it('renders Tooltip unchanged', () => {
   const { container } = render(
@@ -136,6 +144,41 @@ it('respects an explicit placement', () => {
   const positioner = document.querySelector('.memori-tooltip__positioner')
   expect(positioner).not.toBeNull()
   expect(positioner).toHaveAttribute('data-side', 'bottom')
+})
+
+it('lets a disabled control pass hover to the tooltip trigger', () => {
+  expect(styles).toContain(
+    '.memori-tooltip__trigger:has(:disabled, .memori-button--disabled)',
+  )
+  expect(styles).toContain('cursor: not-allowed')
+  expect(styles).toContain(
+    '.memori-tooltip__trigger :is(:disabled, .memori-button--disabled)',
+  )
+  expect(styles).toContain('pointer-events: none')
+  expect(styles).toContain(
+    '.memori-tooltip__trigger :is(button, input, select):is(:disabled, .memori-button--disabled)',
+  )
+  expect(styles).toContain('display: inline-flex')
+
+  render(
+    <Tooltip
+      content="Save is unavailable"
+      enterDelay={0}
+    >
+      <button
+        type="button"
+        disabled
+      >
+        Save
+      </button>
+    </Tooltip>,
+  )
+
+  const button = screen.getByRole('button', { name: 'Save' })
+  expect(button).toBeDisabled()
+
+  const trigger = button.parentElement
+  expect(trigger).toHaveClass('memori-tooltip__trigger')
 })
 
 it('openOnPress toggles the tooltip on click without manual hook wiring', () => {

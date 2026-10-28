@@ -4,6 +4,7 @@ import { expect, fn, userEvent, within } from 'storybook/test'
 import { HelpCircle } from 'lucide-react'
 
 import { FixedSurface } from '../../../.storybook/decorators'
+import { Button } from '../Button'
 import { Tooltip } from './Tooltip'
 
 const demoPadding = {
@@ -122,6 +123,23 @@ export const Disabled: Story = {
     title: 'Tooltip is disabled',
     children: <span>Hover me</span>,
     disabled: true,
+  },
+}
+
+export const DisabledButton: Story = {
+  name: 'Disabled button',
+  args: {
+    title: 'Save is unavailable until the form is valid',
+    enterDelay: 0,
+    leaveDelay: 0,
+    children: (
+      <Button
+        disabled
+        type="button"
+      >
+        Save
+      </Button>
+    ),
   },
 }
 

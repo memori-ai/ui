@@ -1,0 +1,1 @@
+import{c as n,a as r}from"./useRenderElement-DeH3yDN1.js";function f(e){const t=n(s,e).current;return t.next=e,r(t.effect),t}function s(e){const t={current:e,next:e,effect:()=>{t.current=t.next}};return t}export{f as u};

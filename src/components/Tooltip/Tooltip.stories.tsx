@@ -318,3 +318,66 @@ export const PressToToggle: Story = {
     ).toBeInTheDocument()
   },
 }
+
+/**
+ * Open on a phone or with touch emulation. Mouse and keyboard behave as in
+ * the other stories; only a touch press differs per `touchBehavior`.
+ */
+export const TouchBehavior: Story = {
+  name: 'Touch behavior',
+  args: {
+    title: 'Configure the provider first',
+    children: null,
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 'var(--memori-spacing-lg)',
+        alignItems: 'center',
+        ...demoPadding,
+      }}
+    >
+      <Tooltip title="Configure the provider first">
+        <Button disabled>Create MCP</Button>
+      </Tooltip>
+      <Tooltip title="Configure the provider first (keyboard focusable)">
+        <Button
+          disabled
+          focusableWhenDisabled
+        >
+          Create MCP
+        </Button>
+      </Tooltip>
+      <Tooltip title="Connected">
+        <span
+          aria-label="Status"
+          role="img"
+          style={{
+            display: 'inline-block',
+            width: '0.75rem',
+            height: '0.75rem',
+            borderRadius: '50%',
+            background: 'var(--memori-success, green)',
+          }}
+        />
+      </Tooltip>
+      <Tooltip title="Edit (auto: no tooltip on tap)">
+        <Button variant="ghost">Edit</Button>
+      </Tooltip>
+      <Tooltip
+        title="Delete (tap: action, then tooltip)"
+        touchBehavior="tap"
+      >
+        <Button variant="ghost">Delete</Button>
+      </Tooltip>
+      <Tooltip
+        title="Archive (hold to read)"
+        touchBehavior="longPress"
+      >
+        <Button variant="ghost">Archive</Button>
+      </Tooltip>
+    </div>
+  ),
+}

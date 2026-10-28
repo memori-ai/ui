@@ -15,6 +15,7 @@ import {
 } from '../../theme/MemoriUIProvider'
 import type { Theme } from '../../theme/useTheme'
 import { usePressTooltip } from './usePressTooltip'
+import { useTouchTooltip, type TooltipTouchBehavior } from './useTouchTooltip'
 import './styles.css'
 
 /** Matches Base UI / Floating UI anchor positioning. */
@@ -138,10 +139,20 @@ export interface TooltipProps {
     typeof BaseTooltip.Positioner
   >['collisionPadding']
   /**
-   * Click/tap toggles the tooltip (touch-friendly). Desktop hover still works.
-   * Prefer this over wiring {@link usePressTooltip} by hand.
+   * Click/tap toggles the tooltip, mouse included. Desktop hover still works.
+   * Overrides `touchBehavior`.
+   * @deprecated Use `touchBehavior`, which leaves mouse clicks alone and
+   * does not stop the click from reaching the child.
    */
   openOnPress?: boolean
+  /**
+   * How a touch press opens the tooltip; mouse and keyboard are unaffected.
+   * `auto` opens on tap only when the trigger is disabled or has no
+   * interactive element, `tap` opens after every tap, `longPress` opens on
+   * press and hold, `none` never opens on touch.
+   * @default 'auto'
+   */
+  touchBehavior?: TooltipTouchBehavior
   className?: string
   style?: React.CSSProperties
   slotProps?: {
@@ -287,6 +298,26 @@ function wireOpenOnPressChild(
 
 type PressController = ReturnType<typeof usePressTooltip>
 
+type Handler = (event: never) => void
+
+/** Runs `extra` handlers after any same-named ones already in `props`. */
+function chainHandlers<P extends object>(
+  props: P,
+  extra: Record<string, Handler>,
+): P {
+  const merged = { ...props } as Record<string, unknown>
+  for (const [name, handler] of Object.entries(extra)) {
+    const own = merged[name] as Handler | undefined
+    merged[name] = own
+      ? (event: never) => {
+          own(event)
+          handler(event)
+        }
+      : handler
+  }
+  return merged as P
+}
+
 function TooltipView({
   props,
   forwardedRef,
@@ -316,13 +347,14 @@ function TooltipView({
     theme,
     collisionBoundary,
     collisionPadding,
-    openOnPress = false,
+    touchBehavior = 'auto',
     className,
     style,
     slotProps,
   } = props
 
   const label = title ?? content
+  const touch = useTouchTooltip(press ? 'none' : touchBehavior, defaultOpen)
   const portalContainer = usePortalContainer(container)
   const resolvedTheme = useMemoriTheme(theme)
 
@@ -338,11 +370,24 @@ function TooltipView({
         ? visible
         : press
           ? press.open
-          : undefined
+          : touch.open
 
   const handleOpenChange: TooltipRootChangeHandler = (next, eventDetails) => {
-    if (press && openProp === undefined && visible === undefined) {
-      press.setOpen(next)
+    if (openProp === undefined && visible === undefined) {
+      if (press) {
+        press.setOpen(next)
+      } else {
+        // A touch press is opened and closed by the touch handlers; Base UI
+        // would close it on the same pointerdown.
+        if (
+          !next &&
+          eventDetails.reason === 'trigger-press' &&
+          touch.isTouchPress()
+        ) {
+          return
+        }
+        touch.setOpen(next)
+      }
     }
     onOpenChange?.(next, eventDetails)
   }
@@ -350,8 +395,11 @@ function TooltipView({
   const {
     className: triggerSlotClassName,
     style: triggerSlotStyle,
-    ...triggerRest
+    ...triggerSlotRest
   } = slotProps?.trigger ?? {}
+  const triggerRest = press
+    ? triggerSlotRest
+    : chainHandlers(triggerSlotRest, touch.triggerProps)
 
   const {
     className: positionerSlotClassName,
@@ -402,7 +450,6 @@ function TooltipView({
       style={rootStyle}
     >
       <BaseTooltip.Root
-        defaultOpen={openOnPress ? undefined : defaultOpen}
         disabled={disabled}
         disableHoverablePopup={disableHoverablePopup}
         onOpenChange={handleOpenChange}

@@ -46,16 +46,19 @@
      * Safari still drops that hit unless a block or flex box sits under the
      * trigger. A native button is inline-block, so a disabled button, input,
      * or select becomes inline-flex here. A textarea is already display:block.
+     * aria-disabled controls stay focusable, so keyboard focus still opens
+     * the tooltip; only the pointer hit moves to the trigger.
      */
-    .memori-tooltip__trigger:has(:disabled, .memori-button--disabled) {
+    .memori-tooltip__trigger:has(:disabled, [aria-disabled='true'], .memori-button--disabled) {
         cursor: not-allowed;
     }
 
-    .memori-tooltip__trigger :is(:disabled, .memori-button--disabled) {
+    .memori-tooltip__trigger :is(:disabled, [aria-disabled='true'], .memori-button--disabled) {
         pointer-events: none;
     }
 
-    .memori-tooltip__trigger :is(button, input, select):is(:disabled, .memori-button--disabled) {
+    .memori-tooltip__trigger
+        :is(button, input, select):is(:disabled, [aria-disabled='true'], .memori-button--disabled) {
         display: inline-flex;
     }
 

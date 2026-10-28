@@ -122,6 +122,7 @@ export type {
   TooltipLegacyAlign,
   TooltipPlacement,
   TooltipProps,
+  TooltipTouchBehavior,
 } from './components/Tooltip'
 export { Section } from './components/Section'
 export type { SectionProps } from './components/Section'

@@ -1,5 +1,13 @@
 
 
+## [2.0.6](https://github.com/memori-ai/ui/compare/v2.0.5...v2.0.6) (2026-10-28)
+
+
+### Features
+
+* **Tooltip:** improve tooltip behavior for disabled controls ([9eb8103](https://github.com/memori-ai/ui/commit/9eb8103809d045508983e9a0fdc4408645a46e53))
+* **Tooltip:** improve tooltip behavior for disabled controls ([76c09a9](https://github.com/memori-ai/ui/commit/76c09a977e9b219260bea8583fff919015a4f998))
+
 ## [2.0.5](https://github.com/memori-ai/ui/compare/v2.0.5-alpha.0...v2.0.5) (2026-10-28)
 
 ## [2.0.5-alpha.0](https://github.com/memori-ai/ui/compare/v2.0.4...v2.0.5-alpha.0) (2026-10-27)

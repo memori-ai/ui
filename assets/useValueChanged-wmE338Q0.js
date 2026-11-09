@@ -1,0 +1,1 @@
+import{r as o}from"./iframe-welL_Y03.js";import{a as s,u as c}from"./useStableCallback-BmsFBrCP.js";function f(e,a){const r=o.useRef(e),t=s(a);c(()=>{r.current!==e&&t(r.current),r.current=e},[e,t])}export{f as u};

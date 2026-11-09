@@ -1,5 +1,12 @@
 
 
+## [2.0.7](https://github.com/memori-ai/ui/compare/v2.0.6...v2.0.7) (2026-11-09)
+
+
+### Features
+
+* **Tooltip:** add pointer event handling for openOnPress functionality ([b7f59c9](https://github.com/memori-ai/ui/commit/b7f59c9b7741300f9d21f36524522d630ebfcf84))
+
 ## [2.0.6](https://github.com/memori-ai/ui/compare/v2.0.5...v2.0.6) (2026-10-28)
 
 

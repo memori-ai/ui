@@ -273,6 +273,8 @@ function wireOpenOnPressChild(
     ref?: Ref<HTMLElement>
     onClick?: (event: React.MouseEvent) => void
     onPointerDown?: (event: React.PointerEvent) => void
+    onPointerUp?: (event: React.PointerEvent) => void
+    onPointerCancel?: (event: React.PointerEvent) => void
   }
   // React 19: ref is a prop. React 18: ref lives on the element object.
   const elementRef =
@@ -288,6 +290,14 @@ function wireOpenOnPressChild(
     onPointerDown: (event: React.PointerEvent) => {
       press.pressTriggerProps.onPointerDown(event)
       elementProps.onPointerDown?.(event)
+    },
+    onPointerUp: (event: React.PointerEvent) => {
+      press.pressTriggerProps.onPointerUp()
+      elementProps.onPointerUp?.(event)
+    },
+    onPointerCancel: (event: React.PointerEvent) => {
+      press.pressTriggerProps.onPointerCancel()
+      elementProps.onPointerCancel?.(event)
     },
     onClick: (event: React.MouseEvent) => {
       press.pressTriggerProps.onClick(event)
@@ -375,6 +385,16 @@ function TooltipView({
   const handleOpenChange: TooltipRootChangeHandler = (next, eventDetails) => {
     if (openProp === undefined && visible === undefined) {
       if (press) {
+        // The pointerdown that becomes this click focuses the trigger first.
+        // Ignore that focus open so the click toggles from the prior state.
+        if (
+          next &&
+          press.isPointerDown() &&
+          eventDetails.reason === 'trigger-focus'
+        ) {
+          eventDetails.cancel()
+          return
+        }
         press.setOpen(next)
       } else {
         // A touch press is opened and closed by the touch handlers; Base UI

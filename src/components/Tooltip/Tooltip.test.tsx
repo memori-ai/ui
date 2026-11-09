@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { it, expect, vi } from 'vitest'
 import { act, fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Button from '../Button/Button'
 import Tooltip from './Tooltip'
 
@@ -182,6 +183,25 @@ it('lets a disabled control pass hover to the tooltip trigger', () => {
 
   const trigger = button.parentElement
   expect(trigger).toHaveClass('memori-tooltip__trigger')
+})
+
+it('openOnPress toggles the tooltip on a real click that also focuses', async () => {
+  const user = userEvent.setup()
+  render(
+    <Tooltip
+      content="Tap or click to toggle"
+      openOnPress
+    >
+      <button type="button">Press me</button>
+    </Tooltip>,
+  )
+
+  const button = screen.getByRole('button', { name: 'Press me' })
+  await user.click(button)
+  expect(screen.getByText('Tap or click to toggle')).toBeInTheDocument()
+
+  await user.click(button)
+  expect(screen.queryByText('Tap or click to toggle')).not.toBeInTheDocument()
 })
 
 it('openOnPress toggles the tooltip on click without manual hook wiring', () => {

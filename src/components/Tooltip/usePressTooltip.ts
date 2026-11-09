@@ -36,6 +36,8 @@ export function usePressTooltip(defaultOpen = false) {
   const [open, setOpen] = useState(defaultOpen)
   const anchorRef = useRef<HTMLElement | null>(null)
 
+  const pointerDownRef = useRef(false)
+
   const toggleOpen = useCallback((e: MouseEvent | PointerEvent) => {
     e.stopPropagation()
     setOpen(prev => !prev)
@@ -47,7 +49,16 @@ export function usePressTooltip(defaultOpen = false) {
 
   const pressTriggerProps = {
     onPointerDown: (e: PointerEvent) => {
+      // A click focuses the trigger before `click`. That focus would open the
+      // tooltip, and this click would then toggle it straight back shut.
+      pointerDownRef.current = true
       e.stopPropagation()
+    },
+    onPointerUp: () => {
+      pointerDownRef.current = false
+    },
+    onPointerCancel: () => {
+      pointerDownRef.current = false
     },
     onClick: toggleOpen,
   } as const
@@ -69,5 +80,7 @@ export function usePressTooltip(defaultOpen = false) {
     pressTriggerProps,
     positionerProps,
     tooltipProps,
+    /** True between pointerdown and pointerup on the press trigger. */
+    isPointerDown: () => pointerDownRef.current,
   }
 }

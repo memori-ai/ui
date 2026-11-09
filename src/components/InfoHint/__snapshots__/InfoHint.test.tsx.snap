@@ -7,6 +7,7 @@ exports[`InfoHint > renders InfoHint unchanged 1`] = `
   >
     <span
       class="memori-tooltip__trigger"
+      data-base-ui-tooltip-trigger=""
       id="base-ui-_r_1_"
     >
       <button

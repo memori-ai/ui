@@ -30,9 +30,10 @@ exports[`renders RadioGroup unchanged 1`] = `
         aria-hidden="true"
         checked=""
         id="memori-radio-3"
-        style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: 0px; position: fixed; top: 0px; left: 0px;"
         tabindex="-1"
         type="radio"
+        value="free"
       />
       <span
         class="memori-radio__text"
@@ -54,16 +55,17 @@ exports[`renders RadioGroup unchanged 1`] = `
         aria-labelledby="memori-radio-label-4"
         class="memori-radio__control"
         data-unchecked=""
-        id="base-ui-_r_3_"
+        id="base-ui-_r_4_"
         role="radio"
         tabindex="-1"
       />
       <input
         aria-hidden="true"
         id="memori-radio-6"
-        style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: 0px; position: fixed; top: 0px; left: 0px;"
         tabindex="-1"
         type="radio"
+        value="pro"
       />
       <span
         class="memori-radio__text"
@@ -78,12 +80,5 @@ exports[`renders RadioGroup unchanged 1`] = `
       </span>
     </span>
   </div>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_0_"
-    style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
-    tabindex="-1"
-    value="free"
-  />
 </div>
 `;
